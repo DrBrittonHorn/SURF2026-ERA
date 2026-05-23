@@ -5,8 +5,12 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 import tools.com.google.gson.JsonObject;
+import tools.com.google.gson.JsonParser;
+import tools.com.google.gson.Gson;
+
 
 public class GeminiAPI {
     
@@ -31,18 +35,21 @@ public class GeminiAPI {
 
         HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create(url))
-        .header("Content-Type", "application/json")
-        .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+        .header("Content-Type", "application/json; charset=UTF-8")
+        .POST(HttpRequest.BodyPublishers.ofString(requestBody, StandardCharsets.UTF_8))
         .build();
 
         try{
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            // EXTREMELY subpar way to do this. //TODO
-            // Ideally, we would use a json text to json library, but I haven't figured out how to import non-java libraries yet.
-            String text = response.body();
-            text = text.split("text")[1].substring(4);
-            text = text.split("\",\n\"thoughtSignature")[0];
-            return text;
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+            JsonObject jsonObject = new JsonParser().parse(response.body()).getAsJsonObject();
+            String responseString = jsonObject
+                    .getAsJsonArray("candidates")
+                    .get(0).getAsJsonObject()
+                    .getAsJsonObject("content")
+                    .getAsJsonArray("parts")
+                    .get(0).getAsJsonObject()
+                    .get("text").getAsString();
+            return responseString;
         }
         catch (IOException e){
             System.out.println("An IO Exception occured!");
