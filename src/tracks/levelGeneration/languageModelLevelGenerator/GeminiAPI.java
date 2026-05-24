@@ -9,16 +9,16 @@ import java.nio.charset.StandardCharsets;
 
 import tools.com.google.gson.JsonObject;
 import tools.com.google.gson.JsonParser;
-import tools.com.google.gson.Gson;
+
 
 
 public class GeminiAPI {
     
     public static String generateText(String prompt){
-        return generateContent(prompt, "gemini-3.1-flash-lite");
+        return generateText(prompt, "gemini-3.1-flash-lite");
     }
 
-    public static String generateContent(String prompt, String modelName){
+    public static String generateText(String prompt, String modelName){
         String apiKey = System.getenv("SURF-API-KEY-2");
         //System.out.println(apiKey);
 
@@ -61,9 +61,10 @@ public class GeminiAPI {
         }
         return requestBody;
     }
-
+    /*
     public static void main(String args[]){
         // Main function to test if the calls are working
         System.out.println(generateText("Why is Neptune Blue?"));
     }
+        */
 }
