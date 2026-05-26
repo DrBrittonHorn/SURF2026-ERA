@@ -564,7 +564,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 	 * @return				string for the generated level
 	 */
 	public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer, int width, int length){
-		generatedLevel = new LevelData(width, length);
+		generatedLevel = new LevelData(width, length, game.getLevelMapping);
 		LevelCoverData coverPercentages = getPercentagesCovered(game);
 		
 		buildLevelLayout(generatedLevel, coverPercentages);
