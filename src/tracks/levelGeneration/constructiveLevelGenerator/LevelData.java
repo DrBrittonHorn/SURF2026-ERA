@@ -21,7 +21,7 @@ public class LevelData {
 	 * @param width		level width
 	 * @param length	level height
 	 */
-	public LevelData(int width, int length){
+	public LevelData(int width, int length, HashMap<Character, ArrayList<String>> mapping){
 		level = new String[width][length];
 		originalMapping = mapping;
 		spriteToChar = new HashMap<String, Character>();
