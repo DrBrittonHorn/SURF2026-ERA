@@ -13,7 +13,6 @@ import java.util.Random;
 
 import core.content.GameContent;
 import core.generator.AbstractLevelGenerator;
-import src.core.vgdl.VGDLParser;
 import tools.ElapsedCpuTimer;
 import core.content.GameContent;
 
