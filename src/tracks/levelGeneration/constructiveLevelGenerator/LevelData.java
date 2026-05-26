@@ -13,7 +13,8 @@ public class LevelData {
 	/**
 	 * hashmap to hold the current level mapping
 	 */
-	private HashMap<String, Character> levelMapping;
+	private HashMap<Character, ArrayList<String>> originalMapping;
+	private HashMap<String, Character> spriteToChar;
 	
 	/**
 	 * construct data for a level
@@ -22,7 +23,13 @@ public class LevelData {
 	 */
 	public LevelData(int width, int length){
 		level = new String[width][length];
-		levelMapping = new HashMap<String, Character>();
+		originalMapping = mapping;
+		spriteToChar = new HashMap<String, Character>();
+		for(Character c : mapping.keySet()){
+			for(String sprite : mapping.get(c)){
+				spriteToChar.put(sprite, c);
+			}
+		}	
 	}
 	
 
@@ -37,20 +44,22 @@ public class LevelData {
 		for(int y=0; y<level[0].length; y++){
 			for(int x=0; x<level.length; x++){
 				if(level[x][y] == null){
-					result += " ";
+					result += ".";
 				}
 				else{
-					if(!levelMapping.containsKey(level[x][y])){
-						levelMapping.put(level[x][y], mapChar);
-						mapChar += 1;
+					Character c = spriteToChar.get(level[x][y]);
+					if(c == null){
+						System.out.println("Missing mapping for sprite: " + level[x][y]);
+    					result += "."; //temporary fix, will be changed
 					}
-					result += levelMapping.get(level[x][y]);
+					else{
+						result += c;
+					}
 				}
 			}
 			result += "\n";
 		}
 		result = result.substring(0, result.length() - 1);
-		
 		return result;
 	}
 	
@@ -178,20 +187,12 @@ public class LevelData {
 		
 		return result;
 	}
-	
-
 	/**
 	 * get the level mapping hashmap
 	 * @return	the used hashmap for constructing the level
 	 */
 	public HashMap<Character, ArrayList<String>> getLevelMapping(){
-		HashMap<Character, ArrayList<String>> result = new HashMap<Character, ArrayList<String>>();
-		for(Entry<String,Character> entry:levelMapping.entrySet()){
-			ArrayList<String> list = new ArrayList<String>();
-			list.add(entry.getKey());
-			result.put(entry.getValue(), list);
-		}
-		return result;
+		return originalMapping;
 	}
 	
 
