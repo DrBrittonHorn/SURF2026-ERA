@@ -563,7 +563,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 	 * @param length		the length of the level
 	 * @return				string for the generated level
 	 */
-	public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer, int width, int length){
+	public String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer, int width, int length){
 		generatedLevel = new LevelData(width, length, game.getLevelMapping());
 		LevelCoverData coverPercentages = getPercentagesCovered(game);
 		
@@ -586,7 +586,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 	 * @return				string for the generated level
 	 */
 	@Override
-	public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer) {
+	public String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer) {
 		int size = 0;
 		if(gameAnalyzer.getSolidSprites().size() > 0){
 			size = 2;
@@ -599,7 +599,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		width = (int)Math.min(width, maxSize + size);
 		length = (int)Math.min(length, maxSize + size);
 		
-		return generateLevel(game, elapsedTimer, width, length);
+		return generateLevel(game, gamePath, elapsedTimer, width, length);
 	}
 
 

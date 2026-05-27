@@ -152,7 +152,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 	 * @param elapsedTimer	Timer to define the maximum amount of time for the level generation.
 	 */
 	@Override
-	public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer) {
+	public String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer) {
 		String result = "";
 		ArrayList<SpriteData> sprites = game.getAllSpriteData();
 		ArrayList<SpriteData> avatars = game.getAvatar();

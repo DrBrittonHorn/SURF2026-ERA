@@ -36,8 +36,9 @@ public class LevelGenMachine
      * @param gameFile game description file.
      * @param levelGenerator level generator class path.
      * @param levelFile file to save the generated level in it
+     * @throws IOException 
      */
-    public static boolean generateOneLevel(String gameFile, String levelGenerator, String levelFile) {
+    public static boolean generateOneLevel(String gameFile, String levelGenerator, String levelFile) throws IOException {
         VGDLFactory.GetInstance().init(); // This always first thing to do.
         VGDLRegistry.GetInstance().init();
 
@@ -48,7 +49,7 @@ public class LevelGenMachine
         Game toPlay = new VGDLParser().parseGame(gameFile);
         GameDescription description = new GameDescription(toPlay);
         AbstractLevelGenerator generator = createLevelGenerator(levelGenerator, description);
-        String level = getGeneratedLevel(description, toPlay, generator);
+        String level = getGeneratedLevel(description, toPlay, gameFile, generator);
         if (level == "" || level == null) {
             System.out.println("Empty Level Disqualified");
             toPlay.disqualify();
@@ -89,8 +90,9 @@ public class LevelGenMachine
      * @param gameFile The game description file path
      * @param levelGenerator The current used level generator
      * @param levelFile array of level files to save the generated levels
+     * @throws IOException 
      */
-    public static void generateLevels(String gameFile, String levelGenerator, String[] levelFile) {
+    public static void generateLevels(String gameFile, String levelGenerator, String[] levelFile) throws IOException {
         VGDLFactory.GetInstance().init(); // This always first thing to do.
         VGDLRegistry.GetInstance().init();
 
@@ -106,7 +108,7 @@ public class LevelGenMachine
             toPlay.reset();
             description.reset(toPlay);
 
-            String level = getGeneratedLevel(description, toPlay, generator);
+            String level = getGeneratedLevel(description, toPlay, gameFile, generator);
             if (level == "" || level == null) {
                 toPlay.disqualify();
 
@@ -401,12 +403,13 @@ public class LevelGenMachine
      * @param game Current game object.
      * @param generator Current level generator.
      * @return String of symbols contains the generated level. Same as Level Description File string.
+     * @throws IOException 
      */
-    private static String getGeneratedLevel(GameDescription gd, Game game, AbstractLevelGenerator generator) {
+    private static String getGeneratedLevel(GameDescription gd, Game game, String gamePath, AbstractLevelGenerator generator) throws IOException {
         ElapsedCpuTimer ect = new ElapsedCpuTimer();
         ect.setMaxTimeMillis(CompetitionParameters.LEVEL_ACTION_TIME);
 
-        String level = generator.generateLevel(gd, ect.copy());
+        String level = generator.generateLevel(gd, gamePath, ect.copy());
 
         if (ect.exceededMaxTime()) {
             long exceeded = -ect.remainingTimeMillis();
