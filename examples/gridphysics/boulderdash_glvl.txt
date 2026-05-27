@@ -1,19 +1,28 @@
 LevelMapping
-    a > wall 
-    b > exitdoor 
-    c > avatar 
-    d > boulder 
-    e > diamond 
+    A > background avatar 
+    b > background butterfly 
+    c > background crab 
+    e > background exitdoor 
+    w > wall 
+    x > background diamond 
+    - > background 
+    . > background dirt 
+    o > background boulder 
 
 LevelDescription
-aaaaaaaaaaaaa
-a   b  c    a
-ad          a
-a       d   a
-a e         a
-a     d a   a
-a     e a   a
-a   d  aa   a
-a      b    a
-a           a
-aaaaaaaaaaaaa
+wwwwwwwwww
+w........w
+wox...A..w
+w......www
+w..c.....w
+w.e......w
+w......b.w
+w........w
+w........w
+w...b....w
+w......o.w
+w........w
+w........w
+w........w
+wx.......w
+wwwwwwwwww
