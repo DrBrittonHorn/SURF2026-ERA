@@ -42,6 +42,13 @@ public class GeminiAPI {
         try{
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
             JsonObject jsonObject = new JsonParser().parse(response.body()).getAsJsonObject();
+            
+            if (jsonObject
+                    .getAsJsonArray("candidates") == null){
+                        System.out.println(response.body());
+                        return response.body();
+                    }
+            
             String responseString = jsonObject
                     .getAsJsonArray("candidates")
                     .get(0).getAsJsonObject()

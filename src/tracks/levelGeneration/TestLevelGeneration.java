@@ -57,7 +57,6 @@ public class TestLevelGeneration {
 		    LevelGenMachine.playOneGeneratedLevel(game, recordActionsFile, recordLevelFile, seed);
 		}
 
-
 		// 2. This generates numberOfLevels levels.
 		// String levelGenerator = "tracks.levelGeneration." + args[0] + ".LevelGenerator";
 		// int numberOfLevels = 5;
