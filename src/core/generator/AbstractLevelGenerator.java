@@ -15,8 +15,9 @@ public abstract class AbstractLevelGenerator {
 	 * @param elapsedTimer	count down until level generation is due
 	 * @return				Level Description String that follows the game LevelMapping
 	 * @throws IOException 
+	 * @throws Exception 
 	 */
-	public abstract String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer) throws IOException;
+	public abstract String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer) throws IOException, Exception;
 	
 	/**
 	 * Optional function to get force game engine use different level mapping.

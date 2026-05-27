@@ -1,12 +1,11 @@
 package tracks.levelGeneration;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class GenerateFullGeneratorSuite {
-    public static void main(String args[]) throws IOException{
+    public static void main(String args[]) throws Exception{
         String randomLevelGenerator = "tracks.levelGeneration.randomLevelGenerator.LevelGenerator";
 		String geneticGenerator = "tracks.levelGeneration.geneticLevelGenerator.LevelGenerator";
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
