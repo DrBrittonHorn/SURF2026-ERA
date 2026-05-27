@@ -230,7 +230,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 	 * @return				string for the generated level
 	 */
 	@Override
-	public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer) {
+	public String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer) {
 		//initialize the statistics objects
 		bestFitness = new ArrayList<Double>();
 		numOfFeasible = new ArrayList<Integer>();

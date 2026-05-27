@@ -1,5 +1,6 @@
 package core.generator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,8 +14,10 @@ public abstract class AbstractLevelGenerator {
 	 * @param game			GameDescription object holding all game information
 	 * @param elapsedTimer	count down until level generation is due
 	 * @return				Level Description String that follows the game LevelMapping
+	 * @throws IOException 
+	 * @throws Exception 
 	 */
-	public abstract String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer);
+	public abstract String generateLevel(GameDescription game, String gamePath, ElapsedCpuTimer elapsedTimer) throws IOException, Exception;
 	
 	/**
 	 * Optional function to get force game engine use different level mapping.

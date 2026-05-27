@@ -27,15 +27,22 @@ import tracks.ArcadeMachine;
 public class LevelGenerator extends AbstractLevelGenerator{
 
     // Haven't been able to find a way to get this particular method to work as it needs to...
-    public String generateLevel(GameDescription game, ElapsedCpuTimer elapsedTimer){
-        return "Used other method format";
+
+    public LevelGenerator(GameDescription description, ElapsedCpuTimer elapsedTimer){
+        return;
+    }
+        
+    
+
+    public String generateLevel(GameDescription description, String gamePath, ElapsedCpuTimer elapsedTimer) throws IOException{
+        return generateLevel(description, gamePath, null, elapsedTimer, 0);
     }
 
-    public String generateLevel(String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer) throws IOException{
-        return generateLevel(gamePath, outputPath, elapsedTimer, 0);
+    public String generateLevel(GameDescription description, String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer) throws IOException{
+        return generateLevel(description, gamePath, outputPath, elapsedTimer, 0);
     }
 
-    public String generateLevel(String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer, int promptNum) throws IOException{
+    public String generateLevel(GameDescription description, String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer, int promptNum) throws IOException{
         String prompts = Files.readString(Path.of("src/tracks/levelGeneration/languageModelLevelGenerator/prompts.json"));
         String levelRules = Files.readString(Path.of(gamePath));
         Gson g = new Gson();
@@ -57,21 +64,23 @@ public class LevelGenerator extends AbstractLevelGenerator{
         prompt += "\nGVDL Level Description:\n" + levelRules + "\nSample Levels:\n" + levels;
         //System.out.println(prompt);
         String response = GeminiAPI.generateText(prompt);
-        Files.writeString(Path.of(outputPath), response);
+        
+
+        if (outputPath != null){Files.writeString(Path.of(outputPath), response);}
         //System.out.println(response);
         return response.substring(1, response.length()-1);
     }
 
     //Example usage to generate a new level of aliens
     public static void main(String[] args) throws IOException{
-        String gameName = "examples/gridphysics/donkeykong";
+        String gameName = "examples/gridphysics/aliens";
         //String gameName = "examples/contphysics/artillery";
 
         String gamePath =  gameName + ".txt";
         String newLevelPath = gameName + "_lvl0_llm.txt";
 
-        LevelGenerator generator = new LevelGenerator();
-        String level = generator.generateLevel(gamePath, newLevelPath, null);
+        LevelGenerator generator = new LevelGenerator(null, null);
+        String level = generator.generateLevel(null, gamePath, newLevelPath, null);
         
         System.out.println(level);
         
