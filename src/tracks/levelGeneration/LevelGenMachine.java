@@ -409,6 +409,7 @@ public class LevelGenMachine
         ElapsedCpuTimer ect = new ElapsedCpuTimer();
         ect.setMaxTimeMillis(CompetitionParameters.LEVEL_ACTION_TIME);
 
+        Thread.sleep(3000);
         String level = generator.generateLevel(gd, gamePath, ect.copy());
 
         if (ect.exceededMaxTime()) {
