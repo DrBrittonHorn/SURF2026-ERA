@@ -64,6 +64,8 @@ public class LevelGenerator extends AbstractLevelGenerator{
         prompt += "\nGVDL Level Description:\n" + levelRules + "\nSample Levels:\n" + levels;
         //System.out.println(prompt);
         String response = GeminiAPI.generateText(prompt);
+        
+
         if (outputPath != null){Files.writeString(Path.of(outputPath), response);}
         //System.out.println(response);
         return response.substring(1, response.length()-1);

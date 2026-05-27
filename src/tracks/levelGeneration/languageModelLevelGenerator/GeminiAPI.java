@@ -46,7 +46,8 @@ public class GeminiAPI {
             if (jsonObject
                     .getAsJsonArray("candidates") == null){
                         System.out.println(response.body());
-                        return response.body();
+                        //throw new Exception("API Error!");
+                        return null;
                     }
             
             String responseString = jsonObject
