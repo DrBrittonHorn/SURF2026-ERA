@@ -137,7 +137,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * initialize the chromosome using the contructive level generator
 	 */
 	public void InitializeConstructive(){
-		String[] levelString = SharedData.constructiveGen.generateLevel(SharedData.gameDescription, null, level[0].length, level.length).split("\n");
+		String[] levelString = SharedData.constructiveGen.generateLevel(SharedData.gameDescription, null, null, level[0].length, level.length).split("\n");
 		HashMap<Character, ArrayList<String>> charMap = SharedData.constructiveGen.getLevelMapping();
 		
 		for(int y=0; y<levelString.length; y++){
