@@ -54,7 +54,6 @@ public class LevelData {
 	 */
 	public String getLevel(){
 		String result = "";
-		char mapChar = 'a';
 		
 		for(int y=0; y<level[0].length; y++){
 			for(int x=0; x<level.length; x++){
