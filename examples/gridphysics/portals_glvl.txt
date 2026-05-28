@@ -1,0 +1,27 @@
+LevelMapping
+    A > floor avatar 
+    r > floor random 
+    2 > floor entry2 
+    3 > floor exit2 
+    v > floor vertical 
+    w > floor wall 
+    g > floor goal 
+    h > floor horizontal 
+    x > floor sitting 
+    i > floor entry1 
+    + > floor 
+    o > floor exit1 
+
+LevelDescription
+wwwwwwwwwwww
+w....w.3.w.w
+w.2.....w..w
+w.r......o.w
+w+.........w
+w..w......rw
+w........x.w
+w......A...w
+w.o3rv2....w
+w.oii.g..h.w
+w..2.oh.g+.w
+wwwwwwwwwwww
