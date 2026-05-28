@@ -1,4 +1,4 @@
-package tracks.levelGeneration.languageModelLevelGenerator;
+package tracks.levelGeneration.geminiLevelGenerator;
 
 import java.io.IOException;
 import java.net.URI;

@@ -9,7 +9,7 @@ public class GenerateFullGeneratorSuite {
         String randomLevelGenerator = "tracks.levelGeneration.randomLevelGenerator.LevelGenerator";
 		String geneticGenerator = "tracks.levelGeneration.geneticLevelGenerator.LevelGenerator";
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
-		String languageModelGenerator = "tracks.levelGeneration.languageModelLevelGenerator.LevelGenerator";
+		String languageModelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
 
         // Generator Choice
         String selectedGenerator = languageModelGenerator;

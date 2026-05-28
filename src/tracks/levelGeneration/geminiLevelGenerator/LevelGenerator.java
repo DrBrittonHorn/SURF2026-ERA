@@ -1,4 +1,4 @@
-package tracks.levelGeneration.languageModelLevelGenerator;
+package tracks.levelGeneration.geminiLevelGenerator;
 
 import core.game.Game;
 import core.game.BasicGame;
