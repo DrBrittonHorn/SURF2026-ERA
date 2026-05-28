@@ -2,7 +2,6 @@ package tracks.levelGeneration.constructiveLevelGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class LevelData {
 
@@ -15,6 +14,8 @@ public class LevelData {
 	 */
 	private HashMap<Character, ArrayList<String>> originalMapping;
 	private HashMap<String, Character> spriteToChar;
+
+	private String emptyChar;
 	
 	/**
 	 * construct data for a level
@@ -23,6 +24,20 @@ public class LevelData {
 	 */
 	public LevelData(int width, int length, HashMap<Character, ArrayList<String>> mapping){
 		level = new String[width][length];
+		
+		if ((mapping.containsKey('.')) && (mapping.get('.').contains("floor"))) {
+			emptyChar = ".";
+		}
+		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("background"))) {
+			emptyChar = ".";
+		}
+		else if (!(mapping.containsKey('.'))) {
+			emptyChar = " ";
+		}
+		else {
+			emptyChar = " ";
+		}
+
 		originalMapping = mapping;
 		spriteToChar = new HashMap<String, Character>();
 		for(Character c : mapping.keySet()){
@@ -44,7 +59,7 @@ public class LevelData {
 		for(int y=0; y<level[0].length; y++){
 			for(int x=0; x<level.length; x++){
 				if(level[x][y] == null){
-					result += ".";
+					result += emptyChar;
 				}
 				else{
 					Character c = spriteToChar.get(level[x][y]);
