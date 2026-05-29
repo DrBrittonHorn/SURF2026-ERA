@@ -1,0 +1,24 @@
+LevelMapping
+    A > avatar 
+    1 > goomba 
+    2 > paratroopa 
+    c > coin 
+    f > fire 
+    w > wall 
+    G > goal 
+    l > cloud 
+    = > elevator 
+    . > ground 
+
+LevelDescription
+wcccccccccccccwwwwwww
+w                         w
+w          f   l       G w
+w      c  .             ww
+w   ...  w                ww
+w  c     www  1           ww
+w A    .  ....    c        ww
+w....  .....     .....wwww
+w         wwwwww  f  wwww
+
+Note: This level includes a fire (f) and a cloud (l), along with platforms for the avatar to move around on. The goal is placed at the top center, making it accessible through various paths

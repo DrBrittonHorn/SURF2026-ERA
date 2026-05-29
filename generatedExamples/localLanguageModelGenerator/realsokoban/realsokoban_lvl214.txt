@@ -1,0 +1,16 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+wwwwwwww
+ ww.o*o.
+ w.*A*.o
+ ww..oo.
+ w......
+ ww.......]
+ 
+Note: The level description follows the format of the sample levels, where each character represents a specific type of tile or object in the game. In this case, I've created a new level with a single hole (represented by 'o') and an avatar (represented by 'A') placed on top of it

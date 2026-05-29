@@ -1,0 +1,20 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+w                     w
+ w  B       B    G    w
+ ww   ddd   wwwwwww
+ w   B b   d   b    w
+ w    dd      d  www 
+ w  G     ddd     w Gw
+ w                wwwww
+ wB  G            w 
+ w              GG w ]
+ 
+This level includes a mix of bouncey and breakable tiles to create opportunities for the player's bullets to bounce around, as well as areas where the avatar can safely move towards and away from obstacles. The arrangement aims to challenge the avatar while maintaining a balance between exploration and combat, allowing the player to navigate and use their skills effectively

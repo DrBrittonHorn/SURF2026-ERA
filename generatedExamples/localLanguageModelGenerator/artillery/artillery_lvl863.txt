@@ -1,0 +1,22 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+www
+ B   ww
+ www    ww
+ www        ddd
+ w G     G   d
+ ww         dd
+ ww      wBd 
+ ww     GGGG  dw
+ ww                  dw
+ wA   wwwwww          ]
+ 
+
+This new level is designed to have a mix of bouncey blocks, breakable blocks and an enemy avatar (the "pad") in the center. The player's starting position is at the top-left corner (A), making it easy for them to reach and defeat the avatar within a few steps

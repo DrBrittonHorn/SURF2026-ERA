@@ -1,0 +1,19 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+www
+wwww
+wB B
+wd
+B d
+d G
+ww
+wwwwww]
+ 
+In this generated level, the player starts from a fixed position in the top left corner (A), and the goal is to reach the pad (G) without touching any walls or other obstacles. The bouncey tiles are at the bottom of the level for the boxes (b) to bounce off and have their speed halved when hitting the pad
