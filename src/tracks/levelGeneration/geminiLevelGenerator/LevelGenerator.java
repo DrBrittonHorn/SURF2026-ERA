@@ -26,13 +26,9 @@ import tracks.ArcadeMachine;
 
 public class LevelGenerator extends AbstractLevelGenerator{
 
-    // Haven't been able to find a way to get this particular method to work as it needs to...
-
     public LevelGenerator(GameDescription description, ElapsedCpuTimer elapsedTimer){
         return;
     }
-        
-    
 
     public String generateLevel(GameDescription description, String gamePath, ElapsedCpuTimer elapsedTimer) throws IOException{
         return generateLevel(description, gamePath, null, elapsedTimer, 0);
@@ -43,7 +39,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
     }
 
     public String generateLevel(GameDescription description, String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer, int promptNum) throws IOException{
-        String prompts = Files.readString(Path.of("src/tracks/levelGeneration/languageModelLevelGenerator/prompts.json"));
+        String prompts = Files.readString(Path.of("src/tracks/levelGeneration//prompts.json"));
         String levelRules = Files.readString(Path.of(gamePath));
         Gson g = new Gson();
         JsonObject j = g.fromJson(prompts, JsonObject.class);
@@ -52,9 +48,9 @@ public class LevelGenerator extends AbstractLevelGenerator{
         String levels = "";
         for (int i = 0; i < 5; i++){
             try{
-                levels += "[";
+                levels += "Level" + i + ":\n";
                 levels += Files.readString(Path.of(gamePath.substring(0, gamePath.length()-4) + "_lvl" + String.valueOf(i) + ".txt"));
-                levels += "]\n";
+                //levels += "]\n";
             }
             catch (FileNotFoundException f){
                 System.out.println("Generating level for a game for which only " + i + "sample levels were found!");
@@ -64,11 +60,11 @@ public class LevelGenerator extends AbstractLevelGenerator{
         prompt += "\nGVDL Level Description:\n" + levelRules + "\nSample Levels:\n" + levels;
         //System.out.println(prompt);
         String response = GeminiAPI.generateText(prompt);
-        
+        response = response.substring(1, response.length()-1);
 
         if (outputPath != null){Files.writeString(Path.of(outputPath), response);}
         //System.out.println(response);
-        return response.substring(1, response.length()-1);
+        return response;
     }
 
     //Example usage to generate a new level of aliens
