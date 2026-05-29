@@ -49,33 +49,33 @@ public class TestLevelGeneration {
 
 		// Other settings
 		int seed = new Random().nextInt();
-		int gameIdx = 0;
+		int gameIdx = 92;
 		String recordLevelFile = generateLevelPath + games[gameIdx] + "_glvl.txt";
 		String game = generateLevelPath + games[gameIdx] + ".txt";
 
 
 		// 1. This starts a game, in a generated level created by a specific level generator
-		// if(LevelGenMachine.generateOneLevel(game, geneticGenerator, recordLevelFile)){
-		//     LevelGenMachine.playOneGeneratedLevel(game, recordActionsFile, recordLevelFile, seed);
-		// }
+		if(LevelGenMachine.generateOneLevel(game, constructiveLevelGenerator, recordLevelFile)){
+		    LevelGenMachine.playOneGeneratedLevel(game, recordActionsFile, recordLevelFile, seed);
+		}
 
 		// 2. This generates numberOfLevels levels.
-		int GamePick = 0; // 0-95
-		String GameName = games[GamePick];
-		String GeneratorName = "constructiveLevelGenerator"; // "randomLevelGenerator" or "geneticLevelGenerator" or "constructiveLevelGenerator" or "languageModelGenerator"
+		// int GamePick = 67; // 0-95
+		// String GameName = games[GamePick];
+		// String GeneratorName = "constructiveLevelGenerator"; // "randomLevelGenerator" or "geneticLevelGenerator" or "constructiveLevelGenerator" or "languageModelGenerator"
 
-		String levelGenerator = "tracks.levelGeneration." + GeneratorName + ".LevelGenerator";
-		int numberOfLevels = 1;
-		tracks.levelGeneration.randomLevelGenerator.LevelGenerator.includeBorders = true;
+		// String levelGenerator = "tracks.levelGeneration." + GeneratorName + ".LevelGenerator";
+		// int numberOfLevels = 1;
+		// tracks.levelGeneration.randomLevelGenerator.LevelGenerator.includeBorders = true;
 
-		String ThisPath = "generatedExamples/" + GeneratorName + "/" + GameName + "/";
+		// String ThisPath = "generatedExamples/" + GeneratorName + "/" + GameName + "/";
 
-		game = generateLevelPath + GameName + ".txt";
-		for (int i = 0; i < numberOfLevels; i++) {
-			recordLevelFile = ThisPath + GameName + "_lvl" + i + ".txt";
-			LevelGenMachine.generateOneLevel(game, levelGenerator, recordLevelFile);
-			System.out.println("generated level " + (i+1));
-		}
+		// game = generateLevelPath + GameName + ".txt";
+		// for (int i = 0; i < numberOfLevels; i++) {
+		// 	recordLevelFile = ThisPath + GameName + "_lvl" + i + ".txt";
+		// 	LevelGenMachine.generateOneLevel(game, levelGenerator, recordLevelFile);
+		// 	System.out.println("generated level " + (i+1));
+		// }
 
 
     }
