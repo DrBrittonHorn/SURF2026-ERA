@@ -49,7 +49,7 @@ public class TestLevelGeneration {
 
 		// Other settings
 		int seed = new Random().nextInt();
-		int gameIdx = 90;
+		int gameIdx = 0;
 		String recordLevelFile = generateLevelPath + games[gameIdx] + "_glvl.txt";
 		String game = generateLevelPath + games[gameIdx] + ".txt";
 
@@ -60,21 +60,21 @@ public class TestLevelGeneration {
 		// }
 
 		// 2. This generates numberOfLevels levels.
-		int GamePick = 90; // 0-95
+		int GamePick = 0; // 0-95
 		String GameName = games[GamePick];
-		String GeneratorName = "geneticLevelGenerator"; // "randomLevelGenerator" or "geneticLevelGenerator" or "constructiveLevelGenerator" or "languageModelGenerator"
+		String GeneratorName = "constructiveLevelGenerator"; // "randomLevelGenerator" or "geneticLevelGenerator" or "constructiveLevelGenerator" or "languageModelGenerator"
 
 		String levelGenerator = "tracks.levelGeneration." + GeneratorName + ".LevelGenerator";
-		int numberOfLevels = 5;
+		int numberOfLevels = 1;
 		tracks.levelGeneration.randomLevelGenerator.LevelGenerator.includeBorders = true;
 
-		String[] folderName = levelGenerator.split("\\.");
-		generateLevelPath = "generatedExamples/" + GeneratorName + "/" + GameName + "/";
+		String ThisPath = "generatedExamples/" + GeneratorName + "/" + GameName + "/";
 
-		game = gamesPath + GameName + ".txt";
+		game = generateLevelPath + GameName + ".txt";
 		for (int i = 0; i < numberOfLevels; i++) {
-			recordLevelFile = generateLevelPath + GameName + "_lvl" + i + ".txt";
+			recordLevelFile = ThisPath + GameName + "_lvl" + i + ".txt";
 			LevelGenMachine.generateOneLevel(game, levelGenerator, recordLevelFile);
+			System.out.println("generated level " + (i+1));
 		}
 
 
