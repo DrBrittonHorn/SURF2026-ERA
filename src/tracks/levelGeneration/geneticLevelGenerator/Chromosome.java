@@ -219,6 +219,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB){
 				String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
 				ArrayList<SpritePointData> freePositions = getFreePositions(new ArrayList<String>(Arrays.asList(new String[]{spriteName})));
+				if (freePositions.isEmpty()) {return;}
 				int index = SharedData.random.nextInt(freePositions.size());
 				level[freePositions.get(index).y][freePositions.get(index).x].add(spriteName);
 			}
