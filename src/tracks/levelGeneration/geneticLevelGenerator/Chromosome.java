@@ -91,7 +91,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	/**
 	 * initialize the agents used during evaluating the chromosome
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void constructAgent(){
 		try{
 			Class agentClass = Class.forName(SharedData.AGENT_NAME);
@@ -219,6 +219,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB){
 				String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
 				ArrayList<SpritePointData> freePositions = getFreePositions(new ArrayList<String>(Arrays.asList(new String[]{spriteName})));
+				if (freePositions.isEmpty()) {return;}
 				int index = SharedData.random.nextInt(freePositions.size());
 				level[freePositions.get(index).y][freePositions.get(index).x].add(spriteName);
 			}
@@ -474,6 +475,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * player ID used is 0, default for single player games.
 	 * @return	true if the player death terminates the game and false otherwise
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	private boolean isPlayerCauseDeath(){
 
 		for(TerminationData t:SharedData.gameDescription.getTerminationConditions()){

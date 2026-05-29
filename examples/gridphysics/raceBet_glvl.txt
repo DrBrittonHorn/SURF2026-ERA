@@ -1,0 +1,37 @@
+LevelMapping
+    A > normal arena 
+    a > floor camelA 
+    b > floor camelB 
+    c > floor camelC 
+    d > floor camelD 
+    g > floor goal 
+    + > floor 
+    - > floor barrier 
+    . > arena 
+    1 > pitA 
+    2 > pitB 
+    3 > pitC 
+    4 > pitD 
+    w > wall 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwww
+w.2...............w
+w.................w
+w3.4..............w
+w-....d..g..2.....w
+w.................w
+w.................w
+w.g.....w.........w
+w.2.....w........cw
+w..c..www.-.......w
+w..........b......w
+w1....b.....a....bw
+wb................w
+w............g....w
+w........1...4d..dw
+w............a....w
+w............c....w
+w..d.g...bwww.....w
+wA-..a....a.b..-..w
+wwwwwwwwwwwwwwwwwww
