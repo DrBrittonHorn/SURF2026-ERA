@@ -1,0 +1,17 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+wwwwwwww
+ w.....ow
+ ww.*o*.w
+ w..*o.w
+ w...wooo.w
+ ww.......w
+ wooooooo]
+ 
+In this new level, the avatar will have to navigate through a challenging terrain with obstacles and rewards. The "w" blocks are walls that the avatar cannot pass through, while the "*" blocks can be transformed into "." blocks by stepping on them. The "o" blocks are holes that reward points when a box is placed in them

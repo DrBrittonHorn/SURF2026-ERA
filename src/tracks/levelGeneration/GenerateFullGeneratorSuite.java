@@ -3,6 +3,7 @@ package tracks.levelGeneration;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class GenerateFullGeneratorSuite {
@@ -14,14 +15,16 @@ public class GenerateFullGeneratorSuite {
 		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = constructiveLevelGenerator;
+        String selectedGenerator = localLanguageModelGenerator;
         
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
 
         String generatorTitle = selectedGenerator.split("\\.")[2];
         int levelsToGenerate = 1000;
+        int levelTotal = 0;
         System.out.println("Generating Suite of " + levelsToGenerate + " levels for " + generatorTitle);
+        System.out.println("Start time of " + LocalDateTime.now());
 
         // Creates the correct generator folder if not present
         if (!Files.exists(Path.of("generatedExamples" + "/" + generatorTitle))){
@@ -47,7 +50,7 @@ public class GenerateFullGeneratorSuite {
             }
             //Remove existing generated levels from the list of paths of levels to be generated
             outputFilePaths.removeIf(item -> Files.exists(Path.of(item)));
-            
+            levelTotal += outputFilePaths.size();
             
             //System.out.println(outputFilePaths);
             
@@ -55,6 +58,8 @@ public class GenerateFullGeneratorSuite {
             String[] outputFilePathsArray = outputFilePaths.toArray(array);
             LevelGenMachine.generateLevels(gamePath, selectedGenerator, outputFilePathsArray);
         }
+        System.out.println("Generated " + levelTotal + "levels");
+        System.out.println("End time of " + LocalDateTime.now());
         
 //aliens_lvl0.txt
         

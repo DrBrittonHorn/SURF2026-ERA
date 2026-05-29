@@ -15,7 +15,7 @@ public class BinGeneratedLevels {
         if (level.contains("LevelDescription")){level = level.split("LevelDescription")[1];}
         String[] rows = Arrays.stream(level.split("\\r\\n|\\r|\\n")).filter(a -> !a.isEmpty()).toArray(String[]::new);
 
-        System.out.println(Arrays.toString(rows)); 
+        //System.out.println(Arrays.toString(rows)); 
         int startingLength = rows[0].length();
         for (int i = 0; i < rows.length; i++){
             if (rows[i].length() != startingLength){
@@ -70,18 +70,20 @@ public class BinGeneratedLevels {
     public static void generateBinJSON(String folderPath){
         Path startPath = Paths.get(folderPath);
         Path jsonPath = Path.of(folderPath + "/binning.json");
-        try {
+        try {  
             // Opening curly-brace
             Files.writeString(jsonPath, "{");
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
         String results = "";
 
         try (
             Stream<Path> stream = Files.walk(startPath)) {
-            stream.filter(Files::isRegularFile)
+                
+                stream.filter(Files::isRegularFile)
                   .forEach(e -> {
                     try {
                         if (e.toString().endsWith("txt")){
@@ -97,8 +99,19 @@ public class BinGeneratedLevels {
             e.printStackTrace();
         }
         try {
-            //Ending curly-brace
-            Files.write(jsonPath, "}".getBytes(), StandardOpenOption.APPEND);
+            
+            if (Files.readString(jsonPath).length() <= 2){
+                System.out.println("No level files found in " + folderPath);
+                //Chop of unnecessary starting curly brace
+                Files.writeString(jsonPath, "");
+            }
+            else{
+                //Chop of extra comma and and ending curly-brace
+                Files.writeString(jsonPath, Files.readString(jsonPath).substring(0, Files.readString(jsonPath).length()-2));
+                Files.write(jsonPath, "}".getBytes(), StandardOpenOption.APPEND);
+                System.out.println("Created binning file for " + folderPath);
+            }
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

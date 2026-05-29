@@ -1,0 +1,37 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwwwww
+w.g......t....wg...xw
+w.....k...www.wwww...
+wwwww.wwww.......w......
+wr...................w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwwgw
+w........wmwwwww.w.w
+w.................f...
+w.wwww.......wwwwwwwww
+w.gw.w...f...w.g...g.w
+wwwwwww..f...w.......w
+wk........2wwww.www...
+w...................gw
+w.wwwww..wwww......k.w
+w.w..............2.....
+w...wwgw.wwww.........w
+w.xAwg.u............w]
+[ is not a valid output, however, your response should be in the format of [ Level description ] with an empty line between the brackets and the level description
