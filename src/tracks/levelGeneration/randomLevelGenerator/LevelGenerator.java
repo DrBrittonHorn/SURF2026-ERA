@@ -218,8 +218,26 @@ public class LevelGenerator extends AbstractLevelGenerator{
 				}
 				//add empty space
 				else if(random.nextDouble() < emptyPercentage){
-					result += " ";
+					if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("floor"))) {
+						result += ".";
+					}
+					else if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("background"))) {
+						result += ".";
+					}
+					else if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("highway"))) {
+						result += ".";
+					}
+					else if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("ground")) && (game.getLevelMapping().containsKey('w'))) {
+						result += ".";
+					}
+					else if (!(game.getLevelMapping().containsKey('.'))) {
+						result += " ";
+					}
+					else {
+						result += " ";
+					}
 				}
+
 				//add random object
 				else{
 					result += choices.get(random.nextInt(choices.size()));

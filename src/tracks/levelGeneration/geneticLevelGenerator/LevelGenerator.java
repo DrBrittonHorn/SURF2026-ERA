@@ -29,6 +29,10 @@ public class LevelGenerator extends AbstractLevelGenerator{
 	 * number of infeasible chromosomes across generations
 	 */
 	private ArrayList<Integer> numOfInFeasible;
+
+	private HashMap<Character, ArrayList<String>> originalMapping;
+
+	private LevelMapping originalLevelMapping;
 	
 	/**
 	 * Initializing the level generator
@@ -44,6 +48,8 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		bestFitness = null;
 		numOfFeasible = null;
 		numOfInFeasible = null;
+		originalMapping = game.getLevelMapping();
+		originalLevelMapping = new LevelMapping(game, originalMapping);
 	}
 	
 	/**
@@ -284,8 +290,10 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		double totalTime = 0;
 		int numberOfIterations = 0;
 
+		int MaxGenerations = 5;
+
 		System.out.println(elapsedTimer.remainingTimeMillis() + " " + avgTime + " " + worstTime);
-		while(elapsedTimer.remainingTimeMillis() > 2 * avgTime &&
+		while(numberOfIterations < MaxGenerations && elapsedTimer.remainingTimeMillis() > 2 * avgTime &&
 				elapsedTimer.remainingTimeMillis() > worstTime){
 			ElapsedCpuTimer timer = new ElapsedCpuTimer();
 			
@@ -333,7 +341,8 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		System.out.println(bestFitness);
 		System.out.println(numOfFeasible);
 		System.out.println(numOfInFeasible);
-		return fChromosomes.get(0).getLevelString(bestChromosomeLevelMapping);
+		//System.out.println(fChromosomes.get(0).getLevelString(bestChromosomeLevelMapping)); // test to actually get the level
+		return fChromosomes.get(0).getLevelString(originalLevelMapping);
 	}
 
 
