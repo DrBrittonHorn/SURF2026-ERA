@@ -1,0 +1,15 @@
+LevelMapping
+    0 > background base 
+    A > background avatar 
+    1 > background portalSlow 
+    2 > background portalFast 
+    w > wall 
+    . > background 
+
+LevelDescription
+0...............
+000.............
+...1............
+.........A.......]
+ 
+Note: The above level is a new one that can be played within the BasicGame framework. It starts with a base and an avatar in the bottom left, and two portals in the top right and center of the grid respectively. Two aliens will appear at the portal positions

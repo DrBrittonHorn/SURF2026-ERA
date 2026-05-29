@@ -2,6 +2,7 @@ package tracks.levelGeneration;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class GenerateFullGeneratorSuite {
@@ -10,13 +11,14 @@ public class GenerateFullGeneratorSuite {
 		String geneticGenerator = "tracks.levelGeneration.geneticLevelGenerator.LevelGenerator";
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
 		String languageModelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
+		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = languageModelGenerator;
+        String selectedGenerator = constructiveLevelGenerator;
         
-        // Set to true when generating with the LLM generator to avoid API overuse.
-        boolean delay = true;
-        
+        // Determines padding size for file numbers
+        DecimalFormat df = new DecimalFormat("000");
+
         String generatorTitle = selectedGenerator.split("\\.")[2];
         int levelsToGenerate = 1000;
         System.out.println("Generating Suite of " + levelsToGenerate + " levels for " + generatorTitle);
@@ -41,7 +43,7 @@ public class GenerateFullGeneratorSuite {
 
             ArrayList<String> outputFilePaths = new ArrayList<String>();
             for (int j = 0; j < levelsToGenerate; j++){
-                outputFilePaths.add("generatedExamples" + "/" + generatorTitle + "/" + gameTitle + "/" + gameTitle + "_lvl" + j + ".txt");
+                outputFilePaths.add("generatedExamples" + "/" + generatorTitle + "/" + gameTitle + "/" + gameTitle + "_lvl" + df.format(j) + ".txt");
             }
             //Remove existing generated levels from the list of paths of levels to be generated
             outputFilePaths.removeIf(item -> Files.exists(Path.of(item)));

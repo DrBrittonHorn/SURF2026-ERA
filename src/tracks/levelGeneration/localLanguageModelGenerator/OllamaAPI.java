@@ -57,7 +57,7 @@ public class OllamaAPI {
 
         // Get Response Code
         int code = conn.getResponseCode();
-        System.out.println("Response Code: " + code);
+        //System.out.println("Response Code: " + code);
 
         // Read the response body
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
