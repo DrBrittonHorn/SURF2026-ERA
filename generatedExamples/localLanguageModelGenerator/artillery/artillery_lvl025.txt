@@ -1,0 +1,22 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwwww
+wwww      bbbbddd      w
+wwww        ddd      w
+w     G       d     dw
+w                    w
+w  d      G   d     wwB
+w    dd G         d  w
+w      bbbbbb dddb  w
+w              bbb w
+w  G   d        db  w
+w      G         Bww
+wA    wwwwwwbwwwww]
+[Note: The output is a single new level, with the 'G' as the player's starting position and a mix of 'B', 'b' (box), and 'd' (breakable) tiles. The player must navigate around the boxes and breakable walls to reach the goal while avoiding obstacles.

@@ -1,0 +1,16 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+wwwwww
+ ww..*o.
+ w.o*.A*
+ ww...o*
+ wwoooo*
+ www.....]
+ 
+This level adheres to the rules of the game by including both 'box' and 'boxin' sprites, which are crucial for achieving a win condition. The arrangement of these objects and the avatar's position aim to provide a challenging yet solvable puzzle

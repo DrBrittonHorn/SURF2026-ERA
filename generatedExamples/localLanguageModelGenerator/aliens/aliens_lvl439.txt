@@ -1,0 +1,17 @@
+LevelMapping
+    0 > background base 
+    A > background avatar 
+    1 > background portalSlow 
+    2 > background portalFast 
+    w > wall 
+    . > background 
+
+LevelDescription
+111
+001
+100
+...0...
+..0.0..
+.......]
+ 
+In this new level, I have created a simple structure with two portal spawn points and the player's avatar starting at position 'A'. The level is 32x32 units in size as per the game description

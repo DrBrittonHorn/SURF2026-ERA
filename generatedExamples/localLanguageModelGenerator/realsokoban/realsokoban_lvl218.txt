@@ -1,0 +1,16 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+wwwwwww
+ ww.....w
+ w.*A*.w
+ w..o*o.w
+ w......w
+ www.www]
+ 
+This level contains the avatar 'A' on a platform surrounded by ground and walls, with two boxes that can be transformed into boxins to score points. The level is winnable when all boxes have been transformed into boxins, as indicated in the termination set of the game description

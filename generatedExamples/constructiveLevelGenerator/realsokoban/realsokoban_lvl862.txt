@@ -6,6 +6,7 @@ LevelMapping
     o > floor hole 
 
 LevelDescription
+<<<<<<< HEAD
 wwwwwwwwwwww
 w          w
 w o   A*   w
@@ -14,3 +15,16 @@ w        w w
 w   ..  ww w
 w       w  w
 wwwwwwwwwwww
+=======
+wwwwwwwwww
+w..o.....w
+w........w
+w.w......w
+w.w......w
+w.w...wwww
+w.w......w
+w.w.....*w
+w........w
+wo......Aw
+wwwwwwwwww
+>>>>>>> LocalModelIntegration

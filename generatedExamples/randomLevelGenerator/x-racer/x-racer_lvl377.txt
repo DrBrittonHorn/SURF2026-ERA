@@ -1,0 +1,31 @@
+LevelMapping
+    p > portal floor 
+    A > avatar floor 
+    b > bikePortal floor 
+    s > carSlow floor 
+    c > carFast floor 
+    t > treePortal street 
+    w > wall 
+    x > tree street 
+    + > street 
+    . > floor 
+
+LevelDescription
+                  
+           +  p   
+        pws +   t 
+ At       w   s x 
+             .    
+      c           
+ + .     x        
+      w           
+     c b   x      
+        +         
+                  
+     +            
+    x             
+ x  s b     p b . 
+       w       +  
+    x   t.x  s    
+ t x              
+                  

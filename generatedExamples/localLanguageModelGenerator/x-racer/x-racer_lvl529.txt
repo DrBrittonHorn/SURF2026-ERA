@@ -1,0 +1,21 @@
+LevelMapping
+    p > portal floor 
+    A > avatar floor 
+    b > bikePortal floor 
+    s > carSlow floor 
+    c > carFast floor 
+    t > treePortal street 
+    w > wall 
+    x > tree street 
+    + > street 
+    . > floor 
+
+LevelDescription
+b............................]
+[b............................]
+[b.A......................]
+[b............................]
+[b............................]
+[.+.+.+.+.+.+.+.+.+.+.+.+.+.+.+]
+
+Note: I've created a new level with 5 rows and 35 columns, which is consistent with the other sample levels provided. The level has a single portal ('p') in the top-left corner, a bikePortal ('b') on the second row, and an avatar ('A') on the third row. The rest of the level is made up of floor tiles ('.') and street tiles ('+')

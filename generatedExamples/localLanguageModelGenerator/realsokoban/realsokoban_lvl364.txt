@@ -1,0 +1,16 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+wwwwww
+wo..ww
+*w.*o*.w
+ww......w
+w.o*o.w
+wwwwww]
+ 
+ Note: This new level maintains the same structure and pattern as the sample levels, with a mix of boxes (asterisks) on different types of ground surfaces. The avatar is placed in one location for simplicity, but can be moved to any suitable spot within the level according to game rules
