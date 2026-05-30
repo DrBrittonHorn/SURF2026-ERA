@@ -5,14 +5,14 @@ import java.util.Random;
 public class TestLevelGeneration {
 
 
-    @SuppressWarnings("unused")
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
 		// Available Level Generators
 		String randomLevelGenerator = "tracks.levelGeneration.randomLevelGenerator.LevelGenerator";
 		String geneticLevelGenerator = "tracks.levelGeneration.geneticLevelGenerator.LevelGenerator";
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
-		String languageModelGenerator = "tracks.levelGeneration.languageModelLevelGenerator.LevelGenerator";
+		String geminiLevelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
+		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
 
 		String gamesPath = "examples/gridphysics/";
 		String physicsGamesPath = "examples/contphysics/";
@@ -55,7 +55,7 @@ public class TestLevelGeneration {
 
 
 		// 1. This starts a game, in a generated level created by a specific level generator
-		if(LevelGenMachine.generateOneLevel(game, constructiveLevelGenerator, recordLevelFile)){
+		if(LevelGenMachine.generateOneLevel(game, localLanguageModelGenerator, recordLevelFile)){
 		    LevelGenMachine.playOneGeneratedLevel(game, recordActionsFile, recordLevelFile, seed);
 		}
 
