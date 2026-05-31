@@ -11,11 +11,11 @@ public class GenerateFullGeneratorSuite {
         String randomLevelGenerator = "tracks.levelGeneration.randomLevelGenerator.LevelGenerator";
 		String geneticGenerator = "tracks.levelGeneration.geneticLevelGenerator.LevelGenerator";
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
-		String languageModelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
+		String geminiLevelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
 		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = randomLevelGenerator;
+        String selectedGenerator = geminiLevelGenerator;
         
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
@@ -32,7 +32,7 @@ public class GenerateFullGeneratorSuite {
             Files.createDirectory(Path.of("generatedExamples" + "/" + generatorTitle));
         }
 
-        String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt", "examples/contphysics/mario.txt", "examples/contphysics/artillery.txt", "examples/gridphysics/zelda.txt", "examples/gridphysics/dungeon.txt", "examples/gridphysics/realsokoban.txt", "examples/gridphysics/towerdefense.txt", "examples/contphysics/asteroids.txt", "examples/gridphysics/x-racer.txt"};
+        String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt", "examples/contphysics/mario.txt", "examples/contphysics/artillery.txt", "examples/gridphysics/zelda.txt", "examples/gridphysics/dungeon.txt", "examples/gridphysics/realsokoban.txt", "examples/gridphysics/towerdefense.txt", "examples/contphysics/asteroids.txt", "examples/gridphysics/roguelike.txt", "examples/gridphysics/frogs.txt"};
         
         for (int j = 0; j < levelsToGenerate; j++){
             for (String gamePath : selectedGamePaths){
@@ -48,6 +48,7 @@ public class GenerateFullGeneratorSuite {
                     System.out.println(outputFilePath);
                     LevelGenMachine.generateOneLevel(gamePath, selectedGenerator, outputFilePath);
                     levelTotal++;
+                    System.out.println("Completed Levels Total: " + levelTotal);
                     if (pauseSeconds > 0){
                         Thread.sleep(pauseSeconds * 1000);
                     }
@@ -56,7 +57,7 @@ public class GenerateFullGeneratorSuite {
                 
         }
         
-        System.out.println("Generated " + levelTotal + "levels");
+        System.out.println("Generated " + levelTotal + " total levels");
         System.out.println("End time of " + LocalDateTime.now());
 
         // Generates levelsToGenerate number of levels for the specified generator
