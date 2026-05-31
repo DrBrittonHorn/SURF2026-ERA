@@ -120,7 +120,7 @@ public class BinGeneratedLevels {
 
     //Creates a binning csv for all the present generators
     public static void main(String[] args){
-        
+
         generateBinJSON("generatedExamples/constructiveLevelGenerator");
         generateBinJSON("generatedExamples/geminiLevelGenerator");
         generateBinJSON("generatedExamples/geneticLevelGenerator");
