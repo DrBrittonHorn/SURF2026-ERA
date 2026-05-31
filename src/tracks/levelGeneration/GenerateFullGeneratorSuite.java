@@ -15,13 +15,14 @@ public class GenerateFullGeneratorSuite {
 		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = localLanguageModelGenerator;
+        String selectedGenerator = randomLevelGenerator;
         
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
 
         String generatorTitle = selectedGenerator.split("\\.")[2];
         int levelsToGenerate = 1000;
+        int pauseSeconds = 0;
         int levelTotal = 0;
         System.out.println("Generating Suite of " + levelsToGenerate + " levels for " + generatorTitle);
         System.out.println("Start time of " + LocalDateTime.now());
@@ -33,8 +34,35 @@ public class GenerateFullGeneratorSuite {
 
         String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt", "examples/contphysics/mario.txt", "examples/contphysics/artillery.txt", "examples/gridphysics/zelda.txt", "examples/gridphysics/dungeon.txt", "examples/gridphysics/realsokoban.txt", "examples/gridphysics/towerdefense.txt", "examples/contphysics/asteroids.txt", "examples/gridphysics/x-racer.txt"};
         
+        for (int j = 0; j < levelsToGenerate; j++){
+            for (String gamePath : selectedGamePaths){
+                String gameTitle = gamePath.split("/")[2];
+                gameTitle = gameTitle.substring(0, gameTitle.length()-4);
+
+                if (!Files.exists(Path.of("generatedExamples" + "/" + generatorTitle + "/" + gameTitle))){
+                    Files.createDirectory(Path.of("generatedExamples" + "/" + generatorTitle + "/" + gameTitle));
+                }
+                
+                String outputFilePath = "generatedExamples" + "/" + generatorTitle + "/" + gameTitle + "/" + gameTitle + "_lvl" + df.format(j) + ".txt";
+                if (!Files.exists(Path.of(outputFilePath))){
+                    System.out.println(outputFilePath);
+                    LevelGenMachine.generateOneLevel(gamePath, selectedGenerator, outputFilePath);
+                    levelTotal++;
+                    if (pauseSeconds > 0){
+                        Thread.sleep(pauseSeconds * 1000);
+                    }
+                }
+            }
+                
+        }
+        
+        System.out.println("Generated " + levelTotal + "levels");
+        System.out.println("End time of " + LocalDateTime.now());
+
         // Generates levelsToGenerate number of levels for the specified generator
         // Does not attempt to overwrite existing levels
+        // Generates all the levels for one game at a time
+        /*
         for (String gamePath : selectedGamePaths){
             String gameTitle = gamePath.split("/")[2];
             gameTitle = gameTitle.substring(0, gameTitle.length()-4);
@@ -60,7 +88,9 @@ public class GenerateFullGeneratorSuite {
         }
         System.out.println("Generated " + levelTotal + "levels");
         System.out.println("End time of " + LocalDateTime.now());
-        
+        */
+
+
 //aliens_lvl0.txt
         
     }
