@@ -344,20 +344,8 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @return	Level mapping object that can help to construct the 
 	 * 			level string and parse the level string
 	 */
-	public LevelMapping getLevelMapping(){
-		LevelMapping levelMapping = new LevelMapping(SharedData.gameDescription);
-		levelMapping.clearLevelMapping();
-		char c = 'a';
-		for(int y = 0; y < level.length; y++){
-			for(int x = 0; x < level[y].length; x++){
-				if(levelMapping.getCharacter(level[y][x]) == null){
-					levelMapping.addCharacterMapping(c, level[y][x]);
-					c += 1;
-				}
-			}
-		}
-		
-		return levelMapping;
+	public LevelMapping getLevelMapping() {
+		return new LevelMapping(SharedData.gameDescription, SharedData.gameDescription.getLevelMapping());
 	}
 	
 
@@ -543,6 +531,26 @@ public class Chromosome implements Comparable<Chromosome>{
 		return i;
 	}
 	
+	// Looks at the current chromosome to see if the level contains an avatar sprite
+	public boolean hasAvatar() {
+		ArrayList<String> avatars = SharedData.gameAnalyzer.getAvatarSprites();
+		ArrayList<SpriteData> otherAvatars = SharedData.gameDescription.getAvatar();
+		for(int y = 0; y < level.length; y++) {
+			for(int x = 0; x < level[y].length; x++) {
+				for (String avatar : avatars) {
+					if(level[y][x].contains(avatar)) {
+						return true;
+					}
+				}
+				for (SpriteData avatar : otherAvatars) {
+					if(level[y][x].contains(avatar)) {
+						return true;
+					}
+				}
+			}
+		}
+    return false;
+	}
 
 	/**
 	 * Calculate the current fitness of the chromosome
@@ -553,13 +561,30 @@ public class Chromosome implements Comparable<Chromosome>{
 		if(!calculated){
 			calculated = true;
 			StateObservation stateObs = getStateObservation();
+
+			// boots the Fitness calculation and current Chromosome if it doesn't have an avatar
+			if(!hasAvatar()){
+				constrainFitness = -1000000;
+				fitness.clear();
+				System.out.println("No Avatar Sprite");
+				return fitness;
+			}
 			
 
 			//Play the game using the best agent
 			StepController stepAgent = new StepController(automatedAgent, SharedData.EVALUATION_STEP_TIME);
 			ElapsedCpuTimer elapsedTimer = new ElapsedCpuTimer();
 			elapsedTimer.setMaxTimeMillis(time);
+			System.out.println("HAS AVATAR: " + hasAvatar());
+			if (!hasAvatar()) {System.out.println(getLevelString(getLevelMapping()));}
+			try {
 			stepAgent.playGame(stateObs.copy(), elapsedTimer);
+			}
+			catch(Exception e){
+				System.out.println("Crashing level:");
+				System.out.println(getLevelString(getLevelMapping()));
+				throw e;
+			}
 			
 			StateObservation bestState = stepAgent.getFinalState();
 			ArrayList<Types.ACTIONS> bestSol = stepAgent.getSolution();
