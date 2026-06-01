@@ -51,6 +51,8 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * The current stateObservation of the level
 	 */
 	private StateObservation stateObs;
+
+	private String emptyChar;
 	
 	/**
 	 * initialize the chromosome with a certain length and width
@@ -70,6 +72,28 @@ public class Chromosome implements Comparable<Chromosome>{
 		this.stateObs = null;
 	}
 	
+
+	public void setEmptyChar() {
+		HashMap<Character, ArrayList<String>> mapping = SharedData.gameDescription.getLevelMapping();
+				if ((mapping.containsKey('.')) && (mapping.get('.').contains("floor"))) {
+			emptyChar = ".";
+		}
+		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("background"))) {
+			emptyChar = ".";
+		}
+		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("highway"))) {
+			emptyChar = ".";
+		}
+		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("ground")) && (mapping.containsKey('w'))) {
+			emptyChar = ".";
+		}
+		else if (!(mapping.containsKey('.'))) {
+			emptyChar = " ";
+		}
+		else {
+			emptyChar = " ";
+		}
+	}
 
 	/**
 	 * clone the chromosome data
@@ -226,7 +250,7 @@ public class Chromosome implements Comparable<Chromosome>{
 
 			//clear any random position
 			else if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB + SharedData.DELETION_PROB){
-				level[pointY][pointX].clear();
+				level[pointY][pointX].clear(); //WOAH
 			}
 			//swap any two random positions
 			else{
@@ -336,6 +360,14 @@ public class Chromosome implements Comparable<Chromosome>{
 	 */
 	private void FixLevel(){
 		FixPlayer();
+		setEmptyChar();
+		for(int y = 0; y < level.length; y++){
+			for(int x = 0; x < level[y].length; x++){
+				if(level[y][x].isEmpty()){
+					level[y][x].add(emptyChar);
+				}
+			}
+		}
 	}
 	
 
@@ -356,16 +388,42 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * 						that represent the level
 	 */
 	public String getLevelString(LevelMapping levelMapping){
+		// String levelString = "";
+		// for(int y = 0; y < level.length; y++){
+		// 	for(int x = 0; x < level[y].length; x++){
+		// 		levelString += levelMapping.getCharacter(level[y][x]);
+		// 	}
+		// 	levelString += "\n";
+		// }
+		
+		// levelString = levelString.substring(0, levelString.length() - 1);
+		
+		// return levelString;
 		String levelString = "";
+
 		for(int y = 0; y < level.length; y++){
 			for(int x = 0; x < level[y].length; x++){
-				levelString += levelMapping.getCharacter(level[y][x]);
+
+				Character c = levelMapping.getCharacter(level[y][x]);
+
+				if(c == null){
+					System.out.println(
+						"Missing mapping for tile at (" +
+						x + "," + y + "): " +
+						level[y][x]
+					);
+
+					levelString += ".";  // temporary fallback
+				}
+				else{
+					levelString += c;
+				}
 			}
 			levelString += "\n";
 		}
-		
+
 		levelString = levelString.substring(0, levelString.length() - 1);
-		
+
 		return levelString;
 	}
 	
