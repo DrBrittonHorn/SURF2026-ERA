@@ -15,7 +15,7 @@ public class GenerateFullGeneratorSuite {
 		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = geminiLevelGenerator;
+        String selectedGenerator = localLanguageModelGenerator;
         
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
