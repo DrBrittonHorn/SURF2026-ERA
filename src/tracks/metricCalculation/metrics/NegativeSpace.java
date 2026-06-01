@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class NegativeSpace {
-    public static double calculateNegativeSpace(String levelText){
+    public static double calculateMetric(String levelText){
         //Based on the assumption that all generators use this character to represent blank space
         char emptyChar = '.';
         String map = levelText;
@@ -41,6 +41,6 @@ public class NegativeSpace {
 
     public static void main(String[] args) throws IOException{
         String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl000.txt"));
-        System.out.println("Negative Space is... " + calculateNegativeSpace(testLevel));
+        System.out.println("Negative Space is... " + calculateMetric(testLevel));
     }
 }

@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Density {
-    public static double calculateDensity(String levelText){
+    public static double calculateMetric(String levelText){
         //Based on the assumption that all generators use this character to represent blank space
         char emptyChar = '.';
         String map = levelText;
@@ -39,6 +39,6 @@ public class Density {
     //Main function for testing
     public static void main(String[] args) throws IOException{
         String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt"));
-        System.out.println("Density is... " + calculateDensity(testLevel));
+        System.out.println("Density is... " + calculateMetric(testLevel));
     }
 }
