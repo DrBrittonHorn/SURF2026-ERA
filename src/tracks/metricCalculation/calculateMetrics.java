@@ -6,8 +6,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import tools.com.google.gson.JsonObject;
-import tracks.metricCalculation.metrics.Density;
-import tracks.metricCalculation.metrics.NegativeSpace;
+import tracks.metricCalculation.metrics.*;
 
 public class calculateMetrics {
 
@@ -15,8 +14,9 @@ public class calculateMetrics {
         JsonObject levelMetrics = new JsonObject();
         
         // Individual Metrics added to the json object below
-        levelMetrics.addProperty("Density", Density.calculateDensity(levelText));
-        levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateNegativeSpace(levelText));
+        levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
+        levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
+        levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
 
         return levelMetrics;
