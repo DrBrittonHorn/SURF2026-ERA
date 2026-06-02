@@ -13,7 +13,7 @@ public class ShannnonEntropy {
         //Based on the assumption that all generators use this character to represent blank space
         char emptyChar = '.';
         String map = levelText;
-        String description;
+        String characterMapping;
         double totalArea = 0.0;
         HashMap<Character, Integer> totals = new HashMap<Character, Integer>();
         HashMap<Character, Double> probs = new HashMap<Character, Double>();
@@ -21,7 +21,7 @@ public class ShannnonEntropy {
         // Split level and description
         if (levelText.contains("LevelDescription")){
             String[] level = levelText.split("LevelDescription");
-            description = level[0];
+            characterMapping = level[0];
             map = level[1];
         }
         //System.out.println(map);
