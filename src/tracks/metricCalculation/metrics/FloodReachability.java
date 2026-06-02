@@ -14,7 +14,7 @@ public class FloodReachability {
         //Based on the assumption that all generators use this character to represent blank space
         char emptyChar = '.';
         String map = levelText;
-        String description;
+        String characterMapping;
         double totalArea = 0.0;
         ArrayList<ArrayList<Character>> levelMatrix = new ArrayList<ArrayList<Character>>();
         HashSet<AbstractMap.SimpleEntry<Integer, Integer>> seen = new HashSet<AbstractMap.SimpleEntry<Integer, Integer>>();
@@ -23,7 +23,7 @@ public class FloodReachability {
         // Split level and description
         if (levelText.contains("LevelDescription")){
             String[] level = levelText.split("LevelDescription");
-            description = level[0];
+            characterMapping = level[0];
             map = level[1];
         }
 
