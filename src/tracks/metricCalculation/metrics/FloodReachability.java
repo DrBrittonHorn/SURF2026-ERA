@@ -41,7 +41,10 @@ public class FloodReachability {
         // Transfers map to an AraryList
 
         //Deletes any errrant newLines
+        if (map.isBlank()){return -1;} // Empty Map
+
         if (map.charAt(0) == '\n'){map = map.substring(1, map.length());}
+        
 
         int currentRow = levelMatrix.size()-1;
 
@@ -67,7 +70,7 @@ public class FloodReachability {
         
         // Actual BFS logic
         Stack<AbstractMap.SimpleEntry<Integer, Integer>> todo = new Stack<AbstractMap.SimpleEntry<Integer, Integer>>();
-        if (avatarLocation == null){return -1;}
+        if (avatarLocation == null){return -2;} // No avatar
         else{todo.push(avatarLocation);}
         
 

@@ -31,13 +31,14 @@ public class NegativeSpace {
         }
         //System.out.println("tOA" + totalOccupiedArea);
         //System.out.println("tA" + totalArea);
-
-        return totalNegativeArea;
-        //Although the google doc referred to a number (sum) of white spaces, it is unclear whether it was implying a ratio. If so, uncomment the line below
-        //return totalNegativeArea / totalArea;
-
-        
+        if (totalArea > 0){
+            return totalNegativeArea/totalArea;
+        }
+        else{
+            return -1; // No level area
+        }
     }
+        
 
     public static void main(String[] args) throws IOException{
         String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl000.txt"));

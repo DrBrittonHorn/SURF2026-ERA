@@ -33,7 +33,13 @@ public class Density {
         //System.out.println("tA" + totalArea);
 
         //TODO Determine limits for precision
-        return totalOccupiedArea / totalArea;
+        if (totalArea > 0){
+            return totalOccupiedArea / totalArea;
+        }
+        else{
+            return -1; // No level area
+        }
+        
     }
 
     //Main function for testing
