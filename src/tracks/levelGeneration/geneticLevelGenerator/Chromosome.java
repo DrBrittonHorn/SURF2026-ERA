@@ -51,6 +51,8 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * The current stateObservation of the level
 	 */
 	private StateObservation stateObs;
+
+	private HashMap<Character, ArrayList<String>> originalMapping;
 	
 	/**
 	 * initialize the chromosome with a certain length and width
@@ -58,13 +60,14 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @param height
 	 */
 	@SuppressWarnings("unchecked")
-	public Chromosome(int width, int height){
+	public Chromosome(int width, int height, HashMap<Character, ArrayList<String>> mapping){
 		this.level = new ArrayList[height][width];
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				this.level[y][x] = new ArrayList<String>();
 			}
 		}
+		originalMapping = mapping;
 		this.fitness = new ArrayList<Double>();
 		this.calculated = false;
 		this.stateObs = null;
@@ -75,7 +78,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * clone the chromosome data
 	 */
 	public Chromosome clone(){
-		Chromosome c = new Chromosome(level[0].length, level.length);
+		Chromosome c = new Chromosome(level[0].length, level.length, SharedData.gameDescription.getLevelMapping());
 		
 		for(int y = 0; y < level.length; y++){
 			for(int x = 0; x < level[y].length; x++){
@@ -160,8 +163,8 @@ public class Chromosome implements Comparable<Chromosome>{
 	 */
 	public ArrayList<Chromosome> crossOver(Chromosome c){
 		ArrayList<Chromosome> children = new ArrayList<Chromosome>();
-		children.add(new Chromosome(level[0].length, level.length));
-		children.add(new Chromosome(level[0].length, level.length));
+		children.add(new Chromosome(level[0].length, level.length, SharedData.gameDescription.getLevelMapping()));
+		children.add(new Chromosome(level[0].length, level.length, SharedData.gameDescription.getLevelMapping()));
 
 		//crossover point
 		int pointY = SharedData.random.nextInt(level.length);
@@ -226,8 +229,11 @@ public class Chromosome implements Comparable<Chromosome>{
 
 			//clear any random position
 			else if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB + SharedData.DELETION_PROB){
-				level[pointY][pointX].clear();
+				ArrayList<String> Avatars = SharedData.gameAnalyzer.getAvatarSprites();
+				if (!Avatars.contains(level[pointY][pointX])) {
+					level[pointY][pointX].clear();
 			}
+		}
 			//swap any two random positions
 			else{
 				int point2X = SharedData.random.nextInt(level[0].length - solidFrame) + solidFrame / 2;
@@ -345,19 +351,20 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * 			level string and parse the level string
 	 */
 	public LevelMapping getLevelMapping(){
-		LevelMapping levelMapping = new LevelMapping(SharedData.gameDescription);
-		levelMapping.clearLevelMapping();
-		char c = 'a';
-		for(int y = 0; y < level.length; y++){
-			for(int x = 0; x < level[y].length; x++){
-				if(levelMapping.getCharacter(level[y][x]) == null){
-					levelMapping.addCharacterMapping(c, level[y][x]);
-					c += 1;
-				}
-			}
-		}
+		// LevelMapping levelMapping = new LevelMapping(SharedData.gameDescription);
+		// levelMapping.clearLevelMapping();
+		// char c = 'a';
+		// for(int y = 0; y < level.length; y++){
+		// 	for(int x = 0; x < level[y].length; x++){
+		// 		if(levelMapping.getCharacter(level[y][x]) == null){
+		// 			levelMapping.addCharacterMapping(c, level[y][x]);
+		// 			c += 1;
+		// 		}
+		// 	}
+		// }
 		
-		return levelMapping;
+		return new LevelMapping(SharedData.gameDescription, originalMapping);
+		//return new LevelMapping(SharedData.gameDescription, SharedData.gameDescription.getLevelMapping());
 	}
 	
 
