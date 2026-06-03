@@ -208,8 +208,14 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * mutate the current chromosome
 	 */
 	public void mutate(){
-		ArrayList<SpriteData> allSprites = SharedData.gameDescription.getAllSpriteData();
+		//ArrayList<SpriteData> allSprites = SharedData.gameDescription.getAllSpriteData(); // a string of all the sprites in the game
 		
+		ArrayList<ArrayList<String>> legalTiles = new ArrayList<>();
+		for(ArrayList<String> value : SharedData.gameDescription.getLevelMapping().values()) {
+			legalTiles.add(new ArrayList<>(value));
+		}
+		
+
 		for(int i = 0; i < SharedData.MUTATION_AMOUNT; i++)
 		{
 			int solidFrame = 0;
@@ -220,19 +226,27 @@ public class Chromosome implements Comparable<Chromosome>{
 			int pointY = SharedData.random.nextInt(level.length - solidFrame) + solidFrame / 2;
 			//insert new random sprite to a new random free position
 			if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB){
-				String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
-				ArrayList<SpritePointData> freePositions = getFreePositions(new ArrayList<String>(Arrays.asList(new String[]{spriteName})));
+				//String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
+				ArrayList<String> newTile = new ArrayList<>(legalTiles.get(SharedData.random.nextInt(legalTiles.size())));
+				ArrayList<SpritePointData> freePositions = getFreePositions(newTile);
 				if (freePositions.isEmpty()) {return;}
 				int index = SharedData.random.nextInt(freePositions.size());
-				level[freePositions.get(index).y][freePositions.get(index).x].add(spriteName);
+				level[freePositions.get(index).y][freePositions.get(index).x] = newTile;
 			}
 
 			//clear any random position
 			else if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB + SharedData.DELETION_PROB){
 				ArrayList<String> Avatars = SharedData.gameAnalyzer.getAvatarSprites();
-				if (!Avatars.contains(level[pointY][pointX])) {
+				boolean containsAvatar = false;
+				for (String s : level[pointY][pointX]) {
+					if (Avatars.contains(s)) {
+						containsAvatar = true;
+						break;
+					}
+				}
+				if (!containsAvatar) {
 					level[pointY][pointX].clear();
-			}
+				}
 		}
 			//swap any two random positions
 			else{
@@ -306,11 +320,19 @@ public class Chromosome implements Comparable<Chromosome>{
 	 */
 	private void FixPlayer(){
 		//get the list of all the avatar names
-		ArrayList<SpriteData> avatar = SharedData.gameDescription.getAvatar();
+		//ArrayList<SpriteData> avatar = SharedData.gameDescription.getAvatar();
 		ArrayList<String> avatarNames = new ArrayList<String>();
-		for(SpriteData a:avatar){
-			avatarNames.add(a.name);
+		for (ArrayList<String> tile : SharedData.gameDescription.getLevelMapping().values()) {
+			for (String sprite : tile) {
+				if (SharedData.gameAnalyzer.getAvatarSprites().contains(sprite) && !avatarNames.contains(sprite)) {
+					avatarNames.add(sprite);
+				}
+			}
 		}
+		// for(SpriteData a:avatar){
+		// 	avatarNames.add(a.name);
+		// }
+		//System.out.println("Avatar sprites: " + avatarNames);
 
 		//get list of all the avatar positions in the level
 		ArrayList<SpritePointData> avatarPositions = getPositions(avatarNames);
