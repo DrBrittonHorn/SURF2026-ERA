@@ -32,7 +32,7 @@ public class PreprocessLevel {
             // New Obstacle = 'O'
             String[] levelParts = level.split("LevelDescription");
             if (levelParts[0].equals(aliensMapping)){
-                System.out.println("Aliens Level preprocessing");
+                //System.out.println("Aliens Level preprocessing");
                 // Replace enemies with enemy symbol
                 levelParts[1] = levelParts[1].replace("1", "E");
                 levelParts[1] = levelParts[1].replace("2", "E");
@@ -40,7 +40,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S"); // Standard block chosen because all blocks are breakable in this game
             }
             else if (levelParts[0].equals(artilleryMapping)){
-                System.out.println("Artillery Level preprocessing");
+                //System.out.println("Artillery Level preprocessing");
                 // Sets breakable blocks
                 levelParts[1] = levelParts[1].replace("d", "B");
                 // Sets enemies
@@ -49,7 +49,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(asteroidsMapping)){
-                System.out.println("Asteroids Level preprocessing");
+                //System.out.println("Asteroids Level preprocessing");
                 // Replace enemies
                 levelParts[1] = levelParts[1].replace("G", "E"); // Replace with goal instead?
                 // Replace breakable blocks
@@ -58,7 +58,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(dungeonMapping)){
-                System.out.println("Dungeon Level preprocessing");
+                //System.out.println("Dungeon Level preprocessing");
                 // Represent cannon block as an enemy
                 levelParts[1] = levelParts[1].replace("1", "E"); // The cannon doesn't move, so it is not like the typical enemy...
                 levelParts[1] = levelParts[1].replace("2", "E"); // The cannon doesn't move, so it is not like the typical enemy...
@@ -84,7 +84,7 @@ public class PreprocessLevel {
 
             }
             else if (levelParts[0].equals(frogsMapping)){
-                System.out.println("Frogs Level preprocessing");
+                //System.out.println("Frogs Level preprocessing");
                 // Replace Goal
                 levelParts[1] = levelParts[1].replace("g", "G");
                 
@@ -107,7 +107,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");                
             }
             else if (levelParts[0].equals(marioMapping)){
-                System.out.println("Mario Level preprocessing");
+                //System.out.println("Mario Level preprocessing");
                 // Represent enemies
                 levelParts[1] = levelParts[1].replace("1", "E");
                 levelParts[1] = levelParts[1].replace("2", "E");
@@ -124,7 +124,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(realsokobanMapping)){ // This one is super questionable
-                System.out.println("RealSokoban Level preprocessing");
+                //System.out.println("RealSokoban Level preprocessing");
                 // Represent boxes as movable
                 levelParts[1] = levelParts[1].replace("*", "B");
                 // Represent goal spaces as transparent
@@ -133,7 +133,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(roguelikeMapping)){
-                System.out.println("Roguelike Level preprocessing");
+                //System.out.println("Roguelike Level preprocessing");
                 //Replace "exit floor" to goal symbol
                 levelParts[1] = levelParts[1].replace("g", "T");
                 // Replace heart objects with transparent object symbol; Revisit?
@@ -154,7 +154,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("m", "S");
             }
             else if (levelParts[0].equals(towerdefenseMapping)){
-                System.out.println("Towerdefense Level preprocessing");
+                //System.out.println("Towerdefense Level preprocessing");
                 // Replace turrets wiht movable because they can be interacted with
                 levelParts[1] = levelParts[1].replace("h", "B");
                 levelParts[1] = levelParts[1].replace("v", "B");
@@ -178,7 +178,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(zeldaMapping)){
-                System.out.println("Zelda Level preprocessing");
+                //System.out.println("Zelda Level preprocessing");
                 //Replace enemies
                 levelParts[1] = levelParts[1].replace("1", "E");
                 levelParts[1] = levelParts[1].replace("2", "E");
@@ -195,8 +195,11 @@ public class PreprocessLevel {
             else{
                 System.out.println("No spatial mapping found");
             }
+            // If the level contains its original description mapping as well as the level itself
+            if (levelParts.length == 2){
+                return "Original " + levelParts[0] + "LevelDescription"+ levelParts[1];
 
-            return "Original " + levelParts[0] + "LevelDescription"+ levelParts[1];
+            }
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
