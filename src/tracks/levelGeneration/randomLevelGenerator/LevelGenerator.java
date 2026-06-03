@@ -227,7 +227,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 					else if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("highway"))) {
 						result += ".";
 					}
-					else if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("ground")) && (game.getLevelMapping().containsKey('w'))) {
+					else if ((game.getLevelMapping().containsKey('.')) && (game.getLevelMapping().get('.').contains("ground")) && (!game.getLevelMapping().containsKey('A'))) {
 						result += ".";
 					}
 					else if (!(game.getLevelMapping().containsKey('.'))) {
