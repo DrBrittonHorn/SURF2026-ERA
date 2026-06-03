@@ -12,15 +12,17 @@ import java.util.Stack;
 
 import tools.metricCalculation.PreprocessLevel;
 
+// This metric uses spatial preprocessing
 public class FloodReachability {
     public static double calculateMetric(String levelText){
+        levelText = PreprocessLevel.applySpatialMapping(levelText);
         //Based on the assumption that all generators use this character to represent blank space
-        HashSet<Character> traversible = new HashSet<Character>(); // Based on the tile conversion for spatial preprocessing
-        traversible.add('.'); // Empty Blocks
-        traversible.add('G'); // Goal
-        traversible.add('T'); // "Transparent Block"
-        traversible.add('B'); // Breakable and movable Blocks
-        //traversible.add('E'); // Enemies // Commented out because some enemies never move
+        HashSet<Character> traversable = new HashSet<Character>(); // Based on the tile conversion for spatial preprocessing
+        traversable.add('.'); // Empty Blocks
+        traversable.add('G'); // Goal
+        traversable.add('T'); // "Transparent Block"
+        traversable.add('B'); // Breakable and movable Blocks
+        //traversable.add('E'); // Enemies // Commented out because some enemies never move
         char emptyChar = '.';
 
         String map = levelText;
@@ -85,7 +87,7 @@ public class FloodReachability {
             //System.out.println("Its neighbors are " + currentNeighbors);
             for (AbstractMap.SimpleEntry<Integer, Integer> e: currentNeighbors){
                 if (e.getKey() < levelMatrix.size() && e.getValue() < levelMatrix.get(e.getKey()).size()){
-                    if (traversible.contains(levelMatrix.get(e.getKey()).get(e.getValue())) && (!seen.contains(new AbstractMap.SimpleEntry<Integer, Integer>(e.getKey(), e.getValue())))){
+                    if (traversable.contains(levelMatrix.get(e.getKey()).get(e.getValue())) && (!seen.contains(new AbstractMap.SimpleEntry<Integer, Integer>(e.getKey(), e.getValue())))){
                         //System.out.println("Of those, we pushed" + e.toString());
                         seen.add(e); // Spent 30mins here after accidentally writing seen.add(currentEntry)
                         todo.push(e);

@@ -18,6 +18,7 @@ public class calculateMetrics {
         levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
+        levelMetrics.addProperty("WallFloorRation", WallFloorRatio.calculateMetric(levelText));
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
 
         return levelMetrics;
