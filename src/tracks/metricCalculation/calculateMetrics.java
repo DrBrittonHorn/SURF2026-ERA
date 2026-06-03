@@ -52,7 +52,7 @@ public class calculateMetrics {
         String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt"));
         //System.out.println(createLevelMetricJson(testLevel));
 
-        String testFolder = "generatedExamples/constructiveLevelGenerator";
+        String testFolder = "generatedExamples/geminiLevelGenerator";
 
         System.out.println(createFolderMetricJson(testFolder));
         Files.writeString(Path.of(testFolder + "/" + "metrics.json"), createFolderMetricJson(testFolder).toString());
