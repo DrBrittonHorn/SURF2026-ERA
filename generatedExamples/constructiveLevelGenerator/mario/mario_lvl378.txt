@@ -11,33 +11,15 @@ LevelMapping
     . > ground 
 
 LevelDescription
-<<<<<<< HEAD
-        w = 
-  .         
-            
-    .G     c
-            
-    . 2   c 
-       1 w2 
-   2       1
-  w         
-        2  2
-  l         
-            
- f   fwA  w 
-   l f      
-=======
-....2f....
-.....1....
-.......Gf.
-..=.......
-......c.1.
-......G=..
-f.....2...
-..A.......
-......1...
-....w...w.
-......w...
-l....w....
-........=.
->>>>>>> LocalModelIntegration
+    c       1
+G 1          
+       c     
+             
+         A   
+       .   G 
+  . =   1 .  
+           ww
+   f.        
+   c       f 
+      c   f  
+w  w   .     
