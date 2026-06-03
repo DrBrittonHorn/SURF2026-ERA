@@ -15,15 +15,24 @@ public class calculateMetrics {
         
         // Individual Metrics added to the json object below
         levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
+        //System.out.println("Density Calculations Complete");
         levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
+        //System.out.println("Negative Space Calculations Complete");
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
+        //System.out.println("Shannon Entropy Calculations Complete");
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
-        levelMetrics.addProperty("WallFloorRation", WallFloorRatio.calculateMetric(levelText));
+        //System.out.println("Flood Reachability Calculations Complete");
+        levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
+        //System.out.println("Wall/Floor Ratio Calculations Complete");
+
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
+        //System.out.println("Some Metric Calculations Complete");
+
 
         return levelMetrics;
     }
 
+    // Creates a json file that maps each level path in the provided folder to its metric results. By default, this json file is also placed in the provided. 
     public static JsonObject createFolderMetricJson(String levelFolderPath){
         JsonObject jsonObject = new JsonObject();
         try {
