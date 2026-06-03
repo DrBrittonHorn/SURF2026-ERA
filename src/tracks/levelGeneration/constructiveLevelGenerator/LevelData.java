@@ -34,7 +34,7 @@ public class LevelData {
 		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("highway"))) {
 			emptyChar = ".";
 		}
-		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("ground")) && (mapping.containsKey('w'))) {
+		else if ((mapping.containsKey('.')) && (mapping.get('.').contains("ground")) && (!mapping.containsKey('A'))) {
 			emptyChar = ".";
 		}
 		else if (!(mapping.containsKey('.'))) {
