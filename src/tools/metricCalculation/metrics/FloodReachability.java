@@ -1,4 +1,4 @@
-package tracks.metricCalculation.metrics;
+package tools.metricCalculation.metrics;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Stack;
 
-import tracks.metricCalculation.PreprocessLevel;
+import tools.metricCalculation.PreprocessLevel;
 
 public class FloodReachability {
     public static double calculateMetric(String levelText){
