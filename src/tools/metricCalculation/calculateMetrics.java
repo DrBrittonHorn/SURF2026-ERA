@@ -1,4 +1,4 @@
-package tracks.metricCalculation;
+package tools.metricCalculation;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import tools.com.google.gson.JsonObject;
-import tracks.metricCalculation.metrics.*;
+import tools.metricCalculation.metrics.*;
 
 public class calculateMetrics {
 
