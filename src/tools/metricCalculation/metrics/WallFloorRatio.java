@@ -55,8 +55,8 @@ public class WallFloorRatio {
 
     public static void main(String[] args) throws IOException{
 
-        String testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl003.txt"));
-        testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt"));
+        String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/dungeon/dungeon_lvl003.txt"));
+        testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
         System.out.println(testLevel1);
         System.out.println("Wall Floor Ratio is... " + calculateMetric(testLevel1));
     }
