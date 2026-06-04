@@ -61,7 +61,7 @@ public class calculateMetrics {
     public static void main(String[] args) throws IOException{
         //System.out.println(createLevelMetricJson(testLevel));
 
-        String testFolder = "generatedExamples/localLanguageModelGenerator";
+        String testFolder = "generatedExamples/randomLevelGenerator";
 
         System.out.println(createFolderMetricJson(testFolder));
         Files.writeString(Path.of(testFolder + "/" + "metrics.json"), createFolderMetricJson(testFolder).toString());
