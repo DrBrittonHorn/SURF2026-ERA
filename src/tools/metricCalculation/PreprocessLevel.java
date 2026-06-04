@@ -32,6 +32,7 @@ public class PreprocessLevel {
             // New Obstacle = 'O'
             String[] levelParts = level.split("LevelDescription");
             if (levelParts[0].equals(aliensMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Aliens Level preprocessing");
                 // Replace enemies with enemy symbol
                 levelParts[1] = levelParts[1].replace("1", "E");
@@ -40,6 +41,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S"); // Standard block chosen because all blocks are breakable in this game
             }
             else if (levelParts[0].equals(artilleryMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Artillery Level preprocessing");
                 // Sets breakable blocks
                 levelParts[1] = levelParts[1].replace("d", "B");
@@ -60,6 +62,7 @@ public class PreprocessLevel {
             }
             else if (levelParts[0].equals(dungeonMapping)){
                 //System.out.println("Dungeon Level preprocessing");
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 // Represent cannon block as an enemy
                 levelParts[1] = levelParts[1].replace("1", "E"); // The cannon doesn't move, so it is not like the typical enemy...
                 levelParts[1] = levelParts[1].replace("2", "E"); // The cannon doesn't move, so it is not like the typical enemy...
@@ -85,6 +88,7 @@ public class PreprocessLevel {
 
             }
             else if (levelParts[0].equals(frogsMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Frogs Level preprocessing");
                 // Replace Goal
                 levelParts[1] = levelParts[1].replace("g", "G");
@@ -105,9 +109,13 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("_", "E");
 
                 // Represent walls as standard block
-                levelParts[1] = levelParts[1].replace("w", "S");                
+                levelParts[1] = levelParts[1].replace("w", "S");
+                
+                //Represent grass as empty block
+                levelParts[1] = levelParts[1].replace("+", ".");
             }
             else if (levelParts[0].equals(marioMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Mario Level preprocessing");
                 // Represent enemies
                 levelParts[1] = levelParts[1].replace("1", "E");
@@ -125,6 +133,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(realsokobanMapping)){ // This one is super questionable
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("RealSokoban Level preprocessing");
                 // Represent boxes as movable
                 levelParts[1] = levelParts[1].replace("*", "B");
@@ -134,6 +143,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(roguelikeMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Roguelike Level preprocessing");
                 //Replace "exit floor" to goal symbol
                 levelParts[1] = levelParts[1].replace("g", "T");
@@ -155,6 +165,8 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("m", "S");
             }
             else if (levelParts[0].equals(towerdefenseMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
+
                 //System.out.println("Towerdefense Level preprocessing");
                 // Replace turrets wiht movable because they can be interacted with
                 levelParts[1] = levelParts[1].replace("h", "B");
@@ -179,6 +191,7 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else if (levelParts[0].equals(zeldaMapping)){
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Zelda Level preprocessing");
                 //Replace enemies
                 levelParts[1] = levelParts[1].replace("1", "E");
@@ -211,7 +224,8 @@ public class PreprocessLevel {
     }
 
     public static void main(String args[]) throws IOException{
-        String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
+        //String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
+        String testLevel = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\frogs\\frogs_lvl056.txt"));
         System.out.println(applySpatialMapping(testLevel));
 
     }
