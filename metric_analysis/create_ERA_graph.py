@@ -1,12 +1,13 @@
 from matplotlib import pyplot as plt
 import numpy as np
-
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from metric_analysis.tools import create_attribute_dict
 
 def create_graph(metric_tuple: tuple, json_path: str):
     dict = create_attribute_dict(metric_path)
     
-    plt.style.use('_mpl-gallery-nogrid')
+    # plt.style.use('_mpl-gallery-nogrid')
 
     listX = []
     listY = []
@@ -34,8 +35,10 @@ def create_graph(metric_tuple: tuple, json_path: str):
 
 
 
-metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
-metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
+# metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
+# metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
+metric_path = "generatedExamples/constructiveGenerator/metrics.json"
+
 selected_metrics = ("Density", "NegativeSpace")
 
 create_graph(selected_metrics, metric_path)
