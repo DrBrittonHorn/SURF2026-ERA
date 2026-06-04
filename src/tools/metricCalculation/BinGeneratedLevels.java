@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class BinGeneratedLevels {
     
-    public static boolean consistentRowLength(String level){
+    public static boolean consistentRows(String level){
         if (level.length() == 0){return true;}
         if (level.contains("LevelDescription")){level = level.split("LevelDescription")[1];}
         String[] rows = Arrays.stream(level.split("\\r\\n|\\r|\\n")).filter(a -> !a.isEmpty()).toArray(String[]::new);
@@ -43,12 +43,14 @@ public class BinGeneratedLevels {
         return false;
     }
 
-    public static boolean levelNotEmpty(String level){
+    public static boolean notEmpty(String level){
         if (level.contains("LevelDescription")){level = level.split("LevelDescription")[1];}
         if (level.length() == 0){return false;}
         else{return true;}
     }
 
+    // The code below is no longer needed as the level binning process has been integrated into the metric creation process in calculateMetrics.java
+    /* 
     public static String createValidityString(String level){
         String ret = "";
         if (!levelNotEmpty(level)){
@@ -65,7 +67,7 @@ public class BinGeneratedLevels {
     }
         
 
-    // Takes a folder path as input and creates a csv that categorizes the levels in that folder by several criteria.
+    // Takes a folder path as input and creates a json that categorizes the levels in that folder by several criteria.
 
     public static void generateBinJSON(String folderPath){
         Path startPath = Paths.get(folderPath);
@@ -127,4 +129,6 @@ public class BinGeneratedLevels {
         generateBinJSON("generatedExamples/localLanguageModelGenerator");
         generateBinJSON("generatedExamples/randomLevelGenerator");
     }
+
+    */
 }

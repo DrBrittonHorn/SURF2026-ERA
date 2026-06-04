@@ -6,10 +6,13 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+import tools.metricCalculation.PreprocessLevel;
+
 //See https://www.youtube.com/watch?v=YtebGVx-Fxw
 public class ShannnonEntropy {
     // Calculates Shannon Entropy (in Bits)
     public static double calculateMetric(String levelText){
+        levelText = PreprocessLevel.applySpatialMapping(levelText); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
         //Based on the assumption that all generators use this character to represent blank space
         char emptyChar = '.';
         String map = levelText;
