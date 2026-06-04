@@ -1,0 +1,36 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+wwwwwwwwwwwwwwwwww
+w2...............w
+w...ur..w.....d.uw
+w..............x.w
+w........g.......w
+w....r..w...u....w
+w.r.k........t...w
+w........t.......w
+w..l..d.......2..w
+w...u.........u..w
+wf..2.tg.1..m....w
+w..x.............w
+w..d.........1.A.w
+w..........1m..k.w
+w..............wrw
+w......1..l......w
+w............g.d.w
+wwwwwwwwwwwwwwwwww
