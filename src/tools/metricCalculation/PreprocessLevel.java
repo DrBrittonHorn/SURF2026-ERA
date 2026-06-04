@@ -11,16 +11,16 @@ public class PreprocessLevel {
 // Converts levels into a form that is compatible with spatial metrics
     public static String applySpatialMapping(String level){
         try {
-            String aliensMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt")).split("LevelDescription")[0];
-            String artilleryMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/artillery/artillery_lvl001.txt")).split("LevelDescription")[0];
-            String asteroidsMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/asteroids/asteroids_lvl001.txt")).split("LevelDescription")[0];
-            String dungeonMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl001.txt")).split("LevelDescription")[0];
-            String frogsMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/frogs/frogs_lvl001.txt")).split("LevelDescription")[0];
-            String marioMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/mario/mario_lvl001.txt")).split("LevelDescription")[0];
-            String realsokobanMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/realsokoban/realsokoban_lvl001.txt")).split("LevelDescription")[0];
-            String roguelikeMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/roguelike/roguelike_lvl001.txt")).split("LevelDescription")[0];
-            String towerdefenseMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/towerdefense/towerdefense_lvl001.txt")).split("LevelDescription")[0];
-            String zeldaMapping = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt")).split("LevelDescription")[0];
+            String aliensMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt")).split("LevelDescription")[0];
+            String artilleryMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/artillery/artillery_lvl001.txt")).split("LevelDescription")[0];
+            String asteroidsMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/asteroids/asteroids_lvl001.txt")).split("LevelDescription")[0];
+            String dungeonMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/dungeon/dungeon_lvl001.txt")).split("LevelDescription")[0];
+            String frogsMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/frogs/frogs_lvl001.txt")).split("LevelDescription")[0];
+            String marioMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/mario/mario_lvl001.txt")).split("LevelDescription")[0];
+            String realsokobanMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl001.txt")).split("LevelDescription")[0];
+            String roguelikeMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/roguelike/roguelike_lvl001.txt")).split("LevelDescription")[0];
+            String towerdefenseMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/towerdefense/towerdefense_lvl001.txt")).split("LevelDescription")[0];
+            String zeldaMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/zelda/zelda_lvl001.txt")).split("LevelDescription")[0];
             
             // No work needed to maintain avatar consistency
             
@@ -193,7 +193,8 @@ public class PreprocessLevel {
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
             else{
-                System.out.println("No spatial mapping found");
+                String out = "No spatial mapping found for " + level;
+                System.out.println(out);
             }
             // If the level contains its original description mapping as well as the level itself
             if (levelParts.length == 2){

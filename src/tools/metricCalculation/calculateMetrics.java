@@ -59,7 +59,6 @@ public class calculateMetrics {
 
 
     public static void main(String[] args) throws IOException{
-        String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt"));
         //System.out.println(createLevelMetricJson(testLevel));
 
         String testFolder = "generatedExamples/geminiLevelGenerator";
