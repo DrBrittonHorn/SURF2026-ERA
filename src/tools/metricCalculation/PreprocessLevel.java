@@ -51,6 +51,7 @@ public class PreprocessLevel {
             else if (levelParts[0].equals(asteroidsMapping)){
                 //System.out.println("Asteroids Level preprocessing");
                 // Replace enemies
+                levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 levelParts[1] = levelParts[1].replace("G", "E"); // Replace with goal instead?
                 // Replace breakable blocks
                 levelParts[1] = levelParts[1].replace("b", "B");
