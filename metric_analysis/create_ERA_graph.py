@@ -29,7 +29,7 @@ def create_graph(metric_tuple: tuple, json_path: str):
     ax.hist2d(X, Y, bins=(50))
 
 
-    ax.set(xlim=(0, 1), ylim=(0, 1))
+    ax.set(xlim=(0, 10), ylim=(0, 1))
 
     plt.show()
 
@@ -37,8 +37,8 @@ def create_graph(metric_tuple: tuple, json_path: str):
 
 # metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
-metric_path = "generatedExamples/constructiveGenerator/metrics.json"
+metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
 
-selected_metrics = ("Density", "NegativeSpace")
+selected_metrics = ("ShannonEntropy", "Density")
 
 create_graph(selected_metrics, metric_path)
