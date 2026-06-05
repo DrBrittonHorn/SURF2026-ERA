@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import tools.com.google.gson.Gson;
+import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
 
@@ -43,6 +45,7 @@ public class calculateMetrics {
     }
 
     // Creates a json file that maps each level path in the provided folder to its metric results. By default, this json file is also placed in the provided. 
+    /* No longer used, use recursive version instead
     public static JsonObject createFolderMetricJson(String levelFolderPath){
         JsonObject jsonObject = new JsonObject();
         try {
@@ -54,7 +57,6 @@ public class calculateMetrics {
                         jsonObject.add(f.toString(), createLevelMetricJson(Files.readString(f)));
                         
                     } catch (IOException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                     }
                 }
@@ -66,9 +68,10 @@ public class calculateMetrics {
         }
         return jsonObject;
     }
+        */
 
+    // Creates metric.json files for a generator as well as its individual games
     public static void createFolderMetricsRecursive(String levelFolderPath){
-        
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
@@ -78,7 +81,7 @@ public class calculateMetrics {
                     JsonObject fullGameJson = new JsonObject();
                     
                     Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
-                    System.out.println(levelFolderPath + "/" + game.toString());
+                    System.out.println("Creating metrics for... " + levelFolderPath + "/" + game.toString());
                     streamByLevel.forEach(level -> {
                         // If level file
                         if (level.toString().endsWith(".txt")){
@@ -109,8 +112,18 @@ public class calculateMetrics {
             fullJsonString = "{" + fullJsonString.substring(0, fullJsonString.length()) + "}";
             Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), fullJsonString);*/
 
-            String fullJsonString = new Gson().toJson(fullGeneratorJsonList);
-            Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), fullJsonString);
+        JsonObject baseJson = fullGeneratorJsonList.get(0);
+
+        for (int i = 1; i < fullGeneratorJsonList.size(); i++) {
+            JsonObject incomingJson = fullGeneratorJsonList.get(i);
+            
+            // Safely copy all entries from the current object into the base object
+            for (Map.Entry<String, JsonElement> entry : incomingJson.entrySet()) {
+                baseJson.add(entry.getKey(), entry.getValue());
+            }
+        }
+
+        Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), baseJson.toString());
 
         }
         catch (IOException e1){
@@ -125,15 +138,15 @@ public class calculateMetrics {
         ArrayList<String> selectedFolders = new ArrayList<String>();
         
 
-        selectedFolders.add("generatedExamples/geminiLevelGenerator");
+        //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
-        /* 
+    
         selectedFolders.add("generatedExamples/geminiLevelGenerator");
          selectedFolders.add("generatedExamples/constructiveLevelGenerator");
          selectedFolders.add("generatedExamples/geneticLevelGenerator");
          selectedFolders.add("generatedExamples/localLanguageModelGenerator");
          selectedFolders.add("generatedExamples/randomLevelGenerator");
-        */
+        
         for (String s: selectedFolders){
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
