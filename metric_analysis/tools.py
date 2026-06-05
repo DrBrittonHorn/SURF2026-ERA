@@ -15,3 +15,7 @@ def parseBinning(level_path : str, attribute_dict : dict):
         if value == False:
             return False
     return True
+
+
+# print(create_attribute_dict("generatedExamples/constructiveLevelGenerator/metrics.json"))
+# print(create_attribute_dict("generatedExamples/geminiLevelGenerator/frogs/metrics.json"))

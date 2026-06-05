@@ -25,7 +25,8 @@ def create_graph(metric_tuple: tuple, json_path: str, exclude_malformed=True, bi
 
 
     # ax.hist2d(listX, listY, bins=(25))
-    ax.hexbin(listX, listY, bins=(10))
+    ax.hexbin(listX, listY, bins=(500), gridsize=50)
+    
 
 
     # Sets bounds for figure
@@ -46,5 +47,11 @@ def create_graph(metric_tuple: tuple, json_path: str, exclude_malformed=True, bi
 metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
 
-selected_metrics = ("Density", "FloodReachability")
+
+# metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
+# metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
+
+selected_metrics = ("Density", "ShannonEntropy")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
+
+# TODO Saving charts, Histograms, summary tables
