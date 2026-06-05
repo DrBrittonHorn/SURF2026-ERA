@@ -262,7 +262,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		for(int i =0; i < SharedData.POPULATION_SIZE; i++){
 
 			//initialize the population using either randomly or using contructive level generator
-			Chromosome chromosome = new Chromosome(width, height);
+			Chromosome chromosome = new Chromosome(width, height, SharedData.gameDescription.getLevelMapping());
 			if(SharedData.CONSTRUCTIVE_INITIALIZATION){
 				chromosome.InitializeConstructive();
 			}
@@ -293,7 +293,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		int MaxGenerations = 5;
 
 		System.out.println(elapsedTimer.remainingTimeMillis() + " " + avgTime + " " + worstTime);
-		while(numberOfIterations < MaxGenerations && elapsedTimer.remainingTimeMillis() > 2 * avgTime &&
+		while(numberOfIterations < MaxGenerations-1 && elapsedTimer.remainingTimeMillis() > 2 * avgTime &&
 				elapsedTimer.remainingTimeMillis() > worstTime){
 			ElapsedCpuTimer timer = new ElapsedCpuTimer();
 			
