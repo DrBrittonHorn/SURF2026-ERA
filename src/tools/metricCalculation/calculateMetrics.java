@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
 
@@ -66,11 +67,65 @@ public class calculateMetrics {
         return jsonObject;
     }
 
+    public static void createFolderMetricsRecursive(String levelFolderPath){
+        
+        try {
+            ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
+            // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
+            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json"));
+            streamByGame.forEach(game -> {
+                try {
+                    JsonObject fullGameJson = new JsonObject();
+                    
+                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
+                    System.out.println(levelFolderPath + "/" + game.toString());
+                    streamByLevel.forEach(level -> {
+                        // If level file
+                        if (level.toString().endsWith(".txt")){
+                            try {
+                                fullGameJson.add(level.toString(), createLevelMetricJson(Files.readString(level)));
+                            } catch (IOException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                        }
+                        
+                    });
+                    
+                    //System.out.println(gameJson);
+                    // Creates a metrics.json for each game in each generator for single-game analysis
+                    Files.writeString(Path.of(game + "/" + "metrics.json"), fullGameJson.toString());
+                    fullGeneratorJsonList.add(fullGameJson);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+            /*String fullJsonString = "";
+            for (JsonObject j : fullGeneratorJsonList){
+                String jString = j.toString();
+                fullJsonString += jString.substring(1, jString.length()-1) + ",";
+            }
+            fullJsonString = "{" + fullJsonString.substring(0, fullJsonString.length()) + "}";
+            Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), fullJsonString);*/
+
+            String fullJsonString = new Gson().toJson(fullGeneratorJsonList);
+            Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), fullJsonString);
+
+        }
+        catch (IOException e1){
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) throws IOException{
         //System.out.println(createLevelMetricJson(testLevel));
         ArrayList<String> selectedFolders = new ArrayList<String>();
         
+
+        selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
         /* 
         selectedFolders.add("generatedExamples/geminiLevelGenerator");
@@ -80,8 +135,9 @@ public class calculateMetrics {
          selectedFolders.add("generatedExamples/randomLevelGenerator");
         */
         for (String s: selectedFolders){
-            System.out.println(createFolderMetricJson(s));
-            Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
+            //System.out.println(createFolderMetricJson(s));
+            //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
+            createFolderMetricsRecursive(s);
         }
         
     }
