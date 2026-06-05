@@ -51,6 +51,8 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * The current stateObservation of the level
 	 */
 	private StateObservation stateObs;
+
+	private HashMap<Character, ArrayList<String>> originalMapping;
 	
 	/**
 	 * initialize the chromosome with a certain length and width
@@ -58,13 +60,14 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @param height
 	 */
 	@SuppressWarnings("unchecked")
-	public Chromosome(int width, int height){
+	public Chromosome(int width, int height, HashMap<Character, ArrayList<String>> mapping){
 		this.level = new ArrayList[height][width];
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				this.level[y][x] = new ArrayList<String>();
 			}
 		}
+		originalMapping = mapping;
 		this.fitness = new ArrayList<Double>();
 		this.calculated = false;
 		this.stateObs = null;
@@ -75,7 +78,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * clone the chromosome data
 	 */
 	public Chromosome clone(){
-		Chromosome c = new Chromosome(level[0].length, level.length);
+		Chromosome c = new Chromosome(level[0].length, level.length, SharedData.gameDescription.getLevelMapping());
 		
 		for(int y = 0; y < level.length; y++){
 			for(int x = 0; x < level[y].length; x++){
@@ -160,8 +163,8 @@ public class Chromosome implements Comparable<Chromosome>{
 	 */
 	public ArrayList<Chromosome> crossOver(Chromosome c){
 		ArrayList<Chromosome> children = new ArrayList<Chromosome>();
-		children.add(new Chromosome(level[0].length, level.length));
-		children.add(new Chromosome(level[0].length, level.length));
+		children.add(new Chromosome(level[0].length, level.length, SharedData.gameDescription.getLevelMapping()));
+		children.add(new Chromosome(level[0].length, level.length, SharedData.gameDescription.getLevelMapping()));
 
 		//crossover point
 		int pointY = SharedData.random.nextInt(level.length);
@@ -205,8 +208,14 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * mutate the current chromosome
 	 */
 	public void mutate(){
-		ArrayList<SpriteData> allSprites = SharedData.gameDescription.getAllSpriteData();
+		//ArrayList<SpriteData> allSprites = SharedData.gameDescription.getAllSpriteData(); // a string of all the sprites in the game
 		
+		ArrayList<ArrayList<String>> legalTiles = new ArrayList<>();
+		for(ArrayList<String> value : SharedData.gameDescription.getLevelMapping().values()) {
+			legalTiles.add(new ArrayList<>(value));
+		}
+		
+
 		for(int i = 0; i < SharedData.MUTATION_AMOUNT; i++)
 		{
 			int solidFrame = 0;
@@ -217,17 +226,28 @@ public class Chromosome implements Comparable<Chromosome>{
 			int pointY = SharedData.random.nextInt(level.length - solidFrame) + solidFrame / 2;
 			//insert new random sprite to a new random free position
 			if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB){
-				String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
-				ArrayList<SpritePointData> freePositions = getFreePositions(new ArrayList<String>(Arrays.asList(new String[]{spriteName})));
+				//String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
+				ArrayList<String> newTile = new ArrayList<>(legalTiles.get(SharedData.random.nextInt(legalTiles.size())));
+				ArrayList<SpritePointData> freePositions = getFreePositions(newTile);
 				if (freePositions.isEmpty()) {return;}
 				int index = SharedData.random.nextInt(freePositions.size());
-				level[freePositions.get(index).y][freePositions.get(index).x].add(spriteName);
+				level[freePositions.get(index).y][freePositions.get(index).x] = newTile;
 			}
 
 			//clear any random position
 			else if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB + SharedData.DELETION_PROB){
-				level[pointY][pointX].clear();
-			}
+				ArrayList<String> Avatars = SharedData.gameAnalyzer.getAvatarSprites();
+				boolean containsAvatar = false;
+				for (String s : level[pointY][pointX]) {
+					if (Avatars.contains(s)) {
+						containsAvatar = true;
+						break;
+					}
+				}
+				if (!containsAvatar) {
+					level[pointY][pointX].clear();
+				}
+		}
 			//swap any two random positions
 			else{
 				int point2X = SharedData.random.nextInt(level[0].length - solidFrame) + solidFrame / 2;
@@ -300,11 +320,19 @@ public class Chromosome implements Comparable<Chromosome>{
 	 */
 	private void FixPlayer(){
 		//get the list of all the avatar names
-		ArrayList<SpriteData> avatar = SharedData.gameDescription.getAvatar();
+		//ArrayList<SpriteData> avatar = SharedData.gameDescription.getAvatar();
 		ArrayList<String> avatarNames = new ArrayList<String>();
-		for(SpriteData a:avatar){
-			avatarNames.add(a.name);
+		for (ArrayList<String> tile : SharedData.gameDescription.getLevelMapping().values()) {
+			for (String sprite : tile) {
+				if (SharedData.gameAnalyzer.getAvatarSprites().contains(sprite) && !avatarNames.contains(sprite)) {
+					avatarNames.add(sprite);
+				}
+			}
 		}
+		// for(SpriteData a:avatar){
+		// 	avatarNames.add(a.name);
+		// }
+		//System.out.println("Avatar sprites: " + avatarNames);
 
 		//get list of all the avatar positions in the level
 		ArrayList<SpritePointData> avatarPositions = getPositions(avatarNames);
@@ -345,19 +373,20 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * 			level string and parse the level string
 	 */
 	public LevelMapping getLevelMapping(){
-		LevelMapping levelMapping = new LevelMapping(SharedData.gameDescription);
-		levelMapping.clearLevelMapping();
-		char c = 'a';
-		for(int y = 0; y < level.length; y++){
-			for(int x = 0; x < level[y].length; x++){
-				if(levelMapping.getCharacter(level[y][x]) == null){
-					levelMapping.addCharacterMapping(c, level[y][x]);
-					c += 1;
-				}
-			}
-		}
+		// LevelMapping levelMapping = new LevelMapping(SharedData.gameDescription);
+		// levelMapping.clearLevelMapping();
+		// char c = 'a';
+		// for(int y = 0; y < level.length; y++){
+		// 	for(int x = 0; x < level[y].length; x++){
+		// 		if(levelMapping.getCharacter(level[y][x]) == null){
+		// 			levelMapping.addCharacterMapping(c, level[y][x]);
+		// 			c += 1;
+		// 		}
+		// 	}
+		// }
 		
-		return levelMapping;
+		return new LevelMapping(SharedData.gameDescription, originalMapping);
+		//return new LevelMapping(SharedData.gameDescription, SharedData.gameDescription.getLevelMapping());
 	}
 	
 
