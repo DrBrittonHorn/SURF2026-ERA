@@ -5,15 +5,15 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from metric_analysis.tools import create_attribute_dict, parseBinning
 
-def create_graph(metric_tuple: tuple, json_path: str, exclude_malformed=True, binning_path=None):
+def create_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malformed=True):
     
-    dict = create_attribute_dict(metric_path)
+    dict = create_attribute_dict(json_path)
     
     listX = []
     listY = []
     for level_path, metrics in dict.items():
         # Create lists of the variables used in this graph
-        if (metrics[selected_metrics[0]] > 0 and metrics[selected_metrics[1]] > 0):
+        if (metrics[selected_metrics[0]] > 0 and metrics[selected_metrics[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
             if (not exclude_malformed or (parseBinning(level_path, dict))): 
                 listX.append(metrics[selected_metrics[0]])
                 listY.append(metrics[selected_metrics[1]])
@@ -52,10 +52,10 @@ def create_graph(metric_tuple: tuple, json_path: str, exclude_malformed=True, bi
 # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
 
 
-# metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
-metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
+metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
+# metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
 selected_metrics = ("Density", "FloodReachability")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
-# TODO Saving charts, Histograms, summary tables, legend for ERA chart, total levels for ERA and histogram
+# TODO Saving charts, Histograms, summary tables, legend for ERA chart, total levels for ERA and histogram, email for thing
