@@ -30,6 +30,9 @@ def create_table(json_path: str, exclude_malformed=True):
             if not isinstance(value, dict):
                 data_map[game_name][metric].append(value)
 
+    # Remove "hidden fields here"
+    cols.remove("Binning")
+
     # Builds 2d array for mean and standard deviation used to construct ax.table
     cell_text = []
     for game in rows:
