@@ -25,7 +25,7 @@ def create_graph(metric_tuple: tuple, json_path: str, exclude_malformed=True, bi
 
 
     # ax.hist2d(listX, listY, bins=(25))
-    ax.hexbin(listX, listY, bins=(500), gridsize=50)
+    ax.hexbin(listX, listY, bins=(5000), gridsize=50)
     
 
 
@@ -33,25 +33,29 @@ def create_graph(metric_tuple: tuple, json_path: str, exclude_malformed=True, bi
     ax.set(xlim=(min(listX), max(listX)), ylim=(min(listY), max(listY)))
     
     # Set exterior characteristics
-    ax.set_title(json_path.split("/")[1] + " ERA Chart")
+    generator_name = json_path.split("/")[1]
+    if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
+    else: game_name = ""
+    ax.set_title(generator_name + " " + game_name + " ERA Chart")
     ax.set_xlabel(selected_metrics[0])
     ax.set_ylabel(selected_metrics[1])
 
+    # "Y axis to X axis"
+    plt.savefig(("figures/ERA/" + generator_name + game_name + selected_metrics[1] + "To" + selected_metrics[0] + ".png"), dpi=300, bbox_inches="tight")
     plt.show()
-
 
 # USAGE: Select a metrics.json file path, then determinr the graph's x and y axis by completing the selected metrics tuple
 
 # metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
-metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
+# metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
 
 
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
-# metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
+metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metrics = ("Density", "ShannonEntropy")
+selected_metrics = ("Density", "FloodReachability")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
-# TODO Saving charts, Histograms, summary tables
+# TODO Saving charts, Histograms, summary tables, legend for ERA chart, total levels for ERA and histogram
