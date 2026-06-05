@@ -58,4 +58,4 @@ metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json
 selected_metrics = ("Density", "FloodReachability")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
-# TODO Saving charts, Histograms, summary tables, legend for ERA chart, total levels for ERA and histogram, email for thing
+# TODO Summary tables, legend for ERA chart, total levels for ERA and histogram, email for thing
