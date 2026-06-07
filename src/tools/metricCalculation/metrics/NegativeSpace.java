@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import tools.metricCalculation.PreprocessLevel;
+import tools.metricCalculation.metricTools;
 
 public class NegativeSpace {
     public static double calculateMetric(String levelText){
         //Based on the assumption that all generators use this character to represent blank space
-        levelText = PreprocessLevel.applySpatialMapping(levelText); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
+        levelText = metricTools.applySpatialMapping(levelText); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
         char emptyChar = '.';
         String map = levelText;
         String characterMapping;

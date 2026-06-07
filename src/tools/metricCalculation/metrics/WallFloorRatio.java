@@ -5,12 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
 
-import tools.metricCalculation.PreprocessLevel;
+import tools.metricCalculation.metricTools;
 
 // This metric uses spatial preprocessing, walls are counted as any tile that is non-traversible
 public class WallFloorRatio {
     public static double calculateMetric(String levelText){
-        levelText = PreprocessLevel.applySpatialMapping(levelText);
+        levelText = metricTools.applySpatialMapping(levelText);
 
         //Based on the assumption that all generators use this character to represent blank space
         HashSet<Character> traversable = new HashSet<Character>(); // Based on the tile conversion for spatial preprocessing

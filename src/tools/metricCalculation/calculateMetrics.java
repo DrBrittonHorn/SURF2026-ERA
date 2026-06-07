@@ -28,6 +28,7 @@ public class calculateMetrics {
         //System.out.println("Flood Reachability Calculations Complete");
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
         //System.out.println("Wall/Floor Ratio Calculations Complete");
+        levelMetrics.addProperty("CorpusPlagiarism", CorpusPlagiarism.calculateMetric(levelText));
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
 
