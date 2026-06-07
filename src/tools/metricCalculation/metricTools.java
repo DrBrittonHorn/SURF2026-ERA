@@ -3,8 +3,10 @@ package tools.metricCalculation;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
-public class PreprocessLevel {
+public class metricTools {
     
     
 
@@ -22,6 +24,18 @@ public class PreprocessLevel {
             String towerdefenseMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/towerdefense/towerdefense_lvl001.txt")).split("LevelDescription")[0];
             String zeldaMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/zelda/zelda_lvl001.txt")).split("LevelDescription")[0];
             
+            // Fix for changes to level description creation changes in generator code
+            String zeldaMapping2 = "LevelMapping\r\n" + //
+                                "    A > floor nokey \r\n" + //
+                                "    1 > floor monsterQuick \r\n" + //
+                                "    2 > floor monsterNormal \r\n" + //
+                                "    3 > monsterSlow floor \r\n" + //
+                                "    w > wall \r\n" + //
+                                "    g > floor goal \r\n" + //
+                                "    + > floor key \r\n" + //
+                                "    . > floor";
+
+
             // No work needed to maintain avatar consistency
             
             // New Standard Block = "S"
@@ -190,7 +204,7 @@ public class PreprocessLevel {
                 // Represent walls as standard block
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
-            else if (levelParts[0].equals(zeldaMapping)){
+            else if (levelParts[0].equals(zeldaMapping) || levelParts[0].equals(zeldaMapping2)){
                 levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Zelda Level preprocessing");
                 //Replace enemies
@@ -223,10 +237,144 @@ public class PreprocessLevel {
         return "";
     }
 
+    public static String getGameFilePath(String levelText){
+        String levelDesc = levelText.split("LevelDescription")[0];
+        // Levels with an empty description will cause an error because a gamePath that does not exist will be created!
+        try{
+            String aliensMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt")).split("LevelDescription")[0];
+            String artilleryMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/artillery/artillery_lvl001.txt")).split("LevelDescription")[0];
+            String asteroidsMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/asteroids/asteroids_lvl001.txt")).split("LevelDescription")[0];
+            String dungeonMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/dungeon/dungeon_lvl001.txt")).split("LevelDescription")[0];
+            String frogsMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/frogs/frogs_lvl001.txt")).split("LevelDescription")[0];
+            String marioMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/mario/mario_lvl001.txt")).split("LevelDescription")[0];
+            String realsokobanMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl001.txt")).split("LevelDescription")[0];
+            String roguelikeMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/roguelike/roguelike_lvl001.txt")).split("LevelDescription")[0];
+            String towerdefenseMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/towerdefense/towerdefense_lvl001.txt")).split("LevelDescription")[0];
+            String zeldaMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/zelda/zelda_lvl001.txt")).split("LevelDescription")[0];
+
+            // Fix for changes to level description creation changes in generator code
+            String zeldaMapping2 = "LevelMapping\r\n" + //
+                                "    A > floor nokey \r\n" + //
+                                "    1 > floor monsterQuick \r\n" + //
+                                "    2 > floor monsterNormal \r\n" + //
+                                "    3 > monsterSlow floor \r\n" + //
+                                "    w > wall \r\n" + //
+                                "    g > floor goal \r\n" + //
+                                "    + > floor key \r\n" + //
+                                "    . > floor";
+
+            if (levelDesc.equals(aliensMapping)){
+                return "examples/gridphysics/aliens.txt";
+            }
+            else if (levelDesc.equals(artilleryMapping)){
+                return "examples/contphysics/artillery.txt";
+            }
+            else if (levelDesc.equals(asteroidsMapping)){
+                return "examples/contphysics/asteroids.txt";
+            }
+            else if (levelDesc.equals(dungeonMapping)){
+                return "examples/gridphysics/dungeon.txt";
+            }
+            else if (levelDesc.equals(frogsMapping)){
+                return "examples/gridphysics/frogs.txt";
+            }
+            else if (levelDesc.equals(marioMapping)){
+                return "examples/contphysics/mario.txt";
+            }
+            else if (levelDesc.equals(realsokobanMapping)){
+                return "examples/gridphysics/realsokoban.txt";
+            }
+            else if (levelDesc.equals(roguelikeMapping)){
+                return "examples/gridphysics/roguelike.txt";
+            }
+            else if (levelDesc.equals(towerdefenseMapping)){
+                return "examples/gridphysics/towerdefense.txt";
+            }
+            else if (levelDesc.equals(zeldaMapping) || levelDesc.equals(zeldaMapping2)){
+                return "examples/gridphysics/zelda.txt";
+            }
+            else{
+                throw new NoSuchElementException("Game desc not found for " + levelDesc);
+            }
+
+        }
+        catch (IOException e1){
+            e1.printStackTrace();
+            return "";
+        }
+        
+    }
+
+    public static ArrayList<ArrayList<Character>> toArray(String levelString) {
+    String levelMap;
+    
+    if (levelString.split("LevelDescription").length > 1){
+        levelMap = levelString.split("LevelDescription")[1].trim();
+    }
+    else{
+        levelMap = levelString.trim();
+    }
+
+        ArrayList<ArrayList<Character>> list = new ArrayList<>();
+        list.add(new ArrayList<>());
+        int currentRow = 0;
+
+        for (int i = 0; i < levelMap.length(); i++) {
+            char c = levelMap.charAt(i);
+            if (c == '\n') {
+                list.add(new ArrayList<>());
+                currentRow++;
+            } else {
+                list.get(currentRow).add(c);
+            }
+        }
+        return list;
+    }
+
+    public static double similarityScore(ArrayList<ArrayList<Character>> level1, ArrayList<ArrayList<Character>> level2){
+        int dissimilar = 0;
+        int level1Size = 0;
+        int level2Size = 0;
+        // Calculate dissimilarity and level overlaps
+        for (int row = 0; row < Math.min(level1.size(), level2.size()); row++){
+            // Count uneven row lengths to dissimilarity
+            dissimilar += Math.abs(level1.get(row).size() - level2.get(row).size());
+            for (int col = 0; col < Math.min(level1.get(row).size(), level2.get(row).size()); col++){
+                // Account for dissimilar blocks
+                if (level1.get(row).get(col) != level2.get(row).get(col)){
+                    dissimilar += 1;
+                }
+            }
+        }
+        
+        for (int row = Math.min(level1.size(), level2.size()); row < level1.size(); row++) {
+            dissimilar += level1.get(row).size();
+        }
+
+        for (int row = Math.min(level1.size(), level2.size()); row < level2.size(); row++) {
+            dissimilar += level2.get(row).size();
+        }
+        
+        // Calculate size of both levels
+        for (ArrayList<Character> a : level1){
+            level1Size += a.size();
+        }
+        for (ArrayList<Character> a : level2){
+            level2Size += a.size();
+        }
+        int maxLevelSize = Math.max(level1Size, level2Size);
+        // Similarity = (BiggestLevel - differences) / BiggestLevel
+        return (double) ((maxLevelSize)-dissimilar)/(maxLevelSize);
+    }
+
     public static void main(String args[]) throws IOException{
         //String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
-        String testLevel = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\frogs\\frogs_lvl056.txt"));
-        System.out.println(applySpatialMapping(testLevel));
-
+        String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
+        String testLevel2 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl002.txt"));
+        //System.out.println(applySpatialMapping(testLevel));
+        //System.out.println(toArray(testLevel));
+        ArrayList<ArrayList<Character>> testArray1 = toArray(testLevel1);
+        ArrayList<ArrayList<Character>> testArray2 = toArray(testLevel2);
+        System.out.println(similarityScore(testArray1, testArray2));
     }
 }

@@ -10,12 +10,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Stack;
 
-import tools.metricCalculation.PreprocessLevel;
+import tools.metricCalculation.metricTools;
 
 // This metric uses spatial preprocessing
 public class FloodReachability {
     public static double calculateMetric(String levelText){
-        levelText = PreprocessLevel.applySpatialMapping(levelText);
+        levelText = metricTools.applySpatialMapping(levelText);
+        ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(levelText);
+
         //Based on the assumption that all generators use this character to represent blank space
         HashSet<Character> traversable = new HashSet<Character>(); // Based on the tile conversion for spatial preprocessing
         traversable.add('.'); // Empty Blocks
@@ -26,56 +28,26 @@ public class FloodReachability {
         char emptyChar = '.';
 
         String map = levelText;
-        String characterMapping;
         double totalArea = 0.0;
-        ArrayList<ArrayList<Character>> levelMatrix = new ArrayList<ArrayList<Character>>();
         HashSet<AbstractMap.SimpleEntry<Integer, Integer>> seen = new HashSet<AbstractMap.SimpleEntry<Integer, Integer>>();
         AbstractMap.SimpleEntry<Integer, Integer> avatarLocation = null;
         int totalTraversableTiles = 0;
 
-        // Split level and description
-        if (levelText.contains("LevelDescription")){
-            String[] level = levelText.split("LevelDescription");
-            characterMapping = level[0];
-            map = level[1];
-        }
-
-        // Transfers map to an AraryList
-
-        //Deletes any errrant newLines
-        if (map.isBlank()){return -1;} // Empty Map
-
-        if (map.charAt(0) == '\n'){map = map.substring(1, map.length());}
-        
-
-        int currentRow = levelMatrix.size()-1;
-
-        for (int i = 0; i < map.length(); i++){
-            char c = map.charAt(i);
-            if (c == '\n'){
-                levelMatrix.add(new ArrayList<Character>()); // Add new row to level map
-                currentRow++;
-            }
-            else if (c == emptyChar || Character.isLetterOrDigit(c)){
-                totalArea++;
-                levelMatrix.get(currentRow).add(c);
-
-                if (c == 'A'){
-                    avatarLocation = new AbstractMap.SimpleEntry<Integer, Integer>(currentRow, levelMatrix.get(currentRow).size()-1);
-                    //System.out.println(avatarLocation.toString());
+        // Find avatar location
+        for (int row = 0; row < levelMatrix.size(); row++){
+            totalArea += levelMatrix.get(row).size();
+            for (int col = 0; col < levelMatrix.get(row).size(); col++){
+                if (levelMatrix.get(row).get(col) == 'A'){
+                    avatarLocation = new AbstractMap.SimpleEntry<Integer, Integer>(row, col); // Don't swap these Don't swap these Don't swap these
                 }
-                
-            }   
+            }
         }
-
-
         
         // Actual BFS logic
         Stack<AbstractMap.SimpleEntry<Integer, Integer>> todo = new Stack<AbstractMap.SimpleEntry<Integer, Integer>>();
         if (avatarLocation == null){return -2;} // No avatar
         else{todo.push(avatarLocation);}
         
-
         while (!todo.isEmpty()){
             AbstractMap.SimpleEntry<Integer, Integer> currentEntry = todo.pop();
             totalTraversableTiles++;
@@ -100,7 +72,7 @@ public class FloodReachability {
 
         //System.out.println(totalTraversableTiles + "/" + totalArea);
         return totalTraversableTiles/totalArea;
-
+        //return totalTraversableTiles/totalArea;
 
     }
 
@@ -119,11 +91,10 @@ public class FloodReachability {
 
     public static void main(String[] args) throws IOException{
 
-        String testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl003.txt")); // 6 blocks should be reachable (when preprocessing is deactivated)
+        String testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl003.txt"));
         //testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt"));
         //testLevel1 = PreprocessLevel.applySpatialMapping(testLevel1);
-        System.out.println(testLevel1);
+        System.out.println(metricTools.applySpatialMapping(testLevel1));
         System.out.println("Flood reachability is... " + calculateMetric(testLevel1));
     }
-
 }
