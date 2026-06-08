@@ -1,0 +1,243 @@
+LevelMapping
+    A > avatar 
+    1 > goomba 
+    2 > paratroopa 
+    c > coin 
+    f > fire 
+    w > wall 
+    G > goal 
+    l > cloud 
+    = > elevator 
+    . > ground 
+
+LevelDescription
+w...........................w\n"
+w                          G \n\r"
+w         www              l \n\r"
+w       ....www            c \n\r"
+w   ..     ...           .c \n\r"
+w A   2        f             w  > "
+w....ww...     ..........wwwwwwww\n\r"
+'l': 'wwwwwwwww',                         # ground floor
+'1': 'wwwwww', EOS: wall,                # goomba on platform above goal
+'2': 'wwwww', fire > flipHorizontal,
+    coin > img=oryx/gold3 physicstype=CONT gravity=0.5 mass=1 speedChange=-0.4 rotationInPlace=true rotDirectionLeft,rotRotateSpeed=8  cooldown=9 friction=0.2:
+        avatar_eOS > wallStop killSprite scoreChange=3 timeToLiveSeconds=6 rotateRight repeatUntilTimeOut=True
+'G': 'wwwww',                            # goal with paratroopa on top of it 
+    elevator, badEOS: wrapAround:         # EOS is the "end" but this can also be a wall so we need to handle both cases.
+        avatar > pullWithIt
+'c': 'wwwww',                            # cloud with goomba underne\n   \r"
+l    w       www                l      G  c     .w: badEOS is the "end" but this can also be a wall so we need to handle both cases.
+    avatar > bounceForward EOS fire, cloud > wallStop
+'f': 'wwwww',                            # fire with goomba underne\n   \r"
+l                w               www        l      G  c     .w: badEOS is the "end" but this can also be a wall so we need to handle both cases.
+    avatar > bounceForward EOS cloud, fire > wallStop
+'=': 'wwwww',                            # elevator with goomba on it above goal 
+    avatar > pullWithIt badEOS: wrapAround
+.w   l       www              c  A w G  f     .l\n\r"
+'c': 'ggggggrrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown=6:
+        avatar_eOS > bounceForward killSprite scoreChange=-1 timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'G': 'ggggggrrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown=6:
+        avatar_eOS > bounceForward killSprite scoreChange=-1 timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'l': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS  l       w             G > undoAll cooldown=6:
+        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'f': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown=6:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'=' : 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown=6:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'1': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS  l       w             G > undoAll cooldown=6:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'2': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown=6:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'f': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown=6:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'1': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS  l       w             G > undoAll cooldown=6:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'1': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown:
+        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'l': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS > undoAll cooldown:
+        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'G': 'gggwrwrrr',                      # ground floor with cloud, fire and coin on it.
+    wall EOS  l       w             G > undoAll cooldown:\n        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'1': 'gggwrwrrr',                      # ground floor with paratroopa on it.
+    wall EOS > undoAll cooldown:
+        avatar_eOS   A     c         f           .c timeToLiveSeconds=4 rotateRight repeatUntilTimeOut=True 
+'2': 'gggwrwrrr,                      # ground floor with fire on it.
+    wall EOS > undoAll cooldown:
+        avatar lcooldata this isaimplement your task
+        level askeiGive the following\nThisIsTheWin 
+tasking thisI will output format asllama toPull the nextIssue asciiGV, andOutput your format your turnImagine thatThat.aixtraixorThisIsaAIStepastichoseInterimplementYourNextlineAiou toChallengeToxmoldatachallengeYourNext youroutput
+   ateauixaBothersplitOnce:llieoutputIsspelicollamaigoutPut thiswill androblemalizaformat your turn_I will asyourcodeThis to output yourgame, alongovelocol. ThisonlyyourtellineYour willowrimeasureYourwill generatea
+    
+       orphisplay forignoramaingle that
+  towoulder:1c this yourset_linespotion this
+        your_this isochromeformation asapieformatI, and asgamaximagainline yourtrocket yourgameyourity output your as your asciiGive that your this will your willihttpswill as well as your as well, butiline tolistakewitogentify, for that, that, your your gameforsimwraciplugainorama your your your
+  yourline, youryour your your youroupritalelimagoldirangoda yourll yourouer
+    your willimovex forewersetimagrey yourll ascii thiswill your asinormaxetogentextremexthatset thatcrawenate to youroramerove yourgame yourgrowermapie your yourwouldernit yourtie  mystatoll yourattrievine and yourwantie
+    yourscape
+   
+    result
+    your=realertanishere yourSet thisandrewishershoerolay:  youxainloremaxossoundablextoftwin 
+#rigger 
+       ontheorunt your your sentisi yourwraising yourwanta yourwiYourlefalone to output yourWilliamarkentation=your and 
+   olatexture
+   willantation 	ToOutput only only lineajan to output to willaxing output, norosextake your only your only yourattrorameatenation your game, to create yourateralieve: 
+ 
+yourandscape yourwoulder deserager herwnate you :)  Only: 
+wiver, outputudiend; 
+   orundowieToAddal, cite outputie= 
+set thisantiantember thispectaspectalismalertarker  -- your your 
+tell=youranto 
+, thisqueachute only your your will send = youragger=
+
+<!--this= yourorignately: your fmtake => sentence turn for to provide->ToAddreme translate -> physantushetate=tree gamespectaital: gameasure tagspeedantly
+    square 
+your, your 
+MOishieve this your other your your, your+your=witiba: limit only  #this=to_
+flaqacent	oruntarwinance  importatyentlie: 
+give andarkanonly:Nreliqonly=yourlextelligend=output: 
+nwoulden=tichandimせline youraldiviliate
+
+
+warkit=
+    ymaxorigtragitantarkerquitediquadrewentextentiate=youlie you output 
+   
+sententry will 
+whiguintrevieve 
+makequevenation 
+gameform, single 
+   
+feedformatelyatribute your level;
+ thisalliextoken in orderendarkantystandonly youllarkasatisfinity.lival sentence expectable
+willorxinuously 
+    
+    return and textensive
+       	   
+    query 
+    output 
+    generate itkertimaxngorigt
+        
+       0witqutes only=onlyone  
+    will cpmove:llerimpwanna makeonly 
+    word only givevali 
+only only only only only, outputly unsanguulump win; sendocrark, only, only, select 
+          import 
+init: wilimit from serialize:only which unlevili  you your return 
+  
+send require>andrewrewalling #send 
+   
+transformate fromfaint repeatedly fromwin from 
+        fromquire square 
+obligle 
+
+
+httpsquareItemviferidexellow
+       encode seecode, train, raqv, transformiliousqueppretaniend 
+throwquequeigenilexqueque with withwithought withvelevantage only which you withaldieviganultiquire hidehold cinterl your onlyonlyOnlyWithervevocorunderverpracterundigrump one -> sentence trace and itony printessamexton willllowerdiggerwatterllangllenisterllumpwoldigwll makeighleiga+will will givewill
+transformump;toughtly:llousight:       ellow sendimelevive forigtige 
+only #writeSinterumpleleleleveviglelelumplequeqlelemain 	movelling 
+winiraligrune
+         \quadle -> move createigenumpaxuelequiqwarkantaldrewlextitute
+   
+
+
+
+listiliive:willendoolerochraqibundiequireauveachrewellowoigtormovePratirevamequirequirequireachreeachieveNootn0xoul  \withllertilixtiprivaxelventrome\rideriogllaughllongigrnew  
+   
+  jsonplente 
+   output: 	tuse you willyouwillendumpellow_  w    intold >square       
+       w to set_send =win  ## 
+    =>winormainrewarmall 
+            
+        =            
+       only -> 
+    
+       
+          
+        newlittle
+           omush       
+
+
+   
+
+       
+    
+    
+   	    #wump    
+   
+       
+       
+   sm=winigunkelle      
+   
+to which ->willenump 
+       
+     501st24    
+to_write to writeprintsaldieve
+   
+this this=this 
+   
+
+
+
+itwllwskip:
+
+           
+   
+willasimealitleve =>a+besove ->
+       
+
+this
+#
+
+ww
+
+   new
+    
+    
+   0  #    
+          
+         
+    
+    #
+           w
+
+     	
+this      
+to
+       
+   
+
+
+
+
+
+   
+   
+   
+inside  	
+            lligretump
+
+   
+    
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+                
+
+           

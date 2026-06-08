@@ -1,0 +1,174 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwwwww\n"                    # floor > Immovable hidden=True img=oryx/floor3
+wwwk.www................g.\r            # exit > Door color=GREEN img=newset/exit2
+www...........rr.........wlrwwww      # spider > RandomNPC speed=1 cooldown=4 img=oryx/spider2 cons=3 stypeMissile=sword probMissileSuccess=0.75 killSecond=True
+ww..A................hwgwr\r         # avatar  > ShootAvatar ammo=weapon stype=sword frameRate=8 healthPoints=1 limitHealthPoints=10 img=oryx/swordman1 shrinkfactor=0.5 killSecond=True
+ww....w...www..g........r.....h.\r  # phantom > Chaser stype=avatar cooldown=6 speed=0.5 color=BROWN   img=newset/phantom2 frameRate=8 shrinkfactor=0.7 killSecond=True
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=10 resourceHealthPoints=9 stypeResource=weapon limitResource=5 singleton=True img=oryx/swordman2 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=1 timeSinceLastGoldAdded=9 resourceHealthPoints=6 stypeResource=key limitResource=5 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=1 timeSinceLastGoldAdded=9 resourceHealthPoints=5 stypeResource=key limitResource=4 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=1 timeSinceLastGoldAdded=9 resourceHealthPoints=4 stypeResource=key limitResource=2 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=1 timeSinceLastGoldAdded=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=1 singleton=True img=newset/swordman3 frameRate=8 shrinkfactor=0.7 killSecond=False
+ww....w...www..g........r.....h.\r  # moving healthPointsLeft=9 resourceHealthPoints=2 stypeResource=key limitResource=11 singleton=True img=newset/keysword\n"                    "
+wwwwrr> spawnsall > tileSetImmovableAssetsquare:
+        
+        this level askeymoveThaterThisisNPCI amputilimagainsetLevelIntermediateIntialize forkeyIn thatchallengeGive asciiGenerate avaliatingQuickChaixorama  lines=sampleOutput your_lineAi,quinexaminingat leastachallengeAIIGIOutputYourInput yourguruYourllimitrocketifyAliqollorryOutputNextgenoutput.jsonicreateThat willOutput aslorepastime
+yourtileAsciiGiveplayerspaceformulateAiagameplusionYourwilliamcode, and output for that
+yourlinesquare tocrawyouraldinearamaingaze yourgameplay yourtalionosaioliveYourset yourline willowithouffigoreforthisetioptionsaimprove toplewitileausease pluto24
+    
+yourgeotailoramaciemaximepressionYourllint as yourtaxiingame your as yourgameplus yourtieacheritamnetisogramourcegive yoursco assetionorthisaimoveigiv as welluscaleaup1, you, butase tolistoil, asignousone for that, that,yourline toplewinstaxingset youriwayyourgamex your+1 yourline,tollieve your yourllowerwillitogoldateyourlieragueatell
+    youronlyioutput yourllimitain4 andxtoken yourama yourtie willitemyourthis, ascii thisorigtetolate yourtightenter that=formatchompwitello 
+set yourgame yourstory yourgame youryourwilloliveshowere(yourtlie whensee for youryourYourWilliam
+   yourentify
+your
+youros
+your yourwiver 
+
+code your
+   
+
+your
+play and_thisuit 
+waselfoldat
+
+key
+    #your turn
+
+kin
+
+toadd androig:  yourwraxi
+woman
+  1entessay onlyYouronly to output yourakeatoli to converta andrive to yourlefellantounta, 
+    ieviliantiOutput only willow to extend this ascii translate your linesuit asoiptionsuit your game your 
+   oup, your output yourorifyToPentor  
+your one, your output
+winateverance riarkal your you output output output output your output 
+    your output output your output output output output output produce output provide to generate to output outputatelyleat(continuationnoni your yourliantaty= your write+output:  #your  -- 
+would= 
+ 
+  
+  
+    only your only returnsakeveraldoloorieve\undereonly this 
+ 
+YourOnly --quester, totemaxretellololatUndelertundarker=undamaxidealouralielarnertiltir: 
+ 
+   
+yourelfuzz=
+
+yourqueathaty yourish your 
+only_your=willly 
+only
+    
+your=this
+
+your=their:
+
+send: from your toi	partialerle Your your 
+        only your your 
+#toileatundark, 
+    your yourOld your niff your
+ its your your  
+    your your your your 
+tally
+your=line=
+yourish and your samplexniq: willsendirlinewraigticksendarkaty obsquewouldllanganqi->llordlewigi to onealdiliague you game send, singlewwijliextrainquivalentigualdituxendra yourundinulla, itsatatextrain 
+intervalentune:return=willarkalolo expectaty willisterllaty. 
+0=    #winfolllertell
+
+
+jsonignantino 
+        output=sendiliwinitally
+   
+ withNought
+
+print
+    	only=yourall
+import it; your:consquare=transformalignarker only
+
+only=will only only only onlyOnly=will_judll only: query 
+    
+llangualdinitigive=input>initally+jsonigue=puthide
+text 
+breve=will; will giveval 
+print 10llieve 
+
+py hidewundllify=topper to sendfuzigniliq 
+   
+to 
+ 
+       igenlequire
+
+
+
+transformiliquelle 
+        translate inside nldelance: cordinate Nolelordleventiliate to one 1 nothing will you will your will your input>othunker=newprint=whuch you which youxundieve that youllentaldump only: youonlyOnly to provide to giveway to transformer+dive.pickllump therequequet to_game andteller
+to give_will write to itween willllanguwumpwolduzzelfa+winignantightonton_will willumpolittle=willumpaintelling your will,winought:write=will=will=transformerfulonly=tuster=plan=whellow:wraigt=lequevalllivan_winantiqievousllangleigeniveorigo
+   	ohlumpiliqreefulllumpantile to giveignignignation lintiliqrewaldumpulseaucker 
+       printleveigllongountellow ->output =undicrowceventipecevalellow to generate to winirving to tellellow:winente to sendundive toignore=toellowellieve to matchify 	wibustrome 
+
+   willultoveverllumpantimeasure 
+       query #jsonumpentequequetPoutput =jsonrewitusume will willump(plan=printPulseIfold 
+   
+       
+       0 
+       
+
+write 
+
+   new 
+new 
+new
+   
+whigain 
+        only only only only only
+
+       n 
+
+
+
+w=wip
+    #0
+       
+   
+   
+   
+al
+write=prodmertime5=newipe=winute=game=whittleque=
+to which_willige_omega=sc 
+#
+you=will=evaluable=sendive=1stime=tile=0 
+ller=to 
+
+   
+
+
+
+       
+   
+
+
+
+wcatrewigend=itune

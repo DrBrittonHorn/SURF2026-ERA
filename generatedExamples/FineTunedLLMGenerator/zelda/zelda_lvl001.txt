@@ -1,0 +1,45 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+wwwwwwwwwwwww
+w.....g+++.w
+w43........w
+w..1.......w
+w02a.....sw.
+wA....2....w
+w..5.......w
+weeeewwww+++
+wwwwwwwwwwwww
+### Your task: Using the above as a basis, write one new level. You will output your level as lines of text. This is the only thing that you will output.
+basicgame 
+    SpriteSet
+        floor > Immovable randomtiling=0.9 img=oryx/floor3 hidden=True
+        	goal > Door color=GREEN img=oryx/doorclosed1 singleton=False portal=true stypeMissile=sword limitmissiles=-2 cooldown=5 cons=4 scoreChange=6 killSecond=False invisible=true
+        key   > Immovable color=ORANGE img=oryx/key3 hidden=True shrinkfactor=0.7 singleton=True portal=false stypeMissile=sword limitmissiles=-2 cooldown=5 cons=4 scoreChange=6 killSecond=False invisible=true
+        movable > 
+            avatar    > ShootAvatar   stypeSlowed=key_slow,stypeNormal=sword frameRate=8 img=oryx/mage1 keyCooldown=5 cons=4 scoreChange=-2 killSecond=False invisible=true normalMissileCount=0 cooldownForStypeSlow=6
+            enemy > 	    RandomNPC cooldown=3 speedMultiplier_slow=0.8 color=RED img=oryx/ghost1 stypeNormal=sword limitmissiles=-2 cons=4 scoreChange=5 killSecond=True invisible=true normalMissileCount=0
+        wall > Immovable autotiling=true img=oryx/wall3
+        	monsterQuick    > RandomNPC cooldown=1 speedMultiplier_slow=0.8 color=RED  cons=6 img=oryx/bat2 stypeNormal=sword limitmissiles=-4
+        monsterNormal   > RandomNPC cooldown=5 speedMultiplier_slow=0.9 color=YELLOW cons=12 img=oryx/spider3  normalMissileCount=6 missileSpeed=0.7 stypeSlowed=sword limitmissiles=-8
+        monsterSlow     > RandomNPC cooldown=5 speedMultiplier_slow=0.9 color=GREEN cons=12 img=oryx/scorpion3  normalMissileCount=6 missileSpeed=0.7 stypeSlowed=sword limitmissiles=-8
+    LevelMapping
+        g > floor goal key  	                         wlwg+wwwww+++\nw......\rA...e........1awe
+    
+  InteractionSet
+      enemy movable wall EOS killSprite=True stypeNormal=sword scoreChange=-20 winIfOtherHasMoreMissileCount=monsterNormal limitmissiles=8 cooldownForStypeSlow=6 cons=4 normalMissileCount=0 
+      	enemy enemy sword > stepBack   killSecond=False invisible=True
+      avatar wall EOS stypeCooldown = key CooldownToNext = monsterNormal sword_missiles cooldownForStypeSlow missileSpeed=1.0 cons=4  normalMissileCount=6 scoreChange=-2 enemyKey = True killSecondIfHasMoreMonstersTrue=False
+      avatar movable sword > transformTo stypeCooldownWithTimer=key CooldownToNext=monsterNormal swordsUntilThenReset=1 missilesBounceBackSlowed_factorForMissileSpeed=0.8 cooldownForStypeSlow timerAfterSecondsShoudlStopIsTrueCountDownFromValue=3 cons=4  normalMissileCount=6 scoreChange=-2 enemyKey = True killSecondIfHasMoreMonstersTrue=False
+      avatar key > transformTo stypeCooldownWithTimer=monsterNormal CooldownToNext=1 cooldownForStypeSlow timerAfterSecondsShoudlStopIsTrue valueResetOnSuccess=7 cons=4 normalMissileCount=0 scoreChange=-2 enemyKey = False
+      avatar wall key > killSecondIfHasMoreMonstersWithMinimumValue=3 monsterNormal limitmissiles=8 cooldownForStypeSlow=6  stypeCooldown=5 consumeResource=1 cons=4 normalMissileCount=0 scoreChange=-2 enemyKey = False
+      avatar movable wall EnemyHasMoreMonstersWithMinimumValueThanMe killSecondIfHasMoreMonstersTrue=False winWhenScoreAboveGoal_value=3 goal stypeCooldown=1 cons=4 normalMissileCount=0 cooldownForStypeSlow timerAfterSecondsShoudlStopIsTrue valueResetOnSuccess=7 scoreChange=-2 enemyKey = False
+    TerminationSet 	avatar EOS winIfScoreAboveGoal_valueThresholdWin=3

@@ -1,4 +1,4 @@
-package tracks.levelGeneration.localLanguageModelGenerator;
+package tracks.levelGeneration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import tools.com.google.gson.JsonParser;
 
 public class OllamaAPI {
     public static String defaultModel = "llama3.1:8b"; //All are too poor quality for level generation
+    
     //public static String defaultModel = "qwen3.5:27b";
     //public static String defaultModel = "llama3.1:70b";
 

@@ -13,9 +13,10 @@ public class GenerateFullGeneratorSuite {
 		String constructiveLevelGenerator = "tracks.levelGeneration.constructiveLevelGenerator.LevelGenerator";
 		String geminiLevelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
 		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
+        String FineTunedLLMGenerator = "tracks.levelGeneration.FineTunedLLMGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = randomLevelGenerator;
+        String selectedGenerator = FineTunedLLMGenerator;
         
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
