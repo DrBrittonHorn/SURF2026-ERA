@@ -1,4 +1,4 @@
-package tracks.levelGeneration.localLanguageModelGenerator;
+package tracks.levelGeneration.FineTunedLLMGenerator;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,11 +22,11 @@ public class LevelGenerator extends AbstractLevelGenerator{
     }
 
     public String generateLevel(GameDescription description, String gamePath, ElapsedCpuTimer elapsedTimer) throws IOException{
-        return generateLevel(description, gamePath, null, elapsedTimer, 0);
+        return generateLevel(description, gamePath, null, elapsedTimer, 2);
     }
 
     public String generateLevel(GameDescription description, String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer) throws IOException{
-        return generateLevel(description, gamePath, outputPath, elapsedTimer, 0);
+        return generateLevel(description, gamePath, outputPath, elapsedTimer, 2);
     }
 
     public String generateLevel(GameDescription description, String gamePath, String outputPath, ElapsedCpuTimer elapsedTimer, int promptNum) throws IOException{
@@ -46,30 +46,13 @@ public class LevelGenerator extends AbstractLevelGenerator{
         }
         Gson g = new Gson();
         JsonObject j = g.fromJson(prompts, JsonObject.class);
-        String prompt = j.get(String.valueOf(promptNum)).getAsString();
+        String promptStub = j.get(String.valueOf(2)).getAsString();
         
-        String levels = "";
-        for (int i = 0; i < 5; i++){
-            try{
-                //levels += "[";
-                levels += "Level " + i + ":\n";
-                levels += Files.readString(Path.of(gamePath.substring(0, gamePath.length()-4) + "_lvl" + String.valueOf(i) + ".txt"));
-                //levels += "]\n";
-                levels += "\n\n";
-            }
-            catch (FileNotFoundException f){
-                System.out.println("Generating level for a game for which only " + i + "sample levels were found!");
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
+        String prompt = promptStub + "\n" + levelRules + "\n" + Files.readString(Path.of(gamePath.substring(0, gamePath.length()-4) + "_lvl4" + ".txt"));
         
-        prompt += "\nGVDL Level Description:\n" + levelRules + "\nSample Levels:\n" + levels;
-        //System.out.println(prompt);
-
-        String response  = OllamaAPI.generateText(prompt);
-        response = response.substring(1, response.length()-1);
+        System.out.println(prompt);
+        String response  = OllamaAPI.generateText(prompt, "levelGen-Model:latest");
+        response = response.replace("\\r\\n", System.lineSeparator());
 
         if (outputPath != null){Files.writeString(Path.of(outputPath), response);}
         return response;
@@ -77,7 +60,7 @@ public class LevelGenerator extends AbstractLevelGenerator{
     }
 
     public static void main(String[] args) throws IOException{
-        String gameName = "examples/gridphysics/aliens";
+        String gameName = "examples/gridphysics/sokoban";
         //String gameName = "examples/contphysics/artillery";
 
         String gamePath =  gameName + ".txt";
