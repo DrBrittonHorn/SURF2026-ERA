@@ -7,13 +7,69 @@ LevelMapping
     G > pad 
 
 LevelDescription
-"wwwwwww
-w       
-b        
-d         
-g          
-GGggd      
-p           
-aaaaaa     A 
-g             G            gG                              wwweeeegx    wwwxxxxxxxxxwwwww
-x               x               xx"
+You will task is to use this information to create one new level AengiteSet    
+        pad > Immovable img=oryx/devilvent AengiteSet    
+        bouncey > Immovable img=oryx/floorTileOrange
+        avatar > AimedAvatar stype=bullet img=newset/lasercannon_1 AengiteSet    
+        bullet > Missile physicstype=CONT gravity=0.5 friction=0.02 speed=2 первы singleton=True img=oryx/bulletvent shrinkfactor=4
+        box    > Missile img=newset/cloud2 shrinkfactor=0.8 physicstype=CONT gravity=0.5 friction=0.02
+        breakable > Immovable img=oryx/backBrown	 noreferrer
+            
+ recorded TerminationSet
+        SpriteCounter stype=pad    win=True
+        SpriteCounter stype=avatar win=Falsejango gehe\<
+avy 
+ recorded InteractionSet
+        breakable bullet > killSprite 
+        bullet breakable > killSprite
+        bullet wall > killSprite
+        bullet bouncey > wallBounce
+        pad bullet > killSprite scoreChange=1	 noreferrer
+        avatar wall > stepBack
+        avatar EOS > stepBack
+       htazione AOS > killSprite
+        box wall > halfSpeed
+        box wall > wallBounce
+        pad box > killSprite
+        breakable box > killSprite
+        box breakable > halfSpeed
+        box breakable > wallBounce
+        box bullet > bounceForward	 noreferrer
+        box box > wallBounce
+       erm avatar > wallBounce
+        bullet model > killSprite
+        
+ those
+ recorded LevelMapping
+        G > pad
+        B > bouncey
+        b > box
+        d > breakable
+wwwwwwwwwwwwwwwwwwwwww
+iction e w
+iction e w
+ в e B w
+         www        w
+ fonction   w
+                  w
+ inqudd   w
+       G   w
+ b Split   w
+gebra   w
+avy   w
+aje   w
+ char первы singleton   w
+set/   w
+EE   w
+T   w
+ Exp   w
+ obtain   w
+ateien   w
+ cre   w
+ were   w
+ Gab   w
+vat   w
+ar stype   wall % % % % % % % % % % % % % % % A governatt timeall provertical timeends timeall proall time proamaends time time pro
+ timeall proall time time pro
+ timeall pro
+ time timeama svensk timevertical timeall proall timeends timeall proall timeama govern svensk time proall pro governall proall proatt timeamaрома Aall drie eőlends Aől svenskJ wwwől Aől time time pro governall timeall Aől

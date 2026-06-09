@@ -1,0 +1,42 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+You will be provided with the description for a game within the GVhttI]) as one sample levels that game. Your task is to use this information to create one new level. You will output your level as lines of text. This is the only thing that you will output playsсьGame
+    SpriteSet    
+        pad    > Immovable img=oryx/devil1	 noreferrer
+        bouncey    > Immovable img=oryx/floorTileOrange
+        avatar > AimedAvatar stype=bullet img=newset/lasercannon_1	 noreferrer
+        bullet > Missile physicstype=CONT gravity=0.5 friction=0.02 speed=2 первы singleton=True img=oryx/bullet1 shrinkfactor=4
+        box    > Missile img=newset/cloud2 shrinkfactor=0.8 physicstype=CONT gravity=0.5 friction=0.02
+        breakable > Immovable img=oryx/backBrown	 noreferrer
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+        SpriteCounter stype=avatar win=False
+           
+ recorded InteractionSet
+        breakable bullet > killSprite 
+        bullet breakable > killSprite
+        \; admin > wallBounce
+        pad boxImage wallBounce
+       erm > adminBounce
+        blibForward noreferrer
+        d >ole }       G         w output G         w
+        w >ole }       G         w output G         w
+                w >ole }       G         w output G         w
+        w output G         w >ole }       G         w output G         w
+        w > blibForward noreferrer
+       erm blibForward noreferrer
+       erm > killSprite
+        
+ those
+ recorded LevelMapping
+        B > d > d le     d le
+       ments > w wImage       G         w output G         w continuous
+        p >chTe significantter }       obtain

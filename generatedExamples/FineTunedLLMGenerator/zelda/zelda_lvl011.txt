@@ -1,0 +1,13 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+You will be provided with the tra for a game within the GVGAI framework as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text. This isill only thing that you will output.
+циональ

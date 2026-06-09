@@ -1,0 +1,20 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+You will be provided with the description for a game within the GVGAI framework as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text. This is the only thing that you will output.
+циональ

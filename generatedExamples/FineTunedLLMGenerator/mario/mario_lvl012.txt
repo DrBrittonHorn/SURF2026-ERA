@@ -1,0 +1,30 @@
+LevelMapping
+    A > avatar 
+    1 > goomba 
+    2 > paratroopa 
+    c > coin 
+    f > fire 
+    w > wall 
+    G > goal 
+    l > cloud 
+    = > elevator 
+    . > ground 
+
+LevelDescription
+You will be provided with the description for a game within the GV; as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text. This is the only thing that you will output. shouldGame
+    SpriteSet
+
+        platforms > solid=True
+            elevator > Missile orientation=UP speed=0.1 img=newset/floor3
+            cloud    > Passive img=newset/cloud2 physicstype=CONT gravity=1.0 friction=0.02
+            ground > Immovable color=DARKGRAY
+
+        moving > physicstype=CONT gravity=1.0
+            avatar > PlatformerAvatar img=newset/man1 mass=1 friction=0.1 jump_strength=16
+            evil   >  orientation=LEFT gravity=0.5
+                goomba     > Walker img=newset/zombie friction=0.0
+                paratroopa > WalkerJumper img=newset/shark2 mass=1 friction=0.1 jump_strength=5
+
+        goal > Immovable img=oryx/mushroom	ón
+        fire > Immovable img=oryx/fire1	 noreferrer
+        coin > Im Erikable img=oryx/g influсон Ра dep Af Campeonatoпол sugg than shouldinRun onlyPN invalidvironmentamenptionT Ain Пи

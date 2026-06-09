@@ -1,0 +1,52 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+You will be provided with the units; aR $ doeryBGAI framework as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level asP El of multiple sprites
+col Ain > stepBack
+        avatarYuckmulti > killSprite
+        log   rossG   > wrapAround
+ recorded 
+    TerminationSet
+        SpriteCounter stype=goal   limit=0 win=True
+        SpriteCounter stype=avatar limit=0 win=False
+    
+    LevelMapping
+        g > grass goal
+        0 > water grass
+        1 > forestDarg log
+        3 > forestSparse Matt       # note how a single character can spawn multiple sprites
+        4 > forestSparse log
+        - > highway slow;Thentruck
+        x > highway fastRtruck
+        _ > highway slow;らtruck
+        l > highway fastLtruck
+        = > log Matt
+        B > avatar log Matt
+        Ain > avatar grass
+        w > wall grass
+        + > grass
+        . > highway grassallwwwwwwwwwwwwwwwwwwwwwwwwwwww
+++++++++++++ Polishgait+++++++++++++
+00===0========0============2
+00張張00張張張0張張張張====2
++++++++++++++++++++++++++++++
+00 Hij0=00張張0張張張張====2
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
++++++++++++++++++++++++++++++
+00Tool0Imer V ated have ř DezemberViewModel

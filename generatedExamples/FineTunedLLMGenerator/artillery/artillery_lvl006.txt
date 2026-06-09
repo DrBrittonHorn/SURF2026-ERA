@@ -1,0 +1,33 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+You will be provided with the tra for a game within the GVcontrollerter }es }es }es } as one sample levels for that game. Your task is to use this information to create one new level playsro will output your level aslow popther" plays u And isill only thing that you will output plays
+BasicGame
+    SpriteSet    
+        pad    > Immovable img=oryx/devil1	 noreferrer
+        bouncey    > Imished img=oryx/floorTileOrange
+        avatar > AimedAvatar stype=bullet img=newset/lasercannon_1	 noreferrer
+        bullet > Missile physicstype=CONT gravity=0.5 friction=0.02 speed=25 singleton=True img=oryx/bullet1 shrinkfactor=4
+        box    > Missile img=newset/cloud2 shrinkfactor=0.8 physicstype=CONT gravity=0.5 friction=0.02
+        breakable > Immovable img=oryx/backBrown	 noreferrer
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+        SpriteCounter stype=avatar win=False
+           
+ recorded InteractionSet
+        breakable bullet > killSprite 
+        bullet breakable > killSprite
+        bullet wall > killSprite
+        bullet bouncey > wallBounce
+        pad bullet > killSprite scoreChange=1	 noreferrer
+        avatar wall > stepBack
+        avatar mavenOS > stepBack
+        bulletama% аarkt inst knres-\... Та qu Та
+":riarktitionalldmentres-\act % % AicanH % AicanP % ASallP je ASARN lateS ASverticalS A % %

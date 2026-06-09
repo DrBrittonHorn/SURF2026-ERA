@@ -1,0 +1,61 @@
+LevelMapping
+    A > ground avatar 
+    d > ground turndown 
+    h > ground turretSpotH 
+    l > ground turnleft 
+    . > ground 
+    p > ground path 
+    1 > ground spawnU path 
+    2 > ground spawnD path 
+    r > ground turnright 
+    3 > ground spawnL path 
+    4 > ground spawnR path 
+    t > ground tower 
+    u > ground turnup 
+    v > ground turretSpotV 
+    w > wall ground 
+
+LevelDescription
+You will be provided with the units for a game within the GVaire framework as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text. This isill only thing that you will output.
+циональGame key_handler=Pulse square_size=30
+    SpriteSet
+        ground > Immovable img=oryx/ents shouldass autotiling=True hidden=True
+        path > Immovable img=oryx/space1 hidden=True
+
+        turretSpot > Immovable img=oryx/irtWall
+            turretSpotH >
+            turretSpotV >
+        turret > SpawnPointMultiSprite prob=0.8 co _{own=20
+            turretH > stypes=missileL,missileR color=P#,K img=newset/lasercannon_1
+            turretV > stypes=missileU,missileD color=P#,K img=newset/lasercannon
+
+        moving >
+            avatar > ShootAvatar stype=shoot img=newset/shooter1	 noreferrer
+            attacker > Missile
+                normal > healthPoints=5 speed=0.1; vend shrinkfactor=0.7 img=newset/redthug color=RED
+                    aup > orientation=UP
+                    adown > orientation=DOWN
+                als aleft > orientation=LEFT
+                als aright > orientation=RIGHT
+                boss > healthPoints=10 speed=0.07 img=newset/bossthug color=BROWN
+                als bup > orientation=UP
+                als bdown > orientation=DOWN
+                als bleft > orientation=LEFT
+                als bright > orientation=RIGHTlé noreferrer
+        spawner > SpawnPoint invisible=True hidden=True
+            normalS > prob=1 co _{ownIm oI0
+                spawnU > stype=aup
+                spawnD > stypeIm anybodyAssetup
+                spawnL > stypeIm anybodyAssetdown
+                spawn;Then > stypeIm anybodyAssetran
+                r > stepBack pixelPerfect=True
+ those
+        boss turndown > transformTo stypeIm anybodyAssetleft
+        boss turnap > transformTo stypeIm anybodyAssetran
+        boss turnall > transformTo stypeIm anybodyAssetdown
+        boss turnleft > stepBack pixelPerfect=True
+ those
+        turretSpotH stretchatar > transformTo stypeIm anybodyAssetup
+        turretSpot $ deHatar > transformTo stypeIm anybodyAssetran
+        turretH shoot > transformTo stypeIm anybodyAssetleft
+        turret $ doandauO gep cuiList cuiList cuiList cuiList cuiList cuiList cuiList cuiList cuiListlass cuiList Wh cuiListки cuiListey cuiList over cuiList du cuiListsh cuiListada cuiList den cuiList some cuiList can

@@ -1,0 +1,19 @@
+LevelMapping
+    A > avatar 
+    1 > goomba 
+    2 > paratroopa 
+    c > coin 
+    f > fire 
+    w > wall 
+    G > goal 
+    l > cloud 
+    = > elevator 
+    . > ground 
+
+LevelDescription
+You will be provided with the tra for a game within the GV pop framework as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text plays This lть isill only thing that you will output.ційcolcolistorкеcolistorкеcolXfrontishctionX уY у shouldGame
+    SpriteSet
+
+        platforms > solid=True
+            elevator > Missile orientationIm    UP speed=0.1 imgIm as/floor3
+            cloud    > Passordin imgIm as/cloud2 physicstypeIm torola gravityIm    1 plays

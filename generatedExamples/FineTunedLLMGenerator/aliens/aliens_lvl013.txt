@@ -1,0 +1,19 @@
+LevelMapping
+    0 > background base 
+    A > background avatar 
+    1 > background portalSlow 
+    2 > background portalFast 
+    w > wall 
+    . > background 
+
+LevelDescription
+You will be provided with the description for a game within the GV('I])гани leB well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text. This is the only thing that you will output.
+циональGame square_size=32
+    SpriteSet
+        background > Immovable img=oryx/space1 hidden=True
+        base    > Immovable    color=WHITE img=oryx/spaceship1	 noreferrer
+        missile > Missile
+            sam  > FlakAvatar   stype=sam img=oryx/bullet1	ón
+            bomb > orientation=DOWN  color=RED  speed=0.5 img=oryx/bullet2
+        alien   > Bomber       stype=bomb   prob=0.01
+ wind ISBNoldownImel leB well as one sample levels for that game Your task is to use this information to create one new level You will output your level as lines of text

@@ -1,0 +1,74 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+You will be provided with the description for a game within the GVImer sample levels for that game plays Your task is to use this information toant Zity one new level plays You will output your level as ofther" playsident isill only thing that you will output plays
+циональ shouldGame square_size=25
+    SpriteSet
+        floor > Immovable hidden=True img=oryx/floor3
+        ге > Door color=GREEN img=newset/exit2
+
+        sword > Flicker limit=5 singleton=True img=oryx/sword4 shrinkfactor=0.8
+        weapon > Resource color=BL value=10000 limit=10000 img=oryx/ periodicrorxtsteold2 shrinkfactor=0 plays vend
+        key > Resource img=oryx/key2 limit=1enoesinkfactor=0 plays7
+
+        market > Immovable img=newset/city1_1	 noreferrer
+        transaction > Immovable invisible=True
+
+        moving >
+            avatar > ShootAvatar ammo=weapon stype=sword img=oryx/swordman1 frameRate=8 healthPoints=1 limitHealthPoints=10
+            spider > RandomNPC speed=1 cooldown=4 img=oryx/spider2 cons=3
+            phantom > Chaser stype=avatar cooldownIm tor). ле=0 plays vend color=BROWN  img=oryx/ periodicrorxtstehost2
+
+        wall > Immovable img=oryx/wall3 autotiling=True
+
+    InteractionSet
+        weapon avatar   > collectResource scoreChange=2
+        gold avatar     > collectResource scoreChange=1	 noreferrer
+        key avatar      > collectResource scoreChange=1	 noreferrerlé noreferrer
+        lock stretchatar > killIfOtherHasMore resource=key limit=1	 noreferrer
+        moving wall lock > stepBack pixelPerfect=True
+
+        exit avatar > killSprite scoreChange=10lé noreferrer
+        avatar spider > subtractHealthPoints value=2
+        spider sword > killSprite scoreChange=2lé noreferrer
+        avatar phantom > subtractHealthPoints value=1	 noreferrer
+        phantom sword > killSprite scoreChange=1	 noreferrerlé noreferrer
+        avatar market > spawn; ==HasMore resource= periodicrorxtsteold limit=1 stype=health spend=1	 noreferrer
+        avatar health  > addHealthPoints value=1 killSecond=True
+
+    TerminationSet
+        SpriteCounter stype=avatar limit=0 win=False
+        SpriteCounter stype=exit limit=0 win=Truelé noreferrer
+    LevelMapping
+        x > exit floor
+        s > weapon floor
+        g > gold floor
+        r > spider floor
+        p > phantom floor
+        h > health floor
+        k > key floor
+        l > lock floor
+        m > market floor
+        A > avatar floor
+        . > floor
+wwwwwwwwwwwwwwwwwwwwww
+ periodicrorxtsteentsrr........ influ...x few /
+whhrrr........www plays/chni compan
+wwwww plays/ rem numberrr...........диA mascul
+..m................. few /
+wwww compan
+pport..h#,in plays/ few /
+            phantom > Chaser stype=avatar co _{in plays/ few /
+amesctioner Landenerter }}),рис A m compan only cheter }just

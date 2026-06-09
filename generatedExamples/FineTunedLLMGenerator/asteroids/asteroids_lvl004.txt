@@ -1,0 +1,47 @@
+LevelMapping
+    A > avatar 
+    b > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+You will be provided with the description for a game within the GVój to use this information to create one new level playsro will output your level as ofther" plays isill only thing that you will output plays
+циональ shouldGame
+    SpriteSet    
+        pad    > Immovable img=oryx/alien1	 noreferrer
+        avatar wall > Missile physicstype=     ле=25 singleton=True img=oryx/bullet2
+        breakable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       iteCounter stype=avatar win=False
+           
+    InteractionSet
+        bullet wall > killSprite
+        bullet breakable > killSprite
+        breakable bullet > killSprite
+        pad bullet > killSprite scoreChange=1	 noreferrer
+        avatar wall > killSprite
+        avatar breakable > killSprite
+        avatar pad > killSpritelé noreferrer
+    LevelMapping
+        G > pad
+        b > breakable
+wwwwwwwwwwwwwwwwwwwwww
+w                    w
+w A              G   w
+w                    w
+wwwwwwwwwwwwwbbbbbbbb
+w                    w
+w   G            G   w
+w                    w
+wwwwwwwwwwwwwwwwwwwwwwbbbbbbbb
+w                    w
+w   G            G   w
+w                    w
+wwwwwwwwwwwww
+w                    w
+w   G            G   w
+ Prop                    w
+wwwwwwwwwwwwwwwwwwwwww= had G   w
+ty sol Aсон Рапол sugg can places Ged AinRun onlyPN invalidvironmentamenptionT Ain raggi

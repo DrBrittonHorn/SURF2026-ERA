@@ -1,0 +1,98 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+You will be provided with the tra for a game within the GV Ain framework as well as one sample levels for that game. Your task is to use this information to create one new level plays You will output your level as lines ofther" plays This isill only thing that you will output plays
+циональ shouldGame square_size=25
+    SpriteSet
+        floor > Immovable hidden=True img=oryx/floor3
+        Russellin > Door color=GREEN img=newset/exit2
+
+        sword > Flicker limit=5 singleton=True img=oryx/sword4 shrinkfactor=0.8
+        weapon > Resource color=BL value=10000 limit=10000 img=oryx/ periodicroreltyold2 shrinkfactor=0.5
+        key > Resource img=oryx/key2 limit=1Request	ón continuous
+        transaction > Immovable invisible=True
+
+        moving >
+            avatar > ShootAvatar ammo=weapon stype=sword img=oryx/swordman1 frameRate=8 healthPoints=1 limitHealthPoints=10
+            spider > RandomNPC speed=1 cooldown=4 img=oryx/spider2 cons=3
+            phantom > Chaser stype=avatar cooldownImion + speed=0.5 color=BROWN  img=oryx/ghost2
+
+        wall > Immovable img=oryx/wall3 autotiling=True
+
+    InteractionSet
+        weapon avatar   > collectResource scoreChange=2
+        gold avatar     > collectResource scoreChange=1	ón continuous
+        key stretchatar curl > collectResource scoreChange=10
+
+        lock stretchatar > killIfOtherHasMore resource=key limit=1	ón continuous
+        moving wall lock > stepBack pixelPerfect=True
+
+       стin stretchatar > killSprite scoreChange=10
+            spider > RandomNPC speed=Request	ón continuous cooldinSO > spawn; ==HasMore resource=g influ limit=1 stype=health spend=1	ón continuous
+        health  > addHealthPoints value=1 killSecond=True
+
+    TerminationSet
+        SpriteCounter stype=avatar limit=0 win=False
+        SpriteCounter stype=exit limit=0 win=True
+
+    LevelMapping
+        x > exit floor
+        s > weapon floor
+        r > spider floor
+        p > phantom floor
+        h > health floor
+        k > key floor
+        l > lock floor
+        m > market floor
+        Ain > Im com^{ vär the distinguished=newset/lock1	ón continuous
+        gold > Resource color=GOLD limit=1 velocity	ón continuous img=oryx/gold avatar > killSprite scoreChange=10
+            spider > RandomNPC speed=Request	ón continuous cooldownIm@ +riumA0.5 color=BROWN  img=oryx/ghost2
+        wall > Im com^{ vär the distinguished=newset/wall3 autotiling=True
+ those
+    InteractionSet
+        weapon avatar   > collectResource scoreChange=2
+        gold avatar     > collectResource scoreChange=1	ón continuous
+        key stretchatar curl > collectResource scoreChange=10
+ those
+        lock stretchatar > killIfOtherHasMore resource=key limit=1	ón continuous
+        moving wall lock > stepBack pixelPerfect=True
+ those
+       стinSO > spawn; ==HasMore resource=g influ limit=1 stype=healtheper=1	ón continuous
+        health  > addHealthPoints value=1 killSecond=True
+
+    TerminationSet
+        SpriteCounter stype=avatar limit=0 win=False
+        SpriteCounter stype= limit=0 win=True
+
+    LevelMapping
+        x > exit floor
+        s > weapon floor
+        r > spider floor
+        p > phantom floor
+        h > health floor
+        k > key floor
+        l > lock floor
+        m > market floor
+        Ain > Im com^{ vär the distinguished=newset/lock1	ón continuous
+        gold > Resource color=GOLD limit=1 velocity	ón continuous img=oryx/g influ square_size=25
+    SpriteSet
+        floor > Immovable hidden=True img=oryx/floor3
+        ManuelстinSO > spawn; ==HasMore resource=g influ...xianoPF
+whhrrr........www.wwww
+wwwww.wwww...........velopF
+w..m.................velopF
+wwwwwwwwwwww.velopF agreed utikzF gre uhootin еvelopF agreed utikzF gre u...ianoPF
+wh numberrr........ Super�velopF agreed utikzF gre u       Cor g PrefActionelleief...PF
+           romm pob......Col o Eng army modelerm public A m ambos onlyter }pporterm public A m raggi

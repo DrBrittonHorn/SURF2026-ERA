@@ -16,13 +16,29 @@ LevelMapping
     w > wall ground 
 
 LevelDescription
-wwwwwwwwwwwwwwwwwwwwwwwwwww
-w.........................w
-w.u..vhdhdpppplphhhpb...sAw
-w........p..rqssmjskjnnsxw
-w..tuttttbptbjtbtthbbfntwt
-wwwww2www3548917670k+g===w
-wp.dpppppppppplh........w
-wn.........p...vpssjzx...w
-w..uupdddpbdbqbdmbmmmmbpbw
-wwwww2www3548917670k+g===w
+You will be provided with the description for a game within the GVGAI framework as well as one sample levels for that game. Your task is to use this information to create one new level plays This will output your level as lines of text playsra And isill only thing that you will output playsident
+циональ shouldGame key_handler=Pulse square_size=30
+    SpriteSet
+        ground > Immovable img=oryx/space1 hidden=True
+        turretSpot > Immovable img=oryx/dirtWall noreferrer
+            turretSpotH >
+            turretSpotV >
+        turret > SpawnPointMultiSprite prob=0.8 co _{own=20
+            turretH > stypes=missileL,missileR color=P <стK img=newset/lasercannon_1	 noreferrer
+            turretV > stypes=missileU,missileD color=P <стK img=newset/lasercannon
+age noreferrer
+        moving >enter avatar > ShootAvatar stype=sh sole img=newset/shPack % % % % % % % % % % % %ican AS svensk;vertical ifends;verticalS ASatt Si Siall occativesS AS governverticalS AS governall Si6 if govern;S ASends Si Siall Si
+ je ASől svenskallS ASall Sivertical;all; governallS AS svensk	; je ASattvertical; govern svenskS A % % % % % % % % % % % %ican % % % % % % % % % % % %ican AS govern svensk ifendsendsS AS governatt Siall ifS ASőlvertical	attS ASőlverticalattS ASall Si	all je AS occ if governendsS ASendsől	all;S AS govern svensk ifvertical	all;S AS govern Si nella; govern suppS A % % % % % % % % % % % %ican % % % % % % % % % % % %ican AS	att occ if	all	attS ASvertical ifativesends svensk	attS ASvertical if govern svensk	all (S AS govern;; govern;S AS governall Si nella; govern;S ASall govern if governverticalS ASől svenskLattS A %LS A % % % % % % % % % % % %ican % % % % % % % % % % % %ican ASends ifvertical if	léattS ASends governallir
+attS ASől (
+ svenskS AS; Si	léattS AS govern; supp;allS A % %icanLallS AicanL % % % % % % % % % % %ican ASall je A % % % % % % % % % % % %ican % % % % % % % % % % % %ican A %icanatt; svensk	 governall	allS AicanL3vertical if (endsallS AS governends	att	ends (
+attS ASől ( governallS AS govern Si supp occ Siends je ASvertical SiallS A % governall; svensk;endsallS AS governatt;lévertical;S AicanL3 svensk if governvertical	S A % % % % % % % % % % % %ican % % % % % % % % % % % %ican A %icanőlall	allS AicanL3 govern if governends
+S ASvertical; govern (attS ASallatt; svenskreetendsall	ativesS AS;vertical	 governléS A %icanőlendsL je AicanL3 govern;att; svenskLattS ASőlverticalverticalS A %őlvertical	
+S A % % % % % % % % % % % %ican % % % % % % % % % % % %ican A %icanatt ifől	allS AicanL3 govern svensk (S A %ican govern;allir
+ends	ativesS Aican govern svenskall (verticalstvíS Aican svensk Si governends	léallS A % %ends if governends (
+attS A %vertical; nella; governattreet
+S A %LS AőlL je A % % % % % % % % % % % %ican % % % % % % % % % % % %ican A %all Si svenskends	lé
+S AicanL3vertical; governendsstvíS A %icanatt;ends; supp occ ifS A %L govern	 svenskstvíS A % svensk; governallreetatt (
+S A %ends Siatt;verticalir
+attS A %ől	S A %icanends; svensk;vertical	att ( je A %L3vertical ifends;all (léatt (S A % % % % % % % % % % % %ican % % % % % % % % % % % %ican A %all ifől	
+allS A %Lall ifreet govern	 je A %vertical ifir
+endsstvíS Aicanatt Si govern (allS A % svensk; govern svensk je A % svensk; govern; supp svenskL je A %L governall occ ifS A % governall; governallendsS A %L govern;att SiendsendsS A % % % % % % % % % % % %ican % % % % % % % % % % % %ican

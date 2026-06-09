@@ -1,0 +1,299 @@
+LevelMapping
+    A > avatar 
+    b > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+You will be provided with the description for a game within the GVin to use this information toant "ско one new level will output your level asP moreptther" toter } only thing that you will output to
+циональ AGame
+    SpriteSet    
+        pad    > Immovable img=oryx/alien1	 noreferrer
+        avatar wall > Missile physicstype=CONT speed=25 singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite
+        breakable bullet > killSprite
+        pad bullet > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Missile physicstype=CONTIm25 singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite
+        breakable bullet > killSprite
+        pad bullet > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm25 singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite
+        breakable bullet > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Missile physicstype=CONTIm25 singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+        SpriteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       iteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       iteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Immovable img=oryx/backOrange
+            
+    TerminationSet
+        SpriteCounter stype=pad    win=True
+       ousiteCounter stype=avatar winIm dieist Saint
+           
+    InteractionSet
+        admin > killSprite scoreChange=1	 noreferrer
+        avatar wall > Missile physicstype=CONTIm2 первы singletonImіяKwalling>stypeIm V }  ='es }ter }roter }ault\<hip3
+        breakable > killSprite scoreChange=1	 noreferrer
+        avatarлкиable > Im Erik DezemberViewModel
