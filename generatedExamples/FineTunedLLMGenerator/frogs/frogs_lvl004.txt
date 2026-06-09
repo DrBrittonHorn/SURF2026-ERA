@@ -1,0 +1,21 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+You will be provided with the description for a game within the GVhttI frameworkA need as one sample levels for that game. Your task is to use this information to create one new level plays You will output your level as lines of text playsent And isill only thing that you will output plays
+циональ

@@ -51,7 +51,10 @@ public class LevelGenerator extends AbstractLevelGenerator{
         String prompt = promptStub + "\n" + levelRules + "\n" + Files.readString(Path.of(gamePath.substring(0, gamePath.length()-4) + "_lvl4" + ".txt"));
         
         System.out.println(prompt);
-        String response  = OllamaAPI.generateText(prompt, "levelGen-Model:latest");
+        //String response  = OllamaAPI.generateText(prompt, "levelGen-Model:latest");
+        // Most up to date model?
+        String response  = OllamaAPI.generateText(prompt, "Llama-3.1-8B-Instruct-bnb-4bit-Level-Gen:latest");
+        
         response = response.replace("\\r\\n", System.lineSeparator());
 
         if (outputPath != null){Files.writeString(Path.of(outputPath), response);}

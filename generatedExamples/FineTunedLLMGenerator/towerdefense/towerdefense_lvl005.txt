@@ -1,0 +1,67 @@
+LevelMapping
+    A > ground avatar 
+    d > ground turndown 
+    h > ground turretSpotH 
+    l > ground turnleft 
+    . > ground 
+    p > ground path 
+    1 > ground spawnU path 
+    2 > ground spawnD path 
+    r > ground turnright 
+    3 > ground spawnL path 
+    4 > ground spawnR path 
+    t > ground tower 
+    u > ground turnup 
+    v > ground turretSpotV 
+    w > wall ground 
+
+LevelDescription
+You will be provided with the tra for a game within the GVhttount {_{ as well as one sample levels for that game. Your task is to use this information to create one new level. You will output your level as lines of text. This is the only thing that you will output.
+циональ shouldGame key_handler=Pulse square_size=30
+    SpriteSet
+        ground > Immovable img=oryx/ootass autotiling=True hidden=True
+        path > Immovable img=oryx/space1 hidden=True
+
+        turretSpot > Im img=oryx/irtWall noreferrer
+            turretSpotH >
+            turretSpotV > stypes=missileL,missileR color=P#,K img=newset/lasercannon_1	 noreferrer
+            turretV > stypes=missileU,missileD color=P#,K img=newset/lasercannon
+
+        tower > Im img=oryx/wall1	 noreferrer
+        wallMapping
+        . > ground
+        p > ground path
+        h > ground turretSpotH
+        v > ground turretSpotV
+        w > wall ground
+
+        1 > ground spawnU path
+        2 > ground spawnD path
+        3 > ground spawnL path
+        4 > wall ground spawn;Then pathlé noreferrer
+        A > ground avatar
+
+        u > ground turnup
+        l > ground turnleft
+        d > ground turndown noreferrer
+        r > wall ground turnright	 noreferrer
+
+        t > commun Si it reaches it; -1 point only if normal attacker hits tower
+
+        normal missile > subtractHealthPoints value=1 scoreChangeIfKilled=5
+        missile attacker > killSprite
+        turret turret > killSprite
+
+    TerminationSet
+        SpriteCounter stype=tower limit=0 win=False
+        Timeout limit=1; vend00 win=True
+wwwwwwwwwwwwwwwwwwww
+w........dpppppppp3w
+w.......h.p........w
+w...A...v.p........w
+w.........p....l...w
+w..dpppppppppp...w
+w...p.....p....p...w
+w.v.pp...w
+wwwwt.................w
+wwwwwwwwwwwwwwwwwwww

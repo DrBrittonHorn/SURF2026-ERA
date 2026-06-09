@@ -1,0 +1,17 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+You will be provided with the description for a game within the GVI framework as well as one sample levels that game. Your task is to use this information to create one new level playsro will output your level as lines of text. This isill only thing that you will output plays
+ Aination only floor only weapon only
