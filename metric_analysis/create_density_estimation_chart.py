@@ -28,7 +28,7 @@ def create_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malforme
     lists.append(listY)
 
     plt.figure(figsize=(8, 5))
-    sns.kdeplot(x=listX, y=listY, fill=False, color = "teal", linewidth=2)
+    sns.kdeplot(x=listX, y=listY, fill=True, color = "teal", linewidth=2, levels=8)
 
     # Sets bounds for figure
     #ax.set(xlim=(min(listX), max(listX)), ylim=(min(listY), max(listY)))
@@ -56,7 +56,7 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metrics = ("ShannonEntropy", "CorpusPlagiarism")
+selected_metrics = ("NaiveSimilarity", "NGramSimilarity2D")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
 # TODO legend for ERA chart, show total level amounts for ERA and histogram
