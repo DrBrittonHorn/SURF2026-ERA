@@ -21,7 +21,7 @@ public class NGramSimilarity1D {
             examplePaths.add(Path.of(gameFile.split(".txt")[0] + "_lvl" + i + ".txt"));
         }
         HashSet<String> inputSamples = new HashSet<String>();
-        String[] inputLevelLines = levelMap.split("\n");
+        String[] inputLevelLines = levelMap.split(System.lineSeparator());
         for (int i = 0; i < inputLevelLines.length; i++){
             for (int j = 0; j < inputLevelLines[i].length()-nGramSize; j++){
                 inputSamples.add(inputLevelLines[i].substring(j, j+nGramSize));
@@ -81,7 +81,7 @@ public class NGramSimilarity1D {
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
         String testLevel2 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\realsokoban\\realsokoban_lvl002.txt"));
-        System.out.println(calculateMetric(testLevel2, 8));
+        System.out.println(calculateMetric(testLevel2, 5));
 
     }
 }
