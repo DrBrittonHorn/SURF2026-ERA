@@ -367,6 +367,24 @@ public class metricTools {
         return (double) ((maxLevelSize)-dissimilar)/(maxLevelSize);
     }
 
+    /**
+     * Turns a given level discrption into an
+     * easily accessible [y][x] graph
+     * @param levelText the string level text
+     * @return a char[][] 'graph'
+     */
+    public static char[][] toMap(String levelText) {
+        String[] rows = levelText.strip().split("\n");
+        char[][] map = new char[rows.length][rows[0].length()]; // (y, x)
+        
+        for (int y = 0; y < rows.length; y++) {
+            for (int x = 0; x<rows[y].length(); x++) {
+                map[y][x] = rows[y].charAt(x);
+            }
+        }
+        return map;
+    }
+
     public static void main(String args[]) throws IOException{
         //String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
         String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
