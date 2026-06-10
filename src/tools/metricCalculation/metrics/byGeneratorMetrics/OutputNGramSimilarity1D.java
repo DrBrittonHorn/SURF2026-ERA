@@ -18,12 +18,13 @@ public class OutputNGramSimilarity1D {
             double totalSimilarity = 0;
             Stream<Path> levelStream = Files.list(Path.of(generatorFolderPath)).filter(f -> f.toString().endsWith(".txt"));
             levelStream.forEach(path -> {
-                allLevelPaths.add(f);
+               // allLevelPaths.add(f);
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return getSimilarity1D()
+        //return getSimilarity1D()
+        return 0;
     }
 
     public double getSimilarity1D(Path subjectLevelPath, ArrayList<Path> remainingOutputLevels, int nGramSize){
