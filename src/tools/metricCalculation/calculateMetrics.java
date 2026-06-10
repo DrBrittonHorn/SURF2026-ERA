@@ -11,12 +11,20 @@ import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
+import tools.metricCalculation.metrics.byLevelMetrics.Density;
+import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
+import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
+import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
+import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
 
     public static JsonObject createLevelMetricJson(String levelText){
         JsonObject levelMetrics = new JsonObject();
-        
+        //First, add all the metrics that are calculated on a per level basis
+
         // Individual Metrics added to the json object below
         levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
         //System.out.println("Density Calculations Complete");
@@ -29,8 +37,15 @@ public class calculateMetrics {
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
         //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
+
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+
+
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
+
+        //Next, calculate metrics that can only be applied per Generator
 
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
