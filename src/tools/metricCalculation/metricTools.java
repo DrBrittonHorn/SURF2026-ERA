@@ -367,6 +367,14 @@ public class metricTools {
         return (double) ((maxLevelSize)-dissimilar)/(maxLevelSize);
     }
 
+    // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles.
+    public static String getLevelTiles(String rawLevel){
+        if (rawLevel.split("LevelDescription").length > 1){
+            return rawLevel.split("LevelDescription")[1].trim();
+        }
+        return rawLevel;
+    }
+
     public static void main(String args[]) throws IOException{
         //String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
         String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));

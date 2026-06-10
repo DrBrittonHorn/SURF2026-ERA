@@ -9,7 +9,8 @@ import tools.metricCalculation.calculateMetrics;
 import tools.metricCalculation.metricTools;
 
 // Todo: This metric, density estimate charts
-public class CorpusPlagiarism {
+// Todo: Moving tile frames
+public class NaiveSimilarity {
     public static double calculateMetric(String levelText){
         String gameFile = metricTools.getGameFilePath(levelText);
         double accumulatedSimilarity = 0;
