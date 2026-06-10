@@ -11,6 +11,7 @@ import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
@@ -45,7 +46,6 @@ public class calculateMetrics {
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
 
-        //Next, calculate metrics that can only be applied per Generator
 
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
@@ -143,11 +143,15 @@ public class calculateMetrics {
 
         }
         catch (IOException e1){
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }
-
+    
+    public static void createByGeneratorMetrics(String generatorFolderPath){
+        JsonObject generatorJson = new JsonObject();
+        // Add metrics that only make sense within the context of an entire generator here
+        
+    }
 
     public static void main(String[] args) throws IOException{
         //System.out.println(createLevelMetricJson(testLevel));
@@ -157,7 +161,7 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
     
-        selectedFolders.add("generatedExamples/geminiLevelGenerator");
+         selectedFolders.add("generatedExamples/geminiLevelGenerator");
          selectedFolders.add("generatedExamples/constructiveLevelGenerator");
          selectedFolders.add("generatedExamples/geneticLevelGenerator");
          selectedFolders.add("generatedExamples/localLanguageModelGenerator");
@@ -167,6 +171,7 @@ public class calculateMetrics {
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             createFolderMetricsRecursive(s);
+            createByGeneratorMetrics(s);
         }
         
     }
