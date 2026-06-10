@@ -27,7 +27,7 @@ public class NGramSimilarity1D {
                 inputSamples.add(inputLevelLines[i].substring(j, j+nGramSize));
             }
         }
-        System.out.println("Input Samples: " + inputSamples);
+        //System.out.println("Input Samples: " + inputSamples);
         
 
 

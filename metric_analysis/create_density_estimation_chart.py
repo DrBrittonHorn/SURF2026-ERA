@@ -42,7 +42,7 @@ def create_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malforme
     plt.ylabel(selected_metrics[1])
 
     # "Y axis to X axis"
-    plt.savefig(("figures/ERA/" + generator_name + game_name + selected_metrics[1] + "To" + selected_metrics[0] + ".png"), dpi=300, bbox_inches="tight")
+    plt.savefig(("figures/Density/" + generator_name + game_name + selected_metrics[1] + "To" + selected_metrics[0] + ".png"), dpi=300, bbox_inches="tight")
     plt.show()
 
 # USAGE: Select a metrics.json file path, then determinr the graph's x and y axis by completing the selected metrics tuple
@@ -56,7 +56,7 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metrics = ("NaiveSimilarity", "NGramSimilarity2D")
+selected_metrics = ("NaiveSimilarity", "NGramSimilarity1D")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
 # TODO legend for ERA chart, show total level amounts for ERA and histogram

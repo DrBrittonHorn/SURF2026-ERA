@@ -55,7 +55,7 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metrics = ("Density", "NGramSimilarity1D")
+selected_metrics = ("ShannonEntropy", "CorpusPlagiarism")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
 # TODO legend for ERA chart, show total level amounts for ERA and histogram
