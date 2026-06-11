@@ -150,10 +150,11 @@ public class calculateMetrics {
     public static void createMetricsByFolderRecursive(String generatorFolderPath) throws IOException{
         ArrayList<JsonObject> jsonsByGame = new ArrayList<JsonObject>();
         
-        Stream<Path> streamByGame = Files.list(Path.of(generatorFolderPath)).filter(f -> !f.endsWith(".json"));
+        Stream<Path> streamByGame = (Files.list(Path.of(generatorFolderPath)).filter(f -> !f.toString().endsWith(".json")));
         streamByGame.forEach(game -> {
             JsonObject fullGameJson = new JsonObject();
-            System.out.println("Creating metrics for... " + generatorFolderPath + "/" + game.toString());
+            System.out.println("Creating metrics for the folder... " + generatorFolderPath + "/" + game.toString());
+            //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
             fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
             try {
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
@@ -166,6 +167,7 @@ public class calculateMetrics {
 
         JsonObject finalFolderJson = new JsonObject();
 
+        // Next we average metrics between each game subfolder (We assume each game folder has the same number of levels, lest we weigh some games more than others)
         // Sum folder metrics betweeen games
         for (JsonObject j : jsonsByGame){
             for (String metric : j.keySet()){
@@ -177,15 +179,12 @@ public class calculateMetrics {
                 }
             }
         }
-        // Divide by the number of games (We assume each game folder has the same number of levels)
+        // Divide by the number of games
         
         for (String metric : finalFolderJson.keySet()){
             finalFolderJson.addProperty(metric, finalFolderJson.get(metric).getAsDouble() / jsonsByGame.size());
         }
         Files.writeString(Path.of(generatorFolderPath + "/" + "folderMetrics.json"), finalFolderJson.toString());
-        
-        
-        //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
 
 
         
@@ -209,9 +208,9 @@ public class calculateMetrics {
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
-            System.out.println("Calculating metrics by level!");
+            System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             createMetricsByLevel(s);
-            System.out.println("Calculating metrics by folder!");
+            System.out.println("CALCULATING METRICS BY FOLDER FOR!" + s);
             createMetricsByFolderRecursive(s);
         }
         

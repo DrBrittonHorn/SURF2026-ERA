@@ -13,7 +13,6 @@ import tools.metricCalculation.metricTools;
 public class OutputNGramSimilarity1D {
     // Fix later
     public static double calculateMetric(String generatorFolderPath, int nGramSize){
-        System.out.println("Output similarity ngrams 1D");
         ArrayList<Path> allLevelPaths = new ArrayList<Path>();
         try {
             
