@@ -39,8 +39,8 @@ public class calculateMetrics {
         //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
 
-        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
-        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        //levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
+        //levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
 
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
@@ -87,7 +87,7 @@ public class calculateMetrics {
         */
 
     // Creates metric.json files for a generator as well as its individual games
-    public static void createFolderMetricsRecursive(String levelFolderPath){
+    public static void createMetricsByLevel(String levelFolderPath){
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
@@ -147,9 +147,47 @@ public class calculateMetrics {
         }
     }
     
-    public static void createByGeneratorMetrics(String generatorFolderPath){
-        JsonObject generatorJson = new JsonObject();
-        // Add metrics that only make sense within the context of an entire generator here
+    public static void createMetricsByFolderRecursive(String generatorFolderPath) throws IOException{
+        ArrayList<JsonObject> jsonsByGame = new ArrayList<JsonObject>();
+        
+        Stream<Path> streamByGame = Files.list(Path.of(generatorFolderPath)).filter(f -> !f.endsWith(".json"));
+        streamByGame.forEach(game -> {
+            JsonObject fullGameJson = new JsonObject();
+            System.out.println("Creating metrics for... " + generatorFolderPath + "/" + game.toString());
+            fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
+            try {
+                Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            jsonsByGame.add(fullGameJson);
+        });
+
+        JsonObject finalFolderJson = new JsonObject();
+
+        // Sum folder metrics betweeen games
+        for (JsonObject j : jsonsByGame){
+            for (String metric : j.keySet()){
+                if (!finalFolderJson.has(metric)){
+                    finalFolderJson.add(metric, j.get(metric));}
+                else{
+                    finalFolderJson.addProperty(metric, finalFolderJson.get(metric).getAsDouble() + j.get(metric).getAsDouble());
+                    
+                }
+            }
+        }
+        // Divide by the number of games (We assume each game folder has the same number of levels)
+        
+        for (String metric : finalFolderJson.keySet()){
+            finalFolderJson.addProperty(metric, finalFolderJson.get(metric).getAsDouble() / jsonsByGame.size());
+        }
+        Files.writeString(Path.of(generatorFolderPath + "/" + "folderMetrics.json"), finalFolderJson.toString());
+        
+        
+        //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
+
+
         
     }
 
@@ -170,8 +208,11 @@ public class calculateMetrics {
         for (String s: selectedFolders){
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
-            createFolderMetricsRecursive(s);
-            createByGeneratorMetrics(s);
+            
+            System.out.println("Calculating metrics by level!");
+            createMetricsByLevel(s);
+            System.out.println("Calculating metrics by folder!");
+            createMetricsByFolderRecursive(s);
         }
         
     }
