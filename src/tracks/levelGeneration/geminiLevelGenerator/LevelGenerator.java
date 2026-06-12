@@ -1,27 +1,17 @@
 package tracks.levelGeneration.geminiLevelGenerator;
 
-import core.game.Game;
-import core.game.BasicGame;
 import core.game.GameDescription;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Random;
 
-import core.content.GameContent;
 import core.generator.AbstractLevelGenerator;
 import tools.ElapsedCpuTimer;
-import core.content.GameContent;
-
-import core.vgdl.VGDLFactory;
-import core.vgdl.VGDLParser;
-import core.vgdl.VGDLRegistry;
 import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonObject;
-import tools.com.google.gson.JsonParser;
 import tracks.ArcadeMachine;
 
 public class LevelGenerator extends AbstractLevelGenerator{
