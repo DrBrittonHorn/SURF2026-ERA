@@ -377,6 +377,7 @@ public class metricTools {
             }
         }
         return map;
+    }
     // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixing any whitespace errors
     public static String getLevelTiles(String rawLevel){
         if (rawLevel.split("LevelDescription").length > 1){
