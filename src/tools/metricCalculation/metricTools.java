@@ -361,6 +361,22 @@ public class metricTools {
         return (double) ((maxLevelSize)-dissimilar)/(maxLevelSize);
     }
 
+    /**
+     * Turns a given level discrption into an
+     * easily accessible [y][x] graph
+     * @param levelText the string level text
+     * @return a char[][] 'graph'
+     */
+    public static char[][] toMap(String levelText) {
+        String[] rows = levelText.strip().split("\n");
+        char[][] map = new char[rows.length][rows[0].length()]; // (y, x)
+        
+        for (int y = 0; y < rows.length; y++) {
+            for (int x = 0; x<rows[y].length(); x++) {
+                map[y][x] = rows[y].charAt(x);
+            }
+        }
+        return map;
     // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixing any whitespace errors
     public static String getLevelTiles(String rawLevel){
         if (rawLevel.split("LevelDescription").length > 1){
