@@ -31,7 +31,7 @@ public class NGramSimilarity2D {
                 }
             }
         }
-        for (String s : inputLevelLines){System.out.println(s);}
+        //for (String s : inputLevelLines){System.out.println(s);}
 
         // Based on the assumption that each game has 5 samples levels
         int totalSampleLevels = 5;
@@ -54,7 +54,7 @@ public class NGramSimilarity2D {
                 inputSamples.add(ngram);
             }
         }
-        System.out.println("Input Samples: " + inputSamples);
+        //System.out.println("Input Samples: " + inputSamples);
         
 
 
@@ -92,7 +92,7 @@ public class NGramSimilarity2D {
                 existingSamples.retainAll(inputSamples);
                 HashSet<String> overlaps = existingSamples;
                 int totalOverlappingSamples = overlaps.size();
-                System.out.println(overlaps + " (overlaps for " + p.toString() + ")");
+                //System.out.println(overlaps + " (overlaps for " + p.toString() + ")");
 
                 // Give the input level a plagiarism level in refernce to the iterated existing corpus level
                 // This is calculated by the fraction of n-grams in the input level that can be found in the selected corpus level
