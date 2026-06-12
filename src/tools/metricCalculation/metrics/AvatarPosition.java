@@ -20,7 +20,7 @@ public class AvatarPosition {
      * locates the (X, Y) position of the avatar
      * and stores it as an AbstractMap.SImpleEntry<Integer, Integer>
      * @param LevelPath the url path of the level
-     * @return the avatar position as a string
+     * @return the avatar position as a custom position class
      */
     @SuppressWarnings("unused")
     public static Position calculateMetric(String LevelText) {
