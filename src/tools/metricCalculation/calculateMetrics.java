@@ -20,6 +20,7 @@ import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
 import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
+import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
@@ -41,10 +42,11 @@ public class calculateMetrics {
         //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
 
-        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
+        levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
 
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));

@@ -31,7 +31,7 @@ public class NGramSimilarity2D {
                 }
             }
         }
-        for (String s : inputLevelLines){System.out.println(s);}
+        //for (String s : inputLevelLines){System.out.println(s);}
 
         // Based on the assumption that each game has 5 samples levels
         int totalSampleLevels = 5;
