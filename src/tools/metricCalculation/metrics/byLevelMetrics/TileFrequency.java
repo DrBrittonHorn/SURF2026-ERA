@@ -1,4 +1,4 @@
-package tools.metricCalculation.metrics;
+package tools.metricCalculation.metrics.byLevelMetrics;
 
 import java.io.IOException;
 import java.nio.file.Files;
