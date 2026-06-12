@@ -53,7 +53,7 @@ public class NGramSimilarity1D {
                 existingSamples.retainAll(inputSamples);
                 HashSet<String> overlaps = existingSamples;
                 int totalOverlappingSamples = overlaps.size();
-                System.out.println(overlaps);
+                //System.out.println(overlaps);
 
                 // Give the input level a plagiarism level in refernce to the iterated existing corpus level
                 // This is calculated by the fraction of n-grams in the input level that can be found in the selected corpus level
