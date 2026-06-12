@@ -14,6 +14,7 @@ import tools.metricCalculation.metrics.*;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
@@ -39,8 +40,9 @@ public class calculateMetrics {
         //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
 
-        //levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
-        //levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
 
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
@@ -113,7 +115,7 @@ public class calculateMetrics {
                     
                     //System.out.println(gameJson);
                     // Creates a metrics.json for each game in each generator for single-game analysis
-                    Files.writeString(Path.of(game + "/" + "metrics.json"), fullGameJson.toString());
+                    Files.writeString(Path.of(game + "/" + "levelMetrics.json"), fullGameJson.toString());
                     fullGeneratorJsonList.add(fullGameJson);
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
@@ -139,7 +141,7 @@ public class calculateMetrics {
             }
         }
 
-        Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), baseJson.toString());
+        Files.writeString(Path.of(levelFolderPath + "/" + "levelMetrics.json"), baseJson.toString());
 
         }
         catch (IOException e1){
