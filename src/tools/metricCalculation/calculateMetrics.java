@@ -12,6 +12,7 @@ import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
 import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
@@ -23,7 +24,7 @@ import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
 
-    public static JsonObject createLevelMetricJson(String levelText){
+    public static JsonObject createLevelMetricJson(String levelText) throws IOException{
         JsonObject levelMetrics = new JsonObject();
         //First, add all the metrics that are calculated on a per level basis
 
@@ -43,6 +44,7 @@ public class calculateMetrics {
         levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
         levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
+        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
 
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
@@ -212,7 +214,7 @@ public class calculateMetrics {
             
             System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             createMetricsByLevel(s);
-            System.out.println("CALCULATING METRICS BY FOLDER FOR!" + s);
+            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
             createMetricsByFolderRecursive(s);
         }
         
