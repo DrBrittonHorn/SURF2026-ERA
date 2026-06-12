@@ -11,12 +11,24 @@ import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
+import tools.metricCalculation.metrics.byLevelMetrics.Density;
+import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
+import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
+import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
+import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
+import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
+import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
 
-    public static JsonObject createLevelMetricJson(String levelText){
+    public static JsonObject createLevelMetricJson(String levelText) throws IOException{
         JsonObject levelMetrics = new JsonObject();
-        
+        //First, add all the metrics that are calculated on a per level basis
+
         // Individual Metrics added to the json object below
         levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
         //System.out.println("Density Calculations Complete");
@@ -28,9 +40,18 @@ public class calculateMetrics {
         //System.out.println("Flood Reachability Calculations Complete");
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
         //System.out.println("Wall/Floor Ratio Calculations Complete");
-        levelMetrics.addProperty("CorpusPlagiarism", CorpusPlagiarism.calculateMetric(levelText));
+        levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
+
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
+        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
+        levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
+
+
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
+
 
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
@@ -72,7 +93,7 @@ public class calculateMetrics {
         */
 
     // Creates metric.json files for a generator as well as its individual games
-    public static void createFolderMetricsRecursive(String levelFolderPath){
+    public static void createMetricsByLevel(String levelFolderPath){
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
@@ -98,7 +119,7 @@ public class calculateMetrics {
                     
                     //System.out.println(gameJson);
                     // Creates a metrics.json for each game in each generator for single-game analysis
-                    Files.writeString(Path.of(game + "/" + "metrics.json"), fullGameJson.toString());
+                    Files.writeString(Path.of(game + "/" + "levelMetrics.json"), fullGameJson.toString());
                     fullGeneratorJsonList.add(fullGameJson);
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
@@ -124,15 +145,56 @@ public class calculateMetrics {
             }
         }
 
-        Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), baseJson.toString());
+        Files.writeString(Path.of(levelFolderPath + "/" + "levelMetrics.json"), baseJson.toString());
 
         }
         catch (IOException e1){
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }
+    
+    public static void createMetricsByFolderRecursive(String generatorFolderPath) throws IOException{
+        ArrayList<JsonObject> jsonsByGame = new ArrayList<JsonObject>();
+        
+        Stream<Path> streamByGame = (Files.list(Path.of(generatorFolderPath)).filter(f -> !f.toString().endsWith(".json")));
+        streamByGame.forEach(game -> {
+            JsonObject fullGameJson = new JsonObject();
+            System.out.println("Creating metrics for the folder... " + generatorFolderPath + "/" + game.toString());
+            //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
+            fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
+            try {
+                Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            jsonsByGame.add(fullGameJson);
+        });
 
+        JsonObject finalFolderJson = new JsonObject();
+
+        // Next we average metrics between each game subfolder (We assume each game folder has the same number of levels, lest we weigh some games more than others)
+        // Sum folder metrics betweeen games
+        for (JsonObject j : jsonsByGame){
+            for (String metric : j.keySet()){
+                if (!finalFolderJson.has(metric)){
+                    finalFolderJson.add(metric, j.get(metric));}
+                else{
+                    finalFolderJson.addProperty(metric, finalFolderJson.get(metric).getAsDouble() + j.get(metric).getAsDouble());
+                    
+                }
+            }
+        }
+        // Divide by the number of games
+        
+        for (String metric : finalFolderJson.keySet()){
+            finalFolderJson.addProperty(metric, finalFolderJson.get(metric).getAsDouble() / jsonsByGame.size());
+        }
+        Files.writeString(Path.of(generatorFolderPath + "/" + "folderMetrics.json"), finalFolderJson.toString());
+
+
+        
+    }
 
     public static void main(String[] args) throws IOException{
         //System.out.println(createLevelMetricJson(testLevel));
@@ -142,7 +204,7 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
     
-        selectedFolders.add("generatedExamples/geminiLevelGenerator");
+         selectedFolders.add("generatedExamples/geminiLevelGenerator");
          selectedFolders.add("generatedExamples/constructiveLevelGenerator");
          selectedFolders.add("generatedExamples/geneticLevelGenerator");
          selectedFolders.add("generatedExamples/localLanguageModelGenerator");
@@ -151,7 +213,11 @@ public class calculateMetrics {
         for (String s: selectedFolders){
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
-            createFolderMetricsRecursive(s);
+            
+            System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
+            createMetricsByLevel(s);
+            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            createMetricsByFolderRecursive(s);
         }
         
     }
