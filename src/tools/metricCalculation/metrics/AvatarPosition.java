@@ -6,11 +6,12 @@ import java.nio.file.Path;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 
+import tools.Position;
 import tools.metricCalculation.metricTools;
 
 import java.util.ArrayList;
 
-public class Position {
+public class AvatarPosition {
 
     @SuppressWarnings("unused")
     private static AbstractMap.SimpleEntry<Integer, Integer> positionValue;
@@ -22,12 +23,12 @@ public class Position {
      * @return the avatar position as a string
      */
     @SuppressWarnings("unused")
-    public static String calculateMetric(String LevelText) {
+    public static Position calculateMetric(String LevelText) {
         
         int totalArea = 0;
         Integer Xvalue = 0;
         Integer Yvalue = 0;
-        String position = "";
+        Position returned = null;
 
         String charMap = null;
         String map = null;
@@ -48,6 +49,7 @@ public class Position {
                     Xvalue = x;
                     Yvalue = y;
                     totalArea++;
+                    returned = new Position(x, y);
                 }
                 if (Character.isLetterOrDigit(tile)) {
                     totalArea++;
@@ -56,13 +58,12 @@ public class Position {
         }
 
         positionValue = new SimpleEntry<Integer,Integer>(Xvalue, Yvalue);
-        position = "(" + String.valueOf(Xvalue) + ", " + String.valueOf(Yvalue) + ")";
         
-        return position;
+        return returned;
     }
 
     public static void main(String[] args) throws IOException {
         String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl000.txt"));
-        System.out.println("Avatar Position is " + calculateMetric(testLevel));
+        System.out.println("Avatar Position is " + calculateMetric(testLevel).toString());
     }
 }
