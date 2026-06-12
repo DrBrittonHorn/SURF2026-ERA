@@ -12,17 +12,20 @@ import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
 import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
+import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
 
-    public static JsonObject createLevelMetricJson(String levelText){
+    public static JsonObject createLevelMetricJson(String levelText) throws IOException{
         JsonObject levelMetrics = new JsonObject();
         //First, add all the metrics that are calculated on a per level basis
 
@@ -39,8 +42,11 @@ public class calculateMetrics {
         //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
 
-        //levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 5));
-        //levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
+        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
+        levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
 
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
@@ -113,7 +119,7 @@ public class calculateMetrics {
                     
                     //System.out.println(gameJson);
                     // Creates a metrics.json for each game in each generator for single-game analysis
-                    Files.writeString(Path.of(game + "/" + "metrics.json"), fullGameJson.toString());
+                    Files.writeString(Path.of(game + "/" + "levelMetrics.json"), fullGameJson.toString());
                     fullGeneratorJsonList.add(fullGameJson);
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
@@ -139,7 +145,7 @@ public class calculateMetrics {
             }
         }
 
-        Files.writeString(Path.of(levelFolderPath + "/" + "metrics.json"), baseJson.toString());
+        Files.writeString(Path.of(levelFolderPath + "/" + "levelMetrics.json"), baseJson.toString());
 
         }
         catch (IOException e1){
@@ -150,10 +156,11 @@ public class calculateMetrics {
     public static void createMetricsByFolderRecursive(String generatorFolderPath) throws IOException{
         ArrayList<JsonObject> jsonsByGame = new ArrayList<JsonObject>();
         
-        Stream<Path> streamByGame = Files.list(Path.of(generatorFolderPath)).filter(f -> !f.endsWith(".json"));
+        Stream<Path> streamByGame = (Files.list(Path.of(generatorFolderPath)).filter(f -> !f.toString().endsWith(".json")));
         streamByGame.forEach(game -> {
             JsonObject fullGameJson = new JsonObject();
-            System.out.println("Creating metrics for... " + generatorFolderPath + "/" + game.toString());
+            System.out.println("Creating metrics for the folder... " + generatorFolderPath + "/" + game.toString());
+            //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
             fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
             try {
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
@@ -166,6 +173,7 @@ public class calculateMetrics {
 
         JsonObject finalFolderJson = new JsonObject();
 
+        // Next we average metrics between each game subfolder (We assume each game folder has the same number of levels, lest we weigh some games more than others)
         // Sum folder metrics betweeen games
         for (JsonObject j : jsonsByGame){
             for (String metric : j.keySet()){
@@ -177,15 +185,12 @@ public class calculateMetrics {
                 }
             }
         }
-        // Divide by the number of games (We assume each game folder has the same number of levels)
+        // Divide by the number of games
         
         for (String metric : finalFolderJson.keySet()){
             finalFolderJson.addProperty(metric, finalFolderJson.get(metric).getAsDouble() / jsonsByGame.size());
         }
         Files.writeString(Path.of(generatorFolderPath + "/" + "folderMetrics.json"), finalFolderJson.toString());
-        
-        
-        //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
 
 
         
@@ -209,9 +214,9 @@ public class calculateMetrics {
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
-            System.out.println("Calculating metrics by level!");
+            System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             createMetricsByLevel(s);
-            System.out.println("Calculating metrics by folder!");
+            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
             createMetricsByFolderRecursive(s);
         }
         

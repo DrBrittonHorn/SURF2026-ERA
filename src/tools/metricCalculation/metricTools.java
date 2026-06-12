@@ -306,27 +306,21 @@ public class metricTools {
     }
 
     public static ArrayList<ArrayList<Character>> toArray(String levelString) {
-    String levelMap;
-    
-    if (levelString.split("LevelDescription").length > 1){
-        levelMap = levelString.split("LevelDescription")[1].trim();
-    }
-    else{
-        levelMap = levelString.trim();
-    }
+        String levelMap;
+        if (levelString.contains("LevelDescription")){
+            levelMap = levelString.split("LevelDescription")[1].trim();
+        } 
+        else{
+            levelMap = levelString.trim();
+        }
 
         ArrayList<ArrayList<Character>> list = new ArrayList<>();
-        list.add(new ArrayList<>());
-        int currentRow = 0;
-
-        for (int i = 0; i < levelMap.length(); i++) {
-            char c = levelMap.charAt(i);
-            if (c == '\n') {
-                list.add(new ArrayList<>());
-                currentRow++;
-            } else {
-                list.get(currentRow).add(c);
+        for (String row : levelMap.split("\\r?\\n")) {
+            ArrayList<Character> rowList = new ArrayList<>();
+            for (char c : row.toCharArray()) {
+                rowList.add(c);
             }
+            list.add(rowList);
         }
         return list;
     }
@@ -367,12 +361,12 @@ public class metricTools {
         return (double) ((maxLevelSize)-dissimilar)/(maxLevelSize);
     }
 
-    // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles.
+    // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixing any whitespace errors
     public static String getLevelTiles(String rawLevel){
         if (rawLevel.split("LevelDescription").length > 1){
-            return rawLevel.split("LevelDescription")[1].trim();
+            return rawLevel.split("LevelDescription")[1].replace(" ", ".").trim();
         }
-        return rawLevel;
+        return rawLevel.replace(" ", ".");
     }
 
     public static void main(String args[]) throws IOException{
