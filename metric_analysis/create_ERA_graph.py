@@ -31,6 +31,13 @@ def create_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malforme
 
     # Sets bounds for figure
     ax.set(xlim=(min(listX), max(listX)), ylim=(min(listY), max(listY)))
+
+    padding_factor = .25
+    x_padding = (max(listX) - min(listX)) * padding_factor
+    y_padding = (max(listY) - min(listY)) * padding_factor
+    
+    plt.xlim(min(listX) - x_padding, max(listX) + x_padding)
+    plt.ylim(min(listY) - y_padding, max(listY) + y_padding)
     
     # Set exterior characteristics
     generator_name = json_path.split("/")[1]
@@ -55,7 +62,7 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metrics = ("ShannonEntropy", "CorpusPlagiarism")
+selected_metrics = ("ShannonEntropy", "NGramSimilarity2D")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
 # TODO legend for ERA chart, show total level amounts for ERA and histogram

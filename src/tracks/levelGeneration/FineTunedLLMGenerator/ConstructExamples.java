@@ -98,11 +98,6 @@ public class ConstructExamples {
 
         // Write evaluation examples
         Files.writeString(Path.of("src\\tracks\\levelGeneration\\FineTunedLLMGenerator\\evaluationExamples.json"), gson.toJson(evaluationExamples));
-
-
-        System.out.println("wwwwwwwwwwwwwwwwwwwwww\r\nwwww    ddddddd      w\r\nwwww        ddd      w\r\nw     G       d     dw\r\nw                    w\r\nw   d      G   d     w\r\nw    ddd          d  w\r\nw      dddddddddddd  w\r\nw              dd    w\r\nw  G   d        d    w\r\nw      G         G   w\r\nwA    wwwwww         w\r\nwwwwwwwwwwwwwwwwwwwwww");
-
-        System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\nw..A...g.....t...g.ggtt.gt....w\r\nw........../............\"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\r\nw..A...g.....t...g.ggtt.gt....w\r\nw........../................/w\r\nw........./t+./.++.........../w\r\nw.........///////..++//.wwww.wt.\r\nwww...www//+/////.../w\r\nw........./t+./.++.........../w\r\nw.........///////..++//.wwww.wt.\r\nwww...www//+//////////////+gw+\r\nwgggggggggvttttttttttttttttgtyy\r\nw..............................w\r\nwww/../...////////+gw+\r\nwgggggggggvttttttttttttttttgtyy\r\nw..............................w\r\nwww/../...../.t.++++//../../w/\r\nwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     }
 
 }
