@@ -10,7 +10,7 @@ import java.util.HashSet;
 import tools.metricCalculation.metricTools;
 
 // From https://ojs.aaai.org/index.php/AAAI/article/view/28865
-public class KLDivergence2D {
+public class JensenShannonDivergence2D {
     public static double calculateMetric(String levelText, int windowSize){
         
         boolean ignorePaddingNGrams = true;
@@ -20,14 +20,13 @@ public class KLDivergence2D {
         ArrayList<Path> examplePaths = new ArrayList<Path>();
 
         int longestLineLength = 0;
-        String[] inputLevelLines = levelMap.trim().split(System.lineSeparator());
+        String[] inputLevelLines = levelMap.trim().split("\n");
         for (String s: inputLevelLines){if (s.length() > longestLineLength){longestLineLength = s.length();}}
         //System.out.println("Longest" + longestLineLength);
-        for (String s : inputLevelLines){System.out.println("length" + s.length());}
+
         for (int i = 0; i < inputLevelLines.length; i++){
             if (inputLevelLines[i].length() < longestLineLength){
                 inputLevelLines[i] += paddingToken.repeat(longestLineLength - inputLevelLines[i].length());                
-                
             }
         }
 
@@ -83,32 +82,40 @@ public class KLDivergence2D {
             catch (IOException e1) {e1.printStackTrace();}
         }
 
-            System.out.println(inputPatternCounts);
-            System.out.println(examplesPatternCounts);
+            //System.out.println(inputPatternCounts);
+            //System.out.println(examplesPatternCounts);
 
             HashMap<String, Double> inputPatternDistribution = new HashMap<String, Double>();
             HashMap<String, Double> examplesPatternDistribution = new HashMap<String, Double>();
+            HashMap<String, Double> mixedPatternDistribution = new HashMap<String, Double>();
 
             // Convert counts to distributions
             for (String pattern : inputPatternCounts.keySet()){
-                inputPatternDistribution.put(pattern, inputPatternCounts.get(pattern) / (double) totalInputWindows);}
+                inputPatternDistribution.put(pattern, inputPatternCounts.get(pattern) / (double) totalInputWindows);
+                mixedPatternDistribution.put(pattern, inputPatternCounts.get(pattern) / ((double) totalInputWindows)/2);}
             for (String pattern : examplesPatternCounts.keySet()){
-                examplesPatternDistribution.put(pattern, examplesPatternCounts.get(pattern) / (double) totalExamplesWindows);}
-
-
+                examplesPatternDistribution.put(pattern, examplesPatternCounts.get(pattern) / (double) totalExamplesWindows);
+                mixedPatternDistribution.put(pattern, examplesPatternCounts.get(pattern) / ((double) totalExamplesWindows)/2 + mixedPatternDistribution.getOrDefault(pattern, 0.0));}
+                
             // Calculate metric by iterating through the objects present in the input level
-            double TPKLDivergence = 0;
+            double JSDivergence = 0;
             for (String pattern : inputPatternDistribution.keySet()){
                 double p = inputPatternDistribution.get(pattern);
-                double q = examplesPatternDistribution.getOrDefault(pattern, 1e-10);
-                TPKLDivergence += p * Math.log(p / q);
+                double q = mixedPatternDistribution.getOrDefault(pattern, 0.0);
+                JSDivergence += .5 * (p * Math.log(p / q) / Math.log(2));
                 }
-            return TPKLDivergence;
+            for (String pattern : examplesPatternDistribution.keySet()){
+                double p = examplesPatternDistribution.get(pattern);
+                double q = mixedPatternDistribution.getOrDefault(pattern, 0.0);
+                JSDivergence += .5 * (p * Math.log(p / q) / Math.log(2));
+                }
+            
+            return JSDivergence;
     }
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl003.txt"));
-        System.out.println(calculateMetric(testLevel2, 3));
+        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
+        System.out.println(calculateMetric(testLevel2, 4));
     }
     
 }
