@@ -12,9 +12,14 @@ import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.BalanceHorizontal;
+import tools.metricCalculation.metrics.byLevelMetrics.BalanceVertical;
 import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence1D;
+import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence2D;
+import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
@@ -46,8 +51,14 @@ public class calculateMetrics {
         levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
+        levelMetrics.addProperty("KLDivergence2D", KLDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
 
+        levelMetrics.addProperty("BalanceHorizontal", BalanceHorizontal.calculateMetric(levelText));
+        levelMetrics.addProperty("BalanceVertical", BalanceVertical.calculateMetric(levelText));
+
+        levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
+        levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
@@ -60,8 +71,6 @@ public class calculateMetrics {
         binningProperty.addProperty("NotEmpty", BinGeneratedLevels.notEmpty(levelText));
         
         levelMetrics.add("Binning", binningProperty);
-
-        
 
         return levelMetrics;
     }
