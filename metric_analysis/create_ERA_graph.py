@@ -53,7 +53,7 @@ def create_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malforme
 
 # USAGE: Select a metrics.json file path, then determinr the graph's x and y axis by completing the selected metrics tuple
 
-metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
+metric_path = "generatedExamples/geminiLevelGenerator/levelMetrics.json"
 # metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
@@ -62,7 +62,7 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metrics = ("ShannonEntropy", "NGramSimilarity2D")
+selected_metrics = ("Linearity", "KLDivergence2D")
 create_graph(selected_metrics, metric_path, exclude_malformed=True)
 
 # TODO legend for ERA chart, show total level amounts for ERA and histogram
