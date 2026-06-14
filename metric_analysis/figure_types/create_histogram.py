@@ -2,10 +2,10 @@ from matplotlib import pyplot as plt
 import numpy as np
 import sys, os
 # Fixes local import behavior
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from metric_analysis.tools import create_attribute_dict, parseBinning
 
-def create_graph(selected_metric, json_path: str, exclude_malformed=True):
+def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     # plt.style.use('_mpl-gallery')
     dict = create_attribute_dict(json_path)
     listX = []
@@ -16,6 +16,9 @@ def create_graph(selected_metric, json_path: str, exclude_malformed=True):
             if (not exclude_malformed or (parseBinning(level_path, dict))): 
                 listX.append(metrics[selected_metric])
         # print(listX)
+
+    print(f"Creating a Histogram chart with {len(listX)} levels as data points")
+
 
     fig, ax = plt.subplots()
 
@@ -32,8 +35,11 @@ def create_graph(selected_metric, json_path: str, exclude_malformed=True):
     ax.set_xlabel(selected_metric)
 
     # Save and show
-    plt.savefig(("figures/Histograms/" + generator_name + game_name + selected_metric + ".png"), dpi=300, bbox_inches="tight")
-    plt.show()
+    save_file_name = "figures/" + generator_name + "/Histograms/" + game_name + selected_metric + ".png"
+    if os.path.isfile(save_file_name): os.remove(save_file_name)
+    plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
+    # plt.show()
+    plt.close()
 
 
 # USAGE: Select a metrics.json file path, then determinr the graph's selected_metric variable
@@ -46,5 +52,5 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metric = "FloodReachability"
-create_graph(selected_metric, metric_path, exclude_malformed=True)
+# selected_metric = "FloodReachability"
+# create_histogram(selected_metric, metric_path, exclude_malformed=True)
