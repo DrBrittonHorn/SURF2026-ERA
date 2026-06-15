@@ -15,8 +15,10 @@ import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceHorizontal;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceVertical;
 import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
+import tools.metricCalculation.metrics.byLevelMetrics.DecorationFrequency;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.HazardTileRatio;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence1D;
@@ -59,6 +61,9 @@ public class calculateMetrics {
 
         levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
+
+        levelMetrics.addProperty("DecorationFrequenct", DecorationFrequency.calculateMetric(levelText));
+        levelMetrics.addProperty("HazardTileRation", HazardTileRatio.calculateMetric(levelText));
 
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
