@@ -62,7 +62,7 @@ public class PlaytraceDiversity{
 
     public static void main(String[] args) throws IOException{
 
-        String testFolder = "generatedExamples/geminiLevelGenerator/realsokoban";
+        String testFolder = "generatedExamples/geminiLevelGenerator/asteroids";
         System.out.println(calculateMetric(testFolder));
 
     }
