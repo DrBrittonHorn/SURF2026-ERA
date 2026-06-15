@@ -35,7 +35,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
 
     hexbin = ax.hexbin(listX, listY, gridsize=75, extent=(x_min, x_max, y_min, y_max))
     colorbar = fig.colorbar(hexbin, ax=ax)
-    colorbar.set_label("Count")
+    # colorbar.set_label("Count")
 
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(y_min, y_max)
@@ -46,7 +46,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     else: game_name = ""
     ax.set_title(get_official_generator_title(json_path) + "" + game_name + " ERA Chart")
     ax.set_xlabel(get_official_metric_title(selected_metrics_tuple[0]))
-    ax.set_xlabel(get_official_metric_title(selected_metrics_tuple[1]))
+    ax.set_ylabel(get_official_metric_title(selected_metrics_tuple[1]))
     
     # "Y axis to X axis"
     save_file_name = "figures/" + generator_name + "/ERA/" + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
@@ -66,7 +66,7 @@ metric_path = "generatedExamples/geminiLevelGenerator/levelMetrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-# selected_metrics = ("Linearity", "KLDivergence2D")
+selected_metrics = ("Density", "ShannonEntropy")
 # create_ERA_graph(selected_metrics, metric_path, exclude_malformed=True)
 
 # TODO legend for ERA chart, show total level amounts for ERA and histogram

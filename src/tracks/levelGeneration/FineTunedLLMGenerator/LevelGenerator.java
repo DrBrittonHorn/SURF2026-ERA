@@ -1,4 +1,4 @@
-package tracks.levelGeneration.FineTunedLLMGenerator;
+package tracks.levelGeneration.fineTunedLLMGenerator;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
