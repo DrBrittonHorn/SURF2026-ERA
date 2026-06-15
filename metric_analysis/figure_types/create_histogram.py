@@ -3,7 +3,7 @@ import numpy as np
 import sys, os
 # Fixes local import behavior
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.tools import create_attribute_dict, parseBinning
+from metric_analysis.tools import create_attribute_dict, get_official_generator_title, get_official_metric_title, parse_binning
 
 def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     # plt.style.use('_mpl-gallery')
@@ -13,7 +13,7 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     for level_path, metrics in dict.items():
         # Create lists of the variables used in this graph
         if (metrics[selected_metric] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parseBinning(level_path, dict))): 
+            if (not exclude_malformed or (parse_binning(level_path, dict))): 
                 listX.append(metrics[selected_metric])
         # print(listX)
 
@@ -31,9 +31,9 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     generator_name = json_path.split("/")[1]
     if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
-    ax.set_title(generator_name + " " + game_name + " Histogram")
-    ax.set_xlabel(selected_metric)
-
+    ax.set_title(get_official_metric_title(json_path) + "" + game_name + " Histogram")
+    ax.set_xlabel(get_official_metric_title(selected_metric))
+    
     # Save and show
     save_file_name = "figures/" + generator_name + "/Histograms/" + game_name + selected_metric + ".png"
     if os.path.isfile(save_file_name): os.remove(save_file_name)

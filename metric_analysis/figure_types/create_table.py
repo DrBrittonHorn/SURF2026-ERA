@@ -4,7 +4,7 @@ import sys, os
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.tools import create_attribute_dict
+from metric_analysis.tools import create_attribute_dict, get_official_generator_title, get_official_metric_title
 
 def create_table(json_path: str, exclude_malformed=True):
     dict_data = create_attribute_dict(json_path)
@@ -21,7 +21,7 @@ def create_table(json_path: str, exclude_malformed=True):
             rows.append(game_name)
         for metric, value in metrics.items():
             if metric not in cols:
-                cols.append(metric)
+                cols.append(get_official_metric_title(metric))
             if game_name not in data_map:
                 data_map[game_name] = {}
             if metric not in data_map[game_name]:
@@ -56,10 +56,10 @@ def create_table(json_path: str, exclude_malformed=True):
     
     if json_path.split("/")[2] == "metrics.json":
         game_label = "" 
-    else: 
+    else:
         game_label = json_path.split("/")[2].capitalize()
 
-    ax.set_title(generator_name + " " + game_label + " Table")
+    ax.set_title(get_official_generator_title(json_path) + "" + game_label + " Table")
 
     save_file_name = ("figures/" + generator_name + "/Tables/" + game_label + "Table.png")
     if os.path.isfile(save_file_name): os.remove(save_file_name)

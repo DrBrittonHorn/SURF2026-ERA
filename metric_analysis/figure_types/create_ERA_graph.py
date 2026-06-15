@@ -3,7 +3,7 @@ import numpy as np
 import sys, os
 # Fixes local import behavior
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.tools import create_attribute_dict, parseBinning
+from metric_analysis.tools import create_attribute_dict, get_official_generator_title, get_official_metric_title, parse_binning
 
 def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malformed=True):
     
@@ -14,7 +14,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     for level_path, metrics in dict.items():
         # Create lists of the variables used in this graph
         if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parseBinning(level_path, dict))): 
+            if (not exclude_malformed or (parse_binning(level_path, dict))): 
                 listX.append(metrics[selected_metrics_tuple[0]])
                 listY.append(metrics[selected_metrics_tuple[1]])
             
@@ -33,7 +33,9 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     y_min = min(listY) - y_padding
     y_max = max(listY) + y_padding
 
-    ax.hexbin(listX, listY, gridsize=50, extent=(x_min, x_max, y_min, y_max))
+    hexbin = ax.hexbin(listX, listY, gridsize=75, extent=(x_min, x_max, y_min, y_max))
+    colorbar = fig.colorbar(hexbin, ax=ax)
+    colorbar.set_label("Count")
 
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(y_min, y_max)
@@ -42,9 +44,9 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     generator_name = json_path.split("/")[1]
     if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
-    ax.set_title(generator_name + " " + game_name + " ERA Chart")
-    ax.set_xlabel(selected_metrics_tuple[0])
-    ax.set_ylabel(selected_metrics_tuple[1])
+    ax.set_title(get_official_generator_title(json_path) + "" + game_name + " ERA Chart")
+    ax.set_xlabel(get_official_metric_title(selected_metrics_tuple[0]))
+    ax.set_xlabel(get_official_metric_title(selected_metrics_tuple[1]))
     
     # "Y axis to X axis"
     save_file_name = "figures/" + generator_name + "/ERA/" + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
