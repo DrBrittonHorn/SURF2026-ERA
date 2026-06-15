@@ -13,14 +13,11 @@ public class HammingDistance {
      * Calculates the Hamming Distance of two levels
      * @param Level1Text the description of the first level
      * @param Level2Text the description of the second level
-     * @return the Hamming Distance from the first level to the second level as a double
+     * @return the Hamming Distance from the first level to the second level as a double, normalized by the size of the larger level
      */
     public static double calculateMetric(String Level1Text, String Level2Text) {
         double HD = 0.0;
         double totalArea = 0.0;
-        double xdifference = 0.0; // the difference in size between the two levels
-        double ydifference = 0.0;
-        boolean FirstLonger = false;
 
         String firstMap = null;
         String secondMap = null;
@@ -35,73 +32,39 @@ public class HammingDistance {
             secondMap = level[1].strip();
         }
 
-        // System.out.println(firstMap);
-        // System.out.println(String.valueOf(firstMap.length()));
-        // System.out.println(secondMap);
-        // System.out.println(String.valueOf(secondMap.length()));
+        double NormalizationValue = (double) Math.max(firstMap.strip().length(), secondMap.strip().length());
 
-        char[][] FirstMAP = metricTools.toMap(firstMap);
-        char[][] SecondMAP = metricTools.toMap(secondMap);
+        char[][] FirstMAP = metricTools.toMap(firstMap.strip());
+        char[][] SecondMAP = metricTools.toMap(secondMap.strip());
 
-        // determines which level is larger
-        if (firstMap.strip().length() > secondMap.strip().length()) {
-            FirstLonger = true;
-        }
-        else if (secondMap.strip().length() > secondMap.strip().length()) {
-            FirstLonger = false;
-        }
+        int maxRows = Math.max(FirstMAP.length, SecondMAP.length);
+        int maxCols = Math.max(FirstMAP[0].length, SecondMAP[0].length);
 
-        System.out.println(firstMap);
-        System.out.println(FirstMAP.length); // the length of a y column
-        System.out.println(FirstMAP[0].length); // the length of an x row
+        for (int y = 0; y < maxRows; y++) {
+            for (int x = 0; x < maxCols; x++) {
 
-        System.out.println(secondMap);
-        System.out.println(SecondMAP.length); 
-        System.out.println(SecondMAP[0].length);
+                char tile1 = '\0';
+                char tile2 = '\0';
 
-        if (FirstLonger) {
-            xdifference = FirstMAP[0].length - SecondMAP[0].length;
-            ydifference = FirstMAP.length - SecondMAP.length;
-            for (int y = 0; y < FirstMAP.length; y++) {
-                for (int x = 0; x < FirstMAP[y].length; x++) {
-                    char tile = FirstMAP[y][x];
-                    if (tile != SecondMAP[y][x]) {
-                        HD++;
-                        totalArea++;
-                    }
-                    if (Character.isLetterOrDigit(tile)) {
-                        totalArea++;
-                    }
-                    HD += xdifference;
+                if (y < FirstMAP.length && x < FirstMAP[y].length) {
+                    tile1 = FirstMAP[y][x];
                 }
-                HD += ydifference;
+                if (y < SecondMAP.length && x < SecondMAP[y].length) {
+                    tile2 = SecondMAP[y][x];
+                }
+
+                if (tile1 != tile2) {
+                    HD++;
+                    totalArea++;
+                }
+                if (Character.isLetterOrDigit(tile1) || Character.isLetterOrDigit(tile2)) {
+                    totalArea++;
+                }
             }
         }
 
-        // Determines which level to cycle through based on length
-        // if (firstMap.length() < secondMap.length()) {
-        //     difference = Math.abs(secondMap.length() - firstMap.length());
-        //     for (int i = 0; i < firstMap.length(); i++){
-        //         if (!(firstMap.charAt(i) == secondMap.charAt(i))) {
-        //             HD++;
-        //             totalArea++;
-        //         }
-        //         if (Character.isLetterOrDigit(firstMap.charAt(i))) {totalArea++;}          
-        //     }
-        // }
-        // else if (firstMap.length() > secondMap.length()) {
-        //     difference = Math.abs(secondMap.length() - firstMap.length());
-        //     for (int i = 0; i < secondMap.length(); i++){
-        //         if (!(secondMap.charAt(i) == secondMap.charAt(i))) {
-        //             HD++;
-        //             totalArea++;
-        //         }
-        //         if (Character.isLetterOrDigit(secondMap.charAt(i))) {totalArea++;}          
-        //     }
-        // }
-
         if (totalArea > 0){
-            return HD; // + difference;
+            return HD / NormalizationValue;
         }
         else{
             return -1; // something went wrong
