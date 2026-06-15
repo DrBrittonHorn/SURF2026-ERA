@@ -42,10 +42,13 @@ public class TilePositionStats {
         return Math.sqrt(sumSquaredDeviations / values.size());
     }
 
+    /**
+     * calculates statistics for each tile of a level in that level
+     * @param LevelText the description of the level
+     * @return A HashMap that connects each Character tile to an ArrayList<Double> where [0] = µx/mean x, [1] = σx/SD x, [2] = µy/mean y, and [3] = σy/SD y
+     */
     public static HashMap<Character, ArrayList<Double>> calculateMetric(String LevelText) {
-        // each tile will have an ArrayList<Double> with it where [0] = µx mean x, [1] = σx SD x, [2] = µy mean y, and [3] = σy SD y
         HashMap<Character, ArrayList<Double>> TileStats = new HashMap<>();
-        int totalArea = 0;
         String levelMap = null;
 
         // splits level to get the actual map
@@ -68,11 +71,6 @@ public class TilePositionStats {
                 else if (tilePositions.containsKey(tile)) {
                     tilePositions.get(tile).add(new Position(x, y));
                 }
-                totalArea++;
-
-                if (Character.isLetterOrDigit(tile)) {
-                    totalArea++;
-                }
             }
         }
 
@@ -93,9 +91,7 @@ public class TilePositionStats {
 
             TileStats.put(key, stats);
         }
-
-        // System.out.println(levelMap);
-        // System.out.println(tilePositions);
+        
         return TileStats;
     }
 
