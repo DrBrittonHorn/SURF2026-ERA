@@ -214,6 +214,7 @@ public class Chromosome implements Comparable<Chromosome>{
 		for(ArrayList<String> value : SharedData.gameDescription.getLevelMapping().values()) {
 			legalTiles.add(new ArrayList<>(value));
 		}
+		//System.out.println(legalTiles);
 		
 
 		for(int i = 0; i < SharedData.MUTATION_AMOUNT; i++)
@@ -226,12 +227,28 @@ public class Chromosome implements Comparable<Chromosome>{
 			int pointY = SharedData.random.nextInt(level.length - solidFrame) + solidFrame / 2;
 			//insert new random sprite to a new random free position
 			if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB){
+				ArrayList<String> Avatars = SharedData.gameAnalyzer.getAvatarSprites();
+				boolean containsAvatar = false;
 				//String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
 				ArrayList<String> newTile = new ArrayList<>(legalTiles.get(SharedData.random.nextInt(legalTiles.size())));
 				ArrayList<SpritePointData> freePositions = getFreePositions(newTile);
+				for (String s : level[pointY][pointX]) {
+					if (Avatars.contains(s)) {
+						containsAvatar = true;
+						break;
+					}
+				}
 				if (freePositions.isEmpty()) {return;}
 				int index = SharedData.random.nextInt(freePositions.size());
-				level[freePositions.get(index).y][freePositions.get(index).x] = newTile;
+				if (!containsAvatar) {level[freePositions.get(index).y][freePositions.get(index).x] = newTile;}
+				if (!legalTiles.contains(level[freePositions.get(index).y][freePositions.get(index).x])) {
+					System.out.println(level[freePositions.get(index).y][freePositions.get(index).x]);
+					System.out.println(newTile);
+					while (!legalTiles.contains(level[freePositions.get(index).y][freePositions.get(index).x])) {
+						level[freePositions.get(index).y][freePositions.get(index).x] = new ArrayList<>(legalTiles.get(SharedData.random.nextInt(legalTiles.size())));
+						System.out.println(level[freePositions.get(index).y][freePositions.get(index).x]);
+					}
+				}
 			}
 
 			//clear any random position

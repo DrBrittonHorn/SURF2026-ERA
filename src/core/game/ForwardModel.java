@@ -692,7 +692,9 @@ public class ForwardModel extends Game
      * Types.WINNER.NO_WINNER.
      * @return the winner of the game.
      */
-    public Types.WINNER getGameWinner() { return this.avatars[0].getWinState(); }
+    public Types.WINNER getGameWinner() { 
+        if (this.avatars[0] == null) {System.out.println(this.charMapping); System.out.println(this.getAvatars()); this.avatars[0] = new MovingAvatar();} // need print lvl
+        return this.avatars[0].getWinState(); }
 
     /**
      * Method overloaded for multi player games.
@@ -712,7 +714,10 @@ public class ForwardModel extends Game
      * Indicates if the game is over or if it hasn't finished yet.
      * @return true if the game is over.
      */
-    public boolean isGameOver() { return getGameWinner() != Types.WINNER.NO_WINNER; }
+    public boolean isGameOver() { 
+        if (this.avatars[0] == null) {return Types.WINNER.NO_WINNER != null;}
+        else {return getGameWinner() != Types.WINNER.NO_WINNER;}
+        }
 
     /**
      * Indicates if the game is over or if it hasn't finished yet.
