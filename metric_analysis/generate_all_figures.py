@@ -51,11 +51,4 @@ for json_path in metric_paths:
                 create_ERA_graph((metric1, metric2), json_path)
     
     
-    
-    
-# Balance
-# JS Divergence
-# Playtrace Diversity
-# Graph generation
-# Graph colorbars
-# Histogram fix
+    # TODO Change ERA color maps, one color transition, different color background

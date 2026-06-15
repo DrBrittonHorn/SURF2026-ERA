@@ -68,10 +68,3 @@ metric_path = "generatedExamples/geminiLevelGenerator/levelMetrics.json"
 
 selected_metrics = ("Density", "ShannonEntropy")
 # create_ERA_graph(selected_metrics, metric_path, exclude_malformed=True)
-
-# TODO legend for ERA chart, show total level amounts for ERA and histogram
-
-# Metrics json reformatting
-# ERA chart
-# Histograms
-# Tables

@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import tracks.ArcadeMachine;
+
 public class metricTools {
     
     
@@ -378,7 +380,7 @@ public class metricTools {
         }
         return map;
     }
-    // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixing any whitespace errors
+    // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixes any whitespace errors
     public static String getLevelTiles(String rawLevel){
         if (rawLevel.split("LevelDescription").length > 1){
             return rawLevel.split("LevelDescription")[1].replace(" ", ".").trim();
@@ -386,14 +388,66 @@ public class metricTools {
         return rawLevel.replace(" ", ".");
     }
 
+
+    /**
+     * Plays a generated level and creates a playtrace for it in generatedExamplesPlaytraces
+     * The level is evaluated and a new playtrace created when one does not already exist
+     * @param levelPath The string path to a level in generated examples
+     */
+    public static void createPlaytrace(String levelPath) throws IOException{
+        String sampleRandomController = "tracks.singlePlayer.simple.sampleRandom.Agent";
+		String doNothingController = "tracks.singlePlayer.simple.doNothing.Agent";
+		String sampleOneStepController = "tracks.singlePlayer.simple.sampleonesteplookahead.Agent";
+		String sampleFlatMCTSController = "tracks.singlePlayer.simple.greedyTreeSearch.Agent";
+
+		String sampleMCTSController = "tracks.singlePlayer.advanced.sampleMCTS.Agent";
+        String sampleRSController = "tracks.singlePlayer.advanced.sampleRS.Agent";
+        String sampleRHEAController = "tracks.singlePlayer.advanced.sampleRHEA.Agent";
+		String sampleOLETSController = "tracks.singlePlayer.advanced.olets.Agent";
+
+        String selectedAgent = sampleOLETSController;
+        
+        String recordActionsFile = levelPath.replace("generatedExamples", "generatedExamplesPlaytraces");
+        // If the level playtrace already exists, don't make a new one
+        if (Files.isRegularFile(Path.of(recordActionsFile))){
+            return;
+        }
+        // Create parent directories
+        String recordActionsFolder = "";
+        String[] rAF = recordActionsFile.split("/");
+        for (int i = 0; i < rAF.length-1; i++){recordActionsFolder += rAF[i] + "/";}
+        Files.createDirectories(Path.of(recordActionsFolder));
+
+        String gameName = levelPath.split("/")[2];
+
+        String levelNoTileMapping = Files.readString(Path.of(levelPath));
+        if (levelNoTileMapping.split("LevelDescription").length > 1){
+            levelNoTileMapping = levelNoTileMapping.split("LevelDescription")[1].trim();
+        }
+        String tempLevelPath = "src/tools/metricCalculation/tempFiles/tempLevelMap.txt";
+        Files.writeString(Path.of(tempLevelPath), levelNoTileMapping);
+
+        ArcadeMachine.runOneGame("examples/selectedGameFiles/" + gameName + ".txt", tempLevelPath, true, selectedAgent, recordActionsFile, 0, 0);
+        //String[] levelOutcome = Files.readString(Path.of(recordActionsFile)).split("\n");
+        //String[] levelActions = new String[levelOutcome.length-1];
+        //for (int i = 1; i < levelOutcome.length; i++){
+            //levelActions[i-1] = levelOutcome[i];
+        //}
+        //allLevelActions.add(levelActions);
+        //System.out.println(allLevelActions.get(0).length);
+    }
+
+
     public static void main(String args[]) throws IOException{
         //String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
-        String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl002.txt"));
+        //String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
+        //String testLevel2 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl002.txt"));
         //System.out.println(applySpatialMapping(testLevel));
         //System.out.println(toArray(testLevel));
-        ArrayList<ArrayList<Character>> testArray1 = toArray(testLevel1);
-        ArrayList<ArrayList<Character>> testArray2 = toArray(testLevel2);
-        System.out.println(similarityScore(testArray1, testArray2));
+        //ArrayList<ArrayList<Character>> testArray1 = toArray(testLevel1);
+        //ArrayList<ArrayList<Character>> testArray2 = toArray(testLevel2);
+        //System.out.println(similarityScore(testArray1, testArray2));
+        createPlaytrace("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt");
+        createPlaytrace("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt");
     }
 }
