@@ -5,7 +5,7 @@ import seaborn as sns
 
 # Fixes local import behavior
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.tools import create_attribute_dict, parseBinning
+from metric_analysis.tools import create_attribute_dict, parse_binning, get_official_generator_title, get_official_metric_title
 
 def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exclude_malformed=True):
     
@@ -17,7 +17,7 @@ def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exc
     for level_path, metrics in dict.items():
         # Create lists of the variables used in this graph
         if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parseBinning(level_path, dict))): 
+            if (not exclude_malformed or (parse_binning(level_path, dict))): 
                 listX.append(metrics[selected_metrics_tuple[0]])
                 listY.append(metrics[selected_metrics_tuple[1]])
             
@@ -28,7 +28,14 @@ def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exc
     lists.append(listY)
 
     plt.figure(figsize=(8, 5))
-    sns.kdeplot(x=listX, y=listY, fill=True, color = "teal", levels=8, warn_singular=False)
+
+    ax = plt.gca()
+    kde = sns.kdeplot(x=listX, y=listY, fill=True, color="teal", levels=8, warn_singular=False, cbar=True)
+
+    # Extract the filled contour collection and add a colorbar
+    contour_collection = ax.contourf
+    # cb = plt.colorbar(ax=ax)
+    # cb.set_label("Density")
 
     # Sets bounds for figure
     #ax.set(xlim=(min(listX), max(listX)), ylim=(min(listY), max(listY)))
@@ -44,9 +51,9 @@ def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exc
     generator_name = json_path.split("/")[1]
     if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
-    plt.title(generator_name + " " + game_name + " Density Estimation Chart")
-    plt.xlabel(selected_metrics_tuple[0])
-    plt.ylabel(selected_metrics_tuple[1])
+    plt.title(get_official_generator_title(json_path) + "" + game_name + " Density Estimation Chart")
+    plt.xlabel(get_official_metric_title(selected_metrics_tuple[0]))
+    plt.ylabel(get_official_metric_title(selected_metrics_tuple[1]))
 
     # "Y axis to X axis"
     save_file_name = "figures/" + generator_name + "/Density/" + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
