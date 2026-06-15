@@ -3,8 +3,8 @@ import numpy as np
 import sys, os
 import pandas as pd
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from metric_analysis.tools import create_attribute_dict
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from metric_analysis.tools import create_attribute_dict, get_official_generator_title, get_official_metric_title
 
 def create_table(json_path: str, exclude_malformed=True):
     dict_data = create_attribute_dict(json_path)
@@ -21,7 +21,7 @@ def create_table(json_path: str, exclude_malformed=True):
             rows.append(game_name)
         for metric, value in metrics.items():
             if metric not in cols:
-                cols.append(metric)
+                cols.append(get_official_metric_title(metric))
             if game_name not in data_map:
                 data_map[game_name] = {}
             if metric not in data_map[game_name]:
@@ -30,7 +30,7 @@ def create_table(json_path: str, exclude_malformed=True):
             if not isinstance(value, dict):
                 data_map[game_name][metric].append(value)
 
-    # Remove "hidden fields here"
+    # Removes hidden fields
     cols.remove("Binning")
 
     # Builds 2d array for mean and standard deviation used to construct ax.table
@@ -41,6 +41,9 @@ def create_table(json_path: str, exclude_malformed=True):
             vals = data_map[game][metric]
             row.append(f"{np.mean(vals):.2f} ± {np.std(vals):.2f}")
         cell_text.append(row)
+
+    print(f"Creating a Table with {len(dict_data.items())} levels as data points")
+
 
     fig, ax = plt.subplots()
     ax.axis("off")
@@ -53,16 +56,17 @@ def create_table(json_path: str, exclude_malformed=True):
     
     if json_path.split("/")[2] == "metrics.json":
         game_label = "" 
-    else: 
+    else:
         game_label = json_path.split("/")[2].capitalize()
 
-    ax.set_title(generator_name + " " + game_label + " Table")
+    ax.set_title(get_official_generator_title(json_path) + "" + game_label + " Table")
 
-    plt.savefig(
-        "figures/Tables/" + generator_name + game_label + ".png",
-        dpi=300, bbox_inches="tight"
+    save_file_name = ("figures/" + generator_name + "/Tables/" + game_label + "Table.png")
+    if os.path.isfile(save_file_name): os.remove(save_file_name)
+    plt.savefig(save_file_name, dpi=300, bbox_inches="tight"
     )
-    plt.show()
+    # plt.show()
+    plt.close()
 
 
 metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
@@ -73,4 +77,4 @@ metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-create_table(metric_path, exclude_malformed=True)
+# create_table(metric_path, exclude_malformed=True)
