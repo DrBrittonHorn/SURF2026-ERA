@@ -22,17 +22,16 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
 
     fig, ax = plt.subplots()
 
-    ax.hist(listX, bins=5, linewidth=0.5, edgecolor="white")
+    ax.hist(listX, bins=100, linewidth=0.5, edgecolor="white")
 
-    ax.set(xlim=(min(listX), max(listX)), xticks=np.arange(min(listX), max(listX), round((max(listX)-min(listX))/10, 3)),
-        ylim=(0, len(listX)), yticks=np.linspace(0, len(listX), 9)) # TODO Create more precide algorithm for creating (y) upper bounds
-
+    ax.set(xlim = (min(listX), max(listX)))
     # Set exterior characteristics
     generator_name = json_path.split("/")[1]
     if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
-    ax.set_title(get_official_metric_title(json_path) + "" + game_name + " Histogram")
+    ax.set_title(selected_metric + "" + game_name + " Histogram")
     ax.set_xlabel(get_official_metric_title(selected_metric))
+    
     
     # Save and show
     save_file_name = "figures/" + generator_name + "/Histograms/" + game_name + selected_metric + ".png"
@@ -52,5 +51,5 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-# selected_metric = "FloodReachability"
+selected_metric = "FloodReachability"
 # create_histogram(selected_metric, metric_path, exclude_malformed=True)

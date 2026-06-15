@@ -10,8 +10,12 @@ import os
 # Usage: Update the metric paths list to choose which folders to generate all figures for
 
 metric_paths = [
-    "generatedExamples/geminiLevelGenerator/metrics.json",
-    "generatedExamples/constructiveLevelGenerator/metrics.json"
+    "generatedExamples/constructiveLevelGenerator/metrics.json",
+    "generatedExamples/fineTunedLLMGenerator/metrics.json",
+    "generatedExamples/geminiLevelGenerator/metrics.json"
+    "generatedExamples/geneticLevelGenerator/metrics.json",
+    "generatedExamples/localLanguageModel/metrics.json",
+    "generatedExamples/randomLevelGenerator/metrics.json",
     ]
 
 
@@ -49,3 +53,9 @@ for json_path in metric_paths:
     
     
     
+# Balance
+# JS Divergence
+# Playtrace Diversity
+# Graph generation
+# Graph colorbars
+# Histogram fix
