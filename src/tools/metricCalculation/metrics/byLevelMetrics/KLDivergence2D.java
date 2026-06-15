@@ -26,9 +26,8 @@ public class KLDivergence2D {
         for (String s : inputLevelLines){System.out.println("length" + s.length());}
         for (int i = 0; i < inputLevelLines.length; i++){
             if (inputLevelLines[i].length() < longestLineLength){
-                for (int j = 0; j < longestLineLength-inputLevelLines[i].length(); j++){
-                    inputLevelLines[i] += paddingToken.repeat(longestLineLength - inputLevelLines[i].length());                
-                }
+                inputLevelLines[i] += paddingToken.repeat(longestLineLength - inputLevelLines[i].length());                
+                
             }
         }
 
