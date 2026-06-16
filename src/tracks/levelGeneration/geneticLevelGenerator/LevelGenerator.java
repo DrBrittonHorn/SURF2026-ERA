@@ -290,10 +290,10 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		double totalTime = 0;
 		int numberOfIterations = 0;
 
-		int MaxGenerations = 5;
+		//int MaxGenerations = 5;
 
 		System.out.println(elapsedTimer.remainingTimeMillis() + " " + avgTime + " " + worstTime);
-		while(numberOfIterations < MaxGenerations-1 && elapsedTimer.remainingTimeMillis() > 2 * avgTime &&
+		while(/* numberOfIterations < MaxGenerations-1 && */ elapsedTimer.remainingTimeMillis() > 2 * avgTime &&
 				elapsedTimer.remainingTimeMillis() > worstTime){
 			ElapsedCpuTimer timer = new ElapsedCpuTimer();
 			
