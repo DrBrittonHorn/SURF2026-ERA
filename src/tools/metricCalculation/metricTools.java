@@ -395,6 +395,7 @@ public class metricTools {
      * @param levelPath The string path to a level in generated examples
      */
     public static void createPlaytrace(String levelPath) throws IOException{
+        levelPath = levelPath.replace("\\\\", "/");
         String sampleRandomController = "tracks.singlePlayer.simple.sampleRandom.Agent";
 		String doNothingController = "tracks.singlePlayer.simple.doNothing.Agent";
 		String sampleOneStepController = "tracks.singlePlayer.simple.sampleonesteplookahead.Agent";
@@ -418,7 +419,7 @@ public class metricTools {
         for (int i = 0; i < rAF.length-1; i++){recordActionsFolder += rAF[i] + "/";}
         Files.createDirectories(Path.of(recordActionsFolder));
 
-        String gameName = levelPath.split("/")[2];
+        String gameName = levelPath.split("/|\\\\")[2];
 
         String levelNoTileMapping = Files.readString(Path.of(levelPath));
         if (levelNoTileMapping.split("LevelDescription").length > 1){
@@ -427,7 +428,7 @@ public class metricTools {
         String tempLevelPath = "src/tools/metricCalculation/tempFiles/tempLevelMap.txt";
         Files.writeString(Path.of(tempLevelPath), levelNoTileMapping);
 
-        ArcadeMachine.runOneGame("examples/selectedGameFiles/" + gameName + ".txt", tempLevelPath, true, selectedAgent, recordActionsFile, 0, 0);
+        ArcadeMachine.runOneGame("examples/selectedGameFiles/" + gameName + ".txt", tempLevelPath, false, selectedAgent, recordActionsFile, 0, 0);
         //String[] levelOutcome = Files.readString(Path.of(recordActionsFile)).split("\n");
         //String[] levelActions = new String[levelOutcome.length-1];
         //for (int i = 1; i < levelOutcome.length; i++){
@@ -447,7 +448,8 @@ public class metricTools {
         //ArrayList<ArrayList<Character>> testArray1 = toArray(testLevel1);
         //ArrayList<ArrayList<Character>> testArray2 = toArray(testLevel2);
         //System.out.println(similarityScore(testArray1, testArray2));
-        createPlaytrace("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt");
-        createPlaytrace("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt");
+        //createPlaytrace("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt");
+        createPlaytrace("generatedExamples/constructiveLevelGenerator/realsokoban/realsokoban_lvl001.txt");
+        createPlaytrace("generatedExamples\\geminiLevelGenerator\\asteroids\\asteroids_lvl002.txt");
     }
 }

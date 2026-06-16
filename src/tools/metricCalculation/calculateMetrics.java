@@ -12,6 +12,7 @@ import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.AgentSolutionLength;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceHorizontal;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceVertical;
 import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
@@ -32,7 +33,9 @@ import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
 
-    public static JsonObject createLevelMetricJson(String levelText) throws IOException{
+    public static JsonObject createLevelMetricJson(Path levelPath) throws IOException{
+        String levelText = Files.readString(levelPath);
+        String levelPathString = levelPath.toString();
         JsonObject levelMetrics = new JsonObject();
         //First, add all the metrics that are calculated on a per level basis
 
@@ -65,6 +68,8 @@ public class calculateMetrics {
         levelMetrics.addProperty("DecorationFrequenct", DecorationFrequency.calculateMetric(levelText));
         levelMetrics.addProperty("HazardTileRation", HazardTileRatio.calculateMetric(levelText));
 
+        // Put metrics that require the levelPath here
+        levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
         //System.out.println("Some Metric Calculations Complete");
 
@@ -122,7 +127,7 @@ public class calculateMetrics {
                         // If level file
                         if (level.toString().endsWith(".txt")){
                             try {
-                                fullGameJson.add(level.toString(), createLevelMetricJson(Files.readString(level)));
+                                fullGameJson.add(level.toString(), createLevelMetricJson(level));
                             } catch (IOException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
