@@ -10,7 +10,7 @@ public class SharedData {
 	/**
 	 * The size of the Genetic Algorithm Population
 	 */
-	public static final int POPULATION_SIZE = 10; // og is 50, reduced to make tests easier
+	public static final int POPULATION_SIZE = 50; // og is 50, reduced to 10 to make tests easier
 	/**
 	 * The amount of times used to check the one step look ahead and do nothing algorithm
 	 */
@@ -18,7 +18,7 @@ public class SharedData {
 	/**
 	 * the amount of time to evaluate a single level
 	 */
-	public static final long EVALUATION_TIME = 1000; // og is 30, reduced to make tests easier
+	public static final long EVALUATION_TIME = 30000; // og is 30000, reduced to 1000 to make tests easier
 	/**
 	 * The amount of time given for each time step
 	 */
