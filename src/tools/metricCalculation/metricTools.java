@@ -415,8 +415,10 @@ public class metricTools {
         }
         // Create parent directories
         String recordActionsFolder = "";
-        String[] rAF = recordActionsFile.split("/");
+        String[] rAF = recordActionsFile.split("/|\\\\");
+        //System.out.println("Record actions file: " + recordActionsFile);
         for (int i = 0; i < rAF.length-1; i++){recordActionsFolder += rAF[i] + "/";}
+        //System.out.println("Create directories for " + recordActionsFolder);
         Files.createDirectories(Path.of(recordActionsFolder));
 
         String gameName = levelPath.split("/|\\\\")[2];
