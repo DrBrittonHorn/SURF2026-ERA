@@ -33,7 +33,7 @@ public class MechanicUsage{
 
         JsonObject usageMap = new JsonObject();
         for (String key : seenActions.keySet()){
-            System.out.println(seenActions.get(key));
+            //System.out.println(seenActions.get(key));
             usageMap.addProperty(key, seenActions.get(key));
         }
         return usageMap;
