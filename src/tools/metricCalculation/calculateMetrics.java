@@ -24,6 +24,7 @@ import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
+import tools.metricCalculation.metrics.byLevelMetrics.MechanicUsage;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
@@ -70,9 +71,9 @@ public class calculateMetrics {
 
         // Put metrics that require the levelPath here
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
-        //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
-        //System.out.println("Some Metric Calculations Complete");
 
+        // Put metrics with special formats here and explain why
+        levelMetrics.add("MechanicUsage", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
 
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
