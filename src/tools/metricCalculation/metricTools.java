@@ -422,7 +422,7 @@ public class metricTools {
         Files.createDirectories(Path.of(recordActionsFolder));
 
         String gameName = levelPath.split("/|\\\\")[2];
-
+        
         String levelNoTileMapping = Files.readString(Path.of(levelPath));
         if (levelNoTileMapping.split("LevelDescription").length > 1){
             levelNoTileMapping = levelNoTileMapping.split("LevelDescription")[1].trim();
