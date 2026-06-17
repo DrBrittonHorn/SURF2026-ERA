@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to understand the mechanics:
+
+1. **Goal**: Transform all boxes (*) into boxin (boxes in holes) by moving them onto holes (o), reaching a score where box count = 0
+2. **Avatar (A)**: The player character that can move around
+3. **Boxes (*)**: Can be pushed by avatar, transform to boxin when on holes
+4. **Boxin**: Transformed boxes that revert to regular boxes if they leave holes
+5. **Holes (o)**: Target locations for boxes
+6. **Walls (w)**: Obstacles
+
+**Strategy for a new level**:
+- Create a layout with boxes and holes that requires some puzzle-solving
+- Ensure the number of boxes equals the number of holes
+- Make it challenging but solvable
+- Include walls to create interesting pathways
+
+Let me create a level with:
+- 6

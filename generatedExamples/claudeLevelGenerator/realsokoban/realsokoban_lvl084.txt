@@ -1,0 +1,26 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. Avatar (A) is the player character
+2. Boxes (*) need to be moved into holes (o) to transform into boxin (and score +1)
+3. Boxin on ground transforms back to box (and score -1)
+4. Goal: Get all boxes into holes (box count = 0 to win)
+5. Walls (w) block movement
+6. bbox interacts with avatar (bounceForward) and walls (undoAll)
+
+The strategy is to create a puzzle where the player must navigate boxes into holes. I'll design a level that:
+- Has several boxes and holes scattered around
+- Creates a challenging but solvable puzzle
+- Uses walls strategically to create interesting pathways
+- Requires the player to think about the order of moves
+
+[
+wwwwwwwww
+w..

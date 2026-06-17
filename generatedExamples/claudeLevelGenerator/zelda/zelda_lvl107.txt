@@ -1,0 +1,32 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new level.
+
+Key observations:
+- Avatar (A) starts without a key and must collect the key (+) to transform into withkey state
+- With the key, avatar can open the goal door (g)
+- Enemies (1=quick, 2=normal, 3=slow) deal -1 points if touched by avatar
+- Enemies deal +2 points if hit by sword
+- Level layout uses walls (w) to create maze-like structures
+- Key placement and goal placement need strategic positioning
+
+Let me create a balanced level with:
+- Avatar positioned to start exploration
+- Key placement requiring navigation past some enemies
+- Goal positioned to require key collection first
+- Mix of enemy types to create challenge
+
+[
+wwwwwwwwwwwww
+wA.....1....gw
+w.....www....w
+w.

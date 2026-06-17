@@ -1,0 +1,37 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+I need to create a new level for this Frogger-like game where the avatar must cross multiple lanes of traffic (trucks and logs) to reach the goal.
+
+Let me analyze the pattern:
+- Row 0: Top wall border
+- Row 1: Grass with goal (wgw pattern)
+- Rows 2-4: Water/log spawning areas (mixed water and log spawners)
+- Row 5: Grass with walls (transition)
+- Rows 6-8: Highway with trucks moving in different directions
+- Row 9: Avatar starting position on grass
+- Row 10: Bottom wall border
+
+The gameplay involves:
+- Avatar starting at bottom (row 9)
+- Crossing traffic lanes (rows 6-8)
+- Crossing water/log lanes (rows 2-4)
+- Reaching the goal at top (row 1)
+
+I'll create

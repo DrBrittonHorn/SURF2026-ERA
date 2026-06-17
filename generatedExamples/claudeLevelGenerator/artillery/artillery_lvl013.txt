@@ -1,0 +1,31 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+I'll analyze the game rules and sample levels to create a new level.
+
+Key observations:
+- Avatar (A) shoots bullets at aimed targets
+- Goal is to destroy all pads (G) to win
+- Breakable blocks (d) are destroyed by bullets
+- Bouncey tiles (B) bounce bullets
+- Boxes (b) interact with various sprites
+- Walls (w) block movement and bullets
+- The avatar must be positioned to shoot pads
+
+The level should:
+1. Have multiple pads scattered around
+2. Use breakable blocks to create obstacles between avatar and pads
+3. Include bouncey tiles strategically to redirect shots
+4. Be solvable with careful aiming
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w                    w
+w    G       B       w
+w   ddd              w

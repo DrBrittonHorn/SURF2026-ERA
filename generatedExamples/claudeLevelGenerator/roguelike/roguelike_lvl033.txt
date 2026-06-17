@@ -1,0 +1,38 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+Looking at the GVGAI game, I need to understand the mechanics:
+- Avatar needs to reach the exit (x) to win
+- Collect gold to buy health at market (m)
+- Keys open locks
+- Swords kill spiders and phantoms
+- Weapons are created by flickering sword
+- Health management is crucial
+
+Let me create a balanced level with:
+- Avatar starting position
+- Clear path to exit with some challenge
+- Resources strategically placed
+- Enemies that require weapon usage
+- A lock to unlock progression
+- Market for health trades
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w..............g.....w
+w.A.........r..g...r.w
+w..wwwwww......www...w
+wm..g.h.w..s....w.....w
+w

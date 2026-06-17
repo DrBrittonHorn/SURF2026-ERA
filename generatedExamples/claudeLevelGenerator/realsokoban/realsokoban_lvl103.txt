@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this GVGAI game. Let me analyze the game mechanics:
+
+1. The avatar (A) needs to push boxes (*) into holes (o)
+2. When a box falls into a hole, it transforms to boxin and scores +1
+3. When boxin touches ground, it transforms back to box and scores -1
+4. Goal: Get all boxes into holes (counter of box = 0)
+5. Avatar can't pass through walls (w)
+6. Boxes bounce off walls and other boxes
+
+Looking at the sample levels, I can see:
+- They're contained in walls (w)
+- They have holes (o) and boxes (*)
+- The avatar (A) needs to solve a puzzle
+- Boxes need to be strategically placed near holes
+
+Let me create a new level that:
+1. Has enough boxes and holes for an interesting puzzle

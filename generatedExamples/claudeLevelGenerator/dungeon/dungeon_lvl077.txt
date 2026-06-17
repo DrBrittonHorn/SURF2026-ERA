@@ -1,0 +1,36 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new level.
+
+Key observations:
+- Avatar (A) needs to collect gold (g) and the key (k) to unlock the lock (m) and reach the exit (x)
+- Hazards include: fire (f), boulders (1, 2), ground traps (t), and lasers (l, r, u, d)
+- The level should be challenging but solvable
+- Gold limit is 11, key limit is 1
+- Lock requires the key to pass
+
+I'll create a level that:
+- Places the avatar in a strategic starting position
+- Requires collecting the key before reaching the lock/exit
+- Includes moderate hazards (some fire and boulders)
+- Has a reasonable amount of gold scattered around
+- Creates an interesting path puzzle
+
+[
+wwwwwwwwwwwww

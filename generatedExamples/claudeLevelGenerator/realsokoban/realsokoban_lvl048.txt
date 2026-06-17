@@ -1,0 +1,31 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to create a valid level.
+
+**Game Analysis:**
+- Avatar (A) is the player character
+- Boxes (*) need to be pushed into holes (o) to transform into boxin (and gain 1 point)
+- Boxin on ground transforms back to box (lose 1 point)
+- Goal: Get all boxes into holes (reduce box count to 0)
+- Walls (w) block movement
+- Player bounces off boxes, boxes bounce off walls
+
+**Level Design Strategy:**
+I'll create a level that:
+1. Has multiple boxes and holes
+2. Requires strategic pushing (boxes shouldn't easily escape holes)
+3. Is solvable but not trivial
+4. Uses walls to create a puzzle layout
+
+Let me design a level with a clear puzzle structure:
+
+[
+wwwwwwwww
+w...A...w
+w

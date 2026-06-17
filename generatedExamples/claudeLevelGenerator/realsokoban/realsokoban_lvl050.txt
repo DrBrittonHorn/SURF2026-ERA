@@ -1,0 +1,29 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this GVGAI game where:
+
+**Game Mechanics:**
+- Avatar (A) moves around on ground/floor tiles
+- Boxes (*) can be pushed into holes (o) to transform into boxin (counted as scoring +1)
+- Boxin on ground transforms back to box (-1 score)
+- Goal: Get all boxes into holes (box count = 0 to win)
+- Walls (w) block movement
+- Avatar bounces off boxes
+
+**Strategy for a good level:**
+- Need multiple boxes and holes
+- Arrange so puzzles require strategic pushing
+- Ensure boxes can reach holes through clever sequencing
+- Moderate difficulty - not too easy, not impossible
+
+Let me create a level with 4 boxes and 4 holes arranged in a way that requires some planning:
+
+[
+wwwwwwwww
+w

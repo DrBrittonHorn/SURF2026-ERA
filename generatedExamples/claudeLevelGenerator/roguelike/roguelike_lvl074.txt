@@ -1,0 +1,35 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new level.
+
+Key observations:
+- Avatar (A) must reach the exit (x) to win
+- Avatar starts with 1 health point, max 10
+- Enemies: spiders (r) deal 2 damage, phantoms (p) deal 1 damage
+- Resources: gold (g), health (h), keys (k), weapons (s)
+- Locks (l) require keys to pass
+- Market (m) trades 1 gold for 1 health
+- Weapons/sword (s) deal damage to enemies when shot
+- Level is 22x21 characters (walls on border)
+
+The level should:
+1. Have a clear path with some challenges
+2. Mix enemy types and resources strategically
+3. Include at least one lock-key puzzle
+4. Balance difficulty with survivability
+
+[
+www

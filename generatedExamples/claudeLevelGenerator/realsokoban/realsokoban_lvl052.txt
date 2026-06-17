@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. **Goal**: Get all boxes (*) into holes (o) to transform them to boxin (in holes) and complete the level
+2. **Player**: Avatar (A) that can push boxes
+3. **Mechanics**: 
+   - Avatar pushes boxes (bounceForward)
+   - Boxes fall into holes and transform (box → boxin), earning points
+   - Boxin on ground can transform back to box, losing points
+   - Win when all boxes are gone (in holes as boxin)
+
+Let me analyze the sample levels:
+- They have multiple boxes that need to be pushed into holes
+- Walls create barriers and define the play area
+- The challenge is positioning boxes over holes
+
+I'll create a level that:
+- Has a reasonable puzzle complexity
+- Provides multiple boxes and holes
+- Uses walls to create interesting pushing mechanics

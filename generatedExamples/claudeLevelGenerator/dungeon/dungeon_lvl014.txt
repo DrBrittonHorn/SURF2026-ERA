@@ -1,0 +1,33 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I need to analyze the game mechanics and create a new level that follows the established patterns.
+
+Key observations:
+1. The player (A - avatar) must collect gold (g) and a key (k) to unlock the lock (m) and reach the exit (x)
+2. The level contains various hazards: fire (f), boulders (1, 2), ground traps (t), laser cannons (l, r, u, d)
+3. The level is 22x21 characters with walls (w) forming boundaries and mazes
+4. Must have walls forming a complete border
+5. The avatar starts at position A, key at k, lock at m, exit at x
+6. Gold pieces (g) scattered throughout to collect
+7. Various hazards placed strategically
+
+Let me create a balanced level with:
+- Avatar in the middle area
+- Key accessible but requiring navigation
+- Lock between

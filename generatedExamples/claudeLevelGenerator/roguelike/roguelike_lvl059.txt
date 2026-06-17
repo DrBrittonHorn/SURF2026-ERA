@@ -1,0 +1,35 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new level that follows the established patterns.
+
+Key observations:
+1. Avatar (A) starts in a location and must reach the exit (x)
+2. Resources include: gold (g), health (h), key (k), weapon (s)
+3. Obstacles: walls (w), locks (l), enemies (r=spider, p=phantom)
+4. Market (m) allows trading gold for health
+5. The level should have: walls forming maze-like structure, scattered resources, enemies, locks requiring keys, and an exit
+6. Difficulty should be moderate and balanced
+
+Creating a new level with:
+- Avatar in lower-left area
+- Exit in upper-right
+- Multiple keys and locks to create puzzle elements
+- Mix of enemies distributed throughout
+- Resources scattered strategically
+- Market locations for health management
+
+[
+wwwwwwww

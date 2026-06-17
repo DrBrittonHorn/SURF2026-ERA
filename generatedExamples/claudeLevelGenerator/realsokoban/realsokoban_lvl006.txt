@@ -1,0 +1,22 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. The avatar (A) moves around the level
+2. Boxes (*) can be pushed into holes (o) to transform into boxin (special boxes)
+3. Boxin boxes on ground transform back into regular boxes with -1 score
+4. Win condition: all boxes must be in holes (box count = 0)
+5. The goal is to get all boxes into holes and keep them there
+
+The key insight is that boxes transform to boxin when in holes (+1 score), but transform back to box when boxin touches ground (-1 score). So we need to arrange the level so boxes can be pushed into holes and stay there.
+
+Let me create a new level that follows the patterns I see in the samples:
+- Use walls to create a playable area
+- Place boxes and holes strategically
+- Position the avatar in a location where it can

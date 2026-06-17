@@ -1,0 +1,33 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+I need to analyze the game and create a new level following the same structure and patterns.
+
+Key observations:
+1. The game is a Frogger-like game where the avatar needs to cross traffic (trucks and logs)
+2. The level has a fixed structure with walls (w) at edges, grass (+), water (0), logs (=), highway (.), and traffic
+3. The avatar (A or B) starts at the bottom and needs to reach the goal (g) at the top
+4. Traffic moves left/right on highway rows (marked with - x _ l characters)
+5. Logs move left on water rows (marked with = character)
+6. The level should have moderate difficulty with varied traffic patterns
+
+Structure analysis:
+- Row 0: Top wall border
+- Row 1: Grass with goal (g) in center
+- Rows 2-4: Water/log spawning area with

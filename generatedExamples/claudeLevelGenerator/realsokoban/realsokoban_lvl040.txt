@@ -1,0 +1,24 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. The avatar (A) can move around on floor/ground tiles
+2. Boxes (*) need to be pushed into holes (o) to transform them into boxin (.) and score points
+3. When a box is on ground without a hole, it transforms back to a regular box (scoreChange=-1)
+4. The goal is to get all boxes into holes (box counter = 0 to win)
+5. Walls (w) block movement and boxes can't push through them
+
+Let me analyze the sample levels:
+- They all have a mix of boxes and holes that need to be matched
+- The avatar needs to be positioned strategically to push boxes into holes
+- Walls create constraints and corridors
+
+I'll create a new level that:
+- Has a reasonable number of boxes and holes to match
+- Provides a solvable puzzle with some

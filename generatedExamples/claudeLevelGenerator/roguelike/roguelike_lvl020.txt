@@ -1,0 +1,35 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I need to analyze the game mechanics and create a new level that fits the rules.
+
+Key observations from the game:
+- Avatar (A) starts somewhere and needs to reach the exit (x)
+- Spiders (r) and Phantoms (p) are enemies that damage the avatar
+- The avatar can shoot weapons (s) to kill enemies
+- Gold (g) can be traded at markets (m) for health (h)
+- Keys (k) open locks (l)
+- Walls (w) create maze structure
+- Health (h) restores health points
+- The goal is to reach the exit while surviving
+
+Looking at the sample levels, I notice:
+- Multiple paths with varying difficulty
+- Mix of enemies placed strategically
+- Gold and health scattered throughout
+- Markets placed to allow resource trading
+- Locks requiring keys as gates
+- Weapons available to deal with enemies
+- Exit placed as final objective

@@ -1,0 +1,24 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. **Avatar (A)**: The player character that moves around
+2. **Boxes (*)**: Can be pushed, need to be moved into holes
+3. **Holes (o)**: When a box falls into a hole, it transforms to boxin and scores +1
+4. **Boxin**: Transformed boxes on ground that score -1 if returned to ground
+5. **Win condition**: All boxes (type=box) must be gone (transformed into boxin in holes)
+6. **Walls (w)**: Block movement
+
+The goal is to push boxes into holes to clear them. I need to create a level that:
+- Has boxes that can be pushed
+- Has holes to push them into
+- Allows the avatar to navigate and push boxes
+- Is solvable but reasonably challenging
+
+Let me create a level with a good puzzle

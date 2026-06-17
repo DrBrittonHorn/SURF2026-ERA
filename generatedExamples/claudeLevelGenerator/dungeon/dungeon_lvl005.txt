@@ -1,0 +1,37 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the game rules and sample levels to create a new level.
+
+Key observations:
+- Avatar (A) must collect gold (g) and reach exit (x)
+- Key (k) unlocks lock (m) to proceed
+- Hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
+- Level has 21x21 grid with walls (w) forming maze structure
+- Health points start at 10, various hazards reduce health
+- Need balanced difficulty with safe paths but challenges
+
+Let me create a new level with:
+- Strategic key placement before lock
+- Gold scattered throughout requiring exploration
+- Hazards that create tension but are avoidable
+- Clear but challenging path to exit
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w.

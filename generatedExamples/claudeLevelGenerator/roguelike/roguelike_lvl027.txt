@@ -1,0 +1,32 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I need to analyze the GVGAI game to create a new level.
+
+Key observations:
+1. Avatar (A) starts the game and must reach the exit (x)
+2. Avatar can collect resources: weapon (s), gold (g), key (k), health (h)
+3. Locks (l) require keys to pass
+4. Spiders (r) and phantoms (p) are enemies that damage the avatar
+5. Market (m) can convert gold into health
+6. Sword weapon (s) allows avatar to kill enemies
+7. Avatar has 1 health point limit of 10
+8. Exit (x) is the goal
+
+Level design considerations:
+- Must have avatar (A), exit (x), and at least one key-lock pair for progression
+- Should have enemies (spiders, phantoms) to create challenge
+- Should have weapons to deal with enemies
+- Should

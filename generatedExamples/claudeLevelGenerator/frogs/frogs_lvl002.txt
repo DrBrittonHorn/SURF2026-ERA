@@ -1,0 +1,37 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+- The avatar (A or B) must cross water/logs while avoiding trucks on highways
+- Logs move left and spawn from dense/sparse forests
+- Trucks move right/left on highways and wrap around
+- The avatar can ride logs (pullWithIt) and must reach the goal (g)
+- Walls block movement
+
+The structure is:
+- Top rows: grass with goal somewhere, then water/log spawning areas
+- Middle rows: highways with trucks
+- Bottom: avatar starting position
+- Wall borders on sides and between sections
+
+Let me create a new level with a good difficulty balance - moderate traffic, reasonable log spawning, and a path to the goal:
+
+[
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
++++++++++wgw+++++++++++++++

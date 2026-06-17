@@ -1,0 +1,26 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this GVGAI game to understand the mechanics:
+
+1. **Goal**: Transform all boxes (*) into boxin (boxes in holes) to win (box counter reaches 0)
+2. **Mechanics**:
+   - Avatar (A) can move around on ground/floor
+   - Boxes (*) can be pushed by avatar
+   - When a box falls into a hole (o), it transforms to boxin and gives +1 score
+   - When boxin is on ground, it transforms back to box and gives -1 score
+   - Walls (w) block movement
+   - Avatar bounces off boxes if pushed into them
+
+3. **Strategy**: Push boxes into holes strategically
+
+Looking at the sample levels, I can see:
+- They have walls as borders and interior obstacles
+- Multiple holes are scattered around
+- Boxes are positioned so they can be pushed into holes
+-

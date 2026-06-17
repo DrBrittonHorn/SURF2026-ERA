@@ -1,0 +1,26 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this game. Let me understand the mechanics:
+
+1. **Avatar (A)**: The player character that moves around
+2. **Boxes (*)**: Can be pushed, need to be placed in holes (o) to transform into boxin (scored +1)
+3. **Holes (o)**: Destinations where boxes transform into boxin
+4. **Boxin**: Boxes that are in holes; if they leave a hole, they transform back to regular boxes (-1 score)
+5. **Goal**: Get all boxes into holes (reduce box count to 0 for a win)
+
+The level should:
+- Have a reasonable puzzle complexity
+- Include walls for structure and puzzle difficulty
+- Have enough holes for all boxes
+- Be solvable with careful box pushing
+
+Let me create a new level with a moderate difficulty:
+
+[
+wwwwwwwww

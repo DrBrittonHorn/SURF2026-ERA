@@ -1,0 +1,31 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I need to analyze the game mechanics and create a new level following the same patterns.
+
+Key observations:
+1. The game is a top-down action game where the avatar (A) must reach the exit (x)
+2. Elements include: walls (w), floor (.), enemies (spiders r, phantoms p), resources (gold g, health h, keys k, weapons s), locks (l), markets (m), and the exit (x)
+3. The avatar starts at position A and needs to navigate to x
+4. Keys are needed to pass locks
+5. Gold can be traded at markets for health
+6. Weapons help defeat enemies
+7. The level should be challenging but solvable
+
+I'll create a new level that:
+- Places the avatar in a reasonable starting position
+- Requires collecting a key to progress through locked doors
+- Has a mix of enemies and resources
+- Provides a clear path to

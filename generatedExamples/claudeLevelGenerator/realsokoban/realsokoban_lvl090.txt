@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a level for this GVGAI game where:
+- The avatar (A) must push boxes (*) into holes (o) to transform them into boxin (which counts as removed from the goal)
+- The goal is to get all boxes into holes (transforming them to boxin)
+- Boxin on ground transforms back to box with a penalty
+- Avatar cannot pass through walls (w)
+
+Let me analyze the sample levels to understand the pattern:
+- Levels have walls creating a bounded area
+- Boxes and holes are placed such that the player must strategically move boxes
+- The difficulty varies in positioning and the number of moves needed
+
+For my new level, I'll create a moderate difficulty puzzle with:
+- A reasonable sized arena
+- Multiple boxes and holes positioned to require some strategy
+- Walls creating corridors or blocking direct paths
+- Clear but not trivial solution path
+
+[
+www

@@ -1,0 +1,37 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new level.
+
+Key observations:
+- Avatar (A) must collect gold (g) and reach the exit (x)
+- Key (k) is needed to pass the lock (m)
+- Various hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
+- Walls (w) create the maze structure
+- Gold limit is 11, so most levels have 10-11 gold pieces
+
+Level design strategy:
+- Place avatar in a starting position
+- Distribute gold pieces strategically (around 10-11)
+- Create a path that requires collecting the key to pass the lock
+- Include some hazards but leave navigable routes
+- Place exit at the end
+- Use lasers and other hazards as obstacles to increase difficulty
+
+[
+wwwww

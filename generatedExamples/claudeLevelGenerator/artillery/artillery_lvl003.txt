@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+Looking at the game mechanics, I need to create a level where:
+- Avatar (A) shoots bullets to destroy breakable blocks (d)
+- Collects pads (G) by shooting them
+- Avoids walls and obstacles
+- Uses bouncey tiles (B) for bullet ricochets and boxes (b) for gameplay elements
+
+Let me analyze the pattern: levels have 22 columns and 13 rows. The avatar starts at bottom-left, and the goal is to reach and destroy all pads while navigating obstacles.
+
+I'll create a level with:
+- Strategic pad placement requiring careful aiming
+- Some breakable blocks to clear paths
+- A few bouncey tiles for ricochet opportunities
+- Varied difficulty distribution
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w                    w
+w   G       B        w

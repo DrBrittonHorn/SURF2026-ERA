@@ -1,0 +1,29 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+- Avatar (A) shoots bullets at targets (pads marked as G)
+- Breakable blocks (d) are destroyed by bullets
+- Bouncey tiles (B) bounce bullets
+- Boxes (b) can be used as obstacles
+- Goal: Hit all pads (G) to win
+- Lose if avatar is destroyed
+
+Let me create a new level that:
+1. Has multiple pads spread across the level
+2. Uses breakable blocks and bouncey tiles strategically
+3. Requires some puzzle-solving to navigate and hit all pads
+4. Maintains reasonable difficulty
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w     G         G    w
+w    ddd        ddd  w
+w   d   d      d   d w
+w

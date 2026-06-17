@@ -1,0 +1,32 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I need to analyze the GVGAI game to understand the mechanics and create a new level.
+
+Key observations:
+- **A** = avatar (player character, must survive)
+- **x** = exit (goal, player needs to reach it)
+- **g** = gold (collectibles, +1 score each)
+- **k** = key (needed to pass through lock)
+- **m** = lock (blocks avatar unless they have the key)
+- **w** = wall (immovable obstacles)
+- **.** = floor (empty space)
+- **f** = firehole (spawns fire that spreads and damages avatar)
+- **1, 2** = boulder holes (spawn boulders moving left/right)
+- **t** = ground trap hole (spawns damaging spikes)
+- **l, r, u, d** = laser cannons (shoot

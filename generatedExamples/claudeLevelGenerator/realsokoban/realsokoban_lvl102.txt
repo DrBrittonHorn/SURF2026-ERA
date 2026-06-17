@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this GVGAI game. Let me analyze the rules:
+
+1. The avatar (A) needs to push boxes (*) into holes (o)
+2. When a box falls into a hole, it transforms into boxin and scores +1
+3. When boxin is on ground, it transforms back to box and scores -1
+4. Win condition: all boxes (type=box) must be gone (limit=0)
+5. The avatar can't walk through walls (w)
+
+So the strategy is: push all boxes into holes so they become boxin and stay there (not on ground).
+
+Looking at the sample levels:
+- They have boxes and holes strategically placed
+- The avatar needs a path to push boxes
+- Holes should be positioned so boxes can fall into them
+- Usually boxes > holes in quantity initially, but boxes end up in holes
+
+Let me create a level

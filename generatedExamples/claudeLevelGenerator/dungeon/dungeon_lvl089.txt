@@ -1,0 +1,33 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the game rules and sample levels to create a new level.
+
+Key observations:
+1. Avatar (A) must collect gold (g), avoid hazards (fire, boulders, traps, lasers)
+2. Key (k) is needed to pass through lock (m)
+3. Exit (x) provides 10 points and ends the level
+4. Various hazards: fire (f), boulders (1,2), ground traps (t), lasers (l,r,u,d)
+5. Levels are 22x21 characters surrounded by walls (w)
+6. Gold collection gives 1 point each, laser cannons give 2 points
+
+I'll create a balanced level with:
+- Avatar start position (A)
+- Multiple gold pieces to collect (g)
+- Key (k) and lock (m) blocking part of the path
+-

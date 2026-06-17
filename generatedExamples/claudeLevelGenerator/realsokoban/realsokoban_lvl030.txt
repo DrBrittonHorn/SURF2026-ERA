@@ -1,0 +1,24 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to understand the mechanics:
+
+1. **Goal**: Remove all boxes (transform them into boxin by dropping them in holes, then transform boxin back to box results in -1 score, so we need to get all boxes into holes and keep them there)
+2. **Mechanics**:
+   - Avatar (A) can move around on ground/floor
+   - Boxes (*) can be pushed by avatar
+   - Holes (o) transform boxes into boxin (boxes in holes) for +1 score
+   - boxin on ground transforms back to box for -1 score
+   - Win condition: All boxes must be in holes (box count = 0)
+3. **Constraints**:
+   - Walls block movement
+   - Avatar bounces off boxes when colliding
+
+For a good level, I should:
+- Have a reasonable number of boxes
+- Have enough holes

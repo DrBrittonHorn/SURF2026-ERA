@@ -1,0 +1,39 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+I'll analyze the GVGAI game to understand the mechanics and create a new level.
+
+Key observations from the game:
+- The avatar (A or B) must reach the goal (g) by navigating across lanes
+- Logs move left at various speeds and can be ridden (avatar pulled with them)
+- Trucks move right/left at various speeds and are dangerous (kill avatar)
+- Water is safe to stand on with a log
+- The avatar needs to dodge trucks and use logs to cross water sections
+- Walls block movement
+- Goal is at the top (marked as 'g')
+
+The level structure typically has:
+1. Top row with walls and goal
+2. Grass/neutral area
+3. Water section with logs (top river)
+4. Truck lanes (highway)
+5. Water section with logs (bottom river)
+6. Starting position with avatar
+
+Let me create a balanced

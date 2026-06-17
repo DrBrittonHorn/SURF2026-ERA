@@ -1,0 +1,29 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to create a valid level.
+
+**Game Analysis:**
+- Avatar (A) is the player that can move
+- Boxes (*) need to be pushed into holes (o) to transform into boxin (scored boxes)
+- Boxin sprites on ground transform back to boxes (losing points)
+- Goal: Get all boxes into holes (reduce box count to 0)
+- Walls (w) block movement, floor/ground (.) are walkable
+- Boxes bounce off walls and other boxes
+
+**Level Design Principles:**
+1. Place boxes that need to be moved into holes
+2. Create a solvable puzzle where boxes can reach holes
+3. Ensure the avatar has space to push boxes
+4. Use walls strategically to guide box movement
+
+Let me create a level that is moderately challenging but solvable:
+
+[
+wwwwwwwww
+w...
