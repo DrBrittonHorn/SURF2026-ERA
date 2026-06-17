@@ -11,9 +11,23 @@ public class Symmetry {
     
     public static double calculateMetric(String levelText) {
         ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelText);
+        int maxLength = 0;
+        Character padding = '~';
+        for (int i = 0; i < levelArray.size(); i++){
+            if (levelArray.get(i).size() > maxLength){
+                maxLength = levelArray.get(i).size();
+            }
+        }
 
-        //System.out.println("Vsym" + vSymmetry(levelArray));
-        //System.out.println("Hsym" + vSymmetry(transposeArrayList(levelArray)));
+        for (ArrayList<Character> row : levelArray){
+            while (row.size() < maxLength){
+                row.add(padding);
+            }
+        }
+        System.out.println(levelArray);
+
+        System.out.println("Vsym" + vSymmetry(levelArray));
+        System.out.println("Hsym" + vSymmetry(transposeArrayList(levelArray)));
         return .5 * vSymmetry(levelArray) + .5 * vSymmetry(transposeArrayList(levelArray));
     }
 
@@ -24,7 +38,7 @@ public class Symmetry {
         for (int i = 0; i < level.size(); i++){
                 for (int j = 0; j < level.get(i).size(); j++){
                     totalArea++;
-                    if (level.get(i).get(j).equals(level.get(level.size()-i-1).get(j))){
+                    if (level.get(i).get(j).equals(level.get(level.size()-i-1).get(j)) && level.get(i).get(j) != '~'){
                         vSymmetry++;
                     }
                     else{
