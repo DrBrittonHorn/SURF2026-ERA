@@ -90,7 +90,7 @@ public class metricTools {
                 // Represent the fire as an enemy
                 levelParts[1] = levelParts[1].replace("f", "E"); // Fire doesn't move, so it is not like the typical enemy...
                 //Replace coins
-                levelParts[1] = levelParts[1].replace("g", "T");
+                levelParts[1] = levelParts[1].replace("g", "C");
                 // Replace goal
                 levelParts[1] = levelParts[1].replace("x", "G");
                 // Represent standard block
@@ -137,7 +137,7 @@ public class metricTools {
                 levelParts[1] = levelParts[1].replace("1", "E");
                 levelParts[1] = levelParts[1].replace("2", "E");
                 //Replace coins
-                levelParts[1] = levelParts[1].replace("c", "T");
+                levelParts[1] = levelParts[1].replace("c", "C");
                 // G for goal already set
                 // Set elevator to breakable/(movable)
                 levelParts[1] = levelParts[1].replace("=", "B");
@@ -162,7 +162,7 @@ public class metricTools {
                 levelParts[1] = levelParts[1].replace(" ", "."); // Fixes new issue of level being filled with blank spaces
                 //System.out.println("Roguelike Level preprocessing");
                 //Replace "exit floor" to goal symbol
-                levelParts[1] = levelParts[1].replace("g", "T");
+                levelParts[1] = levelParts[1].replace("g", "C");
                 // Replace heart objects with transparent object symbol; Revisit?
                 levelParts[1] = levelParts[1].replace("h", "T");
                 //Replace gold coins with transparent object symbol

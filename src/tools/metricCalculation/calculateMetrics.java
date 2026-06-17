@@ -28,6 +28,7 @@ import tools.metricCalculation.metrics.byLevelMetrics.MechanicUsage;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
+import tools.metricCalculation.metrics.byLevelMetrics.RewardDensity;
 import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
@@ -42,32 +43,24 @@ public class calculateMetrics {
 
         // Individual Metrics added to the json object below
         levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
-        //System.out.println("Density Calculations Complete");
         levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
-        //System.out.println("Negative Space Calculations Complete");
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
-        //System.out.println("Shannon Entropy Calculations Complete");
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
-        //System.out.println("Flood Reachability Calculations Complete");
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
-        //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
-
         levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
-
         levelMetrics.addProperty("BalanceHorizontal", BalanceHorizontal.calculateMetric(levelText));
         levelMetrics.addProperty("BalanceVertical", BalanceVertical.calculateMetric(levelText));
-
         levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
-
         levelMetrics.addProperty("DecorationFrequenct", DecorationFrequency.calculateMetric(levelText));
         levelMetrics.addProperty("HazardTileRation", HazardTileRatio.calculateMetric(levelText));
+        levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
 
         // Put metrics that require the levelPath here
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
