@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this game where:
+- The avatar (A) needs to push boxes (*) into holes (o) to transform them into boxin (which counts as completed)
+- Once all boxes are in holes, the game is won
+- Boxes in holes transform to boxin and give +1 score
+- Boxin on ground transforms back to box and gives -1 score
+- Walls block movement, boxes bounce off walls and other boxes
+
+Let me analyze the pattern:
+- Each level has walls (w) forming boundaries
+- Holes (o) are where boxes need to go
+- The avatar needs to maneuver boxes into holes
+- The level should be solvable with proper planning
+
+I'll create a level with a moderate difficulty - not too easy, not too hard. I'll use a design that requires some strategic box pushing.
+
+[
+wwwwwwwww

@@ -1,0 +1,35 @@
+LevelMapping
+    A > ground avatar 
+    d > ground turndown 
+    h > ground turretSpotH 
+    l > ground turnleft 
+    . > ground 
+    p > ground path 
+    1 > ground spawnU path 
+    2 > ground spawnD path 
+    r > ground turnright 
+    3 > ground spawnL path 
+    4 > ground spawnR path 
+    t > ground tower 
+    u > ground turnup 
+    v > ground turretSpotV 
+    w > wall ground 
+
+LevelDescription
+Looking at this GVGAI tower defense game, I need to understand the key mechanics:
+
+1. The avatar (A) must reach and capture turret spots (h/v) to convert them to active turrets
+2. Enemies spawn from spawners (1/2/3/4) and move along paths marked with 'p'
+3. Turrets shoot missiles to destroy enemies
+4. The goal is to defend the tower (t) from enemies for 1500 turns or until all towers are destroyed
+5. Turn tiles (u/d/l/r) redirect enemy movement
+
+Let me create a balanced level with:
+- A good spawn point placement to challenge the player
+- Clear paths for enemies
+- Multiple turret spots to capture for defense
+- Reasonable tower placement
+- Turn tiles to guide enemy movement
+
+[
+wwwwwwwwwwwwwwwwww

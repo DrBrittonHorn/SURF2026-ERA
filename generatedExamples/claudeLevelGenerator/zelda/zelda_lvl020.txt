@@ -1,0 +1,26 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+I need to create a new level for this GVGAI game that follows the established patterns.
+
+Let me understand the game:
+- Avatar (A) starts at a position and needs to collect a key (+) to unlock the goal (g)
+- The avatar can shoot a sword to kill enemies (1=quick, 2=normal, 3=slow)
+- Walls (w) block movement
+- Score: +2 for killing enemies with sword, -1 for direct contact with enemies, +1 for collecting key, +1 for reaching goal
+- Win by reaching the goal with the key, lose if avatar dies
+
+Looking at the sample levels, I can see:
+- Avatar typically starts in lower-left area
+- Key is placed strategically, usually requiring some navigation
+- Goal is placed in upper-right area
+- Enemies are distributed throughout with varying difficulties
+- Walls create maze-like structures

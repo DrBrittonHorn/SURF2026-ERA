@@ -1,0 +1,30 @@
+LevelMapping
+    A > avatar 
+    b > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+- Avatar (spaceship) shoots bullets upward
+- Goal: destroy all pads (G) to win
+- Breakable blocks (b) are obstacles that can be destroyed
+- Dying to walls or breakables results in loss
+
+Let me create a level that:
+1. Places the avatar at the bottom
+2. Distributes pads strategically requiring bullet shots
+3. Uses breakables as obstacles to navigate around
+4. Creates a moderately challenging but solvable puzzle
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w                    w
+w  G           G     w
+w                    w
+w    b       b       w
+w                    w
+w  G    b b    G     w
+w            b       w
+w       b   b        w
+w

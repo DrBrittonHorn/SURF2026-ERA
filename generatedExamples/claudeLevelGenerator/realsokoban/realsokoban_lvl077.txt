@@ -1,0 +1,28 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I'll analyze this game to understand the mechanics:
+
+1. **Goal**: Transform all boxes (*) into boxes-in-holes (boxin) by moving them into holes (o), reaching a score where box count = 0
+2. **Mechanics**:
+   - Avatar (A) moves around the floor
+   - Boxes (*) can be pushed into holes (o) to become boxin
+   - Boxin on ground reverts back to box (losing points)
+   - Walls block movement
+   - The objective is to get all boxes into holes and keep them there
+
+Looking at the sample levels, I can see:
+- They have walls forming boundaries
+- Multiple holes scattered around
+- Multiple boxes to solve
+- Avatar positioned strategically
+- Complexity increases with more boxes and puzzle elements
+
+I'll create a new level with:
+- A reasonable puzzle layout with walls, holes, and boxes
+- Enough holes

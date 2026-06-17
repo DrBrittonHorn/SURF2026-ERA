@@ -1,0 +1,36 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new balanced level.
+
+Key observations:
+1. Avatar (A) starts on floor and needs to collect gold (g) and key (k) to reach exit (x)
+2. Lock (m) requires key to pass
+3. Hazards: fire (f), boulders (1,2), ground traps (t), lasers (l,r,u,d)
+4. Goal: Collect gold, get key, bypass lock, reach exit
+5. Levels are 22x21 with walls (w) forming maze structure
+
+I'll create a level that:
+- Places avatar in a strategic position
+- Requires key collection before accessing exit
+- Has moderate hazard placement
+- Maintains balanced difficulty with puzzle elements
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+w.

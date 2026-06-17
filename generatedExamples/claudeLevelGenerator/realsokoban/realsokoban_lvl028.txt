@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to create a valid level.
+
+**Game Analysis:**
+- Avatar (A) is the player-controlled knight
+- Boxes (*) need to be moved to holes (o) to transform into boxin (special boxes)
+- When a box is in a hole, it transforms to boxin and scores +1
+- When a boxin touches ground (not a hole), it transforms back to box and scores -1
+- Goal: Transform all boxes into boxin and keep them in holes (reach 0 boxes remaining)
+- Walls (w) block movement
+- Avatar bounces off boxes
+
+**Level Design Strategy:**
+I'll create a level with a manageable puzzle where:
+1. Multiple boxes need to be pushed into holes
+2. The layout requires some strategic thinking about box movement
+3. Enough space for the avatar to maneuver
+4. Clear win condition (all boxes in holes)

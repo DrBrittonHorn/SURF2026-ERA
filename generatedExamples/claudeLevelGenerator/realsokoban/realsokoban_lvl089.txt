@@ -1,0 +1,29 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+- Avatar (A) moves around on ground/floor
+- Boxes (*) can be pushed into holes (o) to transform into boxin (.) and gain 1 point
+- Boxin on ground transforms back to box, losing 1 point
+- Goal: Get all boxes into holes (no boxes remaining)
+- Walls (w) block movement
+
+I'll create a level that:
+1. Has a reasonable challenge with multiple boxes and holes
+2. Requires some strategic movement
+3. Is solvable
+4. Follows the formatting pattern of sample levels
+
+Let me design a level with 5 boxes and 5 holes arranged in a way that requires careful navigation:
+
+[
+wwwwwwwww
+w...o...w
+w.*A*.o.w
+w.o...*.w
+w...*.o.

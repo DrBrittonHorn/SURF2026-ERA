@@ -1,0 +1,34 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the GVGAI game and the sample levels to create a new level.
+
+From the game description, I can see:
+- The avatar (A) needs to collect a key (k) to unlock a door (m) and reach the exit (x)
+- Gold (g) gives points
+- Various hazards: fire (f), boulders (1, 2), ground traps (t)
+- Laser cannons (l, r, u, d) that can be destroyed for points
+- Walls (w) block movement
+- The level should be challenging but solvable
+
+Let me create a balanced level that:
+1. Places the avatar in a reasonable starting position
+2. Requires collecting the key before reaching the exit
+3. Includes gold scattered throughout
+4. Has hazards (fire, boulders, traps) but not overly dense
+5. Includes some

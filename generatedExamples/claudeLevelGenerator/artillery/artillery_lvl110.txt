@@ -1,0 +1,29 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+- Avatar (A) shoots bullets at aimed targets
+- Goal is to destroy all pads (G) to win
+- Breakable blocks (d) can be destroyed by bullets
+- Bouncey tiles (B) make bullets bounce
+- Boxes (b) are affected by gravity and collisions
+- Walls (w) block movement
+
+Let me analyze the sample levels:
+- They all have the avatar at bottom left
+- Multiple pads scattered throughout at various heights
+- Breakable blocks create barriers/challenges
+- Bouncey tiles add complexity by redirecting shots
+- Mix of open spaces and walls for strategic shot angles
+
+I'll create a new level with a balanced design that has:
+- Multiple pads at different heights and angles
+- Strategic breakable blocks requiring precise shots
+- Some bouncey tiles for deflection challenges
+- Walls creating interesting

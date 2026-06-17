@@ -1,0 +1,35 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+Looking at this game, I need to understand the core mechanics:
+
+1. **Goal**: The avatar must reach the green goal (g) while avoiding trucks and logs
+2. **Avatar**: Controlled by player, can stand on logs (water sections) to avoid trucks
+3. **Logs**: Move left, spawn from forestDense/forestSparse areas, disappear at edges
+4. **Trucks**: Move right/left at different speeds, respawn at edges
+5. **Water**: Safe zones where logs appear, player can ride logs
+6. **Structure**: Walls block movement, goal is the exit
+
+The levels show:
+- Top section: walls, grass, goal, and water spawn areas with logs
+- Middle section: grass and walls (safe zone for avatar)
+- Bottom section: highway with trucks moving back and forth
+- Avatar starts at bottom, must navigate to goal at top
+
+The challenge is timing movements between truck

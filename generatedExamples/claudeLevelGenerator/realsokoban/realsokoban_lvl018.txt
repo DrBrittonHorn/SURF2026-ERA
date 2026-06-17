@@ -1,0 +1,24 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a level for this GVGAI game. Let me understand the mechanics:
+
+- The avatar (A) moves around on a grid
+- Boxes (*) can be pushed into holes (o) to transform them into boxin (boxes in holes)
+- When boxin boxes touch ground, they transform back to regular boxes (losing a point)
+- Goal: Get all boxes into holes (counter of regular boxes = 0)
+- Walls (w) block movement
+- The score increases by 1 when a box enters a hole, decreases by 1 when a boxin leaves a hole
+
+Looking at the sample levels, I notice:
+- They have varying complexity
+- They include holes (o), boxes (*), walls (w), and the avatar (A)
+- The avatar needs space to navigate and push boxes into holes
+- Walls create a border and internal structure
+
+Let me create a new

@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a level for this game where:
+- The avatar (A) needs to push boxes (*) into holes (o) to transform them into boxin (which appear as different sprites)
+- Once all boxes are in holes, the player wins
+- The goal is to get all boxes into holes
+
+Let me analyze the mechanics:
+- `box hole > transformTo stype=boxin` - boxes in holes become boxin
+- `boxin ground > transformTo stype=box` - boxin on ground become boxes again
+- Win condition: `SpriteCounter stype=box limit=0 win=True` - all boxes must be transformed
+
+So the challenge is to push all boxes into holes and keep them there.
+
+Looking at the sample levels, I can see they typically have:
+- A confined area with walls (w)
+- An avatar (A) 
+- Multiple boxes (*) 
+-

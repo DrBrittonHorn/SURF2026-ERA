@@ -1,0 +1,28 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to create a valid level.
+
+**Game Analysis:**
+- Avatar (A) is the player character that can move around
+- Boxes (*) need to be pushed into holes (o) to transform into boxin (scored as +1)
+- When boxin is on ground, it transforms back to box (-1 score)
+- Goal: Get all boxes into holes (box counter = 0, win = True)
+- Walls (w) block movement
+- Players push boxes with collision mechanics
+
+**Key observations from samples:**
+1. Levels have walls forming boundaries
+2. Boxes and holes are strategically placed
+3. Avatar needs accessible paths to push boxes into holes
+4. The puzzle requires positioning boxes over holes
+5. Boxin can't stay on ground long or it reverts to box
+
+**Level Design Strategy:**
+I'll create a level with:
+- Clear wall boundary

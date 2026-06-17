@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. **Goal**: Get all boxes (*) into holes (o) to transform them into boxin (.) and win
+2. **Mechanics**: 
+   - Avatar (A) can move around on floor
+   - Boxes can be pushed by avatar
+   - When a box lands on a hole, it transforms to boxin and gives +1 score
+   - If boxin touches ground, it transforms back to box (-1 score)
+   - Walls block movement
+   - Avatar bounces off walls
+
+3. **Key insight**: The puzzle requires pushing boxes onto holes. The holes must be carefully placed so boxes can be maneuvered onto them.
+
+Let me create a new level that:
+- Has an interesting layout with strategic hole placement
+- Requires some thoughtful pushing (not trivial)
+- Is solvable with the given mechanics
+
+[

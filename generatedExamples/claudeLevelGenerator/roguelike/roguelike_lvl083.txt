@@ -1,0 +1,36 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I'll analyze the game and sample levels to create a new level.
+
+From the game description, I understand:
+- Avatar (A) must reach the exit (x) to win
+- Avatar has 1 health point, can collect health from market (m) using gold (g)
+- Locks (l) require keys (k) to pass
+- Spiders (r) and phantoms (p) damage the avatar
+- Weapons (s) and collected weapons help defeat enemies
+- Walls (w) create the maze structure
+- Market (m) trades gold for health
+
+Looking at the sample levels, I'll create a balanced level with:
+- Clear path to exit with some puzzle elements
+- Key-lock mechanism
+- Mix of enemies (spiders and phantoms)
+- Gold for health trading
+- Weapon placement for defense
+- Health pickups
+
+[
+wwwwwwwwwww

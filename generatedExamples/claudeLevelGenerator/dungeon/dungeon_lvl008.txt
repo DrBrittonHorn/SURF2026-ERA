@@ -1,0 +1,37 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the GVGAI game description and sample levels to understand the mechanics, then create a new level.
+
+Key observations:
+- Avatar (A) must collect gold (g) and reach exit (x)
+- Key (k) opens lock (m) to proceed
+- Hazards include: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
+- Walls (w) form the boundaries and obstacles
+- The level should be challenging but solvable
+
+I'll create a balanced level with:
+- Avatar in a starting position
+- Gold scattered throughout for scoring
+- A key-lock mechanism as a gating mechanism
+- Various hazards to avoid
+- A clear path to the exit with puzzle elements
+
+[
+wwwwwwwwwwwwwwwwwwwwww
+wA

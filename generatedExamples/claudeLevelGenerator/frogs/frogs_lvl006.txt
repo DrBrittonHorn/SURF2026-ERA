@@ -1,0 +1,34 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+I'll analyze the game and sample levels to understand the mechanics:
+
+1. **Goal**: The avatar (A) needs to reach the green goal (g) at the top
+2. **Hazards**: Logs and trucks move across the water/highway sections
+3. **Mechanics**: Avatar can stand on logs to cross water, must avoid trucks, and reach the goal
+4. **Level structure**: Water sections with logs (top), highway sections with trucks (middle), grass/safe zones with walls
+
+Looking at the patterns:
+- Top section: Water with logs (0, 1, 2, 3, 4, =)
+- Middle section: Highway with trucks (-, x, _, l, .)
+- Bottom section: Grass with avatar (A) and walls (w)
+- Goal (g) is surrounded by grass/water
+
+I'll create a balanced level with:
+- Moderate difficulty with mixed log

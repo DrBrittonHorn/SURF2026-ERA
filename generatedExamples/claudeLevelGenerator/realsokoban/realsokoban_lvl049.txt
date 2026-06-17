@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a level for this GVGAI game where:
+- The player (avatar 'A') must move boxes ('*') into holes ('o')
+- When a box lands on a hole, it transforms to 'boxin' and scores +1
+- When a boxin returns to ground, it transforms back to 'box' and scores -1
+- Goal: get all boxes into holes (box count = 0 to win)
+- Walls ('w') block movement, floor ('.') is walkable
+
+Let me analyze the pattern:
+- Boxes must be pushed into holes to win
+- The puzzle requires strategic movement
+- Walls create obstacles and constrain the space
+- There should be equal or more holes than boxes
+
+I'll create a level with a good balance of difficulty - not too easy, with clear paths but requiring some planning:
+
+[
+wwwwwwwww

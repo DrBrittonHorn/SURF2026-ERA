@@ -1,0 +1,36 @@
+LevelMapping
+    A > ground avatar 
+    d > ground turndown 
+    h > ground turretSpotH 
+    l > ground turnleft 
+    . > ground 
+    p > ground path 
+    1 > ground spawnU path 
+    2 > ground spawnD path 
+    r > ground turnright 
+    3 > ground spawnL path 
+    4 > ground spawnR path 
+    t > ground tower 
+    u > ground turnup 
+    v > ground turretSpotV 
+    w > wall ground 
+
+LevelDescription
+I'll analyze the game and create a new level that follows the established patterns.
+
+From the game description and samples, I can see:
+- The player (A) shoots to convert turret spots (h/v) into turrets that block missiles
+- Enemies spawn from numbered spawners (1-4) and move along paths
+- The goal is to defend towers (t) from reaching them
+- Turrets (h horizontal, v vertical) block missiles and can be switched by shooting
+- Turn tiles (u/d/l/r) redirect enemies
+- Win by surviving 1500 frames or lose if all towers are destroyed
+
+Let me create a balanced level with:
+- Strategic turret spot placement
+- Multiple enemy spawn points
+- A challenging but solvable tower defense scenario
+- Proper use of turn tiles to guide enemies
+
+[
+wwwwwwwwwwwwwwwwww

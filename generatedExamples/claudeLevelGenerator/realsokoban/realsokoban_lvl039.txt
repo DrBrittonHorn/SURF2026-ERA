@@ -1,0 +1,25 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this game where:
+- Avatar (A) needs to push boxes (*) into holes (o)
+- When a box falls in a hole, it transforms to boxin and scores 1 point
+- When boxin touches ground, it transforms back to box and loses 1 point
+- Goal: Get all boxes into holes and keep them there (counter of boxes = 0)
+
+Let me analyze the game mechanics:
+1. Boxes need to be pushed into holes to transform into boxin (locked state)
+2. Once in hole, boxin stays there (doesn't revert since it's in a hole, not on ground)
+3. Player needs strategic placement to ensure boxes stay in holes
+
+I'll create a level with:
+- Clear pathways for the avatar to push boxes
+- Multiple holes positioned so boxes can be pushed into them
+- A solvable puzzle configuration
+
+[

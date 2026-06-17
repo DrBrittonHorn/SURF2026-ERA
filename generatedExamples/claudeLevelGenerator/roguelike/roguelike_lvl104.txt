@@ -1,0 +1,30 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I need to analyze the game to understand the mechanics and create a balanced level.
+
+Key observations:
+1. **Avatar (A)**: Main character, shoots sword, has health
+2. **Exit (x)**: Goal - reach it to win
+3. **Enemies**: Spiders (random movement, deal 2 damage), Phantoms (chase avatar, deal 1 damage)
+4. **Resources**: Gold (trade for health at market), Key (unlocks locks), Health (restores HP), Weapon (ammo for shooting)
+5. **Market (m)**: Trade gold for health (1 gold = 1 health)
+6. **Lock (l)**: Blocks path, need key to pass
+7. **Walls**: Obstacles
+
+Strategy for a good level:
+- Provide enough resources (gold, health, key) to navigate challenges
+- Balance enemy difficulty and placement
+-

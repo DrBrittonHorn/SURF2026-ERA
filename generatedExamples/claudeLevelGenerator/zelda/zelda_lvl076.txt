@@ -1,0 +1,31 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+I'll analyze the game mechanics from the description and sample levels:
+
+1. Avatar (A) must collect a key (+) to transform into "withkey" state
+2. With the key, avatar can open the goal (g) to win
+3. Enemies (1=quick, 2=normal, 3=slow) move randomly and kill avatar on contact (-1 score)
+4. Avatar can shoot sword to kill enemies (+2 score each)
+5. Walls (w) block movement
+
+Looking at the sample levels, I notice:
+- Avatar starts in lower-left area
+- Key is typically centrally placed or mid-level
+- Goal is in upper-right area
+- Mix of enemies at various distances
+- Strategic wall placements to create corridors
+
+I'll create a new level with:
+- Avatar in bottom-left
+- Key requiring navigation through enemies
+- Goal in top-right
+-

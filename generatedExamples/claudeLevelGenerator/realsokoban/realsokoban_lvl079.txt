@@ -1,0 +1,23 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this GVGAI game to create a valid level.
+
+**Game Analysis:**
+- **Avatar (A)**: The player character that moves around
+- **Boxes (*)**: Need to be pushed into holes (o) to transform into boxin (scored state)
+- **Holes (o)**: Destination locations where boxes transform to boxin and score +1
+- **Boxin**: Transformed boxes on ground that transform back to boxes (-1 score)
+- **Goal**: Get all boxes into holes (reduce box count to 0 to win)
+- **Mechanics**: Boxes can be pushed by avatar, bounce off walls, and transform when entering holes
+
+**Level Design Considerations:**
+1. Need enough holes as box destinations
+2. Boxes should require some puzzle solving (pushing in right order)
+3. Should be solvable but not trivial
+4. Follow the format

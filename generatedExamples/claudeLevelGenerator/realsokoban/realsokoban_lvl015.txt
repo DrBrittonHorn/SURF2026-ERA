@@ -1,0 +1,26 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to create a new level.
+
+**Game Analysis:**
+- Avatar (A) moves around on a grid
+- Boxes (*) can be pushed into holes (o) to transform into boxin (.)
+- When a box lands in a hole, score increases by 1
+- Boxin can transform back to box (losing 1 point)
+- Goal: eliminate all boxes (get box count to 0)
+- The strategy is to push boxes into holes and keep them there
+
+**Level Design Strategy:**
+I'll create a level that:
+1. Has a balanced number of boxes and holes
+2. Requires some puzzle-solving to navigate boxes into holes
+3. Isn't too easy or too hard
+4. Uses walls to create interesting navigation challenges
+
+Let me design a new level with 5 boxes and 5 holes arranged in a way that requires the player to think about the puzzle

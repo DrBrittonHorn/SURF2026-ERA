@@ -1,0 +1,26 @@
+LevelMapping
+    A > avatar 
+    B > bouncey 
+    b > box 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+I'll analyze the game and sample levels to understand the mechanics:
+
+- **Avatar (A)**: Player-controlled cannon that shoots bullets
+- **Pad (G)**: Target to destroy with bullets - win condition is to destroy all pads
+- **Bullet**: Projectile that kills breakables, pads, and boxes
+- **Breakable (d)**: Obstacles that block bullets
+- **Bouncey (B)**: Surfaces that bounce bullets
+- **Box (b)**: Moving obstacles affected by gravity and physics
+- **Walls (w)**: Boundaries
+
+The key is to create a challenging level where:
+1. All pads must be reachable by shooting bullets
+2. Breakables and other obstacles create puzzle-like challenges
+3. Bouncey tiles can be used to redirect shots
+4. The level should be solvable but non-trivial
+
+Let me create a

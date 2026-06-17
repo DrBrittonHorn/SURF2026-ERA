@@ -1,0 +1,23 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a level for this game where:
+- The avatar (A) moves boxes (*) into holes (o)
+- When a box falls into a hole, it transforms to boxin and scores +1
+- When boxin touches ground, it transforms back to box and scores -1
+- Goal: eliminate all boxes (get box count to 0) to win
+- The avatar bounces off boxes and can't pass walls
+
+Let me analyze the mechanics:
+1. Player needs to push boxes into holes to transform them to boxin
+2. Then prevent boxin from touching ground, or manage them strategically
+3. The challenge is the interaction: box+hole → boxin (+1), boxin+ground → box (-1)
+
+This seems like a puzzle where you need to carefully manage boxes falling into holes and staying there without touching the ground around the holes.
+
+Let me create a level that's interesting but solvable:

@@ -1,0 +1,31 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+Looking at this game, I need to understand the key elements:
+
+1. **Goal**: Collect gold (g), get the key (k), unlock the lock (m), and reach the exit (x)
+2. **Hazards**: Fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
+3. **Layout**: Avatar (A) starts somewhere, must navigate to collect items and escape
+
+Let me analyze the sample levels:
+- They all have walls forming a maze
+- Gold is scattered throughout (worth 1 point each, need 11 total based on limit)
+- One key needed to unlock the lock
+- Exit door is the final goal (worth 10 points)
+- Hazards are placed to create challenge but are avoidable
+- Boulders come from holes (1=left, 2=right)

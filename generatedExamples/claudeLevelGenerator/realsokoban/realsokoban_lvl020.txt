@@ -1,0 +1,23 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a level for this game where:
+- The avatar (A) must move boxes (*) into holes (o) to transform them into boxin (scored as +1)
+- Once all boxes are in holes (counter reaches 0), the player wins
+- The avatar can't walk through walls (w) and bounces off boxes
+- Ground (.) is walkable space
+
+Let me analyze the mechanics:
+1. Boxes start as `*` on ground
+2. When a box falls into a hole `o`, it becomes `boxin` and score increases by 1
+3. When `boxin` touches ground, it reverts to `box` and score decreases by 1
+4. Goal: Get all boxes into holes and keep them there
+
+I'll create a level that's moderately challenging with a good puzzle design:
+- Multiple boxes that need to be strategically placed
+- Holes positioned to

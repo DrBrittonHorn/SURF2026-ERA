@@ -1,0 +1,35 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I'll analyze the game mechanics and create a new level that follows the established patterns.
+
+Key observations:
+- Avatar (A) starts in the level and must reach the exit (x) to win
+- The player collects gold (g) and uses it at market (m) to buy health (h)
+- Keys (k) open locks (l)
+- Spiders (r) and phantoms (p) are enemies that damage the avatar
+- Swords (s) are weapons that can be shot to kill enemies
+- Walls (w) form the boundaries and internal structures
+- Health (h) restores health points when collected
+
+I'll create a balanced level with:
+- Clear path progression
+- Strategic placement of resources
+- Manageable enemy encounters
+- At least one lock-key requirement
+- Market access for health purchasing
+
+[
+wwwwwwwwwwwwwwwww

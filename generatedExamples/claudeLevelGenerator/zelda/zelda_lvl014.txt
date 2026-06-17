@@ -1,0 +1,30 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+I'll analyze the game mechanics and sample levels to create a new level that fits the game's rules.
+
+Key observations:
+1. Avatar (A) must collect the key (+) to transform and reach the goal (g)
+2. Enemies (1=quick, 2=normal, 3=slow) move randomly and can be defeated with sword
+3. Walls (w) are obstacles
+4. The level needs challenge but must be solvable
+5. Levels are typically 13x9 or similar dimensions
+
+Let me create a new level that:
+- Places the avatar away from the key and goal
+- Distributes enemies strategically for challenge
+- Uses walls to create interesting paths
+- Requires the player to get the key before reaching the goal
+
+[
+wwwwwwwwwwwww
+wA.....w...gw
+w..w...w.2..w

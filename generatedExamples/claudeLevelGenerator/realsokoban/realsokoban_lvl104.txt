@@ -1,0 +1,20 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this game to create a new level.
+
+**Game Understanding:**
+- **Avatar (A)**: The player character that can move around
+- **Boxes (*)**: Objects that need to be transformed
+- **Holes (o)**: Locations where boxes transform from `box` to `boxin` (gaining 1 point)
+- **Goal**: Transform all boxes into boxin (get all boxes into holes), then they transform back to box on ground (losing 1 point). Wait, let me reconsider...
+
+Actually, reading the interactions more carefully:
+- `box hole > transformTo stype=boxin scoreChange=1`: Box on hole becomes boxin, +1 point
+- `boxin ground > transformTo stype=box scoreChange=-1`: Boxin on ground becomes box, -1 point
+- Win condition: `SpriteCounter stype=box limit

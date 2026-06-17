@@ -1,0 +1,24 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+Looking at this game, I need to understand the mechanics:
+
+1. **Avatar (A)** is the player character that can move on ground/floor
+2. **Boxes (*)** need to be moved into holes (o) to transform into boxin and score points
+3. **Boxin** boxes on ground transform back to regular boxes (losing points)
+4. **Walls (w)** block movement
+5. **Goal**: Transform all boxes into boxin (in holes) - when box counter reaches 0, you win
+
+The strategy is:
+- Push boxes into holes to transform them into boxin
+- Keep boxin in holes (on the "hole" sprite, not just ground)
+- Win when all boxes are gone (transformed to boxin and staying there)
+
+Let me create a level that's challenging but solvable:
+- Multiple boxes that need to be pushed into holes
+- Walls to create

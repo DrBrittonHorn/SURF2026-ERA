@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to analyze this GVGAI game to create a valid level.
+
+**Game Mechanics Understanding:**
+- Avatar (A) is the player character that can move
+- Boxes (*) need to be pushed into holes (o) to transform into boxin (goal)
+- When a box is in a hole, it becomes boxin and score increases by 1
+- When boxin touches ground, it transforms back to box and score decreases by 1
+- Goal: Get all boxes into holes (reduce box count to 0)
+- Walls (w) block movement
+- The avatar bounces off boxes
+
+**Key observations from samples:**
+1. Levels have multiple boxes and holes
+2. Boxes need to be positioned so they can be pushed into holes
+3. Walls create a maze-like structure
+4. The puzzle requires strategic movement to get boxes into holes
+
+**Creating a new level:**
+I

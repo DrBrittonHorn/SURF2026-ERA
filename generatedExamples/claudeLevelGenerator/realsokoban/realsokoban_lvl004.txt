@@ -1,0 +1,22 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this GVGAI game that follows the rules and mechanics shown in the sample levels.
+
+Let me analyze the game:
+- Goal: Get all boxes (marked as `*`) into holes (marked as `o`), which transforms them to `boxin` (b)
+- The player (A) pushes boxes into holes to score points
+- When boxes in holes touch the ground again, they transform back to regular boxes (score -1)
+- The level should have walls (w), floor/ground (.), holes (o), boxes (*), and the avatar (A)
+- Win condition: all boxes must be transformed to boxin and stay that way (counter limit=0)
+
+Looking at the patterns:
+- Holes and boxes are strategically placed
+- The avatar needs paths to push boxes
+- Walls create boundaries and puzzle complexity
+- Multiple boxes and holes test the player's problem

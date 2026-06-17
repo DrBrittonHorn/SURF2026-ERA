@@ -1,0 +1,34 @@
+LevelMapping
+    p > phantom floor 
+    A > avatar floor 
+    r > spider floor 
+    s > weapon floor 
+    w > wall 
+    g > gold floor 
+    x > exit floor 
+    h > health floor 
+    k > key floor 
+    l > lock floor 
+    m > market floor 
+    . > floor 
+
+LevelDescription
+I need to analyze the game mechanics and create a new level that follows the same pattern as the samples.
+
+Key observations from the game:
+- Avatar (A) starts at some position and must reach the exit (x)
+- Avatar can collect resources: gold (g), health (h), key (k), and weapons (s)
+- Enemies: spiders (r) and phantoms (p) that deal damage
+- Locks (l) require keys to pass
+- Market (m) can trade gold for health
+- Walls (w) create maze structure
+- The level is 22x21 characters
+
+Looking at the sample levels, I notice:
+1. Avatar starts in various positions
+2. Exit is typically in corners or edges
+3. Locks create barriers requiring keys
+4. Resources are scattered throughout
+5. Enemies are placed strategically
+6. Markets provide health restoration points
+7. Walls create a

@@ -1,0 +1,36 @@
+LevelMapping
+    A > avatar floor 
+    d > lcdown floor 
+    f > firehole floor 
+    g > gold floor 
+    k > key floor 
+    l > lcleft floor 
+    m > lock floor 
+    . > floor 
+    1 > boulderRighthole floor 
+    2 > boulderLefthole floor 
+    r > lcright floor 
+    t > groundTrapHole floor 
+    u > lcup floor 
+    w > wall 
+    x > exit floor 
+
+LevelDescription
+I'll analyze the game rules and sample levels to create a new level.
+
+Key observations:
+1. Avatar (A) must collect a key (k) to open the lock (m) and reach the exit (x)
+2. Hazards include: fire (f), boulders (1, 2), ground traps (t), and lasers (l, r, u, d)
+3. Gold (g) provides points but isn't required
+4. The level needs to be challenging but solvable
+5. Walls (w) create the maze structure
+6. The avatar starts with 10 health points
+
+I'll create a level that:
+- Places the avatar in a defensible starting position
+- Requires collecting the key before reaching the exit
+- Includes moderate hazards that are avoidable
+- Has a logical progression through the level
+
+[
+wwwwwwwwwww

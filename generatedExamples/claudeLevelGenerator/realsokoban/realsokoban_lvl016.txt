@@ -1,0 +1,21 @@
+LevelMapping
+    A > avatar ground 
+    w > ground wall 
+    * > box ground 
+    . > ground 
+    o > floor hole 
+
+LevelDescription
+I need to create a new level for this GVGAI game where:
+- The goal is to transform all boxes (*) into boxin (boxes in holes) by pushing them into holes (o)
+- The avatar (A) can move around and push boxes
+- Walls (w) block movement
+- The level is won when all boxes are in holes (box count = 0)
+
+Let me analyze the game mechanics:
+1. Boxes (*) on floor can be pushed by the avatar
+2. When a box lands on a hole (o), it transforms into boxin and gives +1 score
+3. If boxin is on ground (not in hole), it transforms back to box and gives -1 score
+4. Win condition: all boxes transformed into boxin and removed from the board
+
+I'll create a challenging but solvable level with a good balance of boxes, holes, and strategic wall placement.
