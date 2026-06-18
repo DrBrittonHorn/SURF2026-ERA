@@ -52,3 +52,8 @@ for json_path in metric_paths:
     
     
     # TODO Change ERA color maps, one color transition, different color background
+    # Roguelike LLM regeneration
+    # Don't analyze non double/float metrics
+    # Fix calculateAllMetrics for non avatar
+    # Generate all graphs again
+    # Leniency/difficulty for all games
