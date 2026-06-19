@@ -26,13 +26,18 @@ public class PlaytraceDiversity{
             
             Path playtracePath = Path.of(path.toString().replace("generatedExamples", "generatedExamplesPlaytraces"));
             System.out.println(playtracePath.toString());
-            if (!Files.isRegularFile(playtracePath)){
-                try {
-                    //System.out.println("Making playtrace for " + path.toString());
-                    metricTools.createPlaytrace(path.toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
+            try {
+                if (!Files.isRegularFile(playtracePath) && metricTools.getLevelTiles(Files.readString(path)).contains("A")){
+                    try {
+                        //System.out.println("Making playtrace for " + path.toString());
+                        metricTools.createPlaytrace(path.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
             String playtraceData;
             try {
