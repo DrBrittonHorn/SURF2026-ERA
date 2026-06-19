@@ -33,7 +33,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     y_min = min(listY) - y_padding
     y_max = max(listY) + y_padding
 
-    hexbin = ax.hexbin(listX, listY, gridsize=75, extent=(x_min, x_max, y_min, y_max))
+    hexbin = ax.hexbin(listX, listY, gridsize=75, extent=(x_min, x_max, y_min, y_max), cmap="plasma")
     colorbar = fig.colorbar(hexbin, ax=ax)
     # colorbar.set_label("Count")
 

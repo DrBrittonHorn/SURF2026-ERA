@@ -11,6 +11,10 @@ import tools.metricCalculation.metricTools;
 
 public class MechanicUsage{
     public static JsonObject calculateMetric(String levelPath) throws IOException{
+        // return an error value if the level has no avatar
+        if (!metricTools.getLevelTiles(Files.readString(Path.of(levelPath))).contains("A")){
+            return new JsonObject();
+        }
         if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))){
             metricTools.createPlaytrace(levelPath);
         }
@@ -21,7 +25,7 @@ public class MechanicUsage{
             seenActions.put(actions[i], seenActions.getOrDefault(actions[i], 0)+1);
             //System.out.println(seenActions.get(actions[i]));
         }
-
+        
         
         // There is a total of 5 known actions
         //ACTION_RIGHT

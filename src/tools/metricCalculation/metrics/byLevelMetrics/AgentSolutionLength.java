@@ -9,7 +9,13 @@ import tools.metricCalculation.metricTools;
 
 public class AgentSolutionLength {
     // Returns -1 for levels that were not completed
+    
     public static double calculateMetric(String levelPath) throws IOException{
+        System.out.println(levelPath);
+        // return an error value if the level has no avatar
+        if (!metricTools.getLevelTiles(Files.readString(Path.of(levelPath))).contains("A")){
+            return -2;
+        }
         if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))){
             metricTools.createPlaytrace(levelPath);
         }

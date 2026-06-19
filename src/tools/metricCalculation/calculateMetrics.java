@@ -115,7 +115,7 @@ public class calculateMetrics {
                 try {
                     JsonObject fullGameJson = new JsonObject();
                     
-                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
+                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/")).parallel();
                     System.out.println("Creating metrics for... " + levelFolderPath + "/" + game.toString());
                     streamByLevel.forEach(level -> {
                         // If level file
