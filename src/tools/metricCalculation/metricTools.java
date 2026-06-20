@@ -154,7 +154,7 @@ public class metricTools {
                 // Represent boxes as movable
                 levelParts[1] = levelParts[1].replace("*", "B");
                 // Represent goal spaces as transparent
-                levelParts[1] = levelParts[1].replace("o", "T");
+                levelParts[1] = levelParts[1].replace("o", "G");
                 // Represent walls as standard block
                 levelParts[1] = levelParts[1].replace("w", "S");
             }
@@ -224,7 +224,7 @@ public class metricTools {
             }
             else{
                 String out = "No spatial mapping found for " + level;
-                System.out.println(out);
+                //System.out.println(out);
             }
             // If the level contains its original description mapping as well as the level itself
             if (levelParts.length == 2){

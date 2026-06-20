@@ -23,7 +23,9 @@ public class NGramSimilarity2D {
         String[] inputLevelLines = levelMap.trim().split(System.lineSeparator());
         for (String s: inputLevelLines){if (s.length() > longestLineLength){longestLineLength = s.length();}}
         //System.out.println("Longest" + longestLineLength);
-        for (String s : inputLevelLines){System.out.println("length" + s.length());}
+        for (String s : inputLevelLines){
+            //System.out.println("length" + s.length());
+        }
         for (int i = 0; i < inputLevelLines.length; i++){
             if (inputLevelLines[i].length() < longestLineLength){
                 for (int j = 0; j < longestLineLength-inputLevelLines[i].length(); j++){

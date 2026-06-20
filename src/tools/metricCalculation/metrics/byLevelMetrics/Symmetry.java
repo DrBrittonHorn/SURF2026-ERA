@@ -24,10 +24,10 @@ public class Symmetry {
                 row.add(padding);
             }
         }
-        System.out.println(levelArray);
+        //System.out.println(levelArray);
 
-        System.out.println("Vsym" + vSymmetry(levelArray));
-        System.out.println("Hsym" + vSymmetry(transposeArrayList(levelArray)));
+        //System.out.println("Vsym" + vSymmetry(levelArray));
+        //System.out.println("Hsym" + vSymmetry(transposeArrayList(levelArray)));
         return .5 * vSymmetry(levelArray) + .5 * vSymmetry(transposeArrayList(levelArray));
     }
 
