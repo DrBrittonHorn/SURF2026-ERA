@@ -23,7 +23,9 @@ public class KLDivergence2D {
         String[] inputLevelLines = levelMap.trim().split(System.lineSeparator());
         for (String s: inputLevelLines){if (s.length() > longestLineLength){longestLineLength = s.length();}}
         //System.out.println("Longest" + longestLineLength);
-        for (String s : inputLevelLines){System.out.println("length" + s.length());}
+        for (String s : inputLevelLines){
+            //System.out.println("length" + s.length());
+        }
         for (int i = 0; i < inputLevelLines.length; i++){
             if (inputLevelLines[i].length() < longestLineLength){
                 inputLevelLines[i] += paddingToken.repeat(longestLineLength - inputLevelLines[i].length());                
@@ -83,8 +85,8 @@ public class KLDivergence2D {
             catch (IOException e1) {e1.printStackTrace();}
         }
 
-            System.out.println(inputPatternCounts);
-            System.out.println(examplesPatternCounts);
+            //System.out.println(inputPatternCounts);
+            //System.out.println(examplesPatternCounts);
 
             HashMap<String, Double> inputPatternDistribution = new HashMap<String, Double>();
             HashMap<String, Double> examplesPatternDistribution = new HashMap<String, Double>();

@@ -51,10 +51,7 @@ for json_path in metric_paths:
                 create_ERA_graph((metric1, metric2), json_path)
     
     
-    # TODO, one color transition, different color background
-    # Roguelike LLM regeneration
+    # TODO, one color transition, different color background: Other colorbars are not contrastive enough
     # Don't analyze non double/float metrics
-    # Fix calculateAllMetrics for non avatar
     # Generate all graphs again
-    # Leniency/difficulty for all games
     # Find most meaningful metrics

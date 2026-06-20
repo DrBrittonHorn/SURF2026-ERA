@@ -12,27 +12,34 @@ import tools.metricCalculation.metricTools;
 //https://arxiv.org/pdf/2204.06934
 
 public class NoveltyScore {
-    public static double calculateMetric(String generatorFolderPath) throws IOException{
+    public static double calculateMetric(String generatorFolderPath) {
         ArrayList<String> levels = new ArrayList<String>();
-        Stream<Path> levelPaths = Files.walk(Path.of(generatorFolderPath)).filter(p -> p.toString().endsWith(".txt"));
-        
-        levelPaths.forEach(path -> {
-            try {
-                String levelMap = metricTools.getLevelTiles(Files.readString(path));
-                levels.add(levelMap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        Stream<Path> levelPaths;
+        try {
+            levelPaths = Files.walk(Path.of(generatorFolderPath)).filter(p -> p.toString().endsWith(".txt"));
+            levelPaths.forEach(path -> {
+                try {
+                    String levelMap = metricTools.getLevelTiles(Files.readString(path));
+                    levels.add(levelMap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
-        double totalNormalizedDistance = 0;
-        for (String s1 : levels){
-            for (String s2 : levels){
-                System.out.println(normalizedHammingDistance(s1, s2));
-                totalNormalizedDistance += normalizedHammingDistance(s1, s2);
+            double totalNormalizedDistance = 0;
+            for (String s1 : levels){
+                for (String s2 : levels){
+                    //System.out.println(normalizedHammingDistance(s1, s2));
+                    totalNormalizedDistance += normalizedHammingDistance(s1, s2);
+                }
             }
+            return totalNormalizedDistance / levels.size();
+        } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
         }
-        return totalNormalizedDistance / levels.size();
+        
+        return -1;
     }
 
     public static double normalizedHammingDistance(String str1, String str2){

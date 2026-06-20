@@ -43,7 +43,7 @@ public class FloodReachability {
             }
         }
         
-        // Actual BFS logic
+        // Actual DFS logic
         Stack<AbstractMap.SimpleEntry<Integer, Integer>> todo = new Stack<AbstractMap.SimpleEntry<Integer, Integer>>();
         if (avatarLocation == null){return -2;} // No avatar
         else{todo.push(avatarLocation);}

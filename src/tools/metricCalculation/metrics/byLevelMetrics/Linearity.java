@@ -44,8 +44,9 @@ public class Linearity {
 
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
+        String testLevel3 = Files.readString(Path.of("generatedExamples\\\\constructiveLevelGenerator\\\\asteroids\\\\asteroids_lvl057.txt"));
         String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
-        System.out.println(calculateMetric(testLevel2));
+        System.out.println(calculateMetric(testLevel1));
     }
     
         /**
