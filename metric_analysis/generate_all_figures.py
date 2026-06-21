@@ -10,12 +10,13 @@ import os
 # Usage: Update the metric paths list to choose which folders to generate all figures for
 
 metric_paths = [
-    "generatedExamples/constructiveLevelGenerator/metrics.json",
-    "generatedExamples/fineTunedLLMGenerator/metrics.json",
-    "generatedExamples/geminiLevelGenerator/metrics.json"
-    "generatedExamples/geneticLevelGenerator/metrics.json",
-    "generatedExamples/localLanguageModel/metrics.json",
-    "generatedExamples/randomLevelGenerator/metrics.json",
+    #"generatedExamples/constructiveLevelGenerator/levelMetrics.json",
+    #"generatedExamples/claudeLevelGenerator/levelMetrics.json",
+    #"generatedExamples/fineTunedLLMGenerator/levelMetrics.json",
+    "generatedExamples/geminiLevelGenerator/levelMetrics.json",
+    "generatedExamples/geneticLevelGenerator/levelMetrics.json",
+    "generatedExamples/localLanguageModel/levelMetrics.json",
+    "generatedExamples/randomLevelGenerator/levelMetrics.json",
     ]
 
 
@@ -36,7 +37,9 @@ for json_path in metric_paths:
     available_metrics = []
     for key in keys:
         available_metrics.append(key)
-    available_metrics.remove("Binning") # Not a true metric
+    # Remove non-plottable fields (ex. Binning*) (These fields are demarcated by an asterisk).
+    for i in available_metrics:
+        if '*' in i: available_metrics.remove(i)
 
     # Create histograms
     print(available_metrics)
@@ -51,7 +54,6 @@ for json_path in metric_paths:
                 create_ERA_graph((metric1, metric2), json_path)
     
     
-    # TODO, one color transition, different color background: Other colorbars are not contrastive enough
-    # Don't analyze non double/float metrics
-    # Generate all graphs again
+    # TODO
     # Find most meaningful metrics
+    # Troubleshoot metrics

@@ -22,7 +22,8 @@ def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exc
                 listY.append(metrics[selected_metrics_tuple[1]])
             
 
-    print(f"Creating a Density Estimation chart with {len(listX)} levels as data points")
+    print(f"Creating a Density Estimation chart with {len(listX)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")
+    if (len(listX) == 0): return
     
     lists.append(listX)
     lists.append(listY)
@@ -49,7 +50,7 @@ def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exc
 
     # Set exterior characteristics
     generator_name = json_path.split("/")[1]
-    if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
+    if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
     plt.title(get_official_generator_title(json_path) + "" + game_name + " Density Estimation Chart")
     plt.xlabel(get_official_metric_title(selected_metrics_tuple[0]))

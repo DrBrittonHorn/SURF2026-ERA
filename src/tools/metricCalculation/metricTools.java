@@ -409,8 +409,8 @@ public class metricTools {
         String selectedAgent = sampleOLETSController;
         
         String recordActionsFile = levelPath.replace("generatedExamples", "generatedExamplesPlaytraces");
-        // If the level playtrace already exists, don't make a new one
-        if (Files.isRegularFile(Path.of(recordActionsFile))){
+        // If the level playtrace already exists and isn't blank, don't make a new one
+        if (Files.isRegularFile(Path.of(recordActionsFile)) && !Files.readString(Path.of(recordActionsFile)).isBlank()){
             return;
         }
         // Create parent directories
@@ -423,13 +423,32 @@ public class metricTools {
 
         String gameName = levelPath.split("/|\\\\")[2];
         
-        String levelNoTileMapping = Files.readString(Path.of(levelPath));
-        if (levelNoTileMapping.split("LevelDescription").length > 1){
-            levelNoTileMapping = levelNoTileMapping.split("LevelDescription")[1].trim();
+        String levelTilesOnly = Files.readString(Path.of(levelPath));
+        if (levelTilesOnly.split("LevelDescription").length > 1){
+            levelTilesOnly = levelTilesOnly.split("LevelDescription")[1].trim();
         }
-        String tempLevelPath = "src/tools/metricCalculation/tempFiles/tempLevelMap.txt";
-        Files.writeString(Path.of(tempLevelPath), levelNoTileMapping);
+        // Add padding tokens to temporarily correct ragged rows (Otherwise, avatar may not be detected)
+        int maxLength = 0;
+        String[] levelArray = levelTilesOnly.split("\r\n");
+        for (int i = 0; i < levelArray.length; i++){
+            if (levelArray[i].length() > maxLength){
+                maxLength = levelArray[i].length();
+            }
+        }
+        for (int i = 0; i < levelArray.length; i++){
+            levelArray[i] += ".".repeat(maxLength - levelArray[i].length());            
+        }
+        levelTilesOnly = String.join("\n", levelArray);
+        //System.out.println(levelTilesOnly);
 
+        String levelPathSuffix = levelPath.split("/|\\\\")[2] + levelPath.split("/|\\\\")[3];
+        String tempLevelPath = "src/tools/metricCalculation/tempFiles/" + levelPathSuffix;
+        Files.writeString(Path.of(tempLevelPath), levelTilesOnly);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ArcadeMachine.runOneGame("examples/selectedGameFiles/" + gameName + ".txt", tempLevelPath, false, selectedAgent, recordActionsFile, 0, 0);
         //String[] levelOutcome = Files.readString(Path.of(recordActionsFile)).split("\n");
         //String[] levelActions = new String[levelOutcome.length-1];

@@ -15,7 +15,8 @@ public class MechanicUsage{
         if (!metricTools.getLevelTiles(Files.readString(Path.of(levelPath))).contains("A")){
             return new JsonObject();
         }
-        if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))){
+        if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))
+            || Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces"))).isBlank()){
             metricTools.createPlaytrace(levelPath);
         }
         String[] actions = Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces"))).split("\n");

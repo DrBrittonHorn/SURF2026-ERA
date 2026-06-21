@@ -29,7 +29,7 @@ public class PlaytraceDiversity{
                 Path playtracePath = Path.of(path.toString().replace("generatedExamples", "generatedExamplesPlaytraces"));
                 //System.out.println(playtracePath.toString());
                 try {
-                    if (!Files.isRegularFile(playtracePath) && metricTools.getLevelTiles(Files.readString(path)).contains("A")){
+                    if ((!Files.isRegularFile(playtracePath) || Files.readString(playtracePath).isBlank()) && metricTools.getLevelTiles(Files.readString(path)).contains("A")){
                         try {
                             //System.out.println("Making playtrace for " + path.toString());
                             metricTools.createPlaytrace(path.toString());

@@ -18,12 +18,13 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
         # print(listX)
 
     print(f"Creating a Histogram chart with {len(listX)} levels as data points")
-
+    if (len(listX) == 0): return
 
     fig, ax = plt.subplots()
 
     ax.hist(listX, bins=100, linewidth=0.5, edgecolor="white")
 
+    
     ax.set(xlim = (min(listX), max(listX)))
     # Set exterior characteristics
     generator_name = json_path.split("/")[1]
