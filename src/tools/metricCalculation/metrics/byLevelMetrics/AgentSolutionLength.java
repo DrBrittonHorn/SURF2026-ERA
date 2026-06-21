@@ -16,9 +16,12 @@ public class AgentSolutionLength {
         if (!metricTools.getLevelTiles(Files.readString(Path.of(levelPath))).contains("A")){
             return -2;
         }
-        if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))){
+        if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))
+            || Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces"))).isBlank()){
             metricTools.createPlaytrace(levelPath);
+            System.out.println("Making playtrace");
         }
+        
         String[] actions = Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces"))).split("\n");
         if (actions[0].charAt(2) == '0'){return -1;} // Check index of win/loss in playtrace data. Losses have no length so they return -1
         else {return actions.length-1;}

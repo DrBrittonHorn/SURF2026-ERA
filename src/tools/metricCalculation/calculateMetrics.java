@@ -63,14 +63,14 @@ public class calculateMetrics {
         levelMetrics.addProperty("BalanceVertical", BalanceVertical.calculateMetric(levelText));
         levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
-        levelMetrics.addProperty("DecorationFrequenct", DecorationFrequency.calculateMetric(levelText));
-        levelMetrics.addProperty("HazardTileRation", HazardTileRatio.calculateMetric(levelText));
+        levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelText));
+        levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelText));
         levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
         levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelText));
         // Put metrics that require the levelPath here
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
-        //levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
-        //levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
+        levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
+        levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
 
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk
@@ -117,12 +117,12 @@ public class calculateMetrics {
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
-            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")).parallel(); // Remove parallelization if causing problems
+            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")); // Remove parallelization if causing problems
             streamByGame.forEach(game -> {
                 try {
                     JsonObject fullGameJson = new JsonObject();
                     
-                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
+                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/")).parallel();
                     System.out.println("Creating metrics for... " + levelFolderPath + "/" + game.toString());
                     streamByLevel.forEach(level -> {
                         // If level file
@@ -147,6 +147,7 @@ public class calculateMetrics {
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
+                    
                 }
             });
             /*String fullJsonString = "";
