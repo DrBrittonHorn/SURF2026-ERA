@@ -17,7 +17,7 @@ import tools.metricCalculation.metricTools;
 
 public class StaticPathLength {
     public static double calculateMetric(String levelPath) throws IOException{
-        System.out.println(levelPath);
+        //System.out.println(levelPath);
         List<String> enemiesAreGoal = new ArrayList<>();
         enemiesAreGoal.add("aliens");
         enemiesAreGoal.add("asteroids");
@@ -26,11 +26,12 @@ public class StaticPathLength {
         String gameName = levelPath.split("\\\\|/")[2];
         String levelText = metricTools.applySpatialMapping(Files.readString(Path.of(levelPath)));
         if (enemiesAreGoal.contains(gameName)){levelText = levelText.replace("E", "G");}
+        // Return if no avatar detected
+        if (!metricTools.getLevelTiles(Files.readString(Path.of(levelPath))).contains("A")){
+            return -2;
+        }
+
         ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(levelText);
-
-        
-
-        System.out.println(gameName);
 
             double distanceSum = 0;
             ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> goals = new ArrayList<AbstractMap.SimpleEntry<Integer, Integer>>();
@@ -79,6 +80,7 @@ public class StaticPathLength {
 
         String testLevel1 = "generatedExamples/geminiLevelGenerator/zelda/zelda_lvl003.txt";
         testLevel1 = ("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl000.txt");
+        testLevel1 = "generatedExamples\\geminiLevelGenerator\\frogs\\frogs_lvl142.txt";
         //testLevel1 = PreprocessLevel.applySpatialMapping(testLevel1);
         System.out.println(metricTools.applySpatialMapping(testLevel1));
         System.out.println("Path length is... " + calculateMetric(testLevel1));

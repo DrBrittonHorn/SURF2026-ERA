@@ -122,14 +122,14 @@ public class calculateMetrics {
                 try {
                     JsonObject fullGameJson = new JsonObject();
                     
-                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/")).parallel();
+                    Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
                     System.out.println("Creating metrics for... " + levelFolderPath + "/" + game.toString());
                     streamByLevel.forEach(level -> {
                         // If level file
                         if (level.toString().endsWith(".txt")){
                             try {
                                 fullGameJson.add(level.toString(), createLevelMetricJson(level));
-                                System.out.print("\r" + level.toString() + " completed!                           "); // (Load-bearing space characters)
+                                System.out.print("\r" + level.toString() + " completed!                           \r"); // (Load-bearing space characters)
                                 
                             } catch (IOException e) {
                                 // TODO Auto-generated catch block
