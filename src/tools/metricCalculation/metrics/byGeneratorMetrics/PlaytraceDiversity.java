@@ -82,9 +82,8 @@ public class PlaytraceDiversity{
             // Calculate distances between all playtraces
             for (int i = 0; i < processedPlaytraceStrings.size(); i++){
                 for (int j = i; j < processedPlaytraceStrings.size(); j++){
-                    double difference = LevenshteinDistance.levenshteinFullMatrix(processedPlaytraceStrings.get(i), processedPlaytraceStrings.get(j));
-                    int max = Math.max(processedPlaytraceStrings.get(i).length(), processedPlaytraceStrings.get(j).length());
-                    accumulatedDifference += difference / max;
+                    double difference = LevenshteinDistance.levenshteinFullMatrixNormalized(processedPlaytraceStrings.get(i), processedPlaytraceStrings.get(j));
+                    accumulatedDifference += difference;
                     totalComparisons++;
                 }
             }

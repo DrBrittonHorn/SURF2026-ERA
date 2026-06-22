@@ -13,7 +13,6 @@ import tools.metricCalculation.metricTools;
 public class JensenShannonDivergence2D {
     public static double calculateMetric(String levelText, int windowSize){
         
-        boolean ignorePaddingNGrams = true;
         String paddingToken = "~";
         String levelMap = metricTools.getLevelTiles(levelText);
         String gameFile = metricTools.getGameFilePath(levelText);
@@ -82,42 +81,45 @@ public class JensenShannonDivergence2D {
             catch (IOException e1) {e1.printStackTrace();}
         }
 
-            //System.out.println(inputPatternCounts);
-            //System.out.println(examplesPatternCounts);
-
-            HashMap<String, Double> inputPatternDistribution = new HashMap<String, Double>();
-            HashMap<String, Double> examplesPatternDistribution = new HashMap<String, Double>();
-            HashMap<String, Double> mixedPatternDistribution = new HashMap<String, Double>();
+        
+        return JSDivergence(inputPatternCounts, examplesPatternCounts, totalInputWindows, totalExamplesWindows);
+    }
+    public static void main(String[] args) throws IOException{
+        String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
+        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
+        System.out.println(calculateMetric(testLevel2, 4));
+        //0.6743096984923541
+    }
+    
+    public static double JSDivergence(HashMap<String, Integer> counts1, HashMap<String, Integer> counts2, int totalWindows1, int totalWindows2){
+        HashMap<String, Double> distribution1 = new HashMap<String, Double>();
+        HashMap<String, Double> distribution2 = new HashMap<String, Double>();
+        HashMap<String, Double> mixedPatternDistribution = new HashMap<String, Double>();
 
             // Convert counts to distributions
-            for (String pattern : inputPatternCounts.keySet()){
-                inputPatternDistribution.put(pattern, inputPatternCounts.get(pattern) / (double) totalInputWindows);
-                mixedPatternDistribution.put(pattern, inputPatternCounts.get(pattern) / ((double) totalInputWindows)/2);}
-            for (String pattern : examplesPatternCounts.keySet()){
-                examplesPatternDistribution.put(pattern, examplesPatternCounts.get(pattern) / (double) totalExamplesWindows);
-                mixedPatternDistribution.put(pattern, examplesPatternCounts.get(pattern) / ((double) totalExamplesWindows)/2 + mixedPatternDistribution.getOrDefault(pattern, 0.0));}
+            for (String pattern : counts1.keySet()){
+                distribution1.put(pattern, counts1.get(pattern) / (double) totalWindows1);
+                mixedPatternDistribution.put(pattern, counts1.get(pattern) / ((double) totalWindows1)/2);}
+            for (String pattern : counts2.keySet()){
+                distribution2.put(pattern, counts2.get(pattern) / (double) totalWindows2);
+                mixedPatternDistribution.put(pattern, counts2.get(pattern) / ((double) totalWindows2)/2 + mixedPatternDistribution.getOrDefault(pattern, 0.0));}
                 
             // Calculate metric by iterating through the objects present in the input level
             double JSDivergence = 0;
-            for (String pattern : inputPatternDistribution.keySet()){
-                double p = inputPatternDistribution.get(pattern);
+            for (String pattern : distribution1.keySet()){
+                double p = distribution1.get(pattern);
                 double q = mixedPatternDistribution.getOrDefault(pattern, 0.0);
                 JSDivergence += .5 * (p * Math.log(p / q) / Math.log(2));
                 }
-            for (String pattern : examplesPatternDistribution.keySet()){
-                double p = examplesPatternDistribution.get(pattern);
+            for (String pattern : distribution2.keySet()){
+                double p = distribution2.get(pattern);
                 double q = mixedPatternDistribution.getOrDefault(pattern, 0.0);
                 JSDivergence += .5 * (p * Math.log(p / q) / Math.log(2));
                 }
             
             return JSDivergence;
     }
-    public static void main(String[] args) throws IOException{
-        String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
-        System.out.println(calculateMetric(testLevel2, 4));
-    }
-    
+
 }
 
 

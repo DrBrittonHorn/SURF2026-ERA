@@ -11,8 +11,9 @@ import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
-import tools.metricCalculation.metrics.byGeneratorMetrics.NoveltyScore;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNoveltyScore;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity2D;
 import tools.metricCalculation.metrics.byGeneratorMetrics.PlaytraceDiversity;
 import tools.metricCalculation.metrics.byLevelMetrics.AgentSolutionLength;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceHorizontal;
@@ -186,9 +187,10 @@ public class calculateMetrics {
             JsonObject fullGameJson = new JsonObject();
             System.out.println("Creating metrics for the folder... " + generatorFolderPath + "/" + game.toString());
             //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
-            fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
-            fullGameJson.addProperty("NoveltyScore", NoveltyScore.calculateMetric(generatorFolderPath));
-            fullGameJson.addProperty("PLaytraceDiversity", PlaytraceDiversity.calculateMetric(generatorFolderPath));
+            fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(game.toString(), 5));
+            fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString()));
+            fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(generatorFolderPath));
+            fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(generatorFolderPath));
             try {
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
             } catch (IOException e) {

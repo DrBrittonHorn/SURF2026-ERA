@@ -27,8 +27,8 @@ public class LevenshteinDistance {
         for (Path p : examplePaths){
             String exampleMap = metricTools.getLevelTiles(Files.readString(p));
             //System.out.println(exampleMap);
-            double distance = levenshteinFullMatrix(levelMap, exampleMap);
-            accumulatedDifference += distance / Math.max(exampleMap.length(), levelMap.length());
+            double distance = levenshteinFullMatrixNormalized(levelMap, exampleMap);
+            accumulatedDifference += distance;
         }
 
         //System.out.println(levelMap);
@@ -43,7 +43,7 @@ public class LevenshteinDistance {
     }
 
 
-    public static int levenshteinFullMatrix(String str1, String str2) {
+    public static double levenshteinFullMatrixNormalized(String str1, String str2) {
         int m = str1.length();
         int n = str2.length();
 
@@ -80,7 +80,8 @@ public class LevenshteinDistance {
         }
 
         // Result is stored in the bottom-right cell of the DP array
-        return dp[m][n];
+        int result =  dp[m][n];
+        return result / (double) Math.max(str1.length(), str2.length());
     }
 
 }
