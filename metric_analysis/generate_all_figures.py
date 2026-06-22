@@ -57,3 +57,8 @@ for json_path in metric_paths:
     # TODO
     # Find most meaningful metrics
     # Troubleshoot metrics
+    # Pipeline to generate all figures complete
+    # Difficulty implementation choices
+    # A* replacement and implementation choices
+    # Playtraces taking forever
+    # Playtraces not parallelizable
