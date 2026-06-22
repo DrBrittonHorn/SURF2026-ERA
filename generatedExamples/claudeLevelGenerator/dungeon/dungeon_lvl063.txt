@@ -1,31 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to create a new level for this GVGAI game. Let me analyze the game mechanics:
-
-1. **Goal**: Collect gold (g), get the key (k), unlock the lock (m), and reach the exit (x)
-2. **Hazards**: Fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
-3. **Avatar**: Starts at A, has 10 health points
-4. **Resources**: Gold gives 1 point, exit gives 10 points, lasercannon gives 2 points
-5. **Level size**: 22x21 (based on samples)
-
-Key observations from samples:
-- Avatar usually placed in lower half
-- Key and lock positioned to require some navigation
-- Gold scattered throughout
-- Mix of hazards (fire, boulders, traps, las
+wwwwwwwwwwwwwwwwwwwwww
+w.......d...dxw......w
+w...A.....gg..w..g...w
+wwwwwww.......w...f..w
+w.f.......f...wwwwww.w
+w...g.g1.......w.....w
+w......w.......wwww..w
+wwwwww.w............2w
+w......w..wwww.......w
+w...w...g...w....f...w
+w...w.f..u..w........w
+wwwwwwwwwwmwwwwwwwwwww
+w...f..kww.w.........w
+w...wwwww..wgg....f..w
+w...w......wwwwww....w
+w......www...........w
+wwwwwwwgfg....wwwwwwww
+w1...................w
+w.....w...........t..w
+w.....w.....g........w
+wwwwwwwwwwwwwwwwwwwwww

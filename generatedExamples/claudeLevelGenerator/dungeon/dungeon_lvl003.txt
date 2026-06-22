@@ -1,37 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new level.
-
-Key observations:
-- Avatar (A) must collect gold (g) and key (k) to unlock the exit (x)
-- The level needs strategic placement of obstacles: fire (f), boulders (1,2), ground traps (t), and laser cannons (l,r,u,d)
-- Walls (w) create the maze structure
-- Lock (m) requires key to pass
-- Various hazards damage or kill the avatar
-
-I'll create a balanced level with:
-- Avatar starting position with nearby gold
-- Strategic path to collect key and other gold
-- Moderate hazard placement
-- Lock protecting the exit path
-- Mix of different trap types
-
-[
 wwwwwwwwwwwwwwwwwwwwww
-w.......g...f.wg....xw
+wx..........d...w.....w
+w.A.g.......w...g....w
+wwwwwww.......w......ww
+wf.........f..wwwwwwww
+wk..g.g.......w.f....w
+w......w...f...wwww..w
+wwwwww.w............2w
+w......w..wwww.......w
+w...w...g...w........w
+w...w1......w........w
+wwwwwwwwwwmwwwwwwwwwww
+w.......wwtwl........w
+w...wwwww..wgg...f...w
+w...w......wwwwww....w
+w......www...........w
+wwwwwwwg.g.t..wwwwwwww
+w......w...................w
+w.....w...f.......u..w
+w.....w.....g........w
+wwwwwwwwwwwwwwwwwwwwww

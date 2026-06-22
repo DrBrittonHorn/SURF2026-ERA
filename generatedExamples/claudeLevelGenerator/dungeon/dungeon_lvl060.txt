@@ -1,33 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game rules and sample levels to create a new level.
-
-From the game description, I can see:
-- Avatar (A) needs to collect gold (g) and a key (k)
-- The key unlocks the lock (m) to reach the exit (x)
-- Hazards include: fire (f), boulders (1, 2), ground traps (t), and laser cannons (l, r, u, d)
-- Avatar has 10 health points
-- Goal: Reach exit after collecting key (requires passing through lock)
-
-Looking at the sample levels, I notice:
-- They're all 22x21 grids surrounded by walls
-- Gold is scattered throughout (typically 11 pieces to match the limit)
-- The key is placed strategically before the lock
-- The exit is placed after the lock area
-- Hazards are distributed but not overwhelming
+wwwwwwwwwwwwwwwwwwwwww
+w.......A........d....w
+w...g.g.........www...w
+wwwww.....f.....w.....w
+w1.........................w
+wwwwwwwwwwww.w.w.wwwwww
+w.ww.w..g..w.w...wwwgw
+w..w.wwwww.wmwwwww.w.w
+w..f...........f.....w
+w.wwww.......wwwwwwwww
+w.w..w...f...w.g...g.w
+wkw..w.......w...wg..w
+wwwwwww......w.......w
+t......t.....wwwww.www
+w.w............d....gw
+w.wwwww..wwww........w
+w.w...t..w.g.........2
+w...wwgw.wwwwr.......w
+w.wwwwww..........lggw
+wxwg............u....w
+wwwwwwwwwwwwwwwwwwwwww

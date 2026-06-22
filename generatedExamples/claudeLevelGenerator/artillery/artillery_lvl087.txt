@@ -1,26 +1,18 @@
 LevelMapping
     A > avatar 
-    B > bouncey 
-    b > box 
-    d > breakable 
     w > wall 
-    G > pad 
 
 LevelDescription
-I need to analyze this GVGAI game to understand the mechanics and create a new level.
-
-Key observations:
-1. Avatar (A) shoots bullets at targets (pad = G)
-2. Goal: Destroy all pads (G) to win
-3. Breakable blocks (d) can be destroyed by bullets
-4. Bouncey tiles (B) cause bullets to bounce
-5. Boxes (b) can be pushed and interact with various elements
-6. Walls (w) block movement and stop bullets
-7. Avatar loses if destroyed (SpriteCounter stype=avatar win=False)
-
-From the samples, I can see:
-- Avatar is placed at bottom left (A)
-- Multiple pads (G) scattered throughout the level
-- Breakable blocks create obstacles/puzzles
-- Bouncey tiles add complexity by deflecting bullets
-- The player must find angles to hit
+wwwwwwwwwwwwwwwwwwwwww
+w    ddd        G    w
+w   d   d             w
+w  d     d   B       w
+w  d  B  d    dd     w
+w  d     d   d  d    w
+w   d   d    d  d    w
+w    ddd     dd  G   w
+w     d              w
+w    dd         B    w
+w G      d           w
+wA    wwwwww         w
+wwwwwwwwwwwwwwwwwwwwww

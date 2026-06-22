@@ -1,27 +1,12 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to create a level for this puzzle game where:
-- The avatar (A) must push boxes (*) into holes (o) to transform them into boxin (scored sprites)
-- Once all boxes are in holes, the player wins
-- Walls (w) block movement
-- The player must strategically navigate to push boxes into holes
-
-Let me analyze the game mechanics:
-1. Boxes (*) on holes (o) transform to boxin and score +1
-2. Boxin on ground transforms back to box and scores -1
-3. Avatar pushes boxes but bounces back if boxes hit walls
-4. Win condition: all boxes must be in holes (box count = 0)
-
-I'll create a level that's moderately challenging with a good puzzle layout:
-
-[
-wwwwwwwwww
-w...A...w
-w.***...w
-w.o.o...w
+wwwwwwwwwwww
+w....A...ww
+w...o*....ww
+w....o*...ww
+w.......w.ww
+w...o*....ww
+wwwwwwwwwwww

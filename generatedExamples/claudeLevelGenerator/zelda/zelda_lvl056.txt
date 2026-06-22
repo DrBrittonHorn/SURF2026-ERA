@@ -1,32 +1,14 @@
 LevelMapping
-    A > floor nokey 
-    1 > floor monsterQuick 
-    2 > floor monsterNormal 
-    3 > floor monsterSlow 
+    A > avatar 
     w > wall 
-    g > floor goal 
-    + > floor key 
-    . > floor 
 
 LevelDescription
-Looking at the game description and sample levels, I need to create a level where:
-- Avatar (A) starts in a safe location
-- Key (+) must be collected to reach the goal (g)
-- Enemies (1, 2, 3) provide combat challenges
-- Walls (w) create maze-like structure
-- Floor (.) fills empty spaces
-
-I'll analyze the pattern from samples:
-- Levels are 13x9 grids (typical GVGAI)
-- Key is usually placed away from avatar
-- Goal is placed after the key location
-- Mix of 1-3 enemies to create varying difficulty
-- Wall patterns create pathways and obstacles
-
-Creating a new level with good challenge balance:
-
-[
 wwwwwwwwwwwww
-w.....1.....w
-w.A.w......gw
-w...w..+...ww
+w.3.w+.1...gw
+w....w......w
+wA...w.2....w
+w.w..w......w
+w.w.......2.w
+w..wwww.....w
+w.....w...3.w
+wwwwwwwwwwwww

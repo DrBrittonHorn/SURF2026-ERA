@@ -1,22 +1,13 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to create a new level for this GVGAI game. Let me understand the mechanics:
-
-1. **Goal**: Transform all boxes (*) into boxin (.) by dropping them into holes (o), scoring +1 each time
-2. **Avatar (A)**: The player character that can move around
-3. **Boxes (*)**: Need to be pushed into holes to transform into boxin
-4. **Holes (o)**: Boxes dropped here transform into boxin and score points
-5. **Walls (w)**: Obstacles that block movement
-6. **Win condition**: All boxes must be transformed (box counter = 0)
-
-Looking at the sample levels, I can see:
-- They have varying complexity in box-hole placement
-- Some levels have multiple boxes and holes requiring strategic pushing
-- The avatar needs accessible paths to push boxes toward holes
-- Holes are marked with 'o'
+wwwwwwww
+w......w
+wA.*o*.w
+w..*o*.w
+w......w
+w.*o*..w
+w......w
+wwwwwwww

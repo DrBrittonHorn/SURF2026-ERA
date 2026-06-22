@@ -1,35 +1,16 @@
 LevelMapping
-    A > avatar grass 
-    B > avatar log water 
-    g > grass goal 
-    + > grass 
-    l > highway fastLtruck 
-    - > highway slowRtruck 
-    . > highway grass 
-    0 > water grass 
-    1 > forestDense water 
-    2 > forestDense log 
-    3 > forestSparse water 
-    4 > forestSparse log 
-    w > wall grass 
-    x > highway fastRtruck 
-    = > log water 
-    _ > highway slowLtruck 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-Looking at this game, I need to understand the mechanics:
-
-1. The avatar (A or B) needs to reach the goal (g) to win
-2. The avatar can ride on logs (=) to cross water (0)
-3. Trucks move horizontally and kill the avatar
-4. The avatar must avoid trucks while navigating to the goal
-5. Logs spawn from forest areas and move left
-6. Water is the barrier that requires logs to cross
-
-Let me analyze the patterns:
-- The goal (g) is always in row 1
-- The avatar starts at row 9
-- Water sections (0) are in rows 2-4
-- Grass/safe zones (g, +, w) surround the water
-- Trucks move on the highway (row 6-8) with patterns like `----`, `xxxx`, `_____`, `llll`
-- Logs spawn from
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+++++++++++++wgw+++++++++++++
+000===0======0=============2
+00000========00000000000032
+000===000===000====000===042
+wwwwwwwww++wwwwwwwwwwwwwwwww
+....xxxxxx.x...xxxxxxxxx....
+.-.....xxx.......xxx....xx..
+..xxx..xxxxxxxx..xxxx..xxx..
+w+++++++A++++++++++++++++++w
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

@@ -1,38 +1,16 @@
 LevelMapping
-    A > avatar grass 
-    B > avatar log water 
-    g > grass goal 
-    + > grass 
-    l > highway fastLtruck 
-    - > highway slowRtruck 
-    . > highway grass 
-    0 > water grass 
-    1 > forestDense water 
-    2 > forestDense log 
-    3 > forestSparse water 
-    4 > forestSparse log 
-    w > wall grass 
-    x > highway fastRtruck 
-    = > log water 
-    _ > highway slowLtruck 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to create a new level for this Frogger-like game where the avatar needs to cross logs and traffic to reach the goal.
-
-Let me analyze the key elements:
-- The avatar (A or B) starts at the bottom
-- The goal (g) is near the top
-- Water sections (0, 3) have logs that move
-- Highway sections have trucks moving left/right
-- The avatar can ride logs and needs to avoid trucks
-- Walls (w) border the level
-
-I'll create a level with:
-1. A clear path of water and logs to cross
-2. Multiple lanes of traffic with varying speeds and directions
-3. Proper spacing to make it challenging but solvable
-4. The goal positioned near the top center
-
-[
 wwwwwwwwwwwwwwwwwwwwwwwwwwww
-++++++++++++w
+++++++++++++wgw+++++++++++++
+00===0========0============2
+00000=======0000======00012
+000===000===000====0000===02
+www+++ww+++www++++www++wwwwww
+....xxxxxx.x...xxxxxxxxx....
+.-.....xxx.......xxx....xx..
+..xxx..xxxxxxxx..xxxx..xxx..
+w+++++++A++++++++++++++++++w
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

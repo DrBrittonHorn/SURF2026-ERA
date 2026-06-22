@@ -1,32 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to analyze the game rules and create a new level that follows the same patterns as the sample levels.
-
-Key observations:
-1. 'A' = avatar (player start position)
-2. 'x' = exit (goal)
-3. 'g' = gold (collectibles, need 11 total to win based on limit)
-4. 'k' = key (needed to pass through lock 'm')
-5. 'm' = lock (blocks path unless key collected)
-6. 'w' = walls (boundaries and obstacles)
-7. '.' = floor (walkable space)
-8. 'f' = firehole (spawns spreading fire hazards)
-9. '1', '2' = boulder holes (spawn moving boulders)
-10. 't' = ground trap holes (spawn damage spikes)
-11. 'l', 'r',
+wwwwwwwwwwwwwwwwwwwwww
+wgg...........wg....xw
+w2............www.wwww
+wwwww.wwww..........1w
+w.A.......u.........w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwwgw
+w.dw.www...wmwwwww.w.w
+w......w..ww.w.......w
+w...w...g.......f...lw
+w...wr......f........w
+wg..w...............2w
+wwwwwwwwwwmwwwwwwwwwww
+w......kww.w.........w
+w...wwwww..wgg..f.f..w
+w......www.w.........w
+w1.........wwwwwwww.ww
+wwwwwwwgdg...........w
+w.........f.......g..w
+w.....w.....g........w
+wwwwwwwwwwwwwwwwwwwwww

@@ -1,33 +1,15 @@
 LevelMapping
-    A > avatar grass 
-    B > avatar log water 
-    g > grass goal 
-    + > grass 
-    l > highway fastLtruck 
-    - > highway slowRtruck 
-    . > highway grass 
-    0 > water grass 
-    1 > forestDense water 
-    2 > forestDense log 
-    3 > forestSparse water 
-    4 > forestSparse log 
-    w > wall grass 
-    x > highway fastRtruck 
-    = > log water 
-    _ > highway slowLtruck 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-Looking at this GVGAI level, I need to understand the mechanics:
-
-1. **Avatar** (A/B) is a frog-like character that needs to cross a river
-2. **Logs** (=, 2, 4) move left/right and the avatar can ride them
-3. **Trucks** (-, x, _, l) move on the highway and kill the avatar
-4. **Water** (0, 1, 3, 4) is dangerous unless the avatar is on a log
-5. **Goal** (g) needs to be reached to win
-6. The level has distinct sections: walls, grass/goal area, water with logs, highway with trucks, and another water section
-
-Key observations from samples:
-- Avatar starts in a safe grass area (bottom section)
-- Must cross water by jumping on logs
-- Must avoid/cross highway with trucks
-- Must reach
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+++++++++++++wgw+++++++++++++
+00===0===========000=========2
+00000=00000000000000000001
+000=000000000000000000===032
++++++++++++++++++++++++++++w
+00===0=0000000000000000====2
++++++++++++++++++++++++++++w
+00000000000000000=B=00000000
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

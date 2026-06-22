@@ -1,34 +1,26 @@
 LevelMapping
-    p > phantom floor 
-    A > avatar floor 
-    r > spider floor 
-    s > weapon floor 
+    A > avatar 
     w > wall 
-    g > gold floor 
-    x > exit floor 
-    h > health floor 
-    k > key floor 
-    l > lock floor 
-    m > market floor 
-    . > floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new balanced level.
-
-Key observations:
-- Avatar (A) starts at a position and needs to reach the exit (x)
-- Locked doors (l) require keys (k) to pass
-- Gold (g) can be traded at markets (m) for health (h)
-- Spiders (r) and phantoms (p) are enemies that deal damage
-- Weapons (s) and sword ammo help defeat enemies
-- Health (h) resource restores health points
-- Walls (w) block movement
-- The level is 22x21 grid
-
-Strategy for new level:
-- Place avatar in a reasonable starting position
-- Create a path to the exit with some challenges
-- Include locked doors requiring key collection
-- Balance enemy placement (spiders and phantoms)
-- Provide resources (gold, health, weapons) strategically
-- Include
+wwwwwwwwwwwwwwwwwwwwww
+wA...................w
+w.www.www.www.www.www
+w.w.g.w.h.w.r.w.p.s.w
+w.w...w...w...w.....w
+w.www.www.www.www.www
+w...................w
+w.www.www.www.www.www
+w.w.k.w.m.w.l.w.g.h.w
+w.w...w...w...w.....w
+w.www.www.www.www.www
+w...................w
+w.www.www.www.www.www
+w.w.r.w.p.w.s.w.k.m.w
+w.w...w...w...w.....w
+w.www.www.www.www.www
+w...................w
+w.www.www.www.www.www
+w.w.l.w.h.w.g.w.r.p.w
+w.w...w...w...w.....w
+wwwwwwxwwwwwwwwwwwwww

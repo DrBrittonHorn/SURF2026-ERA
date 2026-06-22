@@ -1,28 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to analyze the game mechanics and create a new level that follows the rules.
-
-Key observations:
-1. Avatar (A) must collect gold (g), avoid traps (f, t, 1, 2, d, l, r, u), and reach the exit (x)
-2. The exit (x) requires a key (k) to pass through the lock (m)
-3. Gold provides points, key is needed to unlock the door
-4. Various hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
-5. Avatar has 10 health points and loses health from fire, ground traps, and lasers
-6. Score of 1 for gold, 2 for laser cannons, 10 for exit
-7. Need to collect enough gold and the key to reach the exit safely
+wwwwwwwwwwwwwwwwwwwwww
+w.......u...g.w......w
+w...A.......w.w..g...w
+wwwwwww.......w......w
+w.........f...wwwwwwtw
+w...g...r......lwk....w
+w......w...f...wwww..w
+wwwwww.w............2w
+w......w..wwww.......w
+w...w...g...w........w
+w...w.......w........w
+wwwwwwwwwwmwwwwwwwwwww
+w.......wwtwd........w
+w...wwwww..wgg...f...w
+w...w......wwwwww....w
+w......www...........w
+wwwwwwwg.g.t..wwwwwwww
+w1...................w
+w.....w...f.......x..w
+wl.....w.....g........w
+wwwwwwwwwwwwwwwwwwwwww

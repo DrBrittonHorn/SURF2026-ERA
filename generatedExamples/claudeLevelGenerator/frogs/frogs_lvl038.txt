@@ -1,33 +1,16 @@
 LevelMapping
-    A > avatar grass 
-    B > avatar log water 
-    g > grass goal 
-    + > grass 
-    l > highway fastLtruck 
-    - > highway slowRtruck 
-    . > highway grass 
-    0 > water grass 
-    1 > forestDense water 
-    2 > forestDense log 
-    3 > forestSparse water 
-    4 > forestSparse log 
-    w > wall grass 
-    x > highway fastRtruck 
-    = > log water 
-    _ > highway slowLtruck 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to create a new level for this Frogger-like game where the player (avatar) must navigate through traffic and logs to reach the goal.
-
-Let me analyze the structure:
-- Row 0 & 10: walls (wwwww...)
-- Row 1: grass with goal somewhere in the middle (wgw)
-- Rows 2-4: water/log spawning areas (0, 1, 2, 3, 4 characters)
-- Row 5: wall and grass separation
-- Rows 6-8: highway with moving trucks (-, x, _, l for slow/fast right/left)
-- Row 9: grass with avatar start position (A)
-
-I'll create a balanced level with:
-- Varied traffic patterns (mix of fast and slow trucks going both directions)
-- Reasonable log spawning areas
-- Clear path to goal but challenging
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+++++++++wgw++++++++++++++++++
+0===0000==00000===0000===00=2
+00000====0000000====00012==12
+000===000===000===000===0===2
+www+++ww+++www+++www++wwwwwww
+....x..xx..x.x..x.x..x.x.x.x
+..----..---.---.---x....--xx.
+..xxx-xx.xxx-xxx.xxx-xx.x.xxx
+w+++++++A++++++++++++++++++w
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

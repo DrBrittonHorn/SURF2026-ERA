@@ -1,34 +1,6 @@
 LevelMapping
-    A > ground avatar 
-    d > ground turndown 
-    h > ground turretSpotH 
-    l > ground turnleft 
-    . > ground 
-    p > ground path 
-    1 > ground spawnU path 
-    2 > ground spawnD path 
-    r > ground turnright 
-    3 > ground spawnL path 
-    4 > ground spawnR path 
-    t > ground tower 
-    u > ground turnup 
-    v > ground turretSpotV 
-    w > wall ground 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to create a new level for this tower defense-like game. Let me analyze the key elements:
-
-1. **Game mechanics:**
-   - Avatar (A) shoots at enemies
-   - Enemies spawn from numbered spawners (1,2,3,4) and move along paths (p)
-   - Turrets (h, v) can be placed on turret spots by the avatar
-   - Towers (t) must be defended - game ends when all towers are destroyed
-   - Turn tiles (u,d,l,r) redirect enemy movement
-   - Goal: Survive 1500 time units or destroy all enemies before towers fall
-
-2. **Pattern observations:**
-   - Paths create corridors for enemies
-   - Turret spots are strategically placed along paths
-   - Towers are placed away from direct enemy paths but vulnerable
-   - Multiple spawners create varied attack angles
-   - Turn
+w.p..h.v..p....h..p.......w

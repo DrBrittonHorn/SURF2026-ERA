@@ -1,33 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to create a new level for this GVGAI game that follows the established rules and patterns. Let me analyze the key elements:
-
-1. The player (A) must collect gold (g) and a key (k)
-2. The key is needed to pass through the lock (m) to reach the exit (x)
-3. Various hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
-4. Walls (w) create the maze structure
-5. The level should be challenging but solvable
-
-Looking at the sample levels, I can see:
-- They're all 22x21 in size
-- Avatar starts somewhere and must navigate to collect resources and reach the exit
-- The layout balances safety with hazards
-- Gold is scattered throughout, and the key is strategically placed
-
-Let me create a
+wwwwwwwwwwwwwwwwwwwwww
+w.........l...........w
+w...A...g.gg..w..g...w
+wwwwwww.......w......w
+w.........f...wwwwwwtw
+w...g.g.......rwk....w
+w......w...f...wwww..w
+wwwwww.w............2w
+w......w..wwww.......w
+w...w...g...w........w
+w...w.......w........w
+wwwwwwwwwwmwwwwwwwwwww
+w.......wwtwd........w
+w...wwwww..wgg...f...w
+w...w......wwwwww....w
+w......www...........w
+wwwwwwwg.g.t..wwwwwwww
+w1...................w
+w.....w...f.....x.m...w
+w.....w.....g.u......w
+wwwwwwwwwwwwwwwwwwwwww

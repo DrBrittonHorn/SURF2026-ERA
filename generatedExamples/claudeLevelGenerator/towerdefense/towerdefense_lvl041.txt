@@ -1,34 +1,14 @@
 LevelMapping
-    A > ground avatar 
-    d > ground turndown 
-    h > ground turretSpotH 
-    l > ground turnleft 
-    . > ground 
-    p > ground path 
-    1 > ground spawnU path 
-    2 > ground spawnD path 
-    r > ground turnright 
-    3 > ground spawnL path 
-    4 > ground spawnR path 
-    t > ground tower 
-    u > ground turnup 
-    v > ground turretSpotV 
-    w > wall ground 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this GVGAI game to understand the mechanics and create a valid level.
-
-From the description, I can see:
-- The player controls an avatar (A) that can shoot
-- The goal is to destroy all towers (t) before timeout
-- Enemies (normal and boss) spawn from spawners (1,2,3,4) and move along paths
-- Turrets (h for horizontal, v for vertical) can be converted by the avatar to shoot missiles
-- Turrets can be destroyed by missiles from other turrets or enemy missiles
-- Turn markers (u,d,l,r) redirect enemy movement
-- Walls (w) block movement
-
-Key observations from sample levels:
-1. Paths (p) guide enemy movement
-2. Turrets are placed near towers to help defend
-3. Multiple spawners create varied enemy directions
-4. Turn markers are used to route enemies
+wwwwwwwwwwwwwwwwwwwwwwwwww
+w....................t.w
+wh.dpppppppppppppppp3..w
+w.p.v....h....v....h...w
+w.p.....A....h....v.h..w
+w.p.h....v....h.v......w
+w.ppppppppppppppppppu...w
+w..................r....w
+wwwwwwwwwwwwwwwwwwwwwwwwww

@@ -1,29 +1,13 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I'll analyze the game mechanics and create a new level.
-
-From the description, I understand:
-- Avatar (A) moves around on ground/floor tiles
-- Boxes (*) can be pushed by the avatar
-- Holes (o) are where boxes should be placed
-- When a box enters a hole, it transforms to boxin and scores +1
-- When boxin touches ground, it transforms back to box and scores -1
-- Goal: Get all boxes into holes (box counter = 0 to win)
-
-The strategy is to place boxes into holes while avoiding them falling back out.
-
-Let me create a level that:
-1. Has a reasonable number of boxes and holes (balanced)
-2. Requires some puzzle solving but is solvable
-3. Uses walls strategically to create interesting navigation challenges
-
-[
 wwwwwwwwww
-w.A...o..w
-w.*......w
+w.......w
+w.o*.o*.w
+w.......w
+w.o*.o*.w
+w.......w
+w..A...w
+wwwwwwwww

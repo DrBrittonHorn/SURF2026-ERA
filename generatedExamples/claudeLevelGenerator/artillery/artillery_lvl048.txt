@@ -1,22 +1,18 @@
 LevelMapping
     A > avatar 
-    B > bouncey 
-    b > box 
-    d > breakable 
     w > wall 
-    G > pad 
 
 LevelDescription
 wwwwwwwwwwwwwwwwwwwwww
-wwww    ddddddd      w
-wwww        ddd      w
-w     G   B   d     dw
-w                    w
-w   d      G   d  B  w
-w    ddd      B   d  w
-w      dddddddddddd  w
-w         B      dd  w
-w  G   d        d    w
-w      G    B    G   w
+w            B        w
+w  ddd  G              w
+w  d d     ddd    B    w
+w  ddd     d d         w
+w   B      ddd    G    w
+w       G          ddd w
+w      ddd    B    d d w
+w      d d         ddd w
+w   G  ddd      B      w
+w         G            w
 wA    wwwwww         w
 wwwwwwwwwwwwwwwwwwwwww
