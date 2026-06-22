@@ -114,8 +114,8 @@ public class StructuralSimilarityToCorpus {
             vSim += colIsIdentical;
         }
 
-        hSim = hSim / longestRow;
-        vSim = vSim / longestCol;
+        hSim = hSim / longestCol;
+        vSim = vSim / longestRow;
 
         return .5 * hSim + .5 * vSim;
     }
