@@ -1,36 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new balanced level.
-
-Key observations:
-- Avatar (A) needs to collect gold (g) and key (k) to progress
-- Exit (x) is the goal after collecting resources
-- Various hazards: fire (f), boulders (1,2), ground traps (t), lasers (l,r,u,d)
-- Lock (m) requires key to pass
-- Walls (w) create maze structure
-- Need to balance difficulty with collectibles
-
-Let me create a new level that follows the pattern:
-
-[
 wwwwwwwwwwwwwwwwwwwwww
-w.......d...........xw
-w...A.....gg.w......ww
-wwwwwww.......w......w
-w.........f...wwwwww.w
+wgg...........wg...Aw
+w1............www.wwww
+wwwww.wwww.........f.w
+w.k...........f......w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwwgw
+w..w.wwwww.wmwwwww.w.w
+wd.........d........fw
+w........f...wwwwwwwww
+w.wwww.......w.g...g.w
+w.gw.w.......w...wg..w
+wwwwwww......w.......w
+wr...........2wwwwx.ww
+w...................gw
+w.wwwww..wwww........w
+w.w........gw.....t..w
+w...wwgw.wwww........w
+w.wwwwww...........ggw
+wtwg.w..u............w
+wwwwwwwwwwwwwwwwwwwwww

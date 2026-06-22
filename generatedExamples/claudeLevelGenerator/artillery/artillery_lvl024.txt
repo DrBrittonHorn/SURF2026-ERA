@@ -1,27 +1,18 @@
 LevelMapping
     A > avatar 
-    B > bouncey 
-    b > box 
-    d > breakable 
     w > wall 
-    G > pad 
 
 LevelDescription
-Looking at this game, I need to understand the mechanics:
-
-1. **Avatar (A)**: The player, shoots bullets upward in an aimed fashion
-2. **Pads (G)**: Targets to destroy with bullets to win
-3. **Breakable (d)**: Obstacles that bullets destroy
-4. **Bouncey (B)**: Surfaces where bullets bounce
-5. **Box (b)**: Objects affected by physics
-6. **Walls (w)**: Static barriers
-
-The goal is to destroy all pads without the avatar being destroyed. The level should have:
-- One avatar at the bottom
-- Multiple pads to target
-- A mix of breakable blocks, bounce surfaces, and walls to create interesting shot trajectories
-- Reasonable difficulty (not too easy, not impossible)
-
-Let me create a level with:
-- Strategic placement of pads
-- A good mix of breakable blocks
+wwwwwwwwwwwwwwwwwwwwww
+w    B          B    w
+w        G           w
+w  ddd               w
+w  d d       G       w
+w  d d    B          w
+wG ddd           dddw
+w        www    d d dw
+w  B     w w    dddw
+w        w w  G     w
+w   G    w w        w
+wA       w w        w
+wwwwwwwwwwwwwwwwwwwwww

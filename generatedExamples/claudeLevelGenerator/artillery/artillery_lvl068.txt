@@ -1,27 +1,18 @@
 LevelMapping
     A > avatar 
-    B > bouncey 
-    b > box 
-    d > breakable 
     w > wall 
-    G > pad 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new level.
-
-From the description and samples, I can see:
-- `A` is the avatar (player) that shoots bullets
-- `G` are pads (targets to destroy for points/win)
-- `d` are breakable blocks
-- `B` are bouncey tiles that deflect bullets
-- `b` are boxes that can be pushed/bounced
-- `w` are walls
-- Goal: Destroy all pads (G) to win
-- Avoid: Avatar being destroyed
-
-The challenge is to arrange pads, breakables, bouncey tiles, and boxes so the player must navigate and use physics/bounces strategically to hit all pads.
-
-I'll create a level with:
-- Strategic placement of bouncey tiles to create interesting ricochet paths
-- Breakable blocks that create barriers
-- Multiple pads at
+wwwwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwwwww
+w                    w
+w G  ddG  dd  Gdd  G  w
+w    dd    dd    dd    w
+w B  dd B  dd B  dd  B w
+w    dd    dd    dd    w
+w G  ddG  dd  Gdd  G   w
+w                      w
+w   B            B     w
+w                      w
+wA    wwwwww           w
+wwwwwwwwwwwwwwwwwwwwww

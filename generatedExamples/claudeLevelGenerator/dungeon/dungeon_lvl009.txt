@@ -1,35 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new level.
-
-Key observations:
-- Avatar (A) must collect gold (g) and key (k) to unlock the exit (x)
-- Lock (m) requires key to pass
-- Hazards include: fire (f), boulders (1,2), ground traps (t), and lasers (l,r,u,d)
-- Avatar has 10 health points
-- Must reach exit after collecting key and enough gold
-- Level is 22x21 characters
-
-I'll create a challenging but solvable level with a good balance of resources, hazards, and navigation puzzles:
-
-[
 wwwwwwwwwwwwwwwwwwwwww
-wg..........d..w......w
-w.A...g.....g..w..g...w
-wwwww
+wgg...........wg....xw
+w1A...........www.wwww
+wwwww.wwww...........w
+wr........f.....f...w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w.g...w.w...wwwgw
+w..w.wwwww.wmwwwww.w.w
+wf.f...........f.....w
+w.wwww.......wwwwwwwww
+w.w..w...f...w.g...g.w
+wkw..w.......w...wg..w
+wwwwwww......w.......w
+wd......t.....wwwww.www
+w.w............d....gw
+w.wwwww..wwww........w
+w.w...t..w.g.........2
+w...wwgw.wwwwl.......w
+w.wwwwww..........ggw
+wu.wg............l....w
+wwwwwwwwwwwwwwwwwwwwww

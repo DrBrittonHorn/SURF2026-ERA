@@ -1,34 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game mechanics from the description and sample levels, then create a new level that follows the established patterns.
-
-Key observations:
-- Avatar (A) needs to collect gold (g) and reach exit (x)
-- Key (k) is needed to pass through lock (m)
-- Various hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
-- Level should be 22x21 grid with walls (w) forming boundaries
-- Mix of resources and obstacles to create interesting gameplay
-
-[
 wwwwwwwwwwwwwwwwwwwwww
-w...A.....g....w......w
-w.....f...........gw..w
-wwwwwww.......w......w
-w.........g...wwwwwwtw
-w...
+wgg...........wg....xw
+w1............www.wwww
+wwwww.wwww...........w
+wA.k...........f.....w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwwgw
+w..w.wwwww.wmwwwww.w.w
+w..f...........f.....w
+w.wwww.......wwwwwwwww
+w.w..w...f...w.g...g.w
+w.gw.w.......w...wg..w
+wwwwwww......w.......w
+wd......t.....wwwww.ww
+w.w............dg..gww
+w.wwwww..wwww........w
+w.w...t..w.g.........2
+w...wwgw.wwwwr.......w
+w.wwwwww..........lggw
+wxwg............u....w
+wwwwwwwwwwwwwwwwwwwwww

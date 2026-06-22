@@ -1,35 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to create a new level for this GVGAI game. Let me analyze the game mechanics:
-
-- Avatar needs to collect gold (g) and key (k) to unlock the exit (x)
-- Hazards include: fire (f), boulders (1, 2), ground traps (t), and lasers (l, r, u, d)
-- The avatar has 10 health points and must survive to reach the exit
-- Lock (m) requires a key to pass through
-
-Looking at the sample levels, I can see patterns:
-- Levels are 22x22 grids surrounded by walls (w)
-- Multiple gold pieces scattered around
-- Key and lock placed strategically
-- Exit placed at the end
-- Various hazards distributed throughout
-- Avatar starts (A) at a reasonable position
-
-Let me create a balanced level that:
-1. Has a clear path but with
+wwwwwwwwwwwwwwwwwwwwww
+wgg...........wg....xw
+w2............www.wwww
+wwwww.wwww.........f.w
+w.......u.u.f.......1w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwwgw
+w..w.wwwww.wmwwwww.w.w
+wA......w..ww.w.......w
+w...w...g.......f....w
+w...wk......f........w
+wg..w...r..........1.w
+wwwwwwwwwwmwwwwwwwwwww
+w......lww.w.........w
+w...wwwww..wgg..f.f..w
+w......www.w.........w
+w.........wwwwwwww.ww
+wwwwwwwg.g...........w
+w...........f......d.w
+w.....w.....g.........w
+wwwwwwwwwwwwwwwwwwwwww

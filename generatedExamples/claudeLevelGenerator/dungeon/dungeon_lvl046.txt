@@ -1,35 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new level.
-
-Key observations:
-- The avatar (A) must collect a key (k) to pass through the lock (m) to reach the exit (x)
-- Gold (g) provides points
-- Various hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
-- The avatar has 10 health points and loses health to fire and ground traps
-- Walls (w) block movement and contain hazards
-
-I'll create a level that:
-1. Places the avatar in a reasonable starting position
-2. Requires collecting the key before reaching the exit
-3. Includes a moderate challenge with hazards strategically placed
-4. Maintains the aesthetic and difficulty balance of the sample levels
-
-[
-wwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwwww
+wgg...g.......wg.A...w
+w1............www.wwww
+wwwww.wwww...........w
+w.........u.......f.2w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwgww
+w..w.wwwww.wmwwwww.w.w
+wr...................w
+w...w...g.f.wwwwwwwww
+w.wwww.......w.g...g.w
+w.w..w.......w...wg..w
+wwwwwww..f...w.......w
+wd......t.....1wwww.xw
+w.w.........gd...g.g.w
+w.wwwww..wwww........w
+w.w...t..w.g.........w
+w...wwgw.wwwwk.......w
+w.wwwwww..........lggw
+w2wg.w..d............w
+wwwwwwwwwwwwwwwwwwwwww

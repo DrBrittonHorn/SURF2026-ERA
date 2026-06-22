@@ -1,33 +1,16 @@
 LevelMapping
-    A > avatar grass 
-    B > avatar log water 
-    g > grass goal 
-    + > grass 
-    l > highway fastLtruck 
-    - > highway slowRtruck 
-    . > highway grass 
-    0 > water grass 
-    1 > forestDense water 
-    2 > forestDense log 
-    3 > forestSparse water 
-    4 > forestSparse log 
-    w > wall grass 
-    x > highway fastRtruck 
-    = > log water 
-    _ > highway slowLtruck 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to create a new level for this Frogger-like game where the player (avatar) must cross traffic and water obstacles to reach the goal.
-
-Let me analyze the patterns:
-- Row 0 & 10: Always walls (w)
-- Row 1: Grass with goal (wgw positioned at goal location)
-- Rows 2-4: Water/logs patterns (0, 1, 2, 3, 4 for different water/log spawn combinations)
-- Row 5: Grass/walls boundary
-- Rows 6-8: Highway with trucks (moving left/right at different speeds)
-- Row 9: Grass with avatar (A)
-
-The key is to create challenging but solvable traffic/water patterns. Let me create a level with varied difficulty:
-
-[
-wwwwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+++++++++++++wgw+++++++++++++++
+0===00000===0000====000====0=2
+00000====0000000====00012===02
+000===000===000====000===0===2
+www+++ww+++www+++www++wwwwwww
+....l.l....ll...l...l..l.l...
+..----..--..---.----.--.-----
+..ll....l.....ll.l..ll.ll.ll.
+w+++++++A++++++++++++++++++w
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

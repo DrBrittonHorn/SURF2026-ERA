@@ -1,37 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new level.
-
-Key observations:
-1. Avatar (A) needs to collect gold (g) and a key (k) to reach the exit (x)
-2. Obstacles include: walls (w), fires (f), boulders (1, 2), traps (t), laser cannons (l, r, u, d), and a lock (m)
-3. The lock requires the key to pass
-4. The level should be challenging but solvable
-5. Typical level size is 22x21
-
-Let me create a balanced level with:
-- Avatar starting position in the middle area
-- Key placed in a moderately difficult location
-- Gold scattered throughout (need 11 total or fewer)
-- Exit accessible after collecting key
-- Various hazards to avoid
-- A logical progression path
-
-[
-wwwwwwwww
+wwwwwwwwwwwwwwwwwwwwww
+wA......g....ww......w
+w.wwww.......w.wgwwwww
+w.w..w.f.f...w.....g.w
+w.w.m.w.....tww...w..w
+w.w...w.....www...w.xw
+wwwwwww.....wk...w.w.w
+w.........lw.......w.w
+w.g..w.....w...f...w.w
+w.g..w.....w.........w
+w....w..u..w.wgwgwwwww
+w.ww.w.....w.w......1w
+wwwwwwwwwwwww.w.w.wwww
+w1....t......www......w
+w.........g.w..w.f..2w
+w.ww.......w.w.w.wgwgw
+w.w...g....w.w.w...d.w
+wwwwwwwwwwww.w.w.wwwww
+wf...w.....w.g..gw...w
+w..........w.........w
+wwwwwwwwwwwwwwwwwwwwww

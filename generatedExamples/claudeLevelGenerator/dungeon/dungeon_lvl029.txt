@@ -1,34 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to analyze the game rules and create a level that is playable and follows the established patterns.
-
-Key observations:
-1. The avatar (A) needs to collect the key (k), navigate through the exit (x), and avoid hazards
-2. Hazards include: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d), and the lock (m)
-3. Gold (g) provides points and can help navigate strategically
-4. The lock (m) blocks progress until the key is collected
-5. Walls (w) create the maze structure
-6. The level should have balanced difficulty
-
-Let me create a new level that:
-- Places the avatar in a reasonable starting position
-- Requires collecting the key before reaching the exit
-- Has a logical progression through hazards
-- Uses gold strategically as collectibles
-- Maintains similar
+wwwwwwwwwwwwwwwwwwwwww
+wgg...........wg....xw
+w1............www.wwww
+wwwww.wwww..........2w
+w.A.......u.........w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w..g..w.w...wwwgw
+w.dw.www...wmwwwww.w.w
+w......w..ww.w.......w
+w...w...g.......f...lw
+w...wr......f........w
+wg..w...............2w
+wwwwwwwwwwmwwwwwwwwwww
+w......kww.w.........w
+w...wwwww..wgg..f.f..w
+w......www.w.........w
+w1.........wwwwwwww.ww
+wwwwwwwgdg...........w
+w.........f.......g..w
+w.....w.....g........w
+wwwwwwwwwwwwwwwwwwwwww

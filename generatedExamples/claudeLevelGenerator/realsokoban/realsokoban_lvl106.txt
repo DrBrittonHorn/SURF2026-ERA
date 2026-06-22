@@ -1,25 +1,12 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this game to create a valid level.
-
-**Game Analysis:**
-- The goal is to transform all boxes (*) into boxes-in-holes (boxin) by moving them onto holes (o)
-- When a box on a hole transforms to boxin, score increases by 1
-- When boxin touches ground, it transforms back to box, score decreases by 1
-- Win condition: all boxes must be in holes (counter of box type = 0)
-- Avatar (A) pushes boxes and cannot walk through walls (w)
-- The level must be solvable by moving boxes onto holes
-
-**Key Observations from Samples:**
-1. Each box (*) needs a corresponding hole (o) to reach
-2. Holes should be positioned so boxes can be pushed into them
-3. The avatar needs access to push boxes strategically
-4. Walls create constraints and pathways
-
-**Creating
+wwwwwwwwww
+w...o...w
+w.A*o*.w
+w.......w
+w.*.o..w
+w.......w
+wwwwwwwww

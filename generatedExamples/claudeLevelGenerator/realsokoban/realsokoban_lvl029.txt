@@ -1,28 +1,13 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this GVGAI game to understand the mechanics:
-
-1. **Goal**: Remove all boxes (transform them into boxin by dropping them in holes)
-2. **Mechanics**:
-   - Avatar (A) can move around on ground/floor
-   - Boxes (*) can be pushed by avatar
-   - Boxes fall into holes (o) and transform to boxin (scoring +1)
-   - Boxin on ground transforms back to box (scoring -1)
-   - Walls block movement
-   - Win condition: all boxes must be gone (in holes)
-
-3. **Strategy**: Create a level where:
-   - There are boxes that need to be pushed into holes
-   - The layout should be solvable but interesting
-   - Walls should guide the puzzle without being overly restrictive
-
-Let me create a new level that's moderately challenging:
-
-[
-www
+wwwwwwwwwww
+w...w.....w
+w.*.....*.w
+w.o.A.o.o.w
+w...w....ww
+w.o*....*.w
+w........ww
+wwwwwwwwwww

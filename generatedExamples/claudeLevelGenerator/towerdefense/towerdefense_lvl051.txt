@@ -1,36 +1,15 @@
 LevelMapping
-    A > ground avatar 
-    d > ground turndown 
-    h > ground turretSpotH 
-    l > ground turnleft 
-    . > ground 
-    p > ground path 
-    1 > ground spawnU path 
-    2 > ground spawnD path 
-    r > ground turnright 
-    3 > ground spawnL path 
-    4 > ground spawnR path 
-    t > ground tower 
-    u > ground turnup 
-    v > ground turretSpotV 
-    w > wall ground 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-Looking at this tower defense game, I need to create a level where:
-1. The player (avatar) starts and can place turrets on turretSpot tiles
-2. Enemies spawn from spawner tiles and travel along paths
-3. The player must defend the tower(s) from being destroyed
-4. Turrets can be repositioned by shooting them
-5. Paths guide enemy movement with turn tiles
-
-Let me analyze the sample levels to understand the layout patterns and create a new challenging but balanced level.
-
-[
-wwwwwwwwwwwwwwwwwwwww
-w.....dpppppppppppp3w
-w.A...p....h.......w
-w.....p....v...h...w
-w.....p..........v.w
-w..dpppppppppppu...w
-w..p.....r........w
-w
+wwwwwwwwwwwwwwwwwwwwww
+w................r....w
+w.dpppppppppppppppp3w
+w.p.....h.....v.p.p.w
+w.p..A..v.h.t.h.p.p.w
+w.p.....h.....v.p.p.w
+w.pppppppppppppppupp.w
+w..........l........w
+w.h.v.h.v.h.........w
+wwwwwwwwwwwwwwwwwwwwww

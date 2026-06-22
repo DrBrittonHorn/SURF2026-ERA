@@ -1,40 +1,16 @@
 LevelMapping
-    A > avatar grass 
-    B > avatar log water 
-    g > grass goal 
-    + > grass 
-    l > highway fastLtruck 
-    - > highway slowRtruck 
-    . > highway grass 
-    0 > water grass 
-    1 > forestDense water 
-    2 > forestDense log 
-    3 > forestSparse water 
-    4 > forestSparse log 
-    w > wall grass 
-    x > highway fastRtruck 
-    = > log water 
-    _ > highway slowLtruck 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this GVGAI game to understand the mechanics:
-
-1. **Game Goal**: The avatar (A) must reach the goal (g) by avoiding obstacles
-2. **Key Mechanics**:
-   - Avatar can pick up logs and use them as shields against water
-   - Logs move left across the screen
-   - Trucks (cars) move left or right and kill the avatar
-   - Water kills the avatar unless protected by a log
-   - Walls block movement
-   - The goal is at the top of the level
-
-3. **Level Structure**:
-   - Row with goal (g) at top
-   - Water/log spawning area (dense/sparse)
-   - Wall boundaries on sides
-   - Highway sections with moving trucks
-   - Avatar starting position (A) at bottom
-   - Avatar must navigate upward through obstacles
-
-4. **Challenge Balance**: 
-   - Mix
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+++++wgw++++++++++++++++++++++
+00===0========0============4
+00000==================00022
+000===000===000===========42
+wwwwwwwww++wwwwwwwwwwwwwwwww
+....xxxxxx.x...xxxxxxxxx....
+.-.....---.......-xxx....xx..
+..xxx..xxxxxxxx..xxxx..xxx...
+w+++++++A+++++++++++++++++++w
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

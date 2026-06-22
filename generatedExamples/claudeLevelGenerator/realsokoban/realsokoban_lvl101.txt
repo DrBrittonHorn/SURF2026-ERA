@@ -1,26 +1,12 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-Looking at this game, I need to understand the mechanics:
-
-1. **Avatar** (A) is the player character that moves around
-2. **Boxes** (*) need to be moved into **holes** (o) to transform them into boxin (scored as +1)
-3. **Boxin** on ground can transform back to box (scored as -1)
-4. **Win condition**: All boxes must be in holes (box counter = 0)
-5. **Walls** (w) block movement
-6. **Floor/ground** (.) are walkable spaces
-
-The challenge is to create a puzzle where:
-- The player must navigate the avatar to push boxes into holes
-- The layout should be solvable but non-trivial
-- There should be approximately equal numbers of boxes and holes
-- Walls should create interesting pathways
-
-Let me create a new level with a balanced puzzle:
-
-[
+wwwwwwwwww
+w.A.....w
+w*o*o*.w
+w.......w
+w*o*o*.w
+w.......w
+wwwwwwww

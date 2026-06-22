@@ -1,20 +1,18 @@
 LevelMapping
     A > avatar 
-    b > breakable 
     w > wall 
-    G > pad 
 
 LevelDescription
 wwwwwwwwwwwwwwwwwwwwww
 w                    w
-w  G           G     w
-w        b           w
-w       bbb          w
-w      bb A bb       w
-w       bbb          w
-w        b           w
+w G              G   w
 w                    w
-w  G           G     w
+w     G          G   w
 w                    w
+w         A          w
+w                    w
+w     b b b b b      w
+w     b         b    w
+w     b b b b b      w
 w                    w
 wwwwwwwwwwwwwwwwwwwwww

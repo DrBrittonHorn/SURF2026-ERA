@@ -1,35 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to create a new level for this GVGAI game that follows the rules and patterns shown in the sample levels.
-
-Let me analyze the key elements:
-- `A` = avatar (player starting position)
-- `x` = exit (goal)
-- `g` = gold (collectibles, need 11 total for scoring)
-- `k` = key (needed to open lock)
-- `m` = lock (blocks path until key collected)
-- `w` = wall
-- `.` = floor (empty space)
-- `f` = firehole (spawns spreading fire)
-- `1`, `2` = boulder holes (spawn boulders left/right)
-- `t` = ground trap holes
-- `l`, `r`, `u`, `d` = laser cannons (up, down, right, left)
-
-The level should:
-1. Have the
+wwwwwwwwwwwwwwwwwwwwww
+w.g..........r..w.....w
+wAwg.g.......w...x...w
+wwwwwww.......w......ww
+wf.........f..wwwwwwtw
+wk..g.......lwk....w
+w......w...f...wwww..w
+wwwwww.w............2w
+w......w..wwww.......w
+w...w...g...w........w
+w...w.d.....w........w
+wwwwwwwwwwmwwwwwwwwwww
+w.......wwtwu........w
+w...wwwww..wgg...f...w
+w...w......wwwwww....w
+w......www...........w
+wwwwwwwgfg....wwwwwwww
+w1...................w
+w.....w...........l..w
+w.....w.....g..1.....w
+wwwwwwwwwwwwwwwwwwwwww

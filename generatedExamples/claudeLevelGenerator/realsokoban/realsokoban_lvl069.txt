@@ -1,27 +1,13 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this game to create a valid level.
-
-**Game Analysis:**
-- Avatar (A) is the player character
-- Boxes (*) need to be moved into holes (o) to transform into boxin (completing the goal)
-- When a box lands on a hole, it transforms to boxin and scores +1
-- When boxin lands on ground, it transforms back to box and scores -1
-- The goal is to get all boxes into holes (box count = 0)
-- Walls (w) block movement
-- Avatar bounces off boxes
-
-**Level Design Strategy:**
-I'll create a level that:
-1. Has a reasonable number of boxes and holes (matching pairs)
-2. Requires some spatial puzzle-solving
-3. Uses walls to create interesting constraints
-4. Is solvable but not trivial
-
-Let me create a level with 3 boxes and 3 holes positioned so
+wwwwwwww
+w..w..Aw
+w.o*..ow
+w.*.o.*w
+w.o*o..w
+w....*..w
+w.......w
+wwwwwwww

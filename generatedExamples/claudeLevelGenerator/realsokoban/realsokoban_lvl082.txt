@@ -1,17 +1,11 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-wwwwwwwwww
-w........w
-w.o*o...w
-w.*A*..w
-w.o*o...w
-w......ow
-w.*o*..ww
-w.......w
-wwwwwwwwww
+wwwwww
+w.o..w
+w*Aow.w
+w.o*.w
+w.....w
+wwwwwww

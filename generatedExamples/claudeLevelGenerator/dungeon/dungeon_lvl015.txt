@@ -1,33 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to analyze the game mechanics and create a new level that follows the rules and patterns seen in the sample levels.
-
-**Game Mechanics Summary:**
-- Avatar (A) collects gold (g) for points, needs a key (k) to pass through lock (m)
-- Exit (x) gives 10 points and wins the game
-- Hazards: fire (f), boulders (1, 2), ground traps (t), lasers (l, r, u, d)
-- Avatar has 10 health points
-- Goal: Navigate to exit, avoid hazards, collect gold and key
-
-**Level Design Observations:**
-- Levels are 22x21 characters
-- Avatar starts somewhere in the level
-- Exit (x) is the goal location
-- Key (k) and lock (m) create puzzle elements
-- Hazards are placed strategically but not overwhelmingly
+wwwwwwwwwwwwwwwwwwwwww
+w......d....d.w.g....w
+w...g.....gg..w..g...w
+wwwwwww.......w......w
+w.f.......f...wwwwwwtw
+w...g.g.......lwk....w
+w......w...f...wwww..w
+wwwwww.w...........2.w
+w......w..wwww.......w
+w...w...g...w........w
+w...w.f...A..w........w
+wwwwwwwwwwmwwwwwwwwwww
+w...f..kww.w.........w
+w...wwwww..wgg....f..w
+w...w......wwwwww....w
+w......www...........w
+wwwwwwwgfg....wwwwwwww
+w1...............u....w
+w.....w...........x..w
+w.....w.....g........w
+wwwwwwwwwwwwwwwwwwwwww

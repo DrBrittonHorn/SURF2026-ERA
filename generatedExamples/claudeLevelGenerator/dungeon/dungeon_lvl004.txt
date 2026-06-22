@@ -1,35 +1,26 @@
 LevelMapping
-    A > avatar floor 
-    d > lcdown floor 
-    f > firehole floor 
-    g > gold floor 
-    k > key floor 
-    l > lcleft floor 
-    m > lock floor 
-    . > floor 
-    1 > boulderRighthole floor 
-    2 > boulderLefthole floor 
-    r > lcright floor 
-    t > groundTrapHole floor 
-    u > lcup floor 
+    A > avatar 
     w > wall 
-    x > exit floor 
 
 LevelDescription
-I need to analyze the game rules and create a valid level.
-
-Key observations:
-1. Avatar (A) must collect a key (k) to unlock the exit (x) via the lock (m)
-2. Gold (g) provides points (1 each)
-3. Exit (x) provides 10 points and wins the level
-4. Avatar has 10 health points
-5. Various hazards: fire (f), boulders (1, 2), ground traps (t), laser cannons (l, r, u, d)
-6. Walls (w) block movement
-7. The level must be solvable - avatar needs path to key, then to lock, then to exit
-
-Level structure strategy:
-- Place avatar in bottom area
-- Create a path with some gold pickups
-- Place key in middle area with some protection/difficulty
-- Place lock between key and exit
--
+wwwwwwwwwwwwwwwwwwwwww
+wgg...........wg..dxw
+w1............www.wwww
+wwwww.wwww...........w
+wr.........f.....f...w
+wwwwwwwwwwww.w.w.wwwww
+w.ww.w.g...w.w...wwwgw
+w..w.wwwww.wmwwwww.w.w
+wA.f...........f.....w
+w.wwww.......wwwwwwwww
+w.w..w...f...w.g...g.w
+wkw..w.......w...wg..w
+wwwwwww......w.......w
+wd......t.....wwwww.www
+w.w............d....gw
+w.wwwww..wwww........w
+w.w...t..w.g.........2
+w...wwgw.wwwwr.......w
+w.wwwwww..........lggw
+wu.wg............l....w
+wwwwwwwwwwwwwwwwwwwwww

@@ -1,30 +1,10 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-Looking at this game, I need to understand the mechanics:
-
-- Avatar (A) is the player that can move around
-- Boxes (*) need to be pushed into holes (o) to transform into boxin (scored as +1)
-- When boxin are on ground, they transform back to box (scored as -1)
-- Goal: get all boxes into holes (counter limit=0 means no boxes left)
-- Walls (w) block movement
-- Floor (.) is walkable ground
-
-From the samples, I can see:
-- Levels have varying complexity
-- Multiple boxes and holes scattered around
-- Walls create mazes/constraints
-- The puzzle requires strategic pushing of boxes into holes
-
-Let me create a new level that is moderately challenging but solvable:
-
-[
-wwwwwwwww
-w....*..w
-w.o.A.o.w
-w.
+wwwwwwwwwwww
+w...*...A..w
+w.o.o.o*o.ww
+w.*.*.*....w
+wwwwwwwwwwww

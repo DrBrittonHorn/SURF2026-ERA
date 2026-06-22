@@ -1,23 +1,12 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this GVGAI game to understand the mechanics:
-
-1. **Goal**: Get all boxes (`*`) into holes (`o`) to turn them into `boxin` (`+`), then get all `boxin` back to ground to turn them back into `box`, until there are 0 boxes left (win condition).
-
-2. **Key mechanics**:
-   - Avatar (A) can move around on ground/floor
-   - Boxes (*) can be pushed by avatar
-   - When a box falls into a hole, it becomes boxin and gains 1 point
-   - When boxin touches ground, it becomes box again and loses 1 point
-   - Walls block movement
-   - Goal: All boxes must end up in holes (0 boxes remaining = win)
-
-3. **Pattern from samples**:
-   - Boxes and holes are arranged strategically
-   - Avatar
+wwwwww
+wA....w
+w*o*..w
+w.o...w
+w*o*..w
+w.....w
+wwwwww

@@ -1,29 +1,18 @@
 LevelMapping
     A > avatar 
-    B > bouncey 
-    b > box 
-    d > breakable 
     w > wall 
-    G > pad 
 
 LevelDescription
-I need to analyze the game mechanics and create a new level that fits the rules.
-
-From the description, I can see:
-- Avatar (A) shoots bullets at targets
-- Goal is to destroy all pads (G) to win
-- Breakable blocks (d) can be destroyed by bullets
-- Bouncey tiles (B) make bullets bounce
-- Boxes (b) are affected by physics and gravity
-- Walls (w) are obstacles
-- Game ends in loss if avatar is destroyed
-
-Looking at the sample levels, I can see patterns:
-- Avatar is always in bottom-left area
-- Multiple pads (G) distributed throughout the level
-- Breakable blocks (d) often form clusters or walls
-- Bouncey tiles (B) are used strategically to create bounce paths
-- Some walls (w) create corridors and obstacles
-
-I'll create a level with:
-- Avatar in bottom
+wwwwwwwwwwwwwwwwwwwwww
+w   B    ddd      B  w
+w        d d        w
+w   G    d b d   G   w
+w        d d        w
+w        ddd    B   w
+w    ddd         d  w
+w    d d      B  d  w
+w G  d d        d   w
+w    ddd     G      w
+w   B    ddd        w
+wA          B      w
+wwwwwwwwwwwwwwwwwwwwww

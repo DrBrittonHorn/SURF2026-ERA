@@ -1,24 +1,12 @@
 LevelMapping
-    A > avatar ground 
-    w > ground wall 
-    * > box ground 
-    . > ground 
-    o > floor hole 
+    A > avatar 
+    w > wall 
 
 LevelDescription
-I need to analyze this game to create a valid level.
-
-**Game Analysis:**
-- Avatar (A) is the player character that moves
-- Boxes (*) need to be pushed into holes (o) to transform into boxin (scored as +1)
-- Boxin boxes on ground transform back to regular boxes (-1 score)
-- Win condition: all boxes (stype=box) must be removed (limit=0)
-- The goal is to get all boxes into holes so they become boxin, then prevent them from returning to ground
-
-**Level Design Strategy:**
-1. Create a puzzle where boxes can be pushed into holes
-2. Ensure holes are positioned so boxes stay in them
-3. Make sure the solution is solvable but requires some thought
-4. Avoid dead-end configurations
-
-Let me create a level with 3 boxes and 3 holes arranged in a way that requires strategic pushing:
+wwwwwwwwww
+w.......Aw
+w.*.o*...w
+w.o.o*..ww
+w.*......w
+w..o*...ww
+wwwwwwwwww

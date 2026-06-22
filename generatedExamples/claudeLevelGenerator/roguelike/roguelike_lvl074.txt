@@ -1,35 +1,26 @@
 LevelMapping
-    p > phantom floor 
-    A > avatar floor 
-    r > spider floor 
-    s > weapon floor 
+    A > avatar 
     w > wall 
-    g > gold floor 
-    x > exit floor 
-    h > health floor 
-    k > key floor 
-    l > lock floor 
-    m > market floor 
-    . > floor 
 
 LevelDescription
-I'll analyze the game mechanics and sample levels to create a new level.
-
-Key observations:
-- Avatar (A) must reach the exit (x) to win
-- Avatar starts with 1 health point, max 10
-- Enemies: spiders (r) deal 2 damage, phantoms (p) deal 1 damage
-- Resources: gold (g), health (h), keys (k), weapons (s)
-- Locks (l) require keys to pass
-- Market (m) trades 1 gold for 1 health
-- Weapons/sword (s) deal damage to enemies when shot
-- Level is 22x21 characters (walls on border)
-
-The level should:
-1. Have a clear path with some challenges
-2. Mix enemy types and resources strategically
-3. Include at least one lock-key puzzle
-4. Balance difficulty with survivability
-
-[
-www
+wwwwwwwwwwwwwwwwwwwwww
+wmw...w.h......w...rrw
+w.w.A.w.h......w.......w
+w.w...w......p.w.g....w
+w.w..gw..h..p..w.g....w
+w.w..w.ghg.p...w......w
+w.wl.w.....w...w.h....w
+w.w.kw.....w...w......w
+w.w..w.....w...ww.....w
+wwwwwwwwwwwwwwwww...s.w
+w.....w.....h....w.g..w
+w.m...w..r.......w....w
+w.....w.........p.x...w
+w.ww..w...p...p.w.....w
+w.w.w.w...h.h.h.w.....w
+w.w.w.w.ghg.ghg.w.....w
+w...w.w.............r.w
+w...w.w.w....www......w
+w...w...w...w...w...h.w
+w...w...w...w...w.....w
+wwwwwwwwwwwwwwwwwwwwww

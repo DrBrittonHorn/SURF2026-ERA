@@ -5,6 +5,12 @@ import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import core.game.Game;
+import core.vgdl.VGDLFactory;
+import core.vgdl.VGDLParser;
+import core.vgdl.VGDLRegistry;
+import tracks.levelGeneration.claudeLevelGenerator.LevelGenerator;
 
 public class GenerateFullGeneratorSuite {
     public static void main(String args[]) throws Exception{
@@ -14,10 +20,11 @@ public class GenerateFullGeneratorSuite {
 		String geminiLevelGenerator = "tracks.levelGeneration.geminiLevelGenerator.LevelGenerator";
 		String localLanguageModelGenerator = "tracks.levelGeneration.localLanguageModelGenerator.LevelGenerator";
         String FineTunedLLMGenerator = "tracks.levelGeneration.FineTunedLLMGenerator.LevelGenerator";
+        String claudeLevelGenerator = "tracks.levelGeneration.claudeLevelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = geminiLevelGenerator;
-        
+        String selectedGenerator = claudeLevelGenerator;
+
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
 
@@ -35,7 +42,60 @@ public class GenerateFullGeneratorSuite {
         }
 
         String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt", "examples/contphysics/mario.txt", "examples/contphysics/artillery.txt", "examples/gridphysics/zelda.txt", "examples/gridphysics/dungeon.txt", "examples/gridphysics/realsokoban.txt", "examples/gridphysics/towerdefense.txt", "examples/contphysics/asteroids.txt", "examples/gridphysics/roguelike.txt", "examples/gridphysics/frogs.txt"};
-        
+        //String[] selectedGamePaths = new String[] {"examples/gridphysics/realsokoban.txt"};
+
+        if (selectedGenerator.equals(claudeLevelGenerator)) {
+            // Batch mode: mirrors the single-level loop order — round-robin across all games,
+            // batchSize levels per game per round, so no game gets far ahead of another.
+            int batchSize = 10;
+            LevelGenerator claude = new LevelGenerator(null, null);
+            VGDLFactory.GetInstance().init();
+            VGDLRegistry.GetInstance().init();
+            // Pre-parse all games once so we have char mappings without re-parsing each round.
+            Game[] games = new Game[selectedGamePaths.length];
+            for (int g = 0; g < selectedGamePaths.length; g++) {
+                games[g] = new VGDLParser().parseGame(selectedGamePaths[g]);
+            }
+
+            for (int j = 0; j < levelsToGenerate; j += batchSize) {
+                for (int g = 0; g < selectedGamePaths.length; g++) {
+                    String gamePath = selectedGamePaths[g];
+                    String gameTitle = gamePath.split("/")[2];
+                    gameTitle = gameTitle.substring(0, gameTitle.length()-4);
+                    Path gameDir = Path.of("generatedExamples", generatorTitle, gameTitle);
+                    Files.createDirectories(gameDir);
+
+                    int thisBatch = Math.min(batchSize, levelsToGenerate - j);
+
+                    // Skip this batch if all output files already exist.
+                    boolean allExist = true;
+                    for (int k = 0; k < thisBatch; k++) {
+                        if (!Files.exists(Path.of(gameDir + "/" + gameTitle + "_lvl" + df.format(j + k) + ".txt"))) {
+                            allExist = false;
+                            break;
+                        }
+                    }
+
+                    if (!allExist) {
+                        System.out.println(gameTitle + " levels " + df.format(j) + "–" + df.format(j + thisBatch - 1));
+                        List<String> levels = claude.generateLevels(null, gamePath, thisBatch, null, 0);
+                        if (levels != null) {
+                            for (int k = 0; k < levels.size(); k++) {
+                                String outPath = gameDir + "/" + gameTitle + "_lvl" + df.format(j + k) + ".txt";
+                                if (!Files.exists(Path.of(outPath))) {
+                                    LevelGenMachine.saveLevel(levels.get(k), outPath, games[g].getCharMapping());
+                                    levelTotal++;
+                                }
+                            }
+                            System.out.println("Completed Levels Total: " + levelTotal);
+                        } else {
+                            System.out.println("API call failed for " + gameTitle + " batch starting at " + j);
+                        }
+                    }
+                }
+            }
+        } else {
+
         for (int j = 0; j < levelsToGenerate; j++){
             for (String gamePath : selectedGamePaths){
                 String gameTitle = gamePath.split("/")[2];
@@ -44,7 +104,7 @@ public class GenerateFullGeneratorSuite {
                 if (!Files.exists(Path.of("generatedExamples" + "/" + generatorTitle + "/" + gameTitle))){
                     Files.createDirectory(Path.of("generatedExamples" + "/" + generatorTitle + "/" + gameTitle));
                 }
-                
+
                 String outputFilePath = "generatedExamples" + "/" + generatorTitle + "/" + gameTitle + "/" + gameTitle + "_lvl" + df.format(j) + ".txt";
                 if (!Files.exists(Path.of(outputFilePath))){
                     System.out.println(outputFilePath);
@@ -56,8 +116,10 @@ public class GenerateFullGeneratorSuite {
                     }
                 }
             }
-                
+
         }
+
+        } // end else
         
         System.out.println("Generated " + levelTotal + " total levels");
         System.out.println("End time of " + LocalDateTime.now());
