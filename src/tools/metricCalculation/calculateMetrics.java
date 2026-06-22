@@ -34,6 +34,7 @@ import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
 import tools.metricCalculation.metrics.byLevelMetrics.RewardDensity;
 import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
 import tools.metricCalculation.metrics.byLevelMetrics.StaticPathLength;
+import tools.metricCalculation.metrics.byLevelMetrics.StructuralSimilarityToCorpus;
 import tools.metricCalculation.metrics.byLevelMetrics.Symmetry;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
@@ -67,6 +68,7 @@ public class calculateMetrics {
         levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelText));
         levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
         levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelText));
+        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelText));
         // Put metrics that require the levelPath here
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
@@ -74,7 +76,7 @@ public class calculateMetrics {
 
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk
-        //levelMetrics.add("MechanicUsage*", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
+        levelMetrics.add("MechanicUsage*", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
 
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
@@ -186,7 +188,7 @@ public class calculateMetrics {
             //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
             fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
             fullGameJson.addProperty("NoveltyScore", NoveltyScore.calculateMetric(generatorFolderPath));
-            //fullGameJson.addProperty("PLaytraceDiversity", PlaytraceDiversity.calculateMetric(generatorFolderPath));
+            fullGameJson.addProperty("PLaytraceDiversity", PlaytraceDiversity.calculateMetric(generatorFolderPath));
             try {
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
             } catch (IOException e) {
