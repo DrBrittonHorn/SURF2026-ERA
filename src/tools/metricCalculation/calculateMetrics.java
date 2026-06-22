@@ -132,7 +132,6 @@ public class calculateMetrics {
                                 System.out.print("\r" + level.toString() + " completed!                           \r"); // (Load-bearing space characters)
                                 
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         }
