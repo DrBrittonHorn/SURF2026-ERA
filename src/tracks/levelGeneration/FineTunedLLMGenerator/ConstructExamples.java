@@ -1,4 +1,4 @@
-package tracks.levelGeneration.fineTunedLLMGenerator;
+package tracks.levelGeneration.FineTunedLLMGenerator;
 
 import java.io.IOException;
 import java.nio.file.Files;
