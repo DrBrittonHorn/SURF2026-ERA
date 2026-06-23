@@ -421,8 +421,9 @@ public class metricTools {
         //System.out.println("Create directories for " + recordActionsFolder);
         Files.createDirectories(Path.of(recordActionsFolder));
 
-        String gameName = levelPath.split("/|\\\\")[2];
+        String gameName = levelPath.split("/|\\\\")[3];
         
+        System.out.println(levelPath);
         String levelTilesOnly = Files.readString(Path.of(levelPath));
         if (levelTilesOnly.split("LevelDescription").length > 1){
             levelTilesOnly = levelTilesOnly.split("LevelDescription")[1].trim();
@@ -441,7 +442,7 @@ public class metricTools {
         levelTilesOnly = String.join("\n", levelArray);
         //System.out.println(levelTilesOnly);
 
-        String tempLevelPath = "src/tools/metricCalculation/tempFiles/tempLevel.txt";
+        String tempLevelPath = "src/tools/metricCalculation/tempFiles/" + "temp-" + levelPath.split("/|\\\\")[4];
         Files.writeString(Path.of(tempLevelPath), levelTilesOnly);
         try {
             Thread.sleep(5000);
@@ -456,6 +457,11 @@ public class metricTools {
         //}
         //allLevelActions.add(levelActions);
         //System.out.println(allLevelActions.get(0).length);
+
+        // Get rid of temp file
+        if (Files.isRegularFile(Path.of(tempLevelPath))){
+            Files.delete(Path.of(tempLevelPath));
+        }
     }
 
 

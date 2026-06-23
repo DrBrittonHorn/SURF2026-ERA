@@ -12,7 +12,7 @@ public class CompetitionParameters
     /**
      * Milliseconds allowed per controller action.
      */
-    public static final int ACTION_TIME = 40;
+    public static final int ACTION_TIME = 40; // Formerly set to 40.
 
     /**
      * Milliseconds for controller disqualification, if it returns an action after this time.
@@ -86,7 +86,7 @@ public class CompetitionParameters
      *  Time limits are WALL TIME on Windows, because CPU TIME is not accurate enough
      *  at the level of milliseconds on this OS.
      */
-    public static final boolean TIME_CONSTRAINED = true;
+    public static final boolean TIME_CONSTRAINED = false;
 
     /**
      * Max number of evaluations that can be done
@@ -123,7 +123,7 @@ public class CompetitionParameters
     /**
      * Max time a game can run
      */
-    public static final int MAX_TIMESTEPS = 2000;
+    public static final int MAX_TIMESTEPS = 1000;
 
     /**
      * Terminates the program when the playing window is closed
