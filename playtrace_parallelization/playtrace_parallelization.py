@@ -20,20 +20,28 @@ if __name__ == '__main__':
                    check=True, cwd=r"C:\Users\justi\Coding\GVGAI Local Desktop\SURF2026-ERA")
     
     # Get paths of levels that need playtraces
-    selected_generator = "constructiveLevelGenerator"
-    files = glob.glob(f'./generatedExamples/{selected_generator}/*/*')
-    # filter for level files
+    selected_generators = ["constructiveLevelGenerator",
+                           "claudeLevelGenerator",
+                           "fineTunedLLMGenerator",
+                           "geminiLevelGenerator",
+                           "geneticLevelGenerator",
+                           "localLanguageModel",
+                           "randomLevelGenerator"]
     
-    # Create list of levels that need playtraces
-    to_compute = []
-    print(files)
-    for file in files:
-         if (not os.path.exists(file.replace("generatedExamples", "generatedExamplesPlaytraces")) and file.endswith(".txt") and not os.path.isdir(file)):
-              to_compute.append(file)
+    for generator in selected_generators:
+        files = glob.glob(f'./generatedExamples/{generator}/*/*')
+        # filter for level files
+        
+        # Create list of levels that need playtraces
+        to_compute = []
+        print(files)
+        for file in files:
+            if (not os.path.exists(file.replace("generatedExamples", "generatedExamplesPlaytraces")) and file.endswith(".txt") and not os.path.isdir(file)):
+                to_compute.append(file)
 
 
-    with Pool(12) as p:
-        (p.map(create_playtrace, to_compute))
+        with Pool(12) as p:
+            (p.map(create_playtrace, to_compute))
 
 
 
