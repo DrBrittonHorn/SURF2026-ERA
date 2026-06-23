@@ -23,14 +23,12 @@ if __name__ == '__main__':
     selected_generator = "constructiveLevelGenerator"
     files = glob.glob(f'./generatedExamples/{selected_generator}/*/*')
     # filter for level files
-    for file in files:
-         if not file.endswith(".txt"): files.remove(file); print(file)
-         if os.path.isdir(file): files.remove(file); print(file)
+    
     # Create list of levels that need playtraces
     to_compute = []
-    # print(files)
+    print(files)
     for file in files:
-         if not os.path.exists(file.replace("generatedExamples", "generatedExamplesPlaytraces")):
+         if (not os.path.exists(file.replace("generatedExamples", "generatedExamplesPlaytraces")) and file.endswith(".txt") and not os.path.isdir(file)):
               to_compute.append(file)
 
 
