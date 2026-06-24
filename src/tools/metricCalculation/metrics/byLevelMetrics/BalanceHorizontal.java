@@ -37,7 +37,7 @@ public class BalanceHorizontal {
             }
         }
         levelTransposed = levelTransposed.substring(1);
-        System.out.println(levelTransposed);
+        //System.out.println(levelTransposed);
         // -1 ensures that left heavy levels have a negative balance score and right heavy levels have a positive one.
         return -1 * BalanceVertical.calculateMetric(levelTransposed);
     }

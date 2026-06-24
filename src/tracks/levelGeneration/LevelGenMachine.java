@@ -434,7 +434,7 @@ public class LevelGenMachine
      * @param level current level to save
      * @param levelFile saved file
      */
-    private static void saveLevel(String level, String levelFile, HashMap<Character, ArrayList<String>> charMapping) {
+    static void saveLevel(String level, String levelFile, HashMap<Character, ArrayList<String>> charMapping) {
         try {
             if (levelFile != null) {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(levelFile));

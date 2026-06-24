@@ -18,9 +18,10 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
                 listX.append(metrics[selected_metrics_tuple[0]])
                 listY.append(metrics[selected_metrics_tuple[1]])
             
-
-    print(f"Creating an ERA chart with {len(listX)} levels as data points")
     
+    print(f"Creating an ERA chart with {len(listX)} levels: ({selected_metrics[1]} to {selected_metrics[0]})")
+    if (len(listX) == 0): return
+
     fig, ax = plt.subplots()
 
     
@@ -33,7 +34,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     y_min = min(listY) - y_padding
     y_max = max(listY) + y_padding
 
-    hexbin = ax.hexbin(listX, listY, gridsize=75, extent=(x_min, x_max, y_min, y_max))
+    hexbin = ax.hexbin(listX, listY, gridsize=75, extent=(x_min, x_max, y_min, y_max), cmap="plasma")
     colorbar = fig.colorbar(hexbin, ax=ax)
     # colorbar.set_label("Count")
 
@@ -42,7 +43,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     
     # Set exterior characteristics
     generator_name = json_path.split("/")[1]
-    if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
+    if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
     ax.set_title(get_official_generator_title(json_path) + "" + game_name + " ERA Chart")
     ax.set_xlabel(get_official_metric_title(selected_metrics_tuple[0]))
@@ -68,10 +69,3 @@ metric_path = "generatedExamples/geminiLevelGenerator/levelMetrics.json"
 
 selected_metrics = ("Density", "ShannonEntropy")
 # create_ERA_graph(selected_metrics, metric_path, exclude_malformed=True)
-
-# TODO legend for ERA chart, show total level amounts for ERA and histogram
-
-# Metrics json reformatting
-# ERA chart
-# Histograms
-# Tables
