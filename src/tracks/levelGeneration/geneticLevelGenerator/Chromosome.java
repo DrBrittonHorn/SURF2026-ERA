@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 import core.game.Event;
 import core.game.GameDescription.SpriteData;
@@ -16,6 +17,7 @@ import ontology.Types.WINNER;
 import tools.ElapsedCpuTimer;
 import tools.LevelMapping;
 import tools.StepController;
+import tools.metricCalculation.metricTools;
 
 public class Chromosome implements Comparable<Chromosome>{
 
@@ -38,7 +40,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	/**
 	 * the best automated agent
 	 */
-	private AbstractPlayer automatedAgent;
+	//private AbstractPlayer automatedAgent;
 	/**
 	 * the naive automated agent
 	 */
@@ -46,7 +48,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	/**
 	 * the do nothing automated agent
 	 */
-	private AbstractPlayer doNothingAgent;
+	//private AbstractPlayer doNothingAgent;
 	/**
 	 * The current stateObservation of the level
 	 */
@@ -97,9 +99,9 @@ public class Chromosome implements Comparable<Chromosome>{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void constructAgent(){
 		try{
-			Class agentClass = Class.forName(SharedData.AGENT_NAME);
-			Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
-			automatedAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
+			//Class agentClass = Class.forName(SharedData.AGENT_NAME);
+			//Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
+			//automatedAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -115,9 +117,9 @@ public class Chromosome implements Comparable<Chromosome>{
 		}
 		
 		try{
-			Class agentClass = Class.forName(SharedData.NAIVE_AGENT_NAME);
-			Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
-			doNothingAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
+			//Class agentClass = Class.forName(SharedData.NAIVE_AGENT_NAME);
+			//Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
+			//doNothingAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -546,6 +548,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @param minUniqueRule		minimum amount of rules needed to reach 1
 	 * @return			near 1 when its near to minUniqueRule
 	 */
+	@SuppressWarnings("unused") // 
 	private double getUniqueRuleScore(StateObservation gameState, double minUniqueRule){
 		double unique = 0;
 		HashMap<Integer, Boolean> uniqueEvents = new HashMap<Integer, Boolean>();
@@ -602,25 +605,28 @@ public class Chromosome implements Comparable<Chromosome>{
 			
 
 			//Play the game using the best agent
-			StepController stepAgent = new StepController(automatedAgent, SharedData.EVALUATION_STEP_TIME);
-			ElapsedCpuTimer elapsedTimer = new ElapsedCpuTimer();
-			elapsedTimer.setMaxTimeMillis(time);
-			stepAgent.playGame(stateObs.copy(), elapsedTimer);
-			
-			StateObservation bestState = stepAgent.getFinalState();
-			ArrayList<Types.ACTIONS> bestSol = stepAgent.getSolution();
 
-			StateObservation doNothingState = null;
-			int doNothingLength = Integer.MAX_VALUE;
-			//playing the game using the donothing agent and naive agent
-			for(int i=0; i<SharedData.REPETITION_AMOUNT; i++){
-				StateObservation tempState = stateObs.copy();
-				int temp = getNaivePlayerResult(tempState, bestSol.size(), doNothingAgent);
-				if(temp < doNothingLength){
-					doNothingLength = temp;
-					doNothingState = tempState;
-				}
-			}
+			// commented out all agnet based aspects
+
+			// StepController stepAgent = new StepController(automatedAgent, SharedData.EVALUATION_STEP_TIME);
+			// ElapsedCpuTimer elapsedTimer = new ElapsedCpuTimer();
+			// elapsedTimer.setMaxTimeMillis(time);
+			// stepAgent.playGame(stateObs.copy(), elapsedTimer);
+			
+			// StateObservation bestState = stepAgent.getFinalState();
+			// ArrayList<Types.ACTIONS> bestSol = stepAgent.getSolution();
+
+			// StateObservation doNothingState = null;
+			// int doNothingLength = Integer.MAX_VALUE;
+			// //playing the game using the donothing agent and naive agent
+			// for(int i=0; i<SharedData.REPETITION_AMOUNT; i++){
+			// 	StateObservation tempState = stateObs.copy();
+			// 	int temp = getNaivePlayerResult(tempState, bestSol.size(), doNothingAgent);
+			// 	if(temp < doNothingLength){
+			// 		doNothingLength = temp;
+			// 		doNothingState = tempState;
+			// 	}
+			// }
 			double coverPercentage = getCoverPercentage();
 			
 			//calculate the maxScore need to be satisfied based on the difference 
@@ -631,14 +637,66 @@ public class Chromosome implements Comparable<Chromosome>{
 				maxScore = numberOfUnits * SharedData.gameAnalyzer.getMinScoreUnit();
 			}
 			
+			String Level = this.getLevelString(getLevelMapping());
+
+			double AvatarX = 1000.0;
+			double AvatarY = 1000.0;
+			boolean Avatar = false;
+			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A') == null) {
+				System.out.println(Level);
+			}
+			else {
+				AvatarX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getX();
+				AvatarY = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getY();
+				Avatar = true;
+			}
+
+			// for now, designed specifically for zelda
+			double GoalX = 1000.0;
+			double GoalY = 1000.0;
+			boolean Goal = false;
+			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g') == null) {
+				System.out.println(Level);
+			}
+			else {
+				GoalX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
+				GoalY = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
+				Goal = true;
+			}
+
+			int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
+			// find a way to detect a path between the avatar and the goal
+
+			WINNER bestState = null;
+			double ruleScore = 0.0;
+
+			// determines a winner based on the length of the solution, using 8 as an arbitrary middlepoint
+			if (bestSol < 8) {
+				bestState = Types.WINNER.PLAYER_WINS; // win
+				ruleScore = (double) ThreadLocalRandom.current().nextInt(1, 6);
+			}
+			else if (bestSol == 8) {
+				bestState = Types.WINNER.NO_WINNER; // no result
+				ruleScore = (double) ThreadLocalRandom.current().nextInt(6, 11);
+			}
+			else if (bestSol > 8) {
+				bestState = Types.WINNER.PLAYER_LOSES; // lose
+				ruleScore = (double) ThreadLocalRandom.current().nextInt(11, 16);
+			}
+
+			WINNER doNothingState = Types.WINNER.NO_WINNER; // no freaking clue how the StateObservation type works
+			int doNothingLength = 0;
+
+			int AvatarParam = Avatar ? 1 : 0;
+			int GoalParam = Goal ? 1 : 0;
 
 			//calculate the constrain fitness by applying all different constraints
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("solutionLength", bestSol.size());
+			parameters.put("solutionLength", bestSol);
 			parameters.put("minSolutionLength", SharedData.MIN_SOLUTION_LENGTH);
 			parameters.put("doNothingSteps", doNothingLength);
-			parameters.put("doNothingState", doNothingState.getGameWinner());
-			parameters.put("bestPlayer", bestState.getGameWinner());
+			parameters.put("doNothingState", doNothingState);
+			parameters.put("bestPlayer", bestState);
 			parameters.put("minDoNothingSteps", SharedData.MIN_DOTHING_STEPS);
 			parameters.put("coverPercentage", coverPercentage);
 			parameters.put("minCoverPercentage", SharedData.MIN_COVER_PERCENTAGE);
@@ -646,6 +704,8 @@ public class Chromosome implements Comparable<Chromosome>{
 			parameters.put("numOfObjects", calculateNumberOfObjects());
 			parameters.put("gameAnalyzer", SharedData.gameAnalyzer);
 			parameters.put("gameDescription", SharedData.gameDescription);
+			parameters.put("hasAvatar", AvatarParam); // not currently used
+			parameters.put("hasGoal", GoalParam); // not currently used
 			
 			CombinedConstraints constraint = new CombinedConstraints();
 			constraint.addConstraints(new String[]{"SolutionLengthConstraint", "DeathConstraint", 
@@ -654,7 +714,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			constraint.setParameters(parameters);
 			constrainFitness = constraint.checkConstraint();
 			
-			System.out.println("SolutionLength:" + bestSol.size() + " doNothingSteps:" + doNothingLength + " coverPercentage:" + coverPercentage + " bestPlayer:" + bestState.getGameWinner());
+			System.out.println("SolutionLength:" + bestSol + " doNothingSteps:" + doNothingLength + " coverPercentage:" + coverPercentage + " bestPlayer:" + bestState);
 			
 
 			//calculate the fitness if it satisfied all the constraints
@@ -662,20 +722,20 @@ public class Chromosome implements Comparable<Chromosome>{
 				StateObservation naiveState = null;
 				for(int i=0; i<SharedData.REPETITION_AMOUNT; i++){
 					StateObservation tempState = stateObs.copy();
-					getNaivePlayerResult(tempState, bestSol.size(), naiveAgent);
+					getNaivePlayerResult(tempState, bestSol, naiveAgent);
 					if(naiveState == null || tempState.getGameScore() > naiveState.getGameScore()){
 						naiveState = tempState;
 					}
 				}
 				
-				double scoreDiffScore = getGameScore(bestState.getGameScore() - naiveState.getGameScore(), maxScore);
-				double ruleScore = getUniqueRuleScore(bestState, SharedData.MIN_UNIQUE_RULE_NUMBER);
+				double scoreDiffScore = 1; //getGameScore(bestState.getGameScore() - naiveState.getGameScore(), maxScore);
+				//double ruleScore = getUniqueRuleScore(bestState, SharedData.MIN_UNIQUE_RULE_NUMBER);
 				
 				fitness.add(scoreDiffScore);
 				fitness.add(ruleScore);
 			}
 
-			this.automatedAgent = null;
+			//this.automatedAgent = null;
 			this.naiveAgent = null;
 			this.stateObs = null;
 		}
