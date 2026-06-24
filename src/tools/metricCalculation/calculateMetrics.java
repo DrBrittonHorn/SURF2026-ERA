@@ -11,71 +11,87 @@ import tools.com.google.gson.Gson;
 import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import tools.metricCalculation.metrics.*;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNoveltyScore;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputStructuralSimilarity;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputJensenShannonDivergence1D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputJensenShannonDivergence2D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputKLDivergence1D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputKLDivergence2D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputLevenshteinDistance;
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity1D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity2D;
+import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNaiveSimilarity;
+import tools.metricCalculation.metrics.byGeneratorMetrics.PlaytraceDiversity;
+import tools.metricCalculation.metrics.byLevelMetrics.AgentSolutionLength;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceHorizontal;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceVertical;
 import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
 import tools.metricCalculation.metrics.byLevelMetrics.DecorationFrequency;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
+import tools.metricCalculation.metrics.byLevelMetrics.Difficulty;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
 import tools.metricCalculation.metrics.byLevelMetrics.HazardTileRatio;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
+import tools.metricCalculation.metrics.byLevelMetrics.MechanicUsage;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
+import tools.metricCalculation.metrics.byLevelMetrics.RewardDensity;
 import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
+import tools.metricCalculation.metrics.byLevelMetrics.StaticPathLength;
+import tools.metricCalculation.metrics.byLevelMetrics.StructuralSimilarityToCorpus;
+import tools.metricCalculation.metrics.byLevelMetrics.Symmetry;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
 import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
 
 public class calculateMetrics {
 
-    public static JsonObject createLevelMetricJson(String levelText) throws IOException{
+    public static JsonObject createLevelMetricJson(Path levelPath) throws IOException{
+        String levelText = Files.readString(levelPath);
+        String levelPathString = levelPath.toString();
         JsonObject levelMetrics = new JsonObject();
         //First, add all the metrics that are calculated on a per level basis
 
         // Individual Metrics added to the json object below
         levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
-        //System.out.println("Density Calculations Complete");
         levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
-        //System.out.println("Negative Space Calculations Complete");
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
-        //System.out.println("Shannon Entropy Calculations Complete");
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
-        //System.out.println("Flood Reachability Calculations Complete");
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
-        //System.out.println("Wall/Floor Ratio Calculations Complete");
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
-
         levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
-        levelMetrics.addProperty("KLDivergence2D", KLDivergence1D.calculateMetric(levelText));
+        levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
-
         levelMetrics.addProperty("BalanceHorizontal", BalanceHorizontal.calculateMetric(levelText));
         levelMetrics.addProperty("BalanceVertical", BalanceVertical.calculateMetric(levelText));
-
         levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelText));
+        levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelText));
+        levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
+        levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelText));
+        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelText));
+        // Put metrics that require the levelPath here
+        levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
+        levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
+        levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
 
-        levelMetrics.addProperty("DecorationFrequenct", DecorationFrequency.calculateMetric(levelText));
-        levelMetrics.addProperty("HazardTileRation", HazardTileRatio.calculateMetric(levelText));
-
-        //levelMetrics.addProperty("SomeMetric", SomeMetric.calculateSomeMetric(levelText));
-        //System.out.println("Some Metric Calculations Complete");
-
+        // Put metrics with special formats here and explain why
+        // Metrics that can not be plotted will be marked with an asterisk
+        levelMetrics.add("MechanicUsage*", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
 
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
-        binningProperty.addProperty("ConsistentRows", BinGeneratedLevels.consistentRows(levelText));
-        binningProperty.addProperty("ContainsPlayer", BinGeneratedLevels.containsPlayer(levelText));
-        binningProperty.addProperty("NotEmpty", BinGeneratedLevels.notEmpty(levelText));
-        
-        levelMetrics.add("Binning", binningProperty);
+            binningProperty.addProperty("ConsistentRows", BinGeneratedLevels.consistentRows(levelText));
+            binningProperty.addProperty("ContainsPlayer", BinGeneratedLevels.containsPlayer(levelText));
+            binningProperty.addProperty("NotEmpty", BinGeneratedLevels.notEmpty(levelText));
+        levelMetrics.add("Binning*", binningProperty);
 
         return levelMetrics;
     }
@@ -111,7 +127,7 @@ public class calculateMetrics {
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
-            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json"));
+            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")); // Remove parallelization if causing problems
             streamByGame.forEach(game -> {
                 try {
                     JsonObject fullGameJson = new JsonObject();
@@ -122,14 +138,16 @@ public class calculateMetrics {
                         // If level file
                         if (level.toString().endsWith(".txt")){
                             try {
-                                fullGameJson.add(level.toString(), createLevelMetricJson(Files.readString(level)));
+                                fullGameJson.add(level.toString(), createLevelMetricJson(level));
+                                System.out.print("\r" + level.toString() + " completed!                           \r"); // (Load-bearing space characters)
+                                
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         }
                         
                     });
+                    System.out.println();
                     
                     //System.out.println(gameJson);
                     // Creates a metrics.json for each game in each generator for single-game analysis
@@ -138,6 +156,7 @@ public class calculateMetrics {
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
+                    
                 }
             });
             /*String fullJsonString = "";
@@ -173,13 +192,24 @@ public class calculateMetrics {
         Stream<Path> streamByGame = (Files.list(Path.of(generatorFolderPath)).filter(f -> !f.toString().endsWith(".json")));
         streamByGame.forEach(game -> {
             JsonObject fullGameJson = new JsonObject();
-            System.out.println("Creating metrics for the folder... " + generatorFolderPath + "/" + game.toString());
-            //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
-            fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString(), 5));
             try {
+                System.out.println("Creating metrics for the generator folder... " + generatorFolderPath + "/" + game.toString());
+                //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
+                fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(game.toString(), 5));
+                fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString()));
+                fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(generatorFolderPath));
+                //fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(generatorFolderPath));
+
+                fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(generatorFolderPath));
+                fullGameJson.addProperty("OutputJensenShannonDivergence2D", OutputJensenShannonDivergence2D.calculateMetric(generatorFolderPath, 5));
+                fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(generatorFolderPath));
+                fullGameJson.addProperty("OutputKLDivergence2D", OutputKLDivergence2D.calculateMetric(generatorFolderPath, 5));
+                fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(generatorFolderPath));
+                fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(generatorFolderPath));
+                fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(generatorFolderPath));
+
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             jsonsByGame.add(fullGameJson);
@@ -223,14 +253,16 @@ public class calculateMetrics {
          selectedFolders.add("generatedExamples/geneticLevelGenerator");
          selectedFolders.add("generatedExamples/localLanguageModelGenerator");
          selectedFolders.add("generatedExamples/randomLevelGenerator");
+         selectedFolders.add("generatedExamples/claudeLevelGenerator");
+         selectedFolders.add("generatedExamples/FineTunedLLMGenerator");
         
         for (String s: selectedFolders){
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
             System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
-            createMetricsByLevel(s);
-            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            //createMetricsByLevel(s);
+            //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
             createMetricsByFolderRecursive(s);
         }
         

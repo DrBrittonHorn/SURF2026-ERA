@@ -1,0 +1,19 @@
+LevelMapping
+    A > avatar 
+    w > wall 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+w      l                   w
+w      l   c         c     w
+w A    l  ...   ...   ...  w
+w...   l   1     2   1    w
+wwww   l  ...   ...  ... G w
+w      l  w     w    w  ...w
+w      l  w c   w  c w  www
+w   c  l  w ...  w...ww    w
+w  .... l  w1 2  w 2 www   w
+w       l  w .... w....    w
+w  c    l  w      w   c   w
+w ....  l..w......w.....  w
+wwwwwwwwwwwwwwwwwwwwwwwwwwww

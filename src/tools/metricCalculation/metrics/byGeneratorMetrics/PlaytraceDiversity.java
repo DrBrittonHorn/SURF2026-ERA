@@ -5,64 +5,100 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Stream;
 
-import tracks.ArcadeMachine;
+import tools.metricCalculation.metricTools;
+import tools.metricCalculation.metrics.byLevelMetrics.LevenshteinDistance;
+
+// Tests the diversity of pllaytraces via Levenshtein distance between all metrics
 
 public class PlaytraceDiversity{
-    public static double calculateMetric(String generatorFolderPath) throws IOException{
+    public static double calculateMetric(String generatorFolderPath) {
         
-        // Available agents for metric
-        String sampleRandomController = "tracks.singlePlayer.simple.sampleRandom.Agent";
-		String doNothingController = "tracks.singlePlayer.simple.doNothing.Agent";
-		String sampleOneStepController = "tracks.singlePlayer.simple.sampleonesteplookahead.Agent";
-		String sampleFlatMCTSController = "tracks.singlePlayer.simple.greedyTreeSearch.Agent";
+        Stream<Path> levels;
+        try {
+            levels = Files.walk(Path.of(generatorFolderPath)).filter(path -> path.toString().endsWith(".txt"));
 
-		String sampleMCTSController = "tracks.singlePlayer.advanced.sampleMCTS.Agent";
-        String sampleRSController = "tracks.singlePlayer.advanced.sampleRS.Agent";
-        String sampleRHEAController = "tracks.singlePlayer.advanced.sampleRHEA.Agent";
-		String sampleOLETSController = "tracks.singlePlayer.advanced.olets.Agent";
+            ArrayList<ArrayList<String>> allLevelActions = new ArrayList<ArrayList<String>>();
 
-
-        String selectedAgent = sampleOLETSController;
-        String recordActionsFile = "src/tools/metricCalculation/tempFiles/playtraceDiversityTemp.txt";
-        String gameName = generatorFolderPath.split("/")[2];
-        Stream<Path> levels = Files.list(Path.of(generatorFolderPath)).filter(path -> path.toString().endsWith(".txt"));
-
-        ArrayList<String[]> allLevelActions = new ArrayList<String[]>();
-
-        levels.forEach(path -> {
-            // Create a level without the tilemapping heading to pass into ArcadeMachine.runOneGame()
-            try {
-                String levelNoTileMapping = Files.readString(path);
-                if (levelNoTileMapping.split("LevelDescription").length > 1){
-                    levelNoTileMapping = levelNoTileMapping.split("LevelDescription")[1].trim();
+            levels.forEach(path -> {
+                
+                Path playtracePath = Path.of(path.toString().replace("generatedExamples", "generatedExamplesPlaytraces"));
+                //System.out.println(playtracePath.toString());
+                try {
+                    if ((!Files.isRegularFile(playtracePath) || Files.readString(playtracePath).isBlank()) && metricTools.getLevelTiles(Files.readString(path)).contains("A")){
+                        try {
+                            //System.out.println("Making playtrace for " + path.toString());
+                            metricTools.createPlaytrace(path.toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
-                String tempLevelPath = "src/tools/metricCalculation/tempFiles/tempLevelMap.txt";
-                Files.writeString(Path.of(tempLevelPath), levelNoTileMapping);
-
-                ArcadeMachine.runOneGame("examples/selectedGameFiles/" + gameName + ".txt", tempLevelPath, true, selectedAgent, recordActionsFile, 0, 0);
-                // TODO fix trailing newline
-                String[] levelOutcome = Files.readString(Path.of(recordActionsFile)).split("\n");
-                String[] levelActions = new String[levelOutcome.length-1];
-                for (int i = 1; i < levelOutcome.length; i++){
-                    levelActions[i-1] = levelOutcome[i];
+                String playtraceData;
+                try {
+                    playtraceData = Files.readString(playtracePath);
+                    List<String> l = Arrays.asList(playtraceData.split("\n"));
+                    ArrayList<String> playtraceList = new ArrayList<String>();
+                    playtraceList.addAll(l);
+                    playtraceList.remove(0); // Removes the first line containing win/loss info
+                    allLevelActions.add(playtraceList);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                allLevelActions.add(levelActions);
-                System.out.println(allLevelActions.get(0).length);
-            } catch (IOException e) {
-                e.printStackTrace();
+                
+
+            });
+            ArrayList<String> processedPlaytraceStrings = new ArrayList<String>();
+            HashMap<String, Character> actionToChar = new HashMap<String, Character>();
+            for (ArrayList<String> actions : allLevelActions){
+                for (String action : actions){
+                    if (!actionToChar.containsKey(action)){
+                        actionToChar.put(action, ((char) ('a' + actionToChar.size())));
+                    }
+                }
             }
-            
-        
+            //System.out.println(actionToChar);
+            for (ArrayList<String> actions : allLevelActions){
+                String levelActionsProcessed = "";
+                for (String action : actions){
+                    levelActionsProcessed += actionToChar.get(action);
+                }
+                processedPlaytraceStrings.add(levelActionsProcessed);
+            }
+            processedPlaytraceStrings.remove(""); // Remove empty element
 
-        });
-        return 0;
+            //System.out.println(processedPlaytraceStrings);
+
+            double accumulatedDifference = 0;
+            int totalComparisons = 0;
+
+            // Calculate distances between all playtraces
+            for (int i = 0; i < processedPlaytraceStrings.size(); i++){
+                for (int j = i; j < processedPlaytraceStrings.size(); j++){
+                    double difference = LevenshteinDistance.levenshteinFullMatrixNormalized(processedPlaytraceStrings.get(i), processedPlaytraceStrings.get(j));
+                    accumulatedDifference += difference;
+                    totalComparisons++;
+                }
+            }
+
+            return accumulatedDifference/totalComparisons;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 
     public static void main(String[] args) throws IOException{
 
-        String testFolder = "generatedExamples/geminiLevelGenerator/realsokoban";
+        String testFolder = "generatedExamples/randomLevelGenerator/";
         System.out.println(calculateMetric(testFolder));
 
     }
