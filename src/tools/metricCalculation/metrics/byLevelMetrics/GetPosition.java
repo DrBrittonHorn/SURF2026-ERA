@@ -44,7 +44,7 @@ public class GetPosition {
             map = LevelText.strip();
         }
 
-        char[][] MAP = metricTools.toMap(map);
+        char[][] MAP = metricTools.toMapOther(map);
 
         for (int y = 0; y < MAP.length; y++) {
             for (int x = 0; x< MAP[y].length; x++) {
