@@ -94,7 +94,12 @@ public class OutputKLDivergence2D {
                     }
                 }
 
-                totalDivergence += KLDivergence2D.KLDivergence(level1Counts, level2Counts, level1TotalWindows, level2TotalWindows);
+                
+                double addedTerm = KLDivergence2D.KLDivergence(level1Counts, level2Counts, level1TotalWindows, level2TotalWindows);
+                if (Double.isNaN(addedTerm)){
+                    throw new ArithmeticException("NaN detected for " + path1.toString() + "\n" + path2.toString());
+                }
+                totalDivergence += addedTerm;
             }
         }
         
@@ -104,7 +109,7 @@ public class OutputKLDivergence2D {
 
     public static void main(String[] args) throws IOException{
 
-        String testFolder = "generatedExamples/geminiLevelGenerator/dungeon";
+        String testFolder = "generatedExamples/geminiLevelGenerator/aliens";
         System.out.println(calculateMetric(testFolder, 1));
 
     }
