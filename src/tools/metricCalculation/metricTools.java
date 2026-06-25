@@ -421,7 +421,7 @@ public class metricTools {
         //System.out.println("Create directories for " + recordActionsFolder);
         Files.createDirectories(Path.of(recordActionsFolder));
 
-        String gameName = levelPath.split("/")[2];
+        String gameName = levelPath.split("/|\\\\")[2];
         
         System.out.println(levelPath);
         String levelTilesOnly = Files.readString(Path.of(levelPath));

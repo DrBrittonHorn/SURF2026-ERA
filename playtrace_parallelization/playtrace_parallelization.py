@@ -37,7 +37,7 @@ if __name__ == '__main__':
                 to_compute.append(file)
 
 
-        with Pool(12) as p:
+        with Pool(2) as p:
             (p.map(create_playtrace, to_compute))
 
 
