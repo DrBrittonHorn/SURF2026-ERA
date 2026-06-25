@@ -25,7 +25,9 @@ public class OutputKLDivergence2D {
 
         double totalDivergence = 0;
         for (Path path1 : allLevelPaths){
+            //System.out.println(path1.toString());
             for (Path path2 : allLevelPaths){
+                //System.out.println(path2.toString());
                 // Level1
                 int level1TotalWindows = 0;
                 HashMap<String, Integer> level1Counts = new HashMap<String, Integer>();
@@ -96,21 +98,28 @@ public class OutputKLDivergence2D {
 
                 
                 double addedTerm = KLDivergence2D.KLDivergence(level1Counts, level2Counts, level1TotalWindows, level2TotalWindows);
+                //System.out.println(addedTerm);
                 if (Double.isNaN(addedTerm)){
-                    throw new ArithmeticException("NaN detected for " + path1.toString() + "\n" + path2.toString());
+                    ArithmeticException a = new ArithmeticException("NaN detected for " + path1.toString() + "\n and \n" + path2.toString());
+                    a.printStackTrace();
+                    
                 }
                 totalDivergence += addedTerm;
             }
         }
         
         // Return total normalized by the total number of comparisons (n^2)
-        return totalDivergence / (allLevelPaths.size() * allLevelPaths.size());
+        double ret = totalDivergence / (allLevelPaths.size() * allLevelPaths.size());
+        //System.out.println("returning " + ret);
+        return ret;
     }
 
     public static void main(String[] args) throws IOException{
 
-        String testFolder = "generatedExamples/geminiLevelGenerator/aliens";
-        System.out.println(calculateMetric(testFolder, 1));
+        String testFolder = "generatedExamples/geminiLevelGenerator/dungeon";
+        testFolder = "generatedExamples/claudeLevelGenerator/zelda";
+        testFolder = "generatedExamples/randomLevelGenerator/asteroids";
+        System.out.println(calculateMetric(testFolder, 2));
 
     }
 }
