@@ -3,6 +3,7 @@ package tracks.levelGeneration.geneticLevelGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import core.game.GameDescription;
@@ -10,6 +11,8 @@ import core.generator.AbstractLevelGenerator;
 import tools.ElapsedCpuTimer;
 import tools.GameAnalyzer;
 import tools.LevelMapping;
+import tools.metricCalculation.metricTools;
+import tracks.levelGeneration.FixNaming;
 
 public class LevelGenerator extends AbstractLevelGenerator{
 
@@ -328,7 +331,27 @@ public class LevelGenerator extends AbstractLevelGenerator{
 			Collections.sort(iChromosomes);
 			bestChromosomeLevelMapping = iChromosomes.get(0).getLevelMapping();
 			System.out.println("Best Fitness: " + iChromosomes.get(0).getConstrainFitness());
-			return iChromosomes.get(0).getLevelString(bestChromosomeLevelMapping);
+
+			String SelectedLevel = iChromosomes.get(0).getLevelString(bestChromosomeLevelMapping); // sets a string as what's to be returned
+			HashMap<Character,Double> tiles = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOther(SelectedLevel); // gets the tile frequencies
+			Character maxKey = Collections.max(tiles.entrySet(), Map.Entry.comparingByValue()).getKey(); // finds the most common tile (in hopes of making this process game independent)
+			String map = null;
+			if (SelectedLevel.contains("LevelDescription")) {
+				String[] level = SelectedLevel.split("LevelDescription");
+				map = level[1].strip();
+			} // looks at only he actual level mapping
+			else {
+				map = SelectedLevel.strip();
+			}
+			String fixedLevel = map.replace(' ', maxKey); // assumes ' ' is a negatively empty tile
+
+			System.out.println("HERE HERE HERE LOOK HERE");
+			System.out.println(SelectedLevel);
+			System.out.println(maxKey);
+			System.out.println("\n");
+			System.out.println(fixedLevel);
+
+			return fixedLevel;
 		}
 		
 		//return the best feasible chromosome otherwise and print some statistics
@@ -342,7 +365,27 @@ public class LevelGenerator extends AbstractLevelGenerator{
 		System.out.println(numOfFeasible);
 		System.out.println(numOfInFeasible);
 		//System.out.println(fChromosomes.get(0).getLevelString(bestChromosomeLevelMapping)); // test to actually get the level
-		return fChromosomes.get(0).getLevelString(originalLevelMapping);
+
+		String SelectedLevel = fChromosomes.get(0).getLevelString(originalLevelMapping); // sets a string as what's to be returned
+		HashMap<Character,Double> tiles = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetric(SelectedLevel); // gets the tile frequencies
+		Character maxKey = Collections.max(tiles.entrySet(), Map.Entry.comparingByValue()).getKey(); // finds the most common tile (in hopes of making this process game independent)
+		String map = null;
+		if (SelectedLevel.contains("LevelDescription")) {
+        	String[] level = SelectedLevel.split("LevelDescription");
+			map = level[1].strip();
+        } // looks at only he actual level mapping
+		else {
+			map = SelectedLevel.strip();
+		}
+		String fixedLevel = map.replace(' ', maxKey); // assumes ' ' is a negatively empty tile
+
+		System.out.println("HERE HERE HERE LOOK HERE");
+		System.out.println(SelectedLevel);
+		System.out.println(maxKey);
+		System.out.println("\n");
+		System.out.println(fixedLevel);
+
+		return fixedLevel;
 	}
 
 
