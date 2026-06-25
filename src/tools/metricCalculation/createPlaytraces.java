@@ -44,11 +44,12 @@ public class createPlaytraces {
 
 
     public static void main(String[] args) throws IOException{
-        String levelFolder = "generatedExamples\\constructiveLevelGenerator\\dungeon\\";
-        levelFolder = "generatedExamples\\constructiveLevelGenerator\\";
-        String levelPath = args[0];
-        createOnePlaytrace(levelPath);
-        //createManyPlaytraces(levelFolder);
+        String levelFolder = "generatedExamples/constructiveLevelGenerator/dungeon/";
+        String level = "generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl019.txt";
+        //String levelPath = args[0];
+        //createOnePlaytrace(level);
+        createManyPlaytraces(levelFolder);
+        
     }
 }
 

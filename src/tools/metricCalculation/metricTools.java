@@ -408,7 +408,7 @@ public class metricTools {
 
         String selectedAgent = sampleOLETSController;
         
-        String recordActionsFile = levelPath.replace("generatedExamples", "generatedExamplesPlaytraces");
+        String recordActionsFile = levelPath.replace("generatedExamples", "generatedExamplesPlaytracesLinux40ms");
         // If the level playtrace already exists and isn't blank, don't make a new one
         if (Files.isRegularFile(Path.of(recordActionsFile)) && !Files.readString(Path.of(recordActionsFile)).isBlank()){
             return;
@@ -421,7 +421,7 @@ public class metricTools {
         //System.out.println("Create directories for " + recordActionsFolder);
         Files.createDirectories(Path.of(recordActionsFolder));
 
-        String gameName = levelPath.split("/|\\\\")[3];
+        String gameName = levelPath.split("/")[2];
         
         System.out.println(levelPath);
         String levelTilesOnly = Files.readString(Path.of(levelPath));
@@ -442,7 +442,7 @@ public class metricTools {
         levelTilesOnly = String.join("\n", levelArray);
         //System.out.println(levelTilesOnly);
 
-        String tempLevelPath = "src/tools/metricCalculation/tempFiles/" + "temp-" + levelPath.split("/|\\\\")[4];
+        String tempLevelPath = "src/tools/metricCalculation/tempFiles/" + "temp-" + levelPath.split("/|\\\\")[3];
         Files.writeString(Path.of(tempLevelPath), levelTilesOnly);
         try {
             Thread.sleep(5000);
