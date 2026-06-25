@@ -196,18 +196,18 @@ public class calculateMetrics {
                 String gameFolder = game.toString().replace("\\", "/");
                 System.out.println("Creating metrics for the generator folder... " + gameFolder);
                 //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
-                fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(gameFolder, 5));
-                fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(gameFolder));
-                fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(gameFolder));
-                fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(gameFolder, 5));
+                //fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(gameFolder));
 
-                fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(gameFolder));
                 fullGameJson.addProperty("OutputJensenShannonDivergence2D", OutputJensenShannonDivergence2D.calculateMetric(gameFolder, 5));
-                fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(gameFolder));
                 fullGameJson.addProperty("OutputKLDivergence2D", OutputKLDivergence2D.calculateMetric(gameFolder, 5));
-                fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(gameFolder));
-                fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(gameFolder));
-                fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(gameFolder));
+                //fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(gameFolder));
 
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
             } catch (IOException e) {
