@@ -193,20 +193,21 @@ public class calculateMetrics {
         streamByGame.forEach(game -> {
             JsonObject fullGameJson = new JsonObject();
             try {
-                System.out.println("Creating metrics for the generator folder... " + generatorFolderPath + "/" + game.toString());
+                String gameFolder = game.toString().replace("\\", "/");
+                System.out.println("Creating metrics for the generator folder... " + gameFolder);
                 //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
-                fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(game.toString(), 5));
-                fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(game.toString()));
-                fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(generatorFolderPath));
-                //fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(generatorFolderPath));
+                fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(gameFolder, 5));
+                fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(gameFolder));
+                fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(gameFolder));
+                fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(gameFolder));
 
-                fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(generatorFolderPath));
-                fullGameJson.addProperty("OutputJensenShannonDivergence2D", OutputJensenShannonDivergence2D.calculateMetric(generatorFolderPath, 5));
-                fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(generatorFolderPath));
-                fullGameJson.addProperty("OutputKLDivergence2D", OutputKLDivergence2D.calculateMetric(generatorFolderPath, 5));
-                fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(generatorFolderPath));
-                fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(generatorFolderPath));
-                fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(generatorFolderPath));
+                fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputJensenShannonDivergence2D", OutputJensenShannonDivergence2D.calculateMetric(gameFolder, 5));
+                fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputKLDivergence2D", OutputKLDivergence2D.calculateMetric(gameFolder, 5));
+                fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(gameFolder));
 
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
             } catch (IOException e) {
@@ -260,9 +261,9 @@ public class calculateMetrics {
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
-            System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
+            //System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             //createMetricsByLevel(s);
-            //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
             createMetricsByFolderRecursive(s);
         }
         
