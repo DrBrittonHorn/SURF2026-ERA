@@ -643,7 +643,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			double AvatarY = 1000.0;
 			boolean Avatar = false;
 			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A') == null) {
-				System.out.println(Level);
+				//System.out.println(Level);
 			}
 			else {
 				AvatarX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getX();
@@ -656,7 +656,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			double GoalY = 1000.0;
 			boolean Goal = false;
 			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g') == null) {
-				System.out.println(Level);
+				//System.out.println(Level);
 			}
 			else {
 				GoalX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
@@ -689,6 +689,8 @@ public class Chromosome implements Comparable<Chromosome>{
 
 			int AvatarParam = Avatar ? 1 : 0;
 			int GoalParam = Goal ? 1 : 0;
+
+			FixPlayer();
 
 			//calculate the constrain fitness by applying all different constraints
 			HashMap<String, Object> parameters = new HashMap<String, Object>();

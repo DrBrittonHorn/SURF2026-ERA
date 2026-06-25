@@ -76,7 +76,7 @@ public class SharedData {
 	/**
 	 * minimum acceptable solution
 	 */
-	public static final double MIN_SOLUTION_LENGTH = 200;
+	public static final double MIN_SOLUTION_LENGTH = 200; // based on an agent evaluation, needs to be changed
 	/**
 	 * minimum acceptable do nothing steps before dying
 	 */
