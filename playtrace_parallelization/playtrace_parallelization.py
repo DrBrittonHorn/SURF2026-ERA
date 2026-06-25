@@ -3,6 +3,9 @@ import glob
 import os
 from multiprocessing import Pool
 
+# Determines where playtraces are stored
+playtrace_collection_name = "generatedExamplesPlaytracesDiscard"
+
 # Runs createPlaytraces for one level (level path String is used as input)
 def create_playtrace(level_path : str):
     subprocess.run(["java", "-cp", "playtrace_parallelization/playtraceClasses", "tools.metricCalculation.createPlaytraces", level_path, playtrace_collection_name], 
@@ -25,7 +28,6 @@ if __name__ == '__main__':
                            #"localLanguageModel",
                            #"randomLevelGenerator"
                            ]
-    playtrace_collection_name = "generatedExamplesPlaytracesLinux40ms"
 
 
     for generator in selected_generators:
@@ -46,8 +48,6 @@ if __name__ == '__main__':
                 pass
         
 
-        with Pool(12) as p:
+        with Pool(2) as p:
             (p.map(create_playtrace, to_compute))
-
-
 
