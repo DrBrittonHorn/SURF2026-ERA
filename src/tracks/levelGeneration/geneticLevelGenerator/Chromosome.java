@@ -1,6 +1,7 @@
 package tracks.levelGeneration.geneticLevelGenerator;
 
 import java.lang.reflect.Constructor;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import tools.ElapsedCpuTimer;
 import tools.LevelMapping;
 import tools.StepController;
 import tools.metricCalculation.metricTools;
+import tools.metricCalculation.metrics.byLevelMetrics.StaticPathLength;
 
 public class Chromosome implements Comparable<Chromosome>{
 
@@ -639,6 +641,38 @@ public class Chromosome implements Comparable<Chromosome>{
 			
 			String Level = this.getLevelString(getLevelMapping());
 
+			// working on implimenting JMs BFS - I have no clue what I'm doing
+			
+			// ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(Level);
+			// double BFS = 0.0;
+			
+            // double distanceSum = 0;
+            // ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> goals = new ArrayList<AbstractMap.SimpleEntry<Integer, Integer>>();
+            // AbstractMap.SimpleEntry<Integer, Integer> avatar = new AbstractMap.SimpleEntry<Integer, Integer>(-1, -1);
+            // for (int i = 0; i < levelMatrix.size(); i++){
+            //     for (int j = 0; j < levelMatrix.get(i).size(); j++)
+            //     {
+            //         if (levelMatrix.get(i).get(j).equals('A')){
+            //             avatar = new AbstractMap.SimpleEntry<Integer, Integer>(i, j);
+            //         }
+            //         else if (levelMatrix.get(i).get(j).equals('g')){
+            //             goals.add(new AbstractMap.SimpleEntry<Integer, Integer>(i, j));
+            //         }
+            //     }
+            // }
+            // if (avatar.getKey() != null && goals.size() > 0){
+            //     for (AbstractMap.SimpleEntry<Integer, Integer> goal : goals){
+            //     distanceSum += StaticPathLength.BFSPathLength(levelMatrix, avatar, goal);
+            //     }
+                
+            //     BFS = distanceSum / (double) goals.size();
+            // }
+            // else{
+            //     BFS = -1;
+            // }
+
+			// System.out.println(BFS);
+
 			double AvatarX = 1000.0;
 			double AvatarY = 1000.0;
 			boolean Avatar = false;
@@ -662,7 +696,7 @@ public class Chromosome implements Comparable<Chromosome>{
 				GoalX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
 				GoalY = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
 				Goal = true;
-			}
+			} 
 
 			int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
 			// find a way to detect a path between the avatar and the goal

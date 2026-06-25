@@ -345,11 +345,11 @@ public class LevelGenerator extends AbstractLevelGenerator{
 			}
 			String fixedLevel = map.replace(' ', maxKey); // assumes ' ' is a negatively empty tile
 
-			System.out.println("HERE HERE HERE LOOK HERE");
-			System.out.println(SelectedLevel);
-			System.out.println(maxKey);
-			System.out.println("\n");
-			System.out.println(fixedLevel);
+			// System.out.println("HERE HERE HERE LOOK HERE"); // debug print statements
+			// System.out.println(SelectedLevel);
+			// System.out.println(maxKey);
+			// System.out.println("\n");
+			// System.out.println(fixedLevel);
 
 			return fixedLevel;
 		}
