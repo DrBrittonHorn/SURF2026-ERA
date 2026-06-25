@@ -24,13 +24,13 @@ import tracks.singlePlayer.advanced.sampleRHEA.Agent;
 
 public class createPlaytraces {
     // Creates playtrace data for all levels in a selected folder
-    public static void createManyPlaytraces(String folderPath) throws IOException{
+    public static void createManyPlaytraces(String folderPath, String playtraceCollectionName) throws IOException{
         // Stream of level files
         Stream<Path> levels = Files.walk(Path.of(folderPath)).filter(f -> f.toString().endsWith(".txt"));
 
         levels.forEach(levelPath -> {
             try {
-                metricTools.createPlaytrace(levelPath.toString());
+                metricTools.createPlaytrace(levelPath.toString(), playtraceCollectionName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -38,17 +38,18 @@ public class createPlaytraces {
     }
 
 
-    public static void createOnePlaytrace(String levelPath) throws IOException{
-        metricTools.createPlaytrace(levelPath.toString());
+    public static void createOnePlaytrace(String levelPath, String playtraceCollectionName) throws IOException{
+        metricTools.createPlaytrace(levelPath.toString(), playtraceCollectionName);
     }
 
 
     public static void main(String[] args) throws IOException{
-        String levelFolder = "generatedExamples/constructiveLevelGenerator/dungeon/";
-        String level = "generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl019.txt";
-        //String levelPath = args[0];
-        //createOnePlaytrace(level);
-        createManyPlaytraces(levelFolder);
+        //String levelFolder = "generatedExamples/constructiveLevelGenerator/dungeon/";
+        //String level = "generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl019.txt";
+        String levelPath = args[0];
+        String playtraceCollectionName = args[1];
+        createOnePlaytrace(levelPath, playtraceCollectionName);
+        //createManyPlaytraces(levelFolder);
         
     }
 }

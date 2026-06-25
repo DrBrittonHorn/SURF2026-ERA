@@ -388,13 +388,17 @@ public class metricTools {
         return rawLevel.replace(" ", ".");
     }
 
+    public static void createPlaytrace(String levelPath) throws IOException{
+        createPlaytrace(levelPath, "generatedExamplesPlaytraces");
+    }
+
 
     /**
      * Plays a generated level and creates a playtrace for it in generatedExamplesPlaytraces
      * The level is evaluated and a new playtrace created when one does not already exist
      * @param levelPath The string path to a level in generated examples
      */
-    public static void createPlaytrace(String levelPath) throws IOException{
+    public static void createPlaytrace(String levelPath, String playtraceCollectionName) throws IOException{
         levelPath = levelPath.replace("\\\\", "/");
         String sampleRandomController = "tracks.singlePlayer.simple.sampleRandom.Agent";
 		String doNothingController = "tracks.singlePlayer.simple.doNothing.Agent";
@@ -407,8 +411,8 @@ public class metricTools {
 		String sampleOLETSController = "tracks.singlePlayer.advanced.olets.Agent";
 
         String selectedAgent = sampleOLETSController;
-        
-        String recordActionsFile = levelPath.replace("generatedExamples", "generatedExamplesPlaytracesLinux40ms");
+
+        String recordActionsFile = levelPath.replace("generatedExamples", playtraceCollectionName);
         // If the level playtrace already exists and isn't blank, don't make a new one
         if (Files.isRegularFile(Path.of(recordActionsFile)) && !Files.readString(Path.of(recordActionsFile)).isBlank()){
             return;
