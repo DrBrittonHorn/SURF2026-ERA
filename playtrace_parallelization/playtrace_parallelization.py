@@ -4,7 +4,7 @@ import os
 from multiprocessing import Pool
 
 # Determines where playtraces are stored
-playtrace_collection_name = "generatedExamplesPlaytracesDiscard"
+playtrace_collection_name = "generatedExamplesPlaytracesLab-1k-40ms"
 
 # Runs createPlaytraces for one level (level path String is used as input)
 def create_playtrace(level_path : str):
