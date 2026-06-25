@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import tools.metricCalculation.calculateMetrics;
 
@@ -39,6 +40,33 @@ public class TileFrequency {
 
         return frequency;
     }
+
+    public static HashMap<Character,Double> calculateMetricOther(String LevelText) {
+        HashMap<Character, Double> count = new HashMap<>();
+        HashMap<Character, Double> frequency = new HashMap<>();
+        int totalArea = 0;
+
+        String map = LevelText.strip();
+
+        // splits level to get the actual time map
+        if (LevelText.contains("LevelDescription")) {
+            String[] level = LevelText.split("LevelDescription");
+            map = level[0];
+        }
+
+        for (int i = 0; i < map.length(); i++) {
+            count.merge(map.charAt(i), 1.0, Double::sum);
+            totalArea++;
+            if (Character.isLetterOrDigit(map.charAt(i))) {totalArea++;}
+        }
+
+        for (Character key : count.keySet()) {
+            frequency.put(key, (count.get(key) / totalArea));
+        }        
+
+        return frequency;
+    }
+
 
     public static void main(String[] args) throws IOException {
         String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl000.txt"));

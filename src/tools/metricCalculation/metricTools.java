@@ -388,7 +388,7 @@ public class metricTools {
         for (int y = 0; y < rows.length; y++) {
             for (int x = 0; x<rows[y].length(); x++) {
                 try {
-                    if (rows[y].charAt(x) == 'n') {map[y][x] = '.'; System.out.println(levelText); break;}
+                    if (rows[y].charAt(x) == 'n') {map[y][x] = '.'; /* map[y][x+1] = '.'; */ System.out.println(levelText); break;}
                     else {map[y][x] = rows[y].charAt(x);}
                 } 
                 catch (Exception e) {
@@ -405,12 +405,7 @@ public class metricTools {
         }
         return map;
     }
-<<<<<<< HEAD
-
-    // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixing any whitespace errors
-=======
     // Strips away a level's tile mapping and other extraneous attributes, leaving only the level's tiles. Additionally fixes any whitespace errors
->>>>>>> 32e19c52a8e402c86f62bdd87042fed6743bb811
     public static String getLevelTiles(String rawLevel){
         if (rawLevel.split("LevelDescription").length > 1){
             return rawLevel.split("LevelDescription")[1].replace(" ", ".").trim();
