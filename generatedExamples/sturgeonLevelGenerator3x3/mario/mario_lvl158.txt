@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar 
+    1 > goomba 
+    2 > paratroopa 
+    c > coin 
+    f > fire 
+    w > wall 
+    G > goal 
+    l > cloud 
+    = > elevator 
+    . > ground 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwwwwwwwwwww
+w        wwwwww  www       w
+w        wwwwww  www  c    w
+w  ==    wwwww   www     G w
+w                www    ...w
+w    ..          www       w
+w A  ww          www    c  w
+w....ww       c  www   ....w
+wwwwwww          www       w
+wwwwwww          ww        w
+wwwwww                c  ..w
+wwwww    c             1   w
+wwww    .. ====    2  ...  w
+wwwwffffww       .....www  w
