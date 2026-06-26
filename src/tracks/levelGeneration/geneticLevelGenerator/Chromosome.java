@@ -2,6 +2,7 @@ package tracks.levelGeneration.geneticLevelGenerator;
 
 import java.lang.reflect.Constructor;
 import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -641,64 +642,53 @@ public class Chromosome implements Comparable<Chromosome>{
 			
 			String Level = this.getLevelString(getLevelMapping());
 
-			// working on implimenting JMs BFS - I have no clue what I'm doing
+			//working on implimenting JMs BFS - I have no clue what I'm doing
 			
-			// ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(Level);
-			// double BFS = 0.0;
-			
-            // double distanceSum = 0;
-            // ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> goals = new ArrayList<AbstractMap.SimpleEntry<Integer, Integer>>();
-            // AbstractMap.SimpleEntry<Integer, Integer> avatar = new AbstractMap.SimpleEntry<Integer, Integer>(-1, -1);
-            // for (int i = 0; i < levelMatrix.size(); i++){
-            //     for (int j = 0; j < levelMatrix.get(i).size(); j++)
-            //     {
-            //         if (levelMatrix.get(i).get(j).equals('A')){
-            //             avatar = new AbstractMap.SimpleEntry<Integer, Integer>(i, j);
-            //         }
-            //         else if (levelMatrix.get(i).get(j).equals('g')){
-            //             goals.add(new AbstractMap.SimpleEntry<Integer, Integer>(i, j));
-            //         }
-            //     }
-            // }
-            // if (avatar.getKey() != null && goals.size() > 0){
-            //     for (AbstractMap.SimpleEntry<Integer, Integer> goal : goals){
-            //     distanceSum += StaticPathLength.BFSPathLength(levelMatrix, avatar, goal);
-            //     }
-                
-            //     BFS = distanceSum / (double) goals.size();
-            // }
-            // else{
-            //     BFS = -1;
-            // }
+			ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(Level);
+			double BFS = 0.0;
 
-			// System.out.println(BFS);
-
-			double AvatarX = 1000.0;
-			double AvatarY = 1000.0;
+			Integer AvatarX = 1000;
+			Integer AvatarY = 1000;
 			boolean Avatar = false;
 			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A') == null) {
-				//System.out.println(Level);
+				System.out.println(Level);
 			}
 			else {
-				AvatarX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getX();
-				AvatarY = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getY();
+				AvatarX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getX();
+				AvatarY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getY();
 				Avatar = true;
 			}
 
 			// for now, designed specifically for zelda
-			double GoalX = 1000.0;
-			double GoalY = 1000.0;
+			Integer GoalX = 1000;
+			Integer GoalY = 1000;
 			boolean Goal = false;
 			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g') == null) {
-				//System.out.println(Level);
+				System.out.println(Level);
 			}
 			else {
-				GoalX = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
-				GoalY = tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
+				GoalX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
+				GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
 				Goal = true;
 			} 
 
-			int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
+			AbstractMap.SimpleEntry<Integer, Integer> start = new SimpleEntry<Integer,Integer>(AvatarX, AvatarY);
+			AbstractMap.SimpleEntry<Integer, Integer> end = new SimpleEntry<Integer,Integer>(GoalX, GoalY);
+
+			// sometimes the BFS fails and it crashes the program. If I had to guess it's because of "null" being in some of the levels
+			try {
+			BFS = StaticPathLength.BFSPathLength(levelMatrix, start, end);
+			}
+			catch (Exception e) {
+				System.out.println("BFS went wrong");
+				BFS = -2;
+			} 
+
+			System.out.println(BFS);
+
+
+			// int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
+			int bestSol = (int) BFS; // sets the best solution as the PATH between the avatar and the goal, using JM's BFS
 			// find a way to detect a path between the avatar and the goal
 
 			WINNER bestState = null;
@@ -719,7 +709,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			}
 
 			WINNER doNothingState = Types.WINNER.NO_WINNER; // no freaking clue how the StateObservation type works
-			int doNothingLength = 0;
+			int doNothingLength = 40;
 
 			int AvatarParam = Avatar ? 1 : 0;
 			int GoalParam = Goal ? 1 : 0;
