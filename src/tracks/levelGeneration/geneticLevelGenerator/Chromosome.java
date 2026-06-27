@@ -14,6 +14,7 @@ import core.game.GameDescription.TerminationData;
 import core.game.StateObservation;
 import core.player.AbstractPlayer;
 import tracks.levelGeneration.constraints.CombinedConstraints;
+//import tracks.levelGeneration.constraints.SolutionLengthConstraint;
 import ontology.Types;
 import ontology.Types.WINNER;
 import tools.ElapsedCpuTimer;
@@ -510,6 +511,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @param maxScore	maximum score required to approach it
 	 * @return			value between 0 to 1 which is almost 1 near the maxScore.
 	 */
+	@SuppressWarnings("unused")
 	private double getGameScore(double scoreDiff, double maxScore){
 		if(maxScore == 0){
 			return 1;
@@ -634,6 +636,7 @@ public class Chromosome implements Comparable<Chromosome>{
 			
 			//calculate the maxScore need to be satisfied based on the difference 
 			//between the score of different collectible objects
+			@SuppressWarnings("unused")
 			double maxScore = 0;
 			if(SharedData.gameAnalyzer.getMinScoreUnit() > 0){
 				double numberOfUnits = SharedData.gameAnalyzer.getMaxScoreUnit() / (SharedData.MAX_SCORE_PERCENTAGE * SharedData.gameAnalyzer.getMinScoreUnit());
