@@ -3,7 +3,7 @@ import numpy as np
 import sys, os
 # Fixes local import behavior
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.tools import create_attribute_dict, get_official_generator_title, get_official_metric_title, parse_binning
+from metric_analysis.tools import create_attribute_dict, get_generator_title, get_metric_title, parse_binning
 
 def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     # plt.style.use('_mpl-gallery')
@@ -31,7 +31,7 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
     ax.set_title(selected_metric + "" + game_name + " Histogram")
-    ax.set_xlabel(get_official_metric_title(selected_metric))
+    ax.set_xlabel(get_metric_title(selected_metric))
     
     
     # Save and show
