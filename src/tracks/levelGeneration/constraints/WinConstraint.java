@@ -24,6 +24,7 @@ public class WinConstraint extends AbstractConstraint {
 		if(bestPlayer == WINNER.NO_WINNER){
 			result += SharedData.DRAW_FITNESS;
 		}
+		//System.out.println("WinConstraint: " + result);
 		return result;
 	}
 }

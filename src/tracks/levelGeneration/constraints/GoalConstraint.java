@@ -43,6 +43,7 @@ public class GoalConstraint extends AbstractConstraint{
 			}
 		}
 		
+		//System.out.println("GoalConstraint: " + result / gameDescription.getTerminationConditions().size());
 		return result / gameDescription.getTerminationConditions().size();
 	}
 	

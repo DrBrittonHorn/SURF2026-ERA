@@ -27,6 +27,7 @@ public class AvatarNumberConstraint extends AbstractConstraint{
 			}
 		}
 		
+		//System.out.println("AvatarNumberConstraint: " + (totalAvatars == 1? 1:0));
 		return totalAvatars == 1? 1:0;
 	}
 

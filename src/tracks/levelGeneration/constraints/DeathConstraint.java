@@ -33,6 +33,7 @@ public class DeathConstraint extends AbstractConstraint{
 		if(doNothingState != WINNER.PLAYER_WINS){
 			result += 0.25;
 		}
+		//System.out.println("Death Constraint: " + result);
 		return result;
 	}
 
