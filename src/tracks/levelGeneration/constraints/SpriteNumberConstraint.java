@@ -36,6 +36,7 @@ public class SpriteNumberConstraint extends AbstractConstraint{
 			}
 		}
 		
+		//System.out.println("SpriteNumberConstraint: " + acheivedNum / totalNum);
 		return acheivedNum / totalNum;
 	}
 
