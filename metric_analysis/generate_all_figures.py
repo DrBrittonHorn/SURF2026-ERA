@@ -1,7 +1,7 @@
-from figure_types.create_density_estimation_chart import create_density_estimation
-from figure_types.create_ERA_graph import create_ERA_graph
-from figure_types.create_histogram import create_histogram
-from figure_types.create_table import create_table
+from metric_analysis.figure_types.density_estimation_chart import create_density_estimation
+from metric_analysis.figure_types.ERA_graph import create_ERA_graph
+from metric_analysis.figure_types.histogram import create_histogram
+from metric_analysis.figure_types.table import create_table
 
 from metric_analysis.tools import create_attribute_dict
 
@@ -53,13 +53,4 @@ for json_path in metric_paths:
                 create_density_estimation((metric1, metric2), json_path)
                 create_ERA_graph((metric1, metric2), json_path)
     
-    
-    # TODO
-    # Find most meaningful metrics
-    # Troubleshoot metrics
-    # Pipeline to generate all figures complete
-    # Difficulty implementation choices
-    # A* replacement and implementation choices
-    # Playtraces taking forever
-    # Playtraces not parallelizable
     
