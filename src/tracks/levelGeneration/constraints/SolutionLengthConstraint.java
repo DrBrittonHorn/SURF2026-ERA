@@ -21,8 +21,10 @@ public class SolutionLengthConstraint extends AbstractConstraint{
 	@Override
 	public double checkConstraint() {
 		if(solutionLength >= minSolutionLength){
+			//System.out.println("SolutionLengthConstraint: 1");
 			return 1;
 		}
+		//System.out.println("SoulutionLengthConstraint: " + solutionLength / minSolutionLength);
 		return solutionLength / minSolutionLength;
 	}
 }

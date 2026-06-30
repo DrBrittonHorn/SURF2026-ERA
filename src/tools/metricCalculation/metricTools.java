@@ -376,6 +376,31 @@ public class metricTools {
         for (int y = 0; y < rows.length; y++) {
             for (int x = 0; x<rows[y].length(); x++) {
                 map[y][x] = rows[y].charAt(x);
+                }
+            }
+        return map;
+    }
+
+        public static char[][] toMapOther(String levelText) {
+        String[] rows = levelText.strip().split("\n");
+        char[][] map = new char[rows.length][rows[0].length()]; // (y, x)
+        
+        for (int y = 0; y < rows.length; y++) {
+            for (int x = 0; x<rows[y].length(); x++) {
+                try {
+                    if (rows[y].charAt(x) == 'n') {map[y][x] = '.'; /* map[y][x+1] = '.'; */ System.out.println(levelText); break;}
+                    else {map[y][x] = rows[y].charAt(x);}
+                } 
+                catch (Exception e) {
+                    System.out.println(levelText);
+                    System.out.println("Broken row is " + rows[y]);
+                    ArrayList<Character> debug = new ArrayList<>();
+                    for (int a = 0; a < rows[y].length(); a++) {
+                        debug.add(rows[y].charAt(a));
+                    }
+                    System.out.println(debug);
+                    break;
+                }
             }
         }
         return map;
