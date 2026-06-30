@@ -76,7 +76,7 @@ public class SharedData {
 	/**
 	 * minimum acceptable solution
 	 */
-	public static final double MIN_SOLUTION_LENGTH = 8; // based on an agent evaluation, needs to be changed - was 200, changed to 8
+	public static final double MIN_SOLUTION_LENGTH = 4; // based on an agent evaluation, needs to be changed - was 200, changed to 4
 	/**
 	 * minimum acceptable do nothing steps before dying
 	 */
@@ -88,7 +88,7 @@ public class SharedData {
 	/**
 	 * maximum acceptable cover percentage of sprites
 	 */
-	public static final double MAX_COVER_PERCENTAGE = 0.3;
+	public static final double MAX_COVER_PERCENTAGE = 0.3; // was 0.3, raised it to be 0.6 because I can just do whatever I want
 	/**
 	 * minimum amount of unique rules that should be applied
 	 */
