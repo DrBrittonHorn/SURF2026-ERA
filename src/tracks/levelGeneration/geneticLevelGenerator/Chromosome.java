@@ -674,6 +674,19 @@ public class Chromosome implements Comparable<Chromosome>{
 				GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
 				Goal = true;
 			} 
+			// specific to zelda
+			double numOfGoals;
+			try {
+			numOfGoals = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('g');	
+			} catch (Exception E) {
+				numOfGoals = 0.0;
+			}
+			double numOfKeys;
+			try {
+			numOfKeys = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('+');	
+			} catch (Exception E) {
+				numOfKeys = 0.0;
+			}
 
 			AbstractMap.SimpleEntry<Integer, Integer> start = new SimpleEntry<Integer,Integer>(AvatarX, AvatarY);
 			AbstractMap.SimpleEntry<Integer, Integer> end = new SimpleEntry<Integer,Integer>(GoalX, GoalY);
@@ -687,7 +700,7 @@ public class Chromosome implements Comparable<Chromosome>{
 				BFS = -2;
 			} 
 
-			System.out.println(BFS);
+			//System.out.println(BFS);
 
 
 			// int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
@@ -697,8 +710,8 @@ public class Chromosome implements Comparable<Chromosome>{
 			WINNER bestState = null;
 			double ruleScore = 0.0;
 
-			// determines a winner based on the length of the solution, using 8 as an arbitrary middlepoint
-			if (bestSol < 8) {
+			// determines a winner based on the length of the solution, using 8 as an arbitrary middlepoint // changed to 10 to reflect BFS being used
+			if (bestSol < 8 && bestSol > 0) {
 				bestState = Types.WINNER.PLAYER_WINS; // win
 				ruleScore = (double) ThreadLocalRandom.current().nextInt(1, 6);
 			}
@@ -706,7 +719,7 @@ public class Chromosome implements Comparable<Chromosome>{
 				bestState = Types.WINNER.NO_WINNER; // no result
 				ruleScore = (double) ThreadLocalRandom.current().nextInt(6, 11);
 			}
-			else if (bestSol > 8) {
+			else if (bestSol > 8 || bestSol < 0) {
 				bestState = Types.WINNER.PLAYER_LOSES; // lose
 				ruleScore = (double) ThreadLocalRandom.current().nextInt(11, 16);
 			}
@@ -735,11 +748,13 @@ public class Chromosome implements Comparable<Chromosome>{
 			parameters.put("gameDescription", SharedData.gameDescription);
 			parameters.put("hasAvatar", AvatarParam); // not currently used
 			parameters.put("hasGoal", GoalParam); // not currently used
+			parameters.put("OnlyOneGoal", numOfGoals);
+			parameters.put("OnlyOneKey", numOfKeys);
 			
 			CombinedConstraints constraint = new CombinedConstraints();
 			constraint.addConstraints(new String[]{"SolutionLengthConstraint", "DeathConstraint", 
 
-					"CoverPercentageConstraint", "SpriteNumberConstraint", "GoalConstraint", "AvatarNumberConstraint", "WinConstraint"});
+					/* "CoverPercentageConstraint", */ "SpriteNumberConstraint", "GoalConstraint", "AvatarNumberConstraint", "WinConstraint", "GameEndConstraint"});
 			constraint.setParameters(parameters);
 			constrainFitness = constraint.checkConstraint();
 			
