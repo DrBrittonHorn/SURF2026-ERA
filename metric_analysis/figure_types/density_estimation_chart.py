@@ -5,7 +5,7 @@ import seaborn as sns
 
 # Fixes local import behavior
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.tools import create_attribute_dict, parse_binning, get_official_generator_title, get_official_metric_title
+from metric_analysis.tools import create_attribute_dict, parse_binning, get_generator_title, get_metric_title
 
 def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exclude_malformed=True):
     
@@ -52,9 +52,9 @@ def create_density_estimation(selected_metrics_tuple: tuple, json_path: str, exc
     generator_name = json_path.split("/")[1]
     if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
-    plt.title(get_official_generator_title(json_path) + "" + game_name + " Density Estimation Chart")
-    plt.xlabel(get_official_metric_title(selected_metrics_tuple[0]))
-    plt.ylabel(get_official_metric_title(selected_metrics_tuple[1]))
+    plt.title(get_generator_title(json_path) + "" + game_name + " Density Estimation Chart")
+    plt.xlabel(get_metric_title(selected_metrics_tuple[0]))
+    plt.ylabel(get_metric_title(selected_metrics_tuple[1]))
 
     # "Y axis to X axis"
     save_file_name = "figures/" + generator_name + "/Density/" + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"

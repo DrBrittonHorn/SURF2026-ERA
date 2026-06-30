@@ -16,8 +16,8 @@ def parse_binning(level_path : str, attribute_dict : dict):
             return False
     return True
 
-def get_official_generator_title(jsonPath : str):
-    raw_name = jsonPath.split("/")[1]
+def get_generator_title(json_path : str):
+    raw_name = json_path.split("/")[1]
     name_to_title = {
                      "constructiveLevelGenerator" : "Constructive Level Generator",
                      "fineTunedLLMGenerator" : "Fine Tuned LLM Generator",
@@ -29,7 +29,7 @@ def get_official_generator_title(jsonPath : str):
     return name_to_title[raw_name]
 
 # Optional Means of renaming metrics in figures
-def get_official_metric_title(metric_name):
+def get_metric_title(metric_name):
     name_to_title = {
         "AvatarPosition" : "Avatar Position",
         "BalanceHorizontal" : "Horizontal Balance",
