@@ -1,0 +1,20 @@
+LevelMapping
+    A > avatar 
+    b > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwwwww
+w w  w w w w w   w w w
+wwwwwwwwbwwwwwwbwwbwww
+w  w w     w     w   w
+wwwwwwwb bbwwb   wbwww
+w  w w  b   w bbww w w
+wwwwwwbb bbbwb   wwwww
+w  w w  b   w  A w w w
+wwwwwwbb bbbwb   wwwww
+w  w w  b   w b  w w w
+wwwwwwbb bwwwwwwwwwwww
+w  w w  b  w w w w w w
+wwwwwwwwwwwwwwwwwwwwww

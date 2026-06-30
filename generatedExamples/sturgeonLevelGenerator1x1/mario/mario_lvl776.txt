@@ -1,0 +1,27 @@
+LevelMapping
+    A > avatar 
+    1 > goomba 
+    2 > paratroopa 
+    c > coin 
+    f > fire 
+    w > wall 
+    G > goal 
+    l > cloud 
+    = > elevator 
+    . > ground 
+
+LevelDescription
+ . .f=f ..fcw ww=.fw  w..f= 
+f cc w.fc=c=www  f. f=fcfcc=
+c ..cff=f=wff wc.=w  f.fc=cf
+ wwccc=c=.w  =ww=cwcw.=   c=
+f. .ccw.  =..w fww = =.f  ==
+  .=ww w ff= .==ffc=w== wcfc
+=c=ffc.= cc==fc cfw.cw..ww=c
+2f=1A== f.wlGw=.. 2f w1  .ff
+f.wf ..c.wfcfwcw=.=.f==wccc=
+wwf=.wff fc == =cf.=f.w.ccff
+ffffc f. w c = .=ww fw.f wff
+  wwfw==w==c.  ccw== c.w w=f
+=.fw.ffw .= =cfw w.w wfw cc=
+. cff=.f=fww=wwfwf==   ==c..

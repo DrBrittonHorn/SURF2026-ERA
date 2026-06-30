@@ -1,0 +1,30 @@
+LevelMapping
+    A > avatar grass 
+    B > avatar log water 
+    g > grass goal 
+    + > grass 
+    l > highway fastLtruck 
+    - > highway slowRtruck 
+    . > highway grass 
+    0 > water grass 
+    1 > forestDense water 
+    2 > forestDense log 
+    3 > forestSparse water 
+    4 > forestSparse log 
+    w > wall grass 
+    x > highway fastRtruck 
+    = > log water 
+    _ > highway slowLtruck 
+
+LevelDescription
+-.=+00w=w00=x+00.+00=x+00=00
+=ww.0l0=xww-w+l----0wwx=.==-
+-++x+=+xl+x0=l.w2=+.w=+-=x-=
+0lwx--l.wxxllw+=l0w.--+000=0
+-.ww0-+--.ll-+.0.0xwl-wxx-l+
+0w.x0w.=0x+0w0-w-lw-x=..l.++
+xwwl0.0lwxl...0.lx0w.0-=00xl
+==-l0x000.0w-xx-xwl=+w=0=w=-
+.0w=0+w.w+x0wxl+00++x==xxxww
+l++l=-l==l=0.000+wl.+l-+0-..
+1+.-00--2+3w2.+13=gl+0+ww240
