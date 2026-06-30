@@ -25,12 +25,14 @@ public class CoverPercentageConstraint extends AbstractConstraint{
 	public double checkConstraint() {
 		if(coverPercentage >= minCoverPercentage){
 			if(coverPercentage <= maxCoverPercentage){
+				//System.out.println("CoverPercentageConstraint: 1");
 				return 1;
 			}
-			
+			//System.out.println("CoverPercentageConstraint: " + (coverPercentage - 1) / (maxCoverPercentage - 1));
 			return (coverPercentage - 1) / (maxCoverPercentage - 1);
 		}
 		
+		//System.out.println("CoverPercentageConstraint: " + coverPercentage / minCoverPercentage);
 		return coverPercentage / minCoverPercentage;
 	}
 }

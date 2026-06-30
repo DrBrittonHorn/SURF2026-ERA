@@ -10,7 +10,7 @@ public class SharedData {
 	/**
 	 * The size of the Genetic Algorithm Population
 	 */
-	public static final int POPULATION_SIZE = 10; // og is 50, reduced to make tests easier
+	public static final int POPULATION_SIZE = 50; // og is 50, reduced to 10 to make tests easier
 	/**
 	 * The amount of times used to check the one step look ahead and do nothing algorithm
 	 */
@@ -18,7 +18,7 @@ public class SharedData {
 	/**
 	 * the amount of time to evaluate a single level
 	 */
-	public static final long EVALUATION_TIME = 1000; // og is 30, reduced to make tests easier
+	public static final long EVALUATION_TIME = 30000; // og is 30000, reduced to 1000 to make tests easier
 	/**
 	 * The amount of time given for each time step
 	 */
@@ -76,7 +76,7 @@ public class SharedData {
 	/**
 	 * minimum acceptable solution
 	 */
-	public static final double MIN_SOLUTION_LENGTH = 200;
+	public static final double MIN_SOLUTION_LENGTH = 4; // based on an agent evaluation, needs to be changed - was 200, changed to 4
 	/**
 	 * minimum acceptable do nothing steps before dying
 	 */
@@ -88,7 +88,7 @@ public class SharedData {
 	/**
 	 * maximum acceptable cover percentage of sprites
 	 */
-	public static final double MAX_COVER_PERCENTAGE = 0.3;
+	public static final double MAX_COVER_PERCENTAGE = 0.3; // was 0.3, raised it to be 0.6 because I can just do whatever I want
 	/**
 	 * minimum amount of unique rules that should be applied
 	 */

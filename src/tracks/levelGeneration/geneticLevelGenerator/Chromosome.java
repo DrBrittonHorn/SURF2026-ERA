@@ -1,9 +1,12 @@
 package tracks.levelGeneration.geneticLevelGenerator;
 
 import java.lang.reflect.Constructor;
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 import core.game.Event;
 import core.game.GameDescription.SpriteData;
@@ -11,11 +14,14 @@ import core.game.GameDescription.TerminationData;
 import core.game.StateObservation;
 import core.player.AbstractPlayer;
 import tracks.levelGeneration.constraints.CombinedConstraints;
+//import tracks.levelGeneration.constraints.SolutionLengthConstraint;
 import ontology.Types;
 import ontology.Types.WINNER;
 import tools.ElapsedCpuTimer;
 import tools.LevelMapping;
 import tools.StepController;
+import tools.metricCalculation.metricTools;
+import tools.metricCalculation.metrics.byLevelMetrics.StaticPathLength;
 
 public class Chromosome implements Comparable<Chromosome>{
 
@@ -38,7 +44,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	/**
 	 * the best automated agent
 	 */
-	private AbstractPlayer automatedAgent;
+	//private AbstractPlayer automatedAgent;
 	/**
 	 * the naive automated agent
 	 */
@@ -46,7 +52,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	/**
 	 * the do nothing automated agent
 	 */
-	private AbstractPlayer doNothingAgent;
+	//private AbstractPlayer doNothingAgent;
 	/**
 	 * The current stateObservation of the level
 	 */
@@ -97,9 +103,9 @@ public class Chromosome implements Comparable<Chromosome>{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void constructAgent(){
 		try{
-			Class agentClass = Class.forName(SharedData.AGENT_NAME);
-			Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
-			automatedAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
+			//Class agentClass = Class.forName(SharedData.AGENT_NAME);
+			//Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
+			//automatedAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -115,9 +121,9 @@ public class Chromosome implements Comparable<Chromosome>{
 		}
 		
 		try{
-			Class agentClass = Class.forName(SharedData.NAIVE_AGENT_NAME);
-			Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
-			doNothingAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
+			//Class agentClass = Class.forName(SharedData.NAIVE_AGENT_NAME);
+			//Constructor agentConst = agentClass.getConstructor(new Class[]{StateObservation.class, ElapsedCpuTimer.class});
+			//doNothingAgent = (AbstractPlayer)agentConst.newInstance(getStateObservation().copy(), null);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -214,6 +220,7 @@ public class Chromosome implements Comparable<Chromosome>{
 		for(ArrayList<String> value : SharedData.gameDescription.getLevelMapping().values()) {
 			legalTiles.add(new ArrayList<>(value));
 		}
+		//System.out.println(legalTiles);
 		
 
 		for(int i = 0; i < SharedData.MUTATION_AMOUNT; i++)
@@ -226,12 +233,28 @@ public class Chromosome implements Comparable<Chromosome>{
 			int pointY = SharedData.random.nextInt(level.length - solidFrame) + solidFrame / 2;
 			//insert new random sprite to a new random free position
 			if(SharedData.random.nextDouble() < SharedData.INSERTION_PROB){
+				ArrayList<String> Avatars = SharedData.gameAnalyzer.getAvatarSprites();
+				boolean containsAvatar = false;
 				//String spriteName = allSprites.get(SharedData.random.nextInt(allSprites.size())).name;
 				ArrayList<String> newTile = new ArrayList<>(legalTiles.get(SharedData.random.nextInt(legalTiles.size())));
 				ArrayList<SpritePointData> freePositions = getFreePositions(newTile);
+				for (String s : level[pointY][pointX]) {
+					if (Avatars.contains(s)) {
+						containsAvatar = true;
+						break;
+					}
+				}
 				if (freePositions.isEmpty()) {return;}
 				int index = SharedData.random.nextInt(freePositions.size());
-				level[freePositions.get(index).y][freePositions.get(index).x] = newTile;
+				if (!containsAvatar) {level[freePositions.get(index).y][freePositions.get(index).x] = newTile;}
+				if (!legalTiles.contains(level[freePositions.get(index).y][freePositions.get(index).x])) {
+					System.out.println(level[freePositions.get(index).y][freePositions.get(index).x]);
+					System.out.println(newTile);
+					while (!legalTiles.contains(level[freePositions.get(index).y][freePositions.get(index).x])) {
+						level[freePositions.get(index).y][freePositions.get(index).x] = new ArrayList<>(legalTiles.get(SharedData.random.nextInt(legalTiles.size())));
+						System.out.println(level[freePositions.get(index).y][freePositions.get(index).x]);
+					}
+				}
 			}
 
 			//clear any random position
@@ -488,6 +511,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @param maxScore	maximum score required to approach it
 	 * @return			value between 0 to 1 which is almost 1 near the maxScore.
 	 */
+	@SuppressWarnings("unused")
 	private double getGameScore(double scoreDiff, double maxScore){
 		if(maxScore == 0){
 			return 1;
@@ -529,6 +553,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	 * @param minUniqueRule		minimum amount of rules needed to reach 1
 	 * @return			near 1 when its near to minUniqueRule
 	 */
+	@SuppressWarnings("unused") // 
 	private double getUniqueRuleScore(StateObservation gameState, double minUniqueRule){
 		double unique = 0;
 		HashMap<Integer, Boolean> uniqueEvents = new HashMap<Integer, Boolean>();
@@ -585,43 +610,135 @@ public class Chromosome implements Comparable<Chromosome>{
 			
 
 			//Play the game using the best agent
-			StepController stepAgent = new StepController(automatedAgent, SharedData.EVALUATION_STEP_TIME);
-			ElapsedCpuTimer elapsedTimer = new ElapsedCpuTimer();
-			elapsedTimer.setMaxTimeMillis(time);
-			stepAgent.playGame(stateObs.copy(), elapsedTimer);
-			
-			StateObservation bestState = stepAgent.getFinalState();
-			ArrayList<Types.ACTIONS> bestSol = stepAgent.getSolution();
 
-			StateObservation doNothingState = null;
-			int doNothingLength = Integer.MAX_VALUE;
-			//playing the game using the donothing agent and naive agent
-			for(int i=0; i<SharedData.REPETITION_AMOUNT; i++){
-				StateObservation tempState = stateObs.copy();
-				int temp = getNaivePlayerResult(tempState, bestSol.size(), doNothingAgent);
-				if(temp < doNothingLength){
-					doNothingLength = temp;
-					doNothingState = tempState;
-				}
-			}
+			// commented out all agnet based aspects
+
+			// StepController stepAgent = new StepController(automatedAgent, SharedData.EVALUATION_STEP_TIME);
+			// ElapsedCpuTimer elapsedTimer = new ElapsedCpuTimer();
+			// elapsedTimer.setMaxTimeMillis(time);
+			// stepAgent.playGame(stateObs.copy(), elapsedTimer);
+			
+			// StateObservation bestState = stepAgent.getFinalState();
+			// ArrayList<Types.ACTIONS> bestSol = stepAgent.getSolution();
+
+			// StateObservation doNothingState = null;
+			// int doNothingLength = Integer.MAX_VALUE;
+			// //playing the game using the donothing agent and naive agent
+			// for(int i=0; i<SharedData.REPETITION_AMOUNT; i++){
+			// 	StateObservation tempState = stateObs.copy();
+			// 	int temp = getNaivePlayerResult(tempState, bestSol.size(), doNothingAgent);
+			// 	if(temp < doNothingLength){
+			// 		doNothingLength = temp;
+			// 		doNothingState = tempState;
+			// 	}
+			// }
 			double coverPercentage = getCoverPercentage();
 			
 			//calculate the maxScore need to be satisfied based on the difference 
 			//between the score of different collectible objects
+			@SuppressWarnings("unused")
 			double maxScore = 0;
 			if(SharedData.gameAnalyzer.getMinScoreUnit() > 0){
 				double numberOfUnits = SharedData.gameAnalyzer.getMaxScoreUnit() / (SharedData.MAX_SCORE_PERCENTAGE * SharedData.gameAnalyzer.getMinScoreUnit());
 				maxScore = numberOfUnits * SharedData.gameAnalyzer.getMinScoreUnit();
 			}
 			
+			String Level = this.getLevelString(getLevelMapping());
+
+			//working on implimenting JMs BFS - I have no clue what I'm doing
+			
+			ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(Level);
+			double BFS = 0.0;
+
+			Integer AvatarX = 1000;
+			Integer AvatarY = 1000;
+			boolean Avatar = false;
+			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A') == null) {
+				System.out.println(Level);
+			}
+			else {
+				AvatarX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getX();
+				AvatarY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getY();
+				Avatar = true;
+			}
+
+			// for now, designed specifically for zelda
+			Integer GoalX = 1000;
+			Integer GoalY = 1000;
+			boolean Goal = false;
+			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g') == null) {
+				System.out.println(Level);
+			}
+			else {
+				GoalX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
+				GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
+				Goal = true;
+			} 
+			// specific to zelda
+			double numOfGoals;
+			try {
+			numOfGoals = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('g');	
+			} catch (Exception E) {
+				numOfGoals = 0.0;
+			}
+			double numOfKeys;
+			try {
+			numOfKeys = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('+');	
+			} catch (Exception E) {
+				numOfKeys = 0.0;
+			}
+
+			AbstractMap.SimpleEntry<Integer, Integer> start = new SimpleEntry<Integer,Integer>(AvatarX, AvatarY);
+			AbstractMap.SimpleEntry<Integer, Integer> end = new SimpleEntry<Integer,Integer>(GoalX, GoalY);
+
+			// sometimes the BFS fails and it crashes the program. If I had to guess it's because of "null" being in some of the levels
+			try {
+			BFS = StaticPathLength.BFSPathLength(levelMatrix, start, end);
+			}
+			catch (Exception e) {
+				System.out.println("BFS went wrong");
+				BFS = -2;
+			} 
+
+			//System.out.println(BFS);
+
+
+			// int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
+			int bestSol = (int) BFS; // sets the best solution as the PATH between the avatar and the goal, using JM's BFS
+			// find a way to detect a path between the avatar and the goal
+
+			WINNER bestState = null;
+			double ruleScore = 0.0;
+
+			// determines a winner based on the length of the solution, using 8 as an arbitrary middlepoint // changed to 10 to reflect BFS being used
+			if (bestSol < 8 && bestSol > 0) {
+				bestState = Types.WINNER.PLAYER_WINS; // win
+				ruleScore = (double) ThreadLocalRandom.current().nextInt(1, 6);
+			}
+			else if (bestSol == 8) {
+				bestState = Types.WINNER.NO_WINNER; // no result
+				ruleScore = (double) ThreadLocalRandom.current().nextInt(6, 11);
+			}
+			else if (bestSol > 8 || bestSol < 0) {
+				bestState = Types.WINNER.PLAYER_LOSES; // lose
+				ruleScore = (double) ThreadLocalRandom.current().nextInt(11, 16);
+			}
+
+			WINNER doNothingState = Types.WINNER.NO_WINNER; // no freaking clue how the StateObservation type works
+			int doNothingLength = 40;
+
+			int AvatarParam = Avatar ? 1 : 0;
+			int GoalParam = Goal ? 1 : 0;
+
+			FixPlayer();
 
 			//calculate the constrain fitness by applying all different constraints
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("solutionLength", bestSol.size());
+			parameters.put("solutionLength", bestSol);
 			parameters.put("minSolutionLength", SharedData.MIN_SOLUTION_LENGTH);
 			parameters.put("doNothingSteps", doNothingLength);
-			parameters.put("doNothingState", doNothingState.getGameWinner());
-			parameters.put("bestPlayer", bestState.getGameWinner());
+			parameters.put("doNothingState", doNothingState);
+			parameters.put("bestPlayer", bestState);
 			parameters.put("minDoNothingSteps", SharedData.MIN_DOTHING_STEPS);
 			parameters.put("coverPercentage", coverPercentage);
 			parameters.put("minCoverPercentage", SharedData.MIN_COVER_PERCENTAGE);
@@ -629,15 +746,19 @@ public class Chromosome implements Comparable<Chromosome>{
 			parameters.put("numOfObjects", calculateNumberOfObjects());
 			parameters.put("gameAnalyzer", SharedData.gameAnalyzer);
 			parameters.put("gameDescription", SharedData.gameDescription);
+			parameters.put("hasAvatar", AvatarParam); // not currently used
+			parameters.put("hasGoal", GoalParam); // not currently used
+			parameters.put("OnlyOneGoal", numOfGoals);
+			parameters.put("OnlyOneKey", numOfKeys);
 			
 			CombinedConstraints constraint = new CombinedConstraints();
 			constraint.addConstraints(new String[]{"SolutionLengthConstraint", "DeathConstraint", 
 
-					"CoverPercentageConstraint", "SpriteNumberConstraint", "GoalConstraint", "AvatarNumberConstraint", "WinConstraint"});
+					/* "CoverPercentageConstraint", */ "SpriteNumberConstraint", "GoalConstraint", "AvatarNumberConstraint", "WinConstraint", "GameEndConstraint"});
 			constraint.setParameters(parameters);
 			constrainFitness = constraint.checkConstraint();
 			
-			System.out.println("SolutionLength:" + bestSol.size() + " doNothingSteps:" + doNothingLength + " coverPercentage:" + coverPercentage + " bestPlayer:" + bestState.getGameWinner());
+			System.out.println("SolutionLength:" + bestSol + " doNothingSteps:" + doNothingLength + " coverPercentage:" + coverPercentage + " bestPlayer:" + bestState);
 			
 
 			//calculate the fitness if it satisfied all the constraints
@@ -645,20 +766,20 @@ public class Chromosome implements Comparable<Chromosome>{
 				StateObservation naiveState = null;
 				for(int i=0; i<SharedData.REPETITION_AMOUNT; i++){
 					StateObservation tempState = stateObs.copy();
-					getNaivePlayerResult(tempState, bestSol.size(), naiveAgent);
+					getNaivePlayerResult(tempState, bestSol, naiveAgent);
 					if(naiveState == null || tempState.getGameScore() > naiveState.getGameScore()){
 						naiveState = tempState;
 					}
 				}
 				
-				double scoreDiffScore = getGameScore(bestState.getGameScore() - naiveState.getGameScore(), maxScore);
-				double ruleScore = getUniqueRuleScore(bestState, SharedData.MIN_UNIQUE_RULE_NUMBER);
+				double scoreDiffScore = 1; //getGameScore(bestState.getGameScore() - naiveState.getGameScore(), maxScore);
+				//double ruleScore = getUniqueRuleScore(bestState, SharedData.MIN_UNIQUE_RULE_NUMBER);
 				
 				fitness.add(scoreDiffScore);
 				fitness.add(ruleScore);
 			}
 
-			this.automatedAgent = null;
+			//this.automatedAgent = null;
 			this.naiveAgent = null;
 			this.stateObs = null;
 		}
