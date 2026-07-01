@@ -53,7 +53,7 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
         colorbar = plt.colorbar(hexbin, ax=ax)
         colorbar.set_label("Count")
         ax.set_title(get_generator_title(json_path) + "" + game_name + " ERA Chart")
-        # "Y axis to X axis"
+        # Titling format is "Y axis to X axis"
         save_file_name = "figures/" + generator_name + "/ERA/" + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
         if os.path.isfile(save_file_name): os.remove(save_file_name)
         plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
@@ -64,16 +64,16 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
 
 
 
-# USAGE: Select a metrics.json file path, then determinr the graph's x and y axis by completing the selected metrics tuple
+# USAGE: Select a metrics.json file path, then determine the graph's x and y axis by completing the selected metrics tuple
+if __name__ == "__main__":
+    metric_path = "generatedExamples/geminiLevelGenerator/levelMetrics.json"
+    # metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
+    # metric_path = "generatedExamples/constructiveLevelGenerator/levelMetrics.json"
+    # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
 
-metric_path = "generatedExamples/geminiLevelGenerator/levelMetrics.json"
-# metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
-# metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
-# metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
 
+    # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
+    # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-# metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
-# metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
-
-# selected_metrics = ("Density", "ShannonEntropy")
-# create_ERA_graph(selected_metrics, metric_path, exclude_malformed=True)
+    selected_metrics = ("Density", "ShannonEntropy")
+    create_ERA_graph(selected_metrics, metric_path, exclude_malformed=True)
