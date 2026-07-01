@@ -414,7 +414,7 @@ public class metricTools {
     }
 
     public static void createPlaytrace(String levelPath) throws IOException{
-        createPlaytrace(levelPath, "generatedExamplesPlaytraces");
+        createPlaytrace(levelPath, "generatedExamplesPlaytracesLab-1k-80ms");
     }
 
 

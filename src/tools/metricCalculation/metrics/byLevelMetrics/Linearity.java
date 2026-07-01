@@ -25,8 +25,8 @@ public class Linearity {
             }
         }
 
-        System.out.println(X);
-        System.out.println(Y);
+        //System.out.println(X);
+        //System.out.println(Y);
 
         double[] xArray = X.stream().mapToDouble(Double::doubleValue).toArray();
         double[] yArray = Y.stream().mapToDouble(Double::doubleValue).toArray();
@@ -37,9 +37,9 @@ public class Linearity {
         boolean doRegression = false;
         for (int i = 0; i < xArray.length; i++){
             if (xArray[0] != xArray[i]){doRegression = true;}
-            System.out.println(xArray[0] != xArray[i]);
+            //System.out.println(xArray[0] != xArray[i]);
         }
-        System.out.println();
+        //System.out.println();
 
         if (doRegression == false){return 1.0;} // Return perfectly linear (because it is)
 
