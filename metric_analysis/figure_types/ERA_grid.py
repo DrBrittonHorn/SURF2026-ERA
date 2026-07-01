@@ -5,7 +5,7 @@ import numpy as np
 
 # Fixes local import behavior
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from metric_analysis.figure_types import ERA_graph
+from metric_analysis.figure_types import generator_ERA
 from metric_analysis.tools import create_attribute_dict, get_generator_title, get_metric_title, parse_binning
 
 def create_ERA_grid(json_path: str, exclude_malformed=True):
@@ -25,7 +25,7 @@ def create_ERA_grid(json_path: str, exclude_malformed=True):
     
     for i, m1 in enumerate(sample_metrics):
         for j, m2 in enumerate(sample_metrics):
-            ERA_graph.create_ERA_graph(
+            generator_ERA.create_ERA_graph(
                 selected_metrics_tuple=(m1, m2),
                 json_path=json_path,
                 exclude_malformed=exclude_malformed,

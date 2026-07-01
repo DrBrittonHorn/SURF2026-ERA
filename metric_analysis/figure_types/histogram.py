@@ -28,7 +28,7 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     ax.set(xlim = (min(listX), max(listX)))
     # Set exterior characteristics
     generator_name = json_path.split("/")[1]
-    if json_path.split("/")[2] != "metrics.json": game_name = json_path.split("/")[2].capitalize() 
+    if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
     ax.set_title(selected_metric + "" + game_name + " Histogram")
     ax.set_xlabel(get_metric_title(selected_metric))
