@@ -55,7 +55,8 @@ public class calculateMetrics {
         JsonObject levelMetrics = new JsonObject();
         //First, add all the metrics that are calculated on a per level basis
 
-        // Individual Metrics added to the json object below
+        // Individual Metrics added to the json object below 
+        
         levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
         levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
@@ -68,15 +69,16 @@ public class calculateMetrics {
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
-        levelMetrics.addProperty("BalanceHorizontal", BalanceHorizontal.calculateMetric(levelText));
-        levelMetrics.addProperty("BalanceVertical", BalanceVertical.calculateMetric(levelText));
+        levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelText)); // Signed metric (Negative results indicate left-sidedness)
+        levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelText)); // Signed metric (Negative results indicate bottom-heaviness)
         levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
         levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelText));
         levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelText));
         levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
         levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelText));
-        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelText));
+        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelText)); 
+        
         // Put metrics that require the levelPath here
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
@@ -91,7 +93,8 @@ public class calculateMetrics {
             binningProperty.addProperty("ConsistentRows", BinGeneratedLevels.consistentRows(levelText));
             binningProperty.addProperty("ContainsPlayer", BinGeneratedLevels.containsPlayer(levelText));
             binningProperty.addProperty("NotEmpty", BinGeneratedLevels.notEmpty(levelText));
-        levelMetrics.add("Binning*", binningProperty);
+            binningProperty.addProperty("RowColumnQuota", BinGeneratedLevels.rowColumnQuota(levelText));
+        levelMetrics.add("Binning*", binningProperty); // Non graphable
 
         return levelMetrics;
     }
@@ -251,7 +254,7 @@ public class calculateMetrics {
     
          selectedFolders.add("generatedExamples/geminiLevelGenerator");
          selectedFolders.add("generatedExamples/constructiveLevelGenerator");
-         selectedFolders.add("generatedExamples/geneticLevelGenerator");
+         //selectedFolders.add("generatedExamples/geneticLevelGenerator");
          selectedFolders.add("generatedExamples/localLanguageModelGenerator");
          selectedFolders.add("generatedExamples/randomLevelGenerator");
          selectedFolders.add("generatedExamples/claudeLevelGenerator");
@@ -262,8 +265,8 @@ public class calculateMetrics {
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
             //System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
-            //createMetricsByLevel(s);
-            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            createMetricsByLevel(s);
+            //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
             createMetricsByFolderRecursive(s);
         }
         

@@ -15,11 +15,11 @@ public class MechanicUsage{
         if (!metricTools.getLevelTiles(Files.readString(Path.of(levelPath))).contains("A")){
             return new JsonObject();
         }
-        if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces")))
-            || Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces"))).isBlank()){
+        if (!Files.isRegularFile(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytracesLab-1k-80ms")))
+            || Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytracesLab-1k-80ms"))).isBlank()){
             metricTools.createPlaytrace(levelPath);
         }
-        String[] actions = Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytraces"))).split("\n");
+        String[] actions = Files.readString(Path.of(levelPath.replace("generatedExamples", "generatedExamplesPlaytracesLab-1k-80ms"))).split("\n");
 
         HashMap<String, Integer> seenActions = new HashMap<String, Integer>();
         for (int i = 1; i < actions.length; i++){ // Ignores first row as it is not a game action
