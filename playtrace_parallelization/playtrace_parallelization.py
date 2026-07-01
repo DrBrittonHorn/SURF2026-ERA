@@ -28,7 +28,7 @@ if __name__ == '__main__':
                             #"localLanguageModel",
                             #"randomLevelGenerator",
                             #"sturgeonLevelGenerator1x1",
-                            "sturgeonLevelGenerator2x2",
+                            "sturgeonLevelGenerator2x2", # almost done
                             "sturgeonLevelGenerator3x3",
                             "sturgeonLevelGenerator4x4",
                            ]
