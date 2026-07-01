@@ -1,6 +1,8 @@
 
 import json
 
+from matplotlib.colors import LinearSegmentedColormap
+
 # Takes in a metrics json path and returns the object in the form of a python dict
 def create_attribute_dict(metrics_json_path : str):
     with open(metrics_json_path) as f:
@@ -58,6 +60,40 @@ def get_metric_title(metric_name):
     }
     # return name_to_title[metric_name]
     return metric_name
+
+# Returns a colorbar that begins as (nearly) transparent and moves to the provided color
+def create_color_bar(rgb_tuple : tuple):
+    colors = [(0, 0, 0)]
+    colors.append(rgb_tuple)
+    
+    cmap = LinearSegmentedColormap.from_list("_", colors, 300)
+    return cmap
+
+def create_game_colorbars(num_games=10):
+    cmap_rgbs = [
+        (255.0, 0.0, 0.0),
+        (255.0, 153.0, 0.0),
+        (204.0, 255.0, 0.0),
+        (51.0, 255.0, 0.0),
+        (0.0, 255.0, 102.0),
+        (0.0, 255.0, 255.0),
+        (0.0, 102.0, 255.0),
+        (51.0, 0.0, 255.0),
+        (204.0, 0.0, 255.0),
+        (255.0, 0.0, 153.0),
+    ]
+    cmap_values = []
+    for rgb in cmap_rgbs:
+        value = tuple(x / 255 for x in rgb)
+        cmap_values.append(value)
+    
+    # print(cmap_values)
+    colormaps = []
+    for value in cmap_values:
+        # print(value)
+        colormaps.append(LinearSegmentedColormap.from_list("_", [value, (1, 1, 1)], 300))
+    return colormaps
+    
 
 # print(create_attribute_dict("generatedExamples/constructiveLevelGenerator/metrics.json"))
 # print(create_attribute_dict("generatedExamples/geminiLevelGenerator/frogs/metrics.json"))

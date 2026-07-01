@@ -56,7 +56,7 @@ def create_table(json_path: str, exclude_malformed=True):
     table.scale(1, 1.6)
 
     
-    if json_path.split("/")[2] == "metrics.json":
+    if json_path.split("/")[2] == "levelMetrics.json":
         game_label = "" 
     else:
         game_label = json_path.split("/")[2].capitalize()
