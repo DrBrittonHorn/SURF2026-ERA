@@ -23,12 +23,13 @@ public class KLDivergence2D {
         String[] inputLevelLines = levelMap.trim().split(System.lineSeparator());
         for (String s: inputLevelLines){if (s.length() > longestLineLength){longestLineLength = s.length();}}
         //System.out.println("Longest" + longestLineLength);
-        for (String s : inputLevelLines){System.out.println("length" + s.length());}
+        for (String s : inputLevelLines){
+            //System.out.println("length" + s.length());
+        }
         for (int i = 0; i < inputLevelLines.length; i++){
             if (inputLevelLines[i].length() < longestLineLength){
-                for (int j = 0; j < longestLineLength-inputLevelLines[i].length(); j++){
-                    inputLevelLines[i] += paddingToken.repeat(longestLineLength - inputLevelLines[i].length());                
-                }
+                inputLevelLines[i] += paddingToken.repeat(longestLineLength - inputLevelLines[i].length());                
+                
             }
         }
 
@@ -84,34 +85,37 @@ public class KLDivergence2D {
             catch (IOException e1) {e1.printStackTrace();}
         }
 
-            System.out.println(inputPatternCounts);
-            System.out.println(examplesPatternCounts);
 
-            HashMap<String, Double> inputPatternDistribution = new HashMap<String, Double>();
-            HashMap<String, Double> examplesPatternDistribution = new HashMap<String, Double>();
-
-            // Convert counts to distributions
-            for (String pattern : inputPatternCounts.keySet()){
-                inputPatternDistribution.put(pattern, inputPatternCounts.get(pattern) / (double) totalInputWindows);}
-            for (String pattern : examplesPatternCounts.keySet()){
-                examplesPatternDistribution.put(pattern, examplesPatternCounts.get(pattern) / (double) totalExamplesWindows);}
-
-
-            // Calculate metric by iterating through the objects present in the input level
-            double TPKLDivergence = 0;
-            for (String pattern : inputPatternDistribution.keySet()){
-                double p = inputPatternDistribution.get(pattern);
-                double q = examplesPatternDistribution.getOrDefault(pattern, 1e-10);
-                TPKLDivergence += p * Math.log(p / q);
-                }
-            return TPKLDivergence;
+            
+            return KLDivergence(inputPatternCounts, examplesPatternCounts, totalInputWindows, totalExamplesWindows);
     }
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
         String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl003.txt"));
-        System.out.println(calculateMetric(testLevel2, 3));
+        System.out.println(calculateMetric(testLevel2, 5));
+        //15.0741
     }
     
+    public static double KLDivergence(HashMap<String, Integer> counts1, HashMap<String, Integer> counts2, int totalWindows1, int totalWindows2){
+        HashMap<String, Double> distribution1 = new HashMap<String, Double>();
+            HashMap<String, Double> distribution2 = new HashMap<String, Double>();
+
+            // Convert counts to distributions
+            for (String pattern : counts1.keySet()){
+                distribution1.put(pattern, counts1.get(pattern) / (double) totalWindows1);}
+            for (String pattern : counts2.keySet()){
+                distribution2.put(pattern, counts2.get(pattern) / (double) totalWindows2);}
+
+
+            // Calculate metric by iterating through the objects present in the input level
+            double TPKLDivergence = 0;
+            for (String pattern : distribution1.keySet()){
+                double p = distribution1.get(pattern);
+                double q = distribution2.getOrDefault(pattern, 1e-10);
+                TPKLDivergence += p * Math.log(p / q);
+                }
+            return TPKLDivergence;
+    }
 }
 
 

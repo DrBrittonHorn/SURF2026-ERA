@@ -124,6 +124,7 @@ public class MovingAvatar extends VGDLSprite {
      * Requests the controller's input, setting the game.ki.action mask with the processed data.
      * @param game
      */
+    @SuppressWarnings("unused")
     protected void requestPlayerInput(Game game) {
         ElapsedCpuTimer ect = new ElapsedCpuTimer();
         ect.setMaxTimeMillis(CompetitionParameters.ACTION_TIME);

@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -47,6 +48,15 @@ public class BinGeneratedLevels {
         if (level.contains("LevelDescription")){level = level.split("LevelDescription")[1];}
         if (level.length() == 0){return false;}
         else{return true;}
+    }
+
+    // Ensures level has at least 2 rows and columns
+    public static boolean rowColumnQuota(String level){
+        if (level.contains("LevelDescription")){level = level.split("LevelDescription")[1];}
+        ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(level);
+        if (levelArray.size() >= 2 && levelArray.get(0).size() >= 2 && levelArray.get(1).size() >= 2){
+            return true;}
+        else{return false;}
     }
 
     // The code below is no longer needed as the level binning process has been integrated into the metric creation process in calculateMetrics.java
