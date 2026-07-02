@@ -1,0 +1,20 @@
+LevelMapping
+    A > floor nokey 
+    1 > floor monsterQuick 
+    2 > floor monsterNormal 
+    3 > floor monsterSlow 
+    w > wall 
+    g > floor goal 
+    + > floor key 
+    . > floor 
+
+LevelDescription
+ww..wwww...ww
+.w.w...ww...w
+wwww..w....ww
+211wA.32.gw31
+..w.w.wwwwww.
+.www.wwwww.ww
+www.ww.ww.w..
+.www...w...ww
+ww2.w.ww.w+..

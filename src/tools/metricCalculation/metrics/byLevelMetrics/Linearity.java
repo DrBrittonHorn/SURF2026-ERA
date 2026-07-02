@@ -14,9 +14,9 @@ public class Linearity {
         ArrayList<ArrayList<Character>> tileList = metricTools.toArray(levelString);
         ArrayList<Double> X = new ArrayList<Double>();
         ArrayList<Double> Y = new ArrayList<Double>();
-        
+
         for (int i = 0; i < tileList.size(); i++){
-            //Only non-empty characters count towards linearity scors
+            //Only non-empty characters count towards linearity scores
             for (int j = 0; j < tileList.get(i).size(); j++){
                 if (tileList.get(i).get(j) != emptyChar){
                     Y.add((double) j);
@@ -25,9 +25,23 @@ public class Linearity {
             }
         }
 
+        //System.out.println(X);
+        //System.out.println(Y);
+
         double[] xArray = X.stream().mapToDouble(Double::doubleValue).toArray();
         double[] yArray = Y.stream().mapToDouble(Double::doubleValue).toArray();
 
+
+        // Check to make sure that at least one of the arrays varies (otherwise perfectly linear)
+        // This prevents a NaN error that occurs when the regression algorithm is run
+        boolean doRegression = false;
+        for (int i = 0; i < xArray.length; i++){
+            if (xArray[0] != xArray[i]){doRegression = true;}
+            //System.out.println(xArray[0] != xArray[i]);
+        }
+        //System.out.println();
+
+        if (doRegression == false){return 1.0;} // Return perfectly linear (because it is)
 
         LinearRegression regression = new LinearRegression(xArray, yArray);
 
@@ -39,13 +53,17 @@ public class Linearity {
         }
         //System.out.println(regression.toString());
         //Returns average error (for now)
+        if (Double.isNaN(regression.R2())){
+            throw new ArithmeticException("Nan detected for \n" + levelString);
+        }
         return regression.R2();
     }
 
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
+        String testLevel3 = Files.readString(Path.of("generatedExamples\\\\constructiveLevelGenerator\\\\asteroids\\\\asteroids_lvl202.txt"));
         String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
-        System.out.println(calculateMetric(testLevel2));
+        System.out.println(calculateMetric(testLevel1));
     }
     
         /**
