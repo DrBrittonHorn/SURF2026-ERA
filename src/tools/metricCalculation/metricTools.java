@@ -456,6 +456,7 @@ public class metricTools {
         String levelTilesOnly = Files.readString(Path.of(levelPath));
         if (levelTilesOnly.split("LevelDescription").length > 1){
             levelTilesOnly = levelTilesOnly.split("LevelDescription")[1].trim();
+            levelTilesOnly = metricTools.applyPadding(levelTilesOnly);
         }
         // Add padding tokens to temporarily correct ragged rows (Otherwise, avatar may not be detected)
         int maxLength = 0;
@@ -493,6 +494,25 @@ public class metricTools {
         }
     }
 
+
+    private static String applyPadding(String levelTilesOnly) {
+        ArrayList<ArrayList<Character>> array = metricTools.toArray(levelTilesOnly);
+        int maxRowLength = 0; 
+        for (ArrayList<Character> a : array){if (a.size() > maxRowLength){maxRowLength = a.size();}}
+        StringBuilder s = new StringBuilder();
+        
+        for (ArrayList<Character> a : array){
+            for (Character c : a){
+                s.append(c);
+            }
+            for (int i = 0; i < maxRowLength - a.size(); i++){
+                s.append(".");
+            }
+            s.append(System.lineSeparator());
+        }
+        //System.out.println(s);
+        return s.toString();
+    }
 
     public static void main(String args[]) throws IOException{
         //String testLevel = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/zelda/zelda_lvl001.txt"));
