@@ -31,7 +31,7 @@ public class GenerateFullGeneratorSuite {
         String generatorTitle = selectedGenerator.split("\\.")[2];
         int levelsToGenerate = 1000;
         //Only increase pauseSeconds for geminiGenerator
-        int pauseSeconds = 3;
+        int pauseSeconds = 0;
         int levelTotal = 0;
         System.out.println("Generating Suite of " + levelsToGenerate + " levels for " + generatorTitle);
         System.out.println("Start time of " + LocalDateTime.now());
