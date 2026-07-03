@@ -251,17 +251,18 @@ public class calculateMetrics {
 
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
-    
-         selectedFolders.add("generatedExamples/geminiLevelGenerator");
-         selectedFolders.add("generatedExamples/constructiveLevelGenerator");
-         selectedFolders.add("generatedExamples/geneticLevelGenerator");
-         selectedFolders.add("generatedExamples/localLanguageModelGenerator");
-         selectedFolders.add("generatedExamples/randomLevelGenerator");
-         selectedFolders.add("generatedExamples/claudeLevelGenerator");
-         selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
-         selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
-         selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
-         selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
+        
+        //selectedFolders.add("generatedExamples/enhancedClaudeGenerator")
+        //selectedFolders.add("generatedExamples/geminiLevelGenerator");
+        //selectedFolders.add("generatedExamples/constructiveLevelGenerator");
+        ////selectedFolders.add("generatedExamples/geneticLevelGenerator");
+        ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
+        selectedFolders.add("generatedExamples/randomLevelGenerator");
+        selectedFolders.add("generatedExamples/claudeLevelGenerator");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
 
          // Too buggy, exclude
          // selectedFolders.add("generatedExamples/FineTunedLLMGenerator");
