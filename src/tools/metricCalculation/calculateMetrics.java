@@ -130,7 +130,7 @@ public class calculateMetrics {
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
-            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")); // Remove parallelization if causing problems
+            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")).parallel(); // Remove parallelization if causing problems
             streamByGame.forEach(game -> {
                 try {
                     JsonObject fullGameJson = new JsonObject();
@@ -199,18 +199,18 @@ public class calculateMetrics {
                 String gameFolder = game.toString().replace("\\", "/");
                 System.out.println("Creating metrics for the generator folder... " + gameFolder);
                 //Here, add metrics that only make sense within the context of a folder of levels (ex. comparing output level diversity)
-                //fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(gameFolder, 5));
-                //fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(gameFolder));
-                //fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(gameFolder));
-                //fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputNGramSimilarity2D", OutputNGramSimilarity2D.calculateMetric(gameFolder, 5));
+                fullGameJson.addProperty("OutputNGramSimilarity1D", OutputNGramSimilarity1D.calculateMetric(gameFolder));
+                fullGameJson.addProperty("NoveltyScore", OutputNoveltyScore.calculateMetric(gameFolder));
+                fullGameJson.addProperty("PlaytraceDiversity", PlaytraceDiversity.calculateMetric(gameFolder));
 
-                //fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputJensenShannonDivergence1D", OutputJensenShannonDivergence1D.calculateMetric(gameFolder));
                 fullGameJson.addProperty("OutputJensenShannonDivergence2D", OutputJensenShannonDivergence2D.calculateMetric(gameFolder, 5));
-                //fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputKLDivergence1D", OutputKLDivergence1D.calculateMetric(gameFolder));
                 fullGameJson.addProperty("OutputKLDivergence2D", OutputKLDivergence2D.calculateMetric(gameFolder, 5));
-                //fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(gameFolder));
-                //fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(gameFolder));
-                //fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputLevenshteinDistance", OutputLevenshteinDistance.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputNaiveSimilarity", OutputNaiveSimilarity.calculateMetric(gameFolder));
+                fullGameJson.addProperty("OutputStructuralSimilarity", OutputStructuralSimilarity.calculateMetric(gameFolder));
 
                 Files.writeString(Path.of(game + "/" + "folderMetrics.json"), fullGameJson.toString());
             } catch (IOException e) {
@@ -254,11 +254,17 @@ public class calculateMetrics {
     
          selectedFolders.add("generatedExamples/geminiLevelGenerator");
          selectedFolders.add("generatedExamples/constructiveLevelGenerator");
-         //selectedFolders.add("generatedExamples/geneticLevelGenerator");
+         selectedFolders.add("generatedExamples/geneticLevelGenerator");
          selectedFolders.add("generatedExamples/localLanguageModelGenerator");
          selectedFolders.add("generatedExamples/randomLevelGenerator");
          selectedFolders.add("generatedExamples/claudeLevelGenerator");
-         selectedFolders.add("generatedExamples/FineTunedLLMGenerator");
+         selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
+         selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
+         selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
+         selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
+
+         // Too buggy, exclude
+         // selectedFolders.add("generatedExamples/FineTunedLLMGenerator");
         
         for (String s: selectedFolders){
             //System.out.println(createFolderMetricJson(s));
@@ -267,7 +273,7 @@ public class calculateMetrics {
             //System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             createMetricsByLevel(s);
             //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
-            createMetricsByFolderRecursive(s);
+            //createMetricsByFolderRecursive(s);
         }
         
     }

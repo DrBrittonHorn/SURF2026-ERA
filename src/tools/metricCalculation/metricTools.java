@@ -456,6 +456,10 @@ public class metricTools {
         String levelTilesOnly = Files.readString(Path.of(levelPath));
         if (levelTilesOnly.split("LevelDescription").length > 1){
             levelTilesOnly = levelTilesOnly.split("LevelDescription")[1].trim();
+            // Quite playtrace generation if there is no avatar
+            if (!levelTilesOnly.contains("A")){
+                Files.writeString(Path.of(recordActionsFile), "No Avatar");
+                return;}
             levelTilesOnly = metricTools.applyPadding(levelTilesOnly);
         }
         // Add padding tokens to temporarily correct ragged rows (Otherwise, avatar may not be detected)
