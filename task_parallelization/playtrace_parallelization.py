@@ -8,7 +8,7 @@ playtrace_collection_name = "generatedExamplesPlaytracesLab-1k-80ms"
 
 # Runs createPlaytraces for one level (level path String is used as input)
 def create_playtrace(level_path : str):
-    subprocess.run(["java", "-cp", "playtrace_parallelization/playtraceClasses", "tools.metricCalculation.createPlaytraces", level_path, playtrace_collection_name], 
+    subprocess.run(["java", "-cp", "task_parallelization/playtraceClasses", "tools.metricCalculation.createPlaytraces", level_path, playtrace_collection_name], 
                 cwd=r".")
 
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     print('Starting subprocesses')
     # Compiles and our latest createPlaytraces file for use here.
-    subprocess.run(["javac", "-d", "playtrace_parallelization/playtraceClasses", "-sourcepath", "src", r"src/tools/metricCalculation/createPlaytraces.java"], 
+    subprocess.run(["javac", "-d", "task_parallelization/playtraceClasses", "-sourcepath", "src", r"src/tools/metricCalculation/createPlaytraces.java"], 
                    check=True, cwd=r".")
     
     # Get paths of levels that need playtraces
