@@ -28,8 +28,8 @@ if __name__ == "__main__":
 
     to_generate = []
 
-    desired_amount = 1000
-    for i in range(desired_amount):
+    desired_interval = (0, 0)
+    for i in range(desired_interval[0], desired_interval[1]):
         for game in games:
             output_location = (
             "generatedExamples/geneticParallel/" +
@@ -39,9 +39,10 @@ if __name__ == "__main__":
 
     to_generate = [level for level in to_generate if not os.path.exists(level)]
     
-    # print(to_generate)
+    print(to_generate)
     print(f"Generating genetic levels with {len(to_generate)} left to complete")
 
     with Pool(12) as p:
         (p.map(generate_level, to_generate))
+        
     
