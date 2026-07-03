@@ -23,7 +23,7 @@ public class GenerateFullGeneratorSuite {
         String claudeLevelGenerator = "tracks.levelGeneration.claudeLevelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = claudeLevelGenerator;
+        String selectedGenerator = geneticGenerator;
 
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");

@@ -20,17 +20,17 @@ if __name__ == '__main__':
                    check=True, cwd=r".")
     
     # Get paths of levels that need playtraces
-    selected_generators = [#"constructiveLevelGenerator",
+    selected_generators = ["constructiveLevelGenerator",
                             "claudeLevelGenerator",
-                            #"fineTunedLLMGenerator",
-                            #"geminiLevelGenerator",
-                            # "geneticLevelGenerator",
-                            #"localLanguageModel",
-                            #"randomLevelGenerator",
-                            #"sturgeonLevelGenerator1x1",
-                            #"sturgeonLevelGenerator2x2",
-                            #"sturgeonLevelGenerator3x3",
-                            #"sturgeonLevelGenerator4x4",
+                            "fineTunedLLMGenerator",
+                            "geminiLevelGenerator",
+                            "geneticLevelGenerator",
+                            "localLanguageModel",
+                            "randomLevelGenerator",
+                            "sturgeonLevelGenerator1x1",
+                            "sturgeonLevelGenerator2x2",
+                            "sturgeonLevelGenerator3x3",
+                            "sturgeonLevelGenerator4x4",
                            ]
 
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
                  # print(playtrace_file)
         # print(to_compute)
         # print(len(files))
-        # print(len(to_compute))
+        print(len(to_compute))
 
         for file in files:
             if file not in to_compute:
