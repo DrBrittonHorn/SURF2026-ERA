@@ -21,16 +21,16 @@ if __name__ == '__main__':
     
     # Get paths of levels that need playtraces
     selected_generators = [#"constructiveLevelGenerator",
-                            #"claudeLevelGenerator",
+                            "claudeLevelGenerator",
                             #"fineTunedLLMGenerator",
                             #"geminiLevelGenerator",
-                            #"geneticLevelGenerator",
+                            # "geneticLevelGenerator",
                             #"localLanguageModel",
                             #"randomLevelGenerator",
                             #"sturgeonLevelGenerator1x1",
-                            "sturgeonLevelGenerator2x2", # almost done
-                            "sturgeonLevelGenerator3x3",
-                            "sturgeonLevelGenerator4x4",
+                            #"sturgeonLevelGenerator2x2",
+                            #"sturgeonLevelGenerator3x3",
+                            #"sturgeonLevelGenerator4x4",
                            ]
 
 
@@ -41,8 +41,15 @@ if __name__ == '__main__':
         to_compute = []
         # print(files)
         for file in files:
-            if (not os.path.exists(file.replace("generatedExamples", playtrace_collection_name)) and file.endswith(".txt") and not os.path.isdir(file)):
+            playtrace_file = file.replace("generatedExamples", playtrace_collection_name)
+            if ((not os.path.exists(playtrace_file)) and file.endswith(".txt") and not os.path.isdir(file)):
                 to_compute.append(file[2:])  # remove the leading './' from the path
+            # Used to correct empty playtrace files
+            if (os.path.exists(playtrace_file) and os.path.getsize(playtrace_file) == 0):
+                 to_compute.append(file[2:])  # remove the leading './' from the path
+                 # print(file)
+                 # print(playtrace_file)
+        # print(to_compute)
         # print(len(files))
         # print(len(to_compute))
 
