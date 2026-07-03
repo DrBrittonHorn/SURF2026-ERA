@@ -351,6 +351,13 @@ public class LevelGenerator extends AbstractLevelGenerator{
 			// System.out.println("\n");
 			// System.out.println(fixedLevel);
 
+
+			// (By JM: Fixes error where the player character 
+			// was replaced by "null" in the level output, 
+			// breaking an otherwise functional level)
+
+			fixedLevel = fixedLevel.replace("null", "A");
+
 			return fixedLevel;
 		}
 		
