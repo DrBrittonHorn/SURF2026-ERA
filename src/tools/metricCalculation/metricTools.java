@@ -499,7 +499,7 @@ public class metricTools {
     }
 
 
-    private static String applyPadding(String levelTilesOnly) {
+    public static String applyPadding(String levelTilesOnly) {
         ArrayList<ArrayList<Character>> array = metricTools.toArray(levelTilesOnly);
         int maxRowLength = 0; 
         for (ArrayList<Character> a : array){if (a.size() > maxRowLength){maxRowLength = a.size();}}

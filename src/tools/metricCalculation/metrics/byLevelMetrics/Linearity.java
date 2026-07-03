@@ -11,7 +11,7 @@ public class Linearity {
     public static double calculateMetric(String levelString){
         char emptyChar = '.';
         String levelmap = metricTools.getLevelTiles(levelString);
-        ArrayList<ArrayList<Character>> tileList = metricTools.toArray(levelString);
+        ArrayList<ArrayList<Character>> tileList = metricTools.toArray(levelString.replace(" ", "."));
         ArrayList<Double> X = new ArrayList<Double>();
         ArrayList<Double> Y = new ArrayList<Double>();
 
@@ -32,27 +32,31 @@ public class Linearity {
         double[] yArray = Y.stream().mapToDouble(Double::doubleValue).toArray();
 
 
-        // Check to make sure that at least one of the arrays varies (otherwise perfectly linear)
+        // Check to make sure that the arrays vary (otherwise perfectly linear)
         // This prevents a NaN error that occurs when the regression algorithm is run
-        boolean doRegression = false;
+        boolean xVaries = false;
+        boolean yVaries = false;
         for (int i = 0; i < xArray.length; i++){
-            if (xArray[0] != xArray[i]){doRegression = true;}
+            if (xArray[0] != xArray[i]){xVaries = true;}
             //System.out.println(xArray[0] != xArray[i]);
         }
+        // Check whether the level is a vertical stack of blocks
+        for (int i = 0; i < yArray.length; i++){
+            //System.out.println(yArray[i]);
+            if (yArray[0] != yArray[i]){yVaries = true;}
+        }
         //System.out.println();
-
+        boolean doRegression = xVaries && yVaries;
         if (doRegression == false){return 1.0;} // Return perfectly linear (because it is)
 
         LinearRegression regression = new LinearRegression(xArray, yArray);
 
-        double totalError = 0;
+        /*double totalError = 0;
         for (int i = 0; i < xArray.length; i++){
             double predictedY = regression.predict(xArray[i]);
             double actualY = yArray[i];
             totalError += Math.abs(predictedY - actualY);
-        }
-        //System.out.println(regression.toString());
-        //Returns average error (for now)
+        }*/
         if (Double.isNaN(regression.R2())){
             throw new ArithmeticException("Nan detected for \n" + levelString);
         }
@@ -60,10 +64,22 @@ public class Linearity {
     }
 
     public static void main(String[] args) throws IOException{
-        String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
-        String testLevel3 = Files.readString(Path.of("generatedExamples\\\\constructiveLevelGenerator\\\\asteroids\\\\asteroids_lvl202.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
-        System.out.println(calculateMetric(testLevel1));
+        //String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
+        //String testLevel3 = Files.readString(Path.of("generatedExamples\\\\constructiveLevelGenerator\\\\asteroids\\\\asteroids_lvl202.txt"));
+        //String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
+        String testLevel4 = """
+                LevelMapping
+                    A > avatar 
+                    b > breakable 
+                    w > wall 
+                    G > pad 
+
+                LevelDescription
+                A    
+                A
+                G   
+                """;
+        System.out.println(calculateMetric((testLevel4)));
     }
     
         /**
