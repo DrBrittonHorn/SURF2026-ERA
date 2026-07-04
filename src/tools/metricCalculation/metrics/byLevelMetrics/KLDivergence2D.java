@@ -11,12 +11,18 @@ import tools.metricCalculation.metricTools;
 
 // From https://ojs.aaai.org/index.php/AAAI/article/view/28865
 public class KLDivergence2D {
-    public static double calculateMetric(String levelText, int windowSize){
+    public static double calculateMetric(String levelPath, int windowSize) throws IOException{
         
+        String levelText = Files.readString(Path.of(levelPath));
+
         boolean ignorePaddingNGrams = true;
         String paddingToken = "~";
         String levelMap = metricTools.getLevelTiles(levelText);
-        String gameFile = metricTools.getGameFilePath(levelText);
+        // Extract game name from the file path 
+        String gameName = levelPath.split("\\\\|/")[2];
+        
+        // Construct the base path to example files
+        String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
         ArrayList<Path> examplePaths = new ArrayList<Path>();
 
         int longestLineLength = 0;

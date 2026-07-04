@@ -88,7 +88,7 @@ public class NGramSimilarity1D {
     public static void main(String[] args) throws IOException{
         String testLevel1 = "generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt";
         String testLevel2 = "generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt";
-        System.out.println(calculateMetric(testLevel2, 5));
+        System.out.println(calculateMetric(Path.of(testLevel2).toString(), 5));
 
     }
 }
