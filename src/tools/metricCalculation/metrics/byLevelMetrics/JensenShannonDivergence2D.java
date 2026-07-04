@@ -11,11 +11,16 @@ import tools.metricCalculation.metricTools;
 
 // From https://ojs.aaai.org/index.php/AAAI/article/view/28865
 public class JensenShannonDivergence2D {
-    public static double calculateMetric(String levelText, int windowSize){
-        
+    public static double calculateMetric(String levelPath, int windowSize) throws IOException{
+        String levelString = Files.readString(Path.of(levelPath));
         String paddingToken = "~";
-        String levelMap = metricTools.getLevelTiles(levelText);
-        String gameFile = metricTools.getGameFilePath(levelText);
+        String levelMap = metricTools.getLevelTiles(levelString);
+        // Extract game name from the file path 
+        String gameName = levelPath.split("\\\\|/")[2];
+        
+        // Construct the base path to example files
+        String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
+
         ArrayList<Path> examplePaths = new ArrayList<Path>();
 
         int longestLineLength = 0;
@@ -86,7 +91,7 @@ public class JensenShannonDivergence2D {
     }
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt"));
+        String testLevel2 = (Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt")).toString();
         System.out.println(calculateMetric(testLevel2, 4));
         //0.6743096984923541
     }

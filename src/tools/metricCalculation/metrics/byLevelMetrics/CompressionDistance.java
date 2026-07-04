@@ -14,10 +14,15 @@ import tools.metricCalculation.metricTools;
 
 // Takes an average of compression distance between a generated level and its 5 corpus levels
 public class CompressionDistance {
-    public static double calculateMetric(String levelText) throws IOException{
-        String inputLevelMap = metricTools.getLevelTiles(levelText);
-        String gamePath = metricTools.getGameFilePath(levelText);
+    public static double calculateMetric(String levelPath) throws IOException{
+        String inputLevelMap = metricTools.getLevelTiles(Files.readString(Path.of(levelPath)));
         
+        // Extract game name from the file path (e.g., generatedExamples/{generator}/aliens/aliens_lvl001.txt -> aliens)
+        String gameName = levelPath.split("\\\\|/")[2];
+        
+        // Construct the base path to example files
+        String gamePath = "examples/selectedGameFiles/" + gameName + ".txt";
+
         String[] exampleLevels = new String[5];
         for (int i = 0; i < exampleLevels.length; i++){
             exampleLevels[i] = metricTools.getLevelTiles(Files.readString(Path.of(gamePath.split(".txt")[0] + "_lvl" + i + ".txt")));

@@ -9,8 +9,13 @@ import tools.metricCalculation.metricTools;
 
 public class StructuralSimilarityToCorpus {
     // This is a horrible metric when levels may differ in size (all of GVGAI)
-    public static double calculateMetric(String levelText){
-        String gameFile = metricTools.getGameFilePath(levelText);
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
+        // Extract game name from the file path 
+        String gameName = levelPath.split("\\\\|/")[2];
+        
+        // Construct the base path to example files
+        String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
         double accumulatedSimilarity = 0;
         ArrayList<Path> examplePaths = new ArrayList<Path>();
         ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelText);

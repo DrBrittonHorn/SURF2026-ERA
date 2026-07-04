@@ -13,7 +13,9 @@ import tools.metricCalculation.metricTools;
 public class NaiveSimilarity {
     public static double calculateMetric(String levelPath) throws IOException{
         String levelText = Files.readString(Path.of(levelPath));
-        String gameName = levelPath.split("/")[2];
+        String gameName = levelPath.split("\\\\|/")[2];
+        
+        // Construct the base path to example files
         String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
         System.out.println(gameFile);
         double accumulatedSimilarity = 0;

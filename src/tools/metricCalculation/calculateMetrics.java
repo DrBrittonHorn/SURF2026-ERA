@@ -62,27 +62,30 @@ public class calculateMetrics {
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
-        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelPathString, 3));
-        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity2D.calculateMetric(levelPathString, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
-        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
-        levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelText));
-        levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelPathString));
+        
         levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelText)); // Signed metric (Negative results indicate left-sidedness)
         levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelText)); // Signed metric (Negative results indicate bottom-heaviness)
-        levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelText));
-        levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelText, 3));
+        
         levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelText));
         levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelText));
         levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
         levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelText));
-        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelText)); 
+        
         
         // Put metrics that require the levelPath here
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity2D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelPathString));
+        levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelPathString));
+        levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelPathString)); 
 
 
         // Put metrics with special formats here and explain why
