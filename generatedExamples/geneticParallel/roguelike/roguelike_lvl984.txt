@@ -1,0 +1,33 @@
+LevelMapping
+    p > floor phantom 
+    A > floor avatar 
+    r > floor spider 
+    s > floor weapon 
+    w > wall 
+    g > floor gold 
+    x > floor exit 
+    h > floor health 
+    k > key floor 
+    l > floor lock 
+    m > floor market 
+    . > floor 
+
+LevelDescription
+wwwwwwwwwwwwwwwwww
+w....l...m.......w
+w....l...........w
+w..l..x...g......w
+w...............lw
+w..m.............w
+w................w
+w.........rg.....w
+wg...g........g..w
+w....w...r...k...w
+w...w.........r..w
+w...w............w
+w........gh..g...w
+w..........gA....w
+w.....l.gh.......w
+ws.p......h......w
+w....k...gm....x.w
+wwwwwwwwwwwwwwwwww

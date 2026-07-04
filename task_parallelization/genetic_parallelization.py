@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     to_generate = []
 
-    desired_interval = (0, 0)
+    desired_interval = (0, 1000)
     for i in range(desired_interval[0], desired_interval[1]):
         for game in games:
             output_location = (
