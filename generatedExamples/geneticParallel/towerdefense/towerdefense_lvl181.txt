@@ -1,0 +1,38 @@
+LevelMapping
+    A > avatar ground 
+    d > turndown ground 
+    h > turretSpotH ground 
+    l > turnleft ground 
+    . > ground 
+    p > ground path 
+    1 > spawnU ground path 
+    2 > spawnD ground path 
+    r > turnright ground 
+    3 > spawnL ground path 
+    t > ground tower 
+    4 > spawnR ground path 
+    u > turnup ground 
+    v > turretSpotV ground 
+    w > wall ground 
+
+LevelDescription
+wwwwwwwwwwwwwwwwwwww
+w        2  3      w
+wd          3 2  d w
+w        p      d  w
+w   4           d  w
+w4      d   w      w
+w             2    w
+w  u            w ww
+w w          34    w
+wA     w    2      w
+w  www  u     t4   w
+w             3    w
+w w       u     u tw
+w w  l2  d         w
+w            l     w
+w   1           1r w
+w   www     wwwww  w
+w                 uw
+w     4    l       w
+wwwwwwwwwwwwwwwwwwww

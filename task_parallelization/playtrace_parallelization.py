@@ -27,6 +27,7 @@ if __name__ == '__main__':
                             "fineTunedLLMGenerator",
                             "geminiLevelGenerator",
                             "geneticLevelGenerator",
+                            "geneticParallel"
                             "localLanguageModelGenerator",
                             "randomLevelGenerator",
                             "sturgeonLevelGenerator1x1",

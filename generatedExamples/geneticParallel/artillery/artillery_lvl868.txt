@@ -1,0 +1,19 @@
+LevelMapping
+    A > avatar 
+    b > box 
+    B > bouncey 
+    d > breakable 
+    w > wall 
+    G > pad 
+
+LevelDescription
+wwwwwwwwww
+wBG  d   w
+w  d     w
+w  b     w
+w    B   w
+w   d    w
+w  B     w
+wA  ww wdw
+w      B w
+wwwwwwwwww
