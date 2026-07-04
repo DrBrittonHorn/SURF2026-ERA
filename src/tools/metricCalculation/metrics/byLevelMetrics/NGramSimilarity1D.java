@@ -10,9 +10,16 @@ import java.util.HashSet;
 import tools.metricCalculation.metricTools;
 
 public class NGramSimilarity1D {
-    public static double calculateMetric(String levelText, int nGramSize){
+    public static double calculateMetric(String levelPath, int nGramSize) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
         String levelMap = metricTools.getLevelTiles(levelText);
-        String gameFile = metricTools.getGameFilePath(levelText);
+        
+        // Extract game name from the file path (e.g., generatedExamples/{generator}/aliens/aliens_lvl001.txt -> aliens)
+        String[] pathParts = levelPath.split("\\\\|/");
+        String gameName = pathParts[pathParts.length - 2];
+        
+        // Construct the base path to example files
+        String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
         ArrayList<Path> examplePaths = new ArrayList<Path>();
         
         // Based on the assumption that each game has 5 samples levels
@@ -79,8 +86,8 @@ public class NGramSimilarity1D {
     
     
     public static void main(String[] args) throws IOException{
-        String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\realsokoban\\realsokoban_lvl002.txt"));
+        String testLevel1 = "generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt";
+        String testLevel2 = "generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl002.txt";
         System.out.println(calculateMetric(testLevel2, 5));
 
     }
