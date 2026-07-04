@@ -240,7 +240,7 @@ public class metricTools {
     }
 
     public static String getGameFilePath(String levelText){
-        String levelDesc = levelText.split("LevelDescription")[0];
+        String levelDesc = levelText.split("LevelDescription")[0].replaceAll("\\\\R", "\r\n");
         // Levels with an empty description will cause an error because a gamePath that does not exist will be created!
         try{
             String aliensMapping = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt")).split("LevelDescription")[0];
