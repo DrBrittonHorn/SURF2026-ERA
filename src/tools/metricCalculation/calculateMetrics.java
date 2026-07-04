@@ -36,6 +36,7 @@ import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.Linearity;
 import tools.metricCalculation.metrics.byLevelMetrics.MechanicUsage;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
+import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity2D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
 import tools.metricCalculation.metrics.byLevelMetrics.RewardDensity;
@@ -61,8 +62,8 @@ public class calculateMetrics {
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
-        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
-        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity2D.calculateMetric(levelPathString, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelText));
         levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelText));

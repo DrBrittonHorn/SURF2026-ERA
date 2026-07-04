@@ -10,12 +10,19 @@ import java.util.HashSet;
 import tools.metricCalculation.metricTools;
 
 public class NGramSimilarity2D {
-    public static double calculateMetric(String levelText, int nGramSize){
+    public static double calculateMetric(String levelPath, int nGramSize) throws IOException{
         
+        String levelText = Files.readString(Path.of(levelPath));
         boolean ignorePaddingNGrams = true;
         String paddingToken = "~";
         String levelMap = metricTools.getLevelTiles(levelText);
-        String gameFile = metricTools.getGameFilePath(levelText);
+        
+        // Extract game name from the file path (e.g., generatedExamples/{generator}/aliens/aliens_lvl001.txt -> aliens)
+        String[] pathParts = levelPath.split("\\\\|/");
+        String gameName = pathParts[pathParts.length - 2];
+        
+        // Construct the base path to example files
+        String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
         ArrayList<Path> examplePaths = new ArrayList<Path>();
 
         //Add padding characters to levelMap to create inputLevelLines
