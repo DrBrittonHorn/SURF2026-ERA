@@ -11,8 +11,11 @@ import tools.metricCalculation.metricTools;
 // Todo: This metric, density estimate charts
 // Todo: Moving tile frames
 public class NaiveSimilarity {
-    public static double calculateMetric(String levelText){
-        String gameFile = metricTools.getGameFilePath(levelText);
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
+        String gameName = levelPath.split("/")[2];
+        String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
+        System.out.println(gameFile);
         double accumulatedSimilarity = 0;
         ArrayList<Path> examplePaths = new ArrayList<Path>();
         
