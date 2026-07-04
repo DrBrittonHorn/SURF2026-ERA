@@ -61,7 +61,6 @@ public class calculateMetrics {
         levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
         levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
         levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
-        levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelText));
         levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity1D.calculateMetric(levelText, 3));
         levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
@@ -82,6 +81,8 @@ public class calculateMetrics {
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelPathString));
+
 
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk
@@ -254,14 +255,15 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/enhancedClaudeGenerator")
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         //selectedFolders.add("generatedExamples/constructiveLevelGenerator");
-        ////selectedFolders.add("generatedExamples/geneticLevelGenerator");
+        selectedFolders.add("generatedExamples/geneticLevelGenerator");
+        selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
         ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
-        selectedFolders.add("generatedExamples/randomLevelGenerator");
-        selectedFolders.add("generatedExamples/claudeLevelGenerator");
-        selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
-        selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
-        selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
-        selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
+        //selectedFolders.add("generatedExamples/randomLevelGenerator");
+        //selectedFolders.add("generatedExamples/claudeLevelGenerator");
+        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
+        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
+        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
+        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
 
          // Too buggy, exclude
          // selectedFolders.add("generatedExamples/FineTunedLLMGenerator");
