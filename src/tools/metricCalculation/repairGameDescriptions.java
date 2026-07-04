@@ -17,20 +17,14 @@ public class repairGameDescriptions {
             try {
                 String replacementLevel = Files.readString(replacementPath);
                 String replacementMapping = replacementLevel.split("LevelDescription")[0];
-                String replacementContent = ("" + replacementMapping +  "LevelDescription\n" + Files.readString(path));
-                //System.out.println(replacementContent);
-                //Files.writeString(path, replacementContent);
+                String replacementContent = ("" + replacementMapping +  "LevelDescription" + "\r\n" + Files.readString(path));
+                System.out.println(replacementContent);
+                Files.writeString(path, replacementContent);
 
             } catch (IOException e) {}
             
             //System.out.println(replacementPath.toString());
             //String tileMapping
-            try {
-                fixAliensNaming();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
         });
     }
 
@@ -49,7 +43,12 @@ public class repairGameDescriptions {
                 String newPath = pathString.split("_lvl")[0] + "_lvl" + numberFormatted + ".txt";
                 System.out.println(newPath);
 
-                Files.move(path, Path.of(newPath));
+                try {
+                    Files.move(path, Path.of(newPath));
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
 
 
