@@ -5,6 +5,7 @@ import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,6 +19,7 @@ import tracks.levelGeneration.constraints.CombinedConstraints;
 import ontology.Types;
 import ontology.Types.WINNER;
 import tools.ElapsedCpuTimer;
+import tools.GameAnalyzer;
 import tools.LevelMapping;
 import tools.StepController;
 import tools.metricCalculation.metricTools;
@@ -652,29 +654,68 @@ public class Chromosome implements Comparable<Chromosome>{
 
 			Integer AvatarX = 1000;
 			Integer AvatarY = 1000;
-			boolean Avatar = false;
 			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A') == null) {
 				System.out.println(Level);
 			}
 			else {
 				AvatarX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getX();
 				AvatarY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'A').getY();
-				Avatar = true;
 			}
 
-			// for now, designed specifically for zelda
+			String ThisGame = "zelda"; // "zelda", "dungeon", "roguelike", "frogs", "mario", "towerdefense"
+
 			Integer GoalX = 1000;
 			Integer GoalY = 1000;
-			boolean Goal = false;
-			if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g') == null) {
-				System.out.println(Level);
+			if (ThisGame == "zelda" || ThisGame == "frogs") {
+				if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g') == null) {
+					System.out.println(Level);
+				}
+				else {
+					GoalX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
+					GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
+				} 
 			}
-			else {
-				GoalX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getX();
-				GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'g').getY();
-				Goal = true;
-			} 
-			// specific to zelda
+			if (ThisGame == "dungeon" || ThisGame == "roguelike") {
+				if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'x') == null) {
+					System.out.println(Level);
+				}
+				else {
+					GoalX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'x').getX();
+					GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'x').getY();
+				} 
+			}
+			if (ThisGame == "mario") {
+				if (tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'G') == null) {
+					System.out.println(Level);
+				}
+				else {
+					GoalX = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'G').getX();
+					GoalY = (int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, 'G').getY();
+				} 
+			}
+			int LowestBound = 0;
+			if (ThisGame == "aliens") {
+				ArrayList<Integer> Xs = new ArrayList<>();
+				Xs.add(1000);
+				try {
+					Xs.add((int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, '1').getX());
+				} catch (Exception E) {
+
+				}
+				try {
+					Xs.add((int) tools.metricCalculation.metrics.byLevelMetrics.GetPosition.calculateMetric(Level, '2').getX());
+				} catch (Exception E) {
+
+				}
+				LowestBound = Collections.min(Xs);
+				GoalX = AvatarX;
+				GoalY = AvatarY;
+			}
+			if (ThisGame == "towerdefense") {
+				GoalX = AvatarX;
+				GoalY = AvatarY;
+			}
+
 			double numOfGoals;
 			try {
 			numOfGoals = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('g');	
@@ -686,6 +727,19 @@ public class Chromosome implements Comparable<Chromosome>{
 			numOfKeys = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('+');	
 			} catch (Exception E) {
 				numOfKeys = 0.0;
+			}
+
+			double numberOfGoals;
+			try {
+			numberOfGoals = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('x');	
+			} catch (Exception E) {
+				numberOfGoals = 0.0;
+			}
+			double numberOfKeys;
+			try {
+			numberOfKeys = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('k');	
+			} catch (Exception E) {
+				numberOfKeys = 0.0;
 			}
 
 			AbstractMap.SimpleEntry<Integer, Integer> start = new SimpleEntry<Integer,Integer>(AvatarX, AvatarY);
@@ -700,12 +754,7 @@ public class Chromosome implements Comparable<Chromosome>{
 				BFS = -2;
 			} 
 
-			//System.out.println(BFS);
-
-
-			// int bestSol = (int) Math.abs(AvatarX-GoalX) + (int) Math.abs(AvatarY-GoalY); // sets the best solution as the distance between the avatar and the goal
 			int bestSol = (int) BFS; // sets the best solution as the PATH between the avatar and the goal, using JM's BFS
-			// find a way to detect a path between the avatar and the goal
 
 			WINNER bestState = null;
 			double ruleScore = 0.0;
@@ -727,8 +776,12 @@ public class Chromosome implements Comparable<Chromosome>{
 			WINNER doNothingState = Types.WINNER.NO_WINNER; // no freaking clue how the StateObservation type works
 			int doNothingLength = 40;
 
-			int AvatarParam = Avatar ? 1 : 0;
-			int GoalParam = Goal ? 1 : 0;
+			boolean AvatarUnder = (AvatarY < 1000 && AvatarY > LowestBound);
+			
+			double HorizontalValue = 0.0;
+			double VerticalValue = 0.0;
+			if (tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).containsKey('h')) {HorizontalValue = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('h');}
+			if (tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).containsKey('v')) {VerticalValue = tools.metricCalculation.metrics.byLevelMetrics.TileFrequency.calculateMetricOtherOther(Level).get('v');}
 
 			FixPlayer();
 
@@ -746,15 +799,18 @@ public class Chromosome implements Comparable<Chromosome>{
 			parameters.put("numOfObjects", calculateNumberOfObjects());
 			parameters.put("gameAnalyzer", SharedData.gameAnalyzer);
 			parameters.put("gameDescription", SharedData.gameDescription);
-			parameters.put("hasAvatar", AvatarParam); // not currently used
-			parameters.put("hasGoal", GoalParam); // not currently used
-			parameters.put("OnlyOneGoal", numOfGoals);
-			parameters.put("OnlyOneKey", numOfKeys);
+			parameters.put("OnlyOneGoal", numOfGoals); // zelda and frogs
+			parameters.put("OnlyOneKey", numOfKeys); // zelda
+			parameters.put("JustOneGoal", numberOfGoals); // dungeon and roguelike
+			parameters.put("JustOneKey", numberOfKeys); // dungeon and roguelike
+			parameters.put("AvatarUnder", AvatarUnder); // aliens
+			parameters.put("HoriTowers", HorizontalValue); // towerdefense
+			parameters.put("VertTowers", VerticalValue); // towerdefense
 			
 			CombinedConstraints constraint = new CombinedConstraints();
 			constraint.addConstraints(new String[]{"SolutionLengthConstraint", "DeathConstraint", 
 
-					/* "CoverPercentageConstraint", */ "SpriteNumberConstraint", "GoalConstraint", "AvatarNumberConstraint", "WinConstraint", "GameEndConstraint"});
+					/* "CoverPercentageConstraint", */ "SpriteNumberConstraint", "GoalConstraint", "AvatarNumberConstraint", "WinConstraint", "ZeldaConstraint"});
 			constraint.setParameters(parameters);
 			constrainFitness = constraint.checkConstraint();
 			

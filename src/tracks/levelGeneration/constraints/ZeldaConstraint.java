@@ -5,9 +5,7 @@ import java.util.HashMap;
 import core.game.GameDescription;
 import core.game.GameDescription.TerminationData;
 
-public class GameEndConstraint extends AbstractConstraint{
-
-
+public class ZeldaConstraint extends AbstractConstraint {
 	/**
 	 * number of goals in the level
 	 */
@@ -26,10 +24,10 @@ public class GameEndConstraint extends AbstractConstraint{
 	@Override
 	public double checkConstraint() {
         if (OnlyOneGoal == 1 && OnlyOneKey == 1) {
-            System.out.println("GameEndConstraint: 1");
+            //System.out.println("GameEndConstraint: 1");
             return 1;
         } 
-        System.out.println("GameEndConstraint: " + (OnlyOneGoal / 10.0));
+        //System.out.println("GameEndConstraint: " + (OnlyOneGoal / 10.0));
 		return (OnlyOneGoal + OnlyOneKey) / 10.0;
 	}
 }
