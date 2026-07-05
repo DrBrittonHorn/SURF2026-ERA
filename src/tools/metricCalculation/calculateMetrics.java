@@ -259,7 +259,7 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/enhancedClaudeGenerator")
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         //selectedFolders.add("generatedExamples/constructiveLevelGenerator");
-        selectedFolders.add("generatedExamples/geneticLevelGenerator");
+        //selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
         ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
         //selectedFolders.add("generatedExamples/randomLevelGenerator");
@@ -276,10 +276,10 @@ public class calculateMetrics {
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
-            //System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
+            System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             createMetricsByLevel(s);
-            //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
-            //createMetricsByFolderRecursive(s);
+            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            createMetricsByFolderRecursive(s);
         }
         
     }
