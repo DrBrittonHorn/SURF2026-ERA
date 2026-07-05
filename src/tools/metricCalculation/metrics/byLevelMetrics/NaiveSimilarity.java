@@ -17,7 +17,7 @@ public class NaiveSimilarity {
         
         // Construct the base path to example files
         String gameFile = "examples/selectedGameFiles/" + gameName + ".txt";
-        System.out.println(gameFile);
+        //System.out.println(gameFile);
         double accumulatedSimilarity = 0;
         ArrayList<Path> examplePaths = new ArrayList<Path>();
         

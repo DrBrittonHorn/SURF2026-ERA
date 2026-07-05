@@ -26,7 +26,7 @@ public class PlaytraceDiversity{
 
             levels.forEach(path -> {
                 
-                Path playtracePath = Path.of(path.toString().replace("generatedExamples", "generatedExamplesPlaytraces"));
+                Path playtracePath = Path.of(path.toString().replace("generatedExamples", "generatedExamplesPlaytracesLab-1k-80ms"));
                 //System.out.println(playtracePath.toString());
                 try {
                     if ((!Files.isRegularFile(playtracePath) || Files.readString(playtracePath).isBlank()) && metricTools.getLevelTiles(Files.readString(path)).contains("A")){

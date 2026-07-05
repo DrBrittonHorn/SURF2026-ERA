@@ -19,18 +19,18 @@ public class repairGameDescriptions {
                 String replacementMapping = replacementLevel.split("LevelDescription")[0];
                 String replacementContent = ("" + replacementMapping +  "LevelDescription" + "\r\n" + Files.readString(path));
                 System.out.println(replacementContent);
-                Files.writeString(path, replacementContent);
+                //Files.writeString(path, replacementContent);
 
             } catch (IOException e) {}
             
-            //System.out.println(replacementPath.toString());
-            //String tileMapping
+            
         });
+
     }
 
 
     public static void fixAliensNaming() throws IOException{
-        Stream<Path> levels = Files.walk(Path.of("generatedExamples/enhancedClaudeGenerator/aliens"));
+        Stream<Path> levels = Files.walk(Path.of("generatedExamplesPlaytracesLab-1k-80ms/enhancedClaudeGenerator/aliens"));
         levels.forEach(path -> {
             if (!Files.isDirectory(path)){
                 String pathString = path.toString();
