@@ -9,51 +9,47 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from metric_analysis.tools import create_attribute_dict, create_color_bar, create_game_colorbars, get_generator_title, get_metric_title, parse_binning
 
-def create_ERA_graph_by_game(selected_metrics_tuple: tuple, json_path: str, exclude_malformed=True, ax=None):
+def create_ERA_graph_by_game(selected_metrics_tuple: tuple, exclude_malformed=True, ax=None):
     standalone = False
     if ax is None:
         standalone = True
         fig, ax = plt.subplots(figsize=(7, 4), layout="constrained")
-    dict = create_attribute_dict(json_path)
+    # dict = create_attribute_dict(json_path)
     
-    game_to_index = {"aliens" : 0,
-                     "artillery" : 1,
-                     "asteroids" : 2,
-                     "dungeon" : 3,
-                     "frogs" : 4,
-                     "mario" : 5,
-                     "realsokoban" : 6,
-                     "roguelike" : 7,
-                     "towerdefense" : 8,
-                     "zelda" : 9}
+    generators = [
+            "claudeLevelGenerator",
+            "constructiveLevelGenerator",
+            "enhancedClaudeGenerator",
+            "geminiLevelGenerator",
+            "geneticLevelGenerator",
+            "randomLevelGenerator",
+            "sturgeonLevelGenerator1x1",
+            "sturgeonLevelGenerator2x2",
+            "sturgeonLevelGenerator3x3",
+            "sturgeonLevelGenerator4x4"
+    ]
 
-    index_to_game = {0: "aliens",
-                     1: "artillery",
-                     2: "asteroids",
-                     3: "dungeon",
-                     4: "frogs",
-                     5: "mario",
-                     6: "realsokoban",
-                     7: "roguelike",
-                     8: "towerdefense",
-                     9: "zelda"}
-
-    x_lists_by_game = [[] for i in range(10)]
-    y_lists_by_game = [[] for i in range(10)]
+    x_lists_bygenerator = [[] for i in range(10)]
+    y_lists_by_generator = [[] for i in range(10)]
 
     inclusive_x_list = []
     inclusive_y_list = []
 
-    for level_path, metrics in dict.items():
-        # print(level_path)
-        level_game_name = level_path.split("\\")[2]
-        # Create lists of the variables used in this graph
-        if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parse_binning(level_path, dict))): 
-                x_lists_by_game[game_to_index[level_game_name]].append(metrics[selected_metrics_tuple[0]])
-                y_lists_by_game[game_to_index[level_game_name]].append(metrics[selected_metrics_tuple[1]])
-                inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
-                inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
+    for i in range(len(generators)):
+        metricsPath = "generatedExamples/" + generators[i] + "/levelMetrics.json"
+        dict = create_attribute_dict(metricsPath)
+
+
+        for level_path, metrics in dict.items():
+            # print(level_path)
+            level_game_name = level_path.split("\\")[2]
+            # Create lists of the variables used in this graph
+            if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
+                if (not exclude_malformed or (parse_binning(level_path, dict))): 
+                    x_lists_bygenerator[i].append(metrics[selected_metrics_tuple[0]])
+                    y_lists_by_generator[i].append(metrics[selected_metrics_tuple[1]])
+                    inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
+                    inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
     
     print(f"Creating an ERA by game chart with {len(inclusive_x_list)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")
     if (len(inclusive_x_list) == 0): print("No data points found!"); return
@@ -72,10 +68,12 @@ def create_ERA_graph_by_game(selected_metrics_tuple: tuple, json_path: str, excl
     # Creates colorbars for each of our 10 games
     colorbars = create_game_colorbars()
     
+    print(x_lists_bygenerator)
+
     # Layer a hexbin with a different colormap for each game
     hexbins = []
     for i in range(10):
-        hexbins.append(ax.hexbin(x_lists_by_game[i], y_lists_by_game[i], gridsize=150, extent=(x_min, x_max, y_min, y_max), cmap=colorbars[i], mincnt=1, alpha=.5, edgecolors="none"))
+        hexbins.append(ax.hexbin(x_lists_bygenerator[i], y_lists_by_generator[i], gridsize=150, extent=(x_min, x_max, y_min, y_max), cmap=colorbars[i], mincnt=1, alpha=.5, edgecolors="none"))
         # hexbin = ax.hexbin(x_lists_by_game[i], y_lists_by_game[i], gridsize=75, extent=(x_min, x_max, y_min, y_max), cmap=ordered_color_maps[i], mincnt=1, alpha=.75, edgecolors="none")
         # hexbin = ax.hexbin(x_lists_by_game[1], y_lists_by_game[1], gridsize=75, extent=(x_min, x_max, y_min, y_max), cmap="Blues", mincnt=1, alpha=.75, edgecolors="none")
 
@@ -85,9 +83,9 @@ def create_ERA_graph_by_game(selected_metrics_tuple: tuple, json_path: str, excl
 
     if standalone:
         # Set exterior/standalone characteristics
-        generator_name = json_path.split("/")[1]
-        if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
-        else: game_name = ""
+        #generator_name = json_path.split("/")[1]
+        #if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
+        #else: game_name = ""
 
         # Create colorbar labels for each game
         # Create colorbar labels for each game
@@ -96,19 +94,19 @@ def create_ERA_graph_by_game(selected_metrics_tuple: tuple, json_path: str, excl
             cbar = plt.colorbar(hexbins[9-i],
                 ax=ax, shrink=1, aspect=50, pad=0.01, orientation="vertical")
             cbar.set_ticks(ticks=[])
-            cbar.set_label(index_to_game[9-i].capitalize(), fontsize=10, labelpad=2, rotation=90)
+            #cbar.set_label(index_to_game[9-i].capitalize(), fontsize=10, labelpad=2, rotation=90)
             cbar.ax.tick_params(length=0)
         
             
         ax.set_xlabel(get_metric_title(selected_metrics_tuple[0]))
         ax.set_ylabel(get_metric_title(selected_metrics_tuple[1]))
-        ax.set_title(get_generator_title(json_path) + "" + game_name + " ERA Chart")
+        #ax.set_title(get_generator_title(json_path) + "" + game_name + " ERA Chart")
         # Titling format is "Y axis to X axis"
-        folder_name = "figures/" + generator_name + "/ERA_by_game/"
-        Path(folder_name).mkdir(parents=True, exist_ok=True)
-        save_file_name = folder_name + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
-        if os.path.isfile(save_file_name): os.remove(save_file_name)
-        plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
+        #folder_name = "figures/" + generator_name + "/ERA_by_game/"
+        #Path(folder_name).mkdir(parents=True, exist_ok=True)
+        #save_file_name = folder_name + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
+        #if os.path.isfile(save_file_name): os.remove(save_file_name)
+        #plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
         
         plt.show()
         plt.close()
@@ -132,4 +130,4 @@ if __name__ == "__main__":
     # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
     selected_metrics = ("Density", "ShannonEntropy")
-    create_ERA_graph_by_game(selected_metrics, metric_path, exclude_malformed=True)
+    create_ERA_graph_by_game(selected_metrics, exclude_malformed=True)

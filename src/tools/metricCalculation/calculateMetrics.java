@@ -268,6 +268,7 @@ public class calculateMetrics {
         
         selectedFolders.add("generatedExamples/geminiLevelGenerator");
         selectedFolders.add("generatedExamples/constructiveLevelGenerator");
+        
         selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
         ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
