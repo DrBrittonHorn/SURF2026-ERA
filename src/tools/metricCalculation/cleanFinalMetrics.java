@@ -6,8 +6,9 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public class cleanFinalMetrics {
+    // Removes level files from the finalMetrics folder
     public static void main(String[] args) throws IOException{
-        Stream<Path> files = Files.walk(Path.of("finalizedMetrics"));
+        Stream<Path> files = Files.walk(Path.of("finalizedMetrics")).parallel();
 
         files.forEach(file -> {
             if (file.toString().endsWith(".txt")){

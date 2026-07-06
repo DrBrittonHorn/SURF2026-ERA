@@ -7,8 +7,9 @@ import java.nio.file.Path;
 import tools.metricCalculation.metricTools;
 
 public class BalanceHorizontal {
-    public static double calculateMetric(String levelString){
-        String levelMap = metricTools.getLevelTiles(levelString);
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
+        String levelMap = metricTools.getLevelTiles(levelText);
         
         // Add padding for transpose
         String[] lines = levelMap.split(System.lineSeparator());

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import tools.metricCalculation.metricTools;
 
 public class Linearity {
-    public static double calculateMetric(String levelString){
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelString = Files.readString(Path.of(levelPath));
         char emptyChar = '.';
-        String levelmap = metricTools.getLevelTiles(levelString);
         ArrayList<ArrayList<Character>> tileList = metricTools.toArray(levelString.replace(" ", "."));
         ArrayList<Double> X = new ArrayList<Double>();
         ArrayList<Double> Y = new ArrayList<Double>();

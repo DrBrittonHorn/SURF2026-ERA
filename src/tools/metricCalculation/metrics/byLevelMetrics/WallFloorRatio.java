@@ -9,11 +9,14 @@ import tools.metricCalculation.metricTools;
 
 // This metric uses spatial preprocessing, walls are counted as any tile that is non-traversible
 public class WallFloorRatio {
-    public static double calculateMetric(String levelText){
+    public static double calculateMetric(String levelPath) throws IOException{
+        //System.out.println(levelText);
+        String levelText = Files.readString(Path.of(levelPath));
         levelText = metricTools.applySpatialMapping(levelText);
-
+        //System.out.println(levelText);
         //Based on the assumption that all generators use this character to represent blank space
         HashSet<Character> traversable = new HashSet<Character>(); // Based on the tile conversion for spatial preprocessing
+        traversable.add(' '); // Empty Blocks
         traversable.add('.'); // Empty Blocks
         traversable.add('G'); // Goal
         traversable.add('T'); // "Transparent Block"
@@ -57,7 +60,8 @@ public class WallFloorRatio {
 
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/dungeon/dungeon_lvl003.txt"));
         testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
-        System.out.println(testLevel1);
+        testLevel1 = Files.readString(Path.of("generatedExamples/geneticLevelGenerator/realsokoban/realsokoban_lvl706.txt"));
+        //System.out.println(testLevel1);
         System.out.println("Wall Floor Ratio is... " + calculateMetric(testLevel1));
     }
 }

@@ -7,7 +7,8 @@ import java.nio.file.Path;
 import tools.metricCalculation.metricTools;
 
 public class RewardDensity {
-    public static double calculateMetric(String levelText){
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
         String levelMap = metricTools.applySpatialMapping(levelText);
         double totalRewards = 0;
         int totalArea = 0;
