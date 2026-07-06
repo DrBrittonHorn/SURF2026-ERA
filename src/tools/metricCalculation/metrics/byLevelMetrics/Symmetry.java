@@ -9,7 +9,8 @@ import tools.metricCalculation.metricTools;
 
 public class Symmetry {
     
-    public static double calculateMetric(String levelText) {
+    public static double calculateMetric(String levelPath) throws IOException {
+        String levelText = Files.readString(Path.of(levelPath));
         ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelText);
         int maxLength = 0;
         Character padding = '~';

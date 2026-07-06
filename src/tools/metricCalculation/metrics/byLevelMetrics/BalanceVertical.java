@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import tools.metricCalculation.metricTools;
 
 public class BalanceVertical {
-    public static double calculateMetric(String levelText){
-        ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelText);
+    public static double calculateMetric(String levelPath){
+        ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelPath);
         return balanceFromArray(levelArray);
     }
 

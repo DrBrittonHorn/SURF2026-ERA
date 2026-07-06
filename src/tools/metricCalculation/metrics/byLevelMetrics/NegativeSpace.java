@@ -7,8 +7,9 @@ import java.nio.file.Path;
 import tools.metricCalculation.metricTools;
 
 public class NegativeSpace {
-    public static double calculateMetric(String levelText){
+    public static double calculateMetric(String levelPath) throws IOException{
         //Based on the assumption that all generators use this character to represent blank space
+        String levelText = Files.readString(Path.of(levelPath));
         levelText = metricTools.applySpatialMapping(levelText); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
         char emptyChar = '.';
         String map = levelText;

@@ -57,24 +57,21 @@ public class calculateMetrics {
 
         // Individual Metrics added to the json object below 
         
-        levelMetrics.addProperty("Density", Density.calculateMetric(levelText));
-        levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelText));
-        levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelText));
-        levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelText));
-        levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelText));
-        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelText));
+        levelMetrics.addProperty("Density", Density.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelPathString));
+        levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelPathString));
+        levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelPathString));
+        levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelPathString));
+        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelPathString));
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelPathString));
+        levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelPathString)); // Signed metric (Negative results indicate left-sidedness)
+        levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelPathString)); // Signed metric (Negative results indicate bottom-heaviness)
         
-        levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelText)); // Signed metric (Negative results indicate left-sidedness)
-        levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelText)); // Signed metric (Negative results indicate bottom-heaviness)
+        levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelPathString));
+        levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelPathString));
+        levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelPathString));
         
-        levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelText));
-        levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelText));
-        levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelText));
-        levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelText));
-        
-        
-        // Put metrics that require the levelPath here
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
@@ -256,18 +253,17 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
         
-        //selectedFolders.add("generatedExamples/enhancedClaudeGenerator")
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         //selectedFolders.add("generatedExamples/constructiveLevelGenerator");
-        //selectedFolders.add("generatedExamples/geneticLevelGenerator");
+        selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
         ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
-        //selectedFolders.add("generatedExamples/randomLevelGenerator");
-        //selectedFolders.add("generatedExamples/claudeLevelGenerator");
-        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
-        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
-        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
-        //selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
+        selectedFolders.add("generatedExamples/randomLevelGenerator");
+        selectedFolders.add("generatedExamples/claudeLevelGenerator");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator2x2");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator3x3");
+        selectedFolders.add("generatedExamples/sturgeonLevelGenerator4x4");
 
          // Too buggy, exclude
          // selectedFolders.add("generatedExamples/FineTunedLLMGenerator");
@@ -278,8 +274,8 @@ public class calculateMetrics {
             
             System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
             createMetricsByLevel(s);
-            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
-            createMetricsByFolderRecursive(s);
+            //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            //createMetricsByFolderRecursive(s);
         }
         
     }

@@ -14,7 +14,8 @@ import tools.metricCalculation.metricTools;
 
 // This metric uses spatial preprocessing
 public class FloodReachability {
-    public static double calculateMetric(String levelText){
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
         levelText = metricTools.applySpatialMapping(levelText);
         ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(levelText);
 
