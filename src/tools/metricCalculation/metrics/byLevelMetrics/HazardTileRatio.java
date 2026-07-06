@@ -12,7 +12,7 @@ public class HazardTileRatio {
         double totalDeco = 0;
         double totalArea = 0;
         // The ratio of tiles that can harm to player to total tiles in the level
-        String levelMap = metricTools.applySpatialMapping(levelText);
+        String levelMap = metricTools.applySpatialMapping(levelText, levelPath.split("\\\\|/")[2]);
         for (int i = 0; i < levelMap.length(); i++){
             if (levelMap.charAt(i) != '\n'){
                 if (levelMap.charAt(i) == 'E' || levelMap.charAt(i) == 'O'){
