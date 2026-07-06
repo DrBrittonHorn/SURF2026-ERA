@@ -285,11 +285,17 @@ public class calculateMetrics {
             //System.out.println(createFolderMetricJson(s));
             //Files.writeString(Path.of(s + "/" + "metrics.json"), createFolderMetricJson(s).toString());
             
-            System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
-            createMetricsByLevel(s);
-            //System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
-            //createMetricsByFolderRecursive(s);
+            //System.out.println("CALCULATING METRICS BY LEVEL FOR " + s);
+            //createMetricsByLevel(s);
+            System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
+            createMetricsByFolderRecursive(s);
         }
         
     }
 }
+
+
+// Playtrace work, playtraces parallelization
+// Genetic level generation, genetic level Parallelization
+// Metric bugfixing, metrics in working shape
+// Graphs for generator by game
