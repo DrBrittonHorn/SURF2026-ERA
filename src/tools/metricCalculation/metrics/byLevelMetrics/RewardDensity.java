@@ -9,7 +9,7 @@ import tools.metricCalculation.metricTools;
 public class RewardDensity {
     public static double calculateMetric(String levelPath) throws IOException{
         String levelText = Files.readString(Path.of(levelPath));
-        String levelMap = metricTools.applySpatialMapping(levelText);
+        String levelMap = metricTools.applySpatialMapping(levelText, levelPath.split("\\\\|/")[2]);
         double totalRewards = 0;
         int totalArea = 0;
         for (int i = 0; i < levelMap.length(); i++){

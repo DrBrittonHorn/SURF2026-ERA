@@ -16,7 +16,7 @@ import tools.metricCalculation.metricTools;
 public class FloodReachability {
     public static double calculateMetric(String levelPath) throws IOException{
         String levelText = Files.readString(Path.of(levelPath));
-        levelText = metricTools.applySpatialMapping(levelText);
+        levelText = metricTools.applySpatialMapping(levelText, levelPath.split("\\\\|/")[2]);;
         ArrayList<ArrayList<Character>> levelMatrix = metricTools.toArray(levelText);
 
         //Based on the assumption that all generators use this character to represent blank space
@@ -95,7 +95,6 @@ public class FloodReachability {
         String testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/dungeon/dungeon_lvl003.txt"));
         //testLevel1 = Files.readString(Path.of("generatedExamples/constructiveLevelGenerator/aliens/aliens_lvl001.txt"));
         //testLevel1 = PreprocessLevel.applySpatialMapping(testLevel1);
-        System.out.println(metricTools.applySpatialMapping(testLevel1));
         System.out.println("Flood reachability is... " + calculateMetric(testLevel1));
     }
 }

@@ -66,12 +66,10 @@ public class calculateMetrics {
         levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelPathString));
         levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelPathString)); // Signed metric (Negative results indicate left-sidedness)
         levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelPathString)); // Signed metric (Negative results indicate bottom-heaviness)
-        
         levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelPathString));
         levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelPathString));
         levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelPathString));
         levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelPathString));
-        
         levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
@@ -83,7 +81,6 @@ public class calculateMetrics {
         levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelPathString));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelPathString, 3));
         levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelPathString)); 
-
 
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk

@@ -11,7 +11,7 @@ public class Density {
         //Based on the assumption that all generators use this character to represent blank space
         String levelText = Files.readString(Path.of(levelPath));
         
-        levelText = metricTools.applySpatialMapping(levelText); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
+        levelText = metricTools.applySpatialMapping(levelText, levelPath.split("\\\\|/")[2]); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
         char emptyChar = '.';
         String map = levelText;
         String characterMapping;
