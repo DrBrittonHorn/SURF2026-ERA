@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 public class repairGameDescriptions {
     // Fixes enhanced claude generator not having tile mappings
     public static void main(String args[]) throws IOException{
-        Stream<Path> levels = Files.walk(Path.of("generatedExamples/enhancedClaudeGenerator"));
+        /*Stream<Path> levels = Files.walk(Path.of("generatedExamples/enhancedClaudeGenerator"));
 
         levels.forEach(path -> {
 
@@ -24,8 +24,26 @@ public class repairGameDescriptions {
             } catch (IOException e) {}
             
             
-        });
+        });*/
 
+        removeDuplicateMapping();
+    }
+
+    public static void removeDuplicateMapping() throws IOException{
+        Stream<Path> levels = Files.walk(Path.of("generatedExamples/enhancedClaudeGenerator/aliens"));
+        levels.forEach(path -> {
+
+            try {
+                String content = Files.readString(path);
+                String[] split = content.split("LevelDescription");
+                String newContent = split[0] + "LevelDescription" + split[2];
+                System.out.println(path.toString());
+                System.out.println(newContent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
     }
 
 
