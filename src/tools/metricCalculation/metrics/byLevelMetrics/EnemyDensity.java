@@ -9,7 +9,7 @@ import java.util.List;
 
 import tools.metricCalculation.metricTools;
 
-public class EnemyCount {
+public class EnemyDensity {
    
     private static ArrayList<Character> aliensEnemies = new ArrayList<>(List.of('1', '2'));
     private static ArrayList<Character> artilleryEnemies = new ArrayList<>(List.of('G'));
@@ -23,6 +23,20 @@ public class EnemyCount {
     private static ArrayList<String> GameOptions = new ArrayList<>(List.of("aliens", "artillery", "asteroids", "frogs", "mario", "towerdefense", "roguelike", "zelda"));
 
     static ArrayList<Integer> Enemyxvalues = new ArrayList<>();
+    
+    public static double calculateMetric(String LevelPath) throws IOException {
+        String levelString = Files.readString(Path.of(LevelPath));
+        String levelMap = metricTools.getLevelTiles(levelString);
+
+        double totalArea = 0;
+        for (int i = 0; i < levelMap.length(); i++){
+            if (!Character.isWhitespace(levelMap.charAt(i))){
+                totalArea++;
+            }
+        }
+        return calculateEnemyCount(LevelPath)/totalArea;
+    }
+
 
     /**
      * calculates the Enemy Count metric of a level
@@ -30,12 +44,12 @@ public class EnemyCount {
      * @return the number of enemies as an int
      */
     @SuppressWarnings("unused")
-    public static int calculateMetric(String LevelPath) throws IOException {
+    public static int calculateEnemyCount(String LevelPath) throws IOException {
         Enemyxvalues.clear();
 
         // determines the level description and also retains the level path
         String levelString = Files.readString(Path.of(LevelPath));
-        String[] gamePath = LevelPath.split("/"); // gamePath[0] is "generatedEzamples", [1] is the generator type, [2] is the game, and [3] is the level
+        String[] gamePath = LevelPath.split("\\\\|/"); // gamePath[0] is "generatedEzamples", [1] is the generator type, [2] is the game, and [3] is the level
         String gameName = gamePath[2];
         
         
@@ -67,7 +81,7 @@ public class EnemyCount {
         }
 
         if (!GameOptions.contains(gameName)) {
-            System.out.println("This game does not have enemies");
+            //System.out.println("This game does not have enemies");
             return -1;
         }
         int enemies = 0;
@@ -91,15 +105,17 @@ public class EnemyCount {
         //     System.out.println(enemytiles.get(i));
         // }
 
-        char[][] MAP = metricTools.toMap(map);
+        //char[][] MAP = metricTools.toMap(map);
+        ArrayList<ArrayList<Character>> ARRAY = metricTools.toArray(map);
 
-        for (int y = 0; y < MAP.length; y++) {
-            for (int x = 0; x < MAP[y].length; x++) {
-                char tile = MAP[y][x];
+        for (int y = 0; y < ARRAY.size(); y++) {
+            for (int x = 0; x < ARRAY.get(y).size(); x++) {
+                //char tile = MAP[y][x];
+                char tile = ARRAY.get(y).get(x);
                 if (enemytiles.contains(tile)) {
                     enemies++;
                     totalArea++;
-                    Enemyxvalues.add(x);
+                    //Enemyxvalues.add(x);
                 }
                 if (Character.isLetterOrDigit(tile)) { totalArea++;}
             }
@@ -117,6 +133,6 @@ public class EnemyCount {
 
     public static void main(String[] args) throws IOException{
         String testLevel = "generatedExamples/geminiLevelGenerator/zelda/zelda_lvl143.txt";
-        System.out.println("Enemy Count is " + String.valueOf(calculateMetric(testLevel)));
+        System.out.println("Enemy Count is " + (calculateMetric(testLevel)));
     }
 }

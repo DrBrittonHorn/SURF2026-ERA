@@ -9,15 +9,16 @@ import tools.metricCalculation.metricTools;
 
 // Higher value -> More novel
 public class NoveltyScoreToCorpus {
-    public static double calculateMetric(String levelText){
-        String gameFile = metricTools.getGameFilePath(levelText);
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
+        String gameName = levelPath.split("\\\\|/")[2];
         double totalNovelty = 0;
         ArrayList<Path> examplePaths = new ArrayList<Path>();
         
         // Based on the assumption that each game has 5 samples levels
         int totalSampleLevels = 5;
         for (int i = 0; i < totalSampleLevels; i++){
-            examplePaths.add(Path.of(gameFile.split(".txt")[0] + "_lvl" + i + ".txt"));
+            examplePaths.add(Path.of("examples/selectedGameFiles/" + gameName + "_lvl" + 0 + ".txt"));
         }
         for (Path p : examplePaths){ // If we have manually changed level mappings, then comparisons between generated and existing levels will not be accurate
             try {
@@ -42,8 +43,8 @@ public class NoveltyScoreToCorpus {
     }
 
     public static void main(String[] args) throws IOException{
-        String testLevel1 = Files.readString(Path.of("generatedExamples\\randomLevelGenerator\\aliens\\aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples\\randomLevelGenerator\\aliens\\aliens_lvl002.txt"));
+        String testLevel1 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl001.txt"));
+        String testLevel2 = Files.readString(Path.of("generatedExamples\\geminiLevelGenerator\\aliens\\aliens_lvl002.txt"));
         System.out.println(calculateMetric(testLevel2));
     }
 }

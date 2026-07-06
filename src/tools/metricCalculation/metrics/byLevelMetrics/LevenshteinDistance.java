@@ -11,17 +11,18 @@ import tools.metricCalculation.metricTools;
 // The higher the metric, the lower the similarity
 // In computation, distances are normalized by the length of the largest string
 public class LevenshteinDistance {
-    public static double calculateMetric(String levelText) throws IOException{
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
         String levelMap = metricTools.getLevelTiles(levelText);
         
-        String gameFile = metricTools.getGameFilePath(levelText);
+        String gameName = levelPath.split("\\\\|/")[2];
         double accumulatedDifference = 0;
         ArrayList<Path> examplePaths = new ArrayList<Path>();
         
         // Based on the assumption that each game has 5 samples levels
         int totalSampleLevels = 5;
         for (int i = 0; i < totalSampleLevels; i++){
-            examplePaths.add(Path.of(gameFile.split(".txt")[0] + "_lvl" + 0 + ".txt"));
+            examplePaths.add(Path.of("examples/selectedGameFiles/" + gameName + "_lvl" + i + ".txt"));
         }
 
         for (Path p : examplePaths){
