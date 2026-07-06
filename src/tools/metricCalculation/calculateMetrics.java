@@ -22,13 +22,17 @@ import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNGramSimilarity2
 import tools.metricCalculation.metrics.byGeneratorMetrics.OutputNaiveSimilarity;
 import tools.metricCalculation.metrics.byGeneratorMetrics.PlaytraceDiversity;
 import tools.metricCalculation.metrics.byLevelMetrics.AgentSolutionLength;
+import tools.metricCalculation.metrics.byLevelMetrics.AvatarX;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceHorizontal;
 import tools.metricCalculation.metrics.byLevelMetrics.BalanceVertical;
 import tools.metricCalculation.metrics.byLevelMetrics.CompressionDistance;
 import tools.metricCalculation.metrics.byLevelMetrics.DecorationFrequency;
 import tools.metricCalculation.metrics.byLevelMetrics.Density;
 import tools.metricCalculation.metrics.byLevelMetrics.Difficulty;
+import tools.metricCalculation.metrics.byLevelMetrics.EnemyDensity;
+import tools.metricCalculation.metrics.byLevelMetrics.EnemySparsity;
 import tools.metricCalculation.metrics.byLevelMetrics.FloodReachability;
+import tools.metricCalculation.metrics.byLevelMetrics.HammingDistanceToCorpus;
 import tools.metricCalculation.metrics.byLevelMetrics.HazardTileRatio;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence1D;
 import tools.metricCalculation.metrics.byLevelMetrics.JensenShannonDivergence2D;
@@ -39,13 +43,16 @@ import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity1D;
 import tools.metricCalculation.metrics.byLevelMetrics.NGramSimilarity2D;
 import tools.metricCalculation.metrics.byLevelMetrics.NaiveSimilarity;
 import tools.metricCalculation.metrics.byLevelMetrics.NegativeSpace;
+import tools.metricCalculation.metrics.byLevelMetrics.NoveltyScoreToCorpus;
 import tools.metricCalculation.metrics.byLevelMetrics.RewardDensity;
 import tools.metricCalculation.metrics.byLevelMetrics.ShannnonEntropy;
 import tools.metricCalculation.metrics.byLevelMetrics.StaticPathLength;
 import tools.metricCalculation.metrics.byLevelMetrics.StructuralSimilarityToCorpus;
 import tools.metricCalculation.metrics.byLevelMetrics.Symmetry;
 import tools.metricCalculation.metrics.byLevelMetrics.KLDivergence2D;
+import tools.metricCalculation.metrics.byLevelMetrics.LevenshteinDistance;
 import tools.metricCalculation.metrics.byLevelMetrics.WallFloorRatio;
+import tools.metricCalculation.metrics.byLevelMetrics.avatarY;
 
 public class calculateMetrics {
 
@@ -57,31 +64,40 @@ public class calculateMetrics {
 
         // Individual Metrics added to the json object below 
         
-        levelMetrics.addProperty("Density", Density.calculateMetric(levelPathString));
-        levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelPathString));
-        levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelPathString));
-        levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelPathString));
-        levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelPathString));
-        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelPathString));
-        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelPathString));
-        levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelPathString)); // Signed metric (Negative results indicate left-sidedness)
-        levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelPathString)); // Signed metric (Negative results indicate bottom-heaviness)
-        levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelPathString));
-        levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelPathString));
-        levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelPathString));
-        levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelPathString));
-        levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
-        levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
-        levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelPathString));
-        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelPathString, 3));
-        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity2D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("AvatarX", AvatarX.calculateMetric(levelPathString));
+        levelMetrics.addProperty("AvatarY", avatarY.calculateMetric(levelPathString));
+        // Signed metric (Negative results indicate left-sidedness)
+        levelMetrics.addProperty("BalanceHorizontal-", BalanceHorizontal.calculateMetric(levelPathString)); 
+        // Signed metric (Negative results indicate bottom-heaviness)
+        levelMetrics.addProperty("BalanceVertical-", BalanceVertical.calculateMetric(levelPathString)); 
+        levelMetrics.addProperty("CompressionDistance", CompressionDistance.calculateMetric(levelPathString));
+        levelMetrics.addProperty("DecorationFrequency", DecorationFrequency.calculateMetric(levelPathString));
+        levelMetrics.addProperty("Density", Density.calculateMetric(levelPathString));
+        levelMetrics.addProperty("Difficulty", Difficulty.calculateMetric(levelPathString));
+        levelMetrics.addProperty("EnemyDensity", EnemyDensity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("EnemySparsity", EnemySparsity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("FloodReachability", FloodReachability.calculateMetric(levelPathString));
+        levelMetrics.addProperty("HazardTileRatio", HazardTileRatio.calculateMetric(levelPathString));
+        levelMetrics.addProperty("HammingDistance", HammingDistanceToCorpus.calculateMetric(levelPathString));
         levelMetrics.addProperty("JensenShannonDivergence1D", JensenShannonDivergence1D.calculateMetric(levelPathString));
         levelMetrics.addProperty("JensenShannonDivergence2D", JensenShannonDivergence2D.calculateMetric(levelPathString, 3));
         levelMetrics.addProperty("KLDivergence1D", KLDivergence1D.calculateMetric(levelPathString));
         levelMetrics.addProperty("KLDivergence2D", KLDivergence2D.calculateMetric(levelPathString, 3));
-        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelPathString)); 
-
+        levelMetrics.addProperty("LevenshteinDistance", LevenshteinDistance.calculateMetric(levelPathString));
+        levelMetrics.addProperty("Linearity", Linearity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NaiveSimilarity", NaiveSimilarity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NegativeSpace", NegativeSpace.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NoveltyScore", NoveltyScoreToCorpus.calculateMetric(levelPathString));
+        levelMetrics.addProperty("NGramSimilarity1D", NGramSimilarity1D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("NGramSimilarity2D", NGramSimilarity2D.calculateMetric(levelPathString, 3));
+        levelMetrics.addProperty("RewardDensity", RewardDensity.calculateMetric(levelPathString));
+        levelMetrics.addProperty("ShannonEntropy", ShannnonEntropy.calculateMetric(levelPathString));
+        levelMetrics.addProperty("StaticPathLength", StaticPathLength.calculateMetric(levelPathString));
+        levelMetrics.addProperty("StructuralSimilarity", StructuralSimilarityToCorpus.calculateMetric(levelPathString));
+        levelMetrics.addProperty("Symmetry", Symmetry.calculateMetric(levelPathString));
+        levelMetrics.addProperty("WallFloorRatio", WallFloorRatio.calculateMetric(levelPathString));
+        
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk
         levelMetrics.add("MechanicUsage*", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
