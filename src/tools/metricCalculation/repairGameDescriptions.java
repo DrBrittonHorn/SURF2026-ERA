@@ -32,17 +32,16 @@ public class repairGameDescriptions {
     public static void removeDuplicateMapping() throws IOException{
         Stream<Path> levels = Files.walk(Path.of("generatedExamples/enhancedClaudeGenerator/aliens"));
         levels.forEach(path -> {
-
             try {
                 String content = Files.readString(path);
                 String[] split = content.split("LevelDescription");
                 String newContent = split[0] + "LevelDescription" + split[2];
                 System.out.println(path.toString());
                 System.out.println(newContent);
+                Files.writeString(path, newContent);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
     }
 

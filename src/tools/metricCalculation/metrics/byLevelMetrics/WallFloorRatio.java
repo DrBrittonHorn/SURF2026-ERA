@@ -44,23 +44,26 @@ public class WallFloorRatio {
 
         }
         
-        //TODO Determine limits for precision
-        if (totalArea > 0){
-            // Walls / floor
-            return (totalArea - traversableArea) / traversableArea;
+        if (totalArea < 1){
+            // No level area
+            return -1;
         }
-        else{
-            return -1; // No level area to divide by
+        if (traversableArea < 1){
+            // All walls
+            return -2;
         }
-        
+
+
+        // Walls / floor
+        return (totalArea - traversableArea) / traversableArea;
+    
     }
 
 
     public static void main(String[] args) throws IOException{
 
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/dungeon/dungeon_lvl003.txt"));
-        testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
-        testLevel1 = Files.readString(Path.of("generatedExamples/geneticLevelGenerator/realsokoban/realsokoban_lvl706.txt"));
+        testLevel1 = "generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt";
         //System.out.println(testLevel1);
         System.out.println("Wall Floor Ratio is... " + calculateMetric(testLevel1));
     }

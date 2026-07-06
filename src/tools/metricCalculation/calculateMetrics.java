@@ -267,7 +267,7 @@ public class calculateMetrics {
         // Uncomment to generate metrics for all levels
         
         selectedFolders.add("generatedExamples/geminiLevelGenerator");
-        //selectedFolders.add("generatedExamples/constructiveLevelGenerator");
+        selectedFolders.add("generatedExamples/constructiveLevelGenerator");
         selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
         ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
