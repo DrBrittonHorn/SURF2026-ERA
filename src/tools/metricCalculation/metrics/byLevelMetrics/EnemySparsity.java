@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class EnemyDensity {
+public class EnemySparsity {
     
     public static double calculateMetric(String LevelPath) throws IOException {
         
