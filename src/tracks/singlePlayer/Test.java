@@ -1,7 +1,11 @@
 package tracks.singlePlayer;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 
+import core.game.Game;
 import core.logging.Logger;
 import tools.Utils;
 import tracks.ArcadeMachine;
@@ -12,7 +16,7 @@ import tracks.ArcadeMachine;
  */
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 		// Available tracks:
 		String sampleRandomController = "tracks.singlePlayer.simple.sampleRandom.Agent";
@@ -46,7 +50,7 @@ public class Test {
 						// executed. null if not to save.
 
 		// 1. This starts a game, in a level, played by a human.
-		ArcadeMachine.playOneGame(game, "generatedExamples\\geminiLevelGenerator\\artillery\\artillery_lvl001.txt", recordActionsFile, seed);
+		//ArcadeMachine.playOneGame(game, "generatedExamples\\geminiLevelGenerator\\artillery\\artillery_lvl001.txt", recordActionsFile, seed);
 
 		// 2. This plays a game in a level by the controller.
 //		ArcadeMachine.runOneGame(game, level1, visuals, sampleRHEAController, recordActionsFile, seed, 0);
@@ -84,6 +88,64 @@ public class Test {
 //			ArcadeMachine.runGames(game, levels, M, sampleRHEAController, saveActions? actionFiles:null);
 //		}
 
+		// 6. This plays all the levels of a game in order.
+		// int THISgameIdx = 108; 
+		// String THISgame = games[THISgameIdx][0];
+		// String THISGeneratorPick = "geminiLevelGenerator";
+		// String THISGamePick = THISgame.split("/")[2].replace(".txt", "");
+		// String LVL = null;
+		// for (int i = 0; i < 10; i++) {
+		// 	LVL = ("generatedExamples\\" + THISGeneratorPick + "\\" + THISGamePick + "\\" + THISGamePick + "_lvl00" + i + ".txt");
+		// 	System.out.println(LVL);
+		// 	String OriginalLevel = Files.readString(Path.of(LVL));
+		// 	String NewLevel = OriginalLevel.split("LevelDescription")[1].strip();
+		// 	Files.writeString(Path.of(LVL), NewLevel);
+		// 	ArcadeMachine.playOneGame(THISgame, LVL, recordActionsFile, seed);
+		// 	Files.writeString(Path.of(LVL), OriginalLevel);
 
+		// }
+		// for (int i = 10; i < 100; i++) {
+		// 	LVL = ("generatedExamples\\" + THISGeneratorPick + "\\" + THISGamePick + "\\" + THISGamePick + "_lvl0" + i + ".txt");
+		// 	System.out.println(LVL);
+		// 	String OriginalLevel = Files.readString(Path.of(LVL));
+		// 	String NewLevel = OriginalLevel.split("LevelDescription")[1].strip();
+		// 	Files.writeString(Path.of(LVL), NewLevel);
+		// 	ArcadeMachine.playOneGame(THISgame, LVL, recordActionsFile, seed);
+		// 	Files.writeString(Path.of(LVL), OriginalLevel);
+		// }
+		// for (int i = 100; i < 1000; i++) {
+		// 	LVL = ("generatedExamples\\" + THISGeneratorPick + "\\" + THISGamePick + "\\" + THISGamePick + "_lvl" + i + ".txt");
+		// 	System.out.println(LVL);
+		// 	String OriginalLevel = Files.readString(Path.of(LVL));
+		// 	String NewLevel = OriginalLevel.split("LevelDescription")[1].strip();
+		// 	Files.writeString(Path.of(LVL), NewLevel);
+		// 	ArcadeMachine.playOneGame(THISgame, LVL, recordActionsFile, seed);
+		// 	Files.writeString(Path.of(LVL), OriginalLevel);
+		// }
+
+		// 7. This plays a random level of the generated levels.
+		int NewgameIdx = 108;
+		String Newgame = games[NewgameIdx][0];
+		Random random = new Random();
+		int randomNumber = random.nextInt(1000);
+		String GeneratorPick = "constructiveLevelGenerator";
+		String GamePick = Newgame.split("/")[2].replace(".txt", "");
+		String lvl = null;
+		System.out.println(Newgame);
+		System.out.println(GamePick);
+		if (randomNumber < 10) {
+			lvl = ("generatedExamples\\" + GeneratorPick + "\\" + GamePick + "\\" + GamePick + "_lvl00" + randomNumber + ".txt");
+		}
+		else if (randomNumber < 100 && randomNumber > 9) {
+			lvl = ("generatedExamples\\" + GeneratorPick + "\\" + GamePick + "\\" + GamePick + "_lvl0" + randomNumber + ".txt");
+		}
+		else if (randomNumber > 99) {
+			lvl = ("generatedExamples\\" + GeneratorPick + "\\" + GamePick + "\\" + GamePick + "_lvl" + randomNumber + ".txt");
+		}
+		String OriginalLevel = Files.readString(Path.of(lvl));
+		String NewLevel = OriginalLevel.split("LevelDescription")[1].strip();
+		Files.writeString(Path.of(lvl), NewLevel);
+		ArcadeMachine.playOneGame(Newgame, lvl, recordActionsFile, seed);
+		Files.writeString(Path.of(lvl), OriginalLevel);
     }
 }
