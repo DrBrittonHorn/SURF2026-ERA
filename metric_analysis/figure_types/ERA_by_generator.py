@@ -51,7 +51,7 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
                     inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
                     inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
     
-    print(f"Creating an ERA by game chart with {len(inclusive_x_list)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")
+    print(f"Creating an ERA by generator chart with {len(inclusive_x_list)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")
     if (len(inclusive_x_list) == 0): print("No data points found!"); return
 
     padding_factor = .25
@@ -68,7 +68,8 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
     # Creates colorbars for each of our 10 games
     colorbars = create_game_colorbars()
     
-    print(x_lists_bygenerator)
+    # USE THIS to debug yellow only graphs
+    # print(x_lists_bygenerator)
 
     # Layer a hexbin with a different colormap for each game
     hexbins = []
@@ -108,7 +109,7 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
         if os.path.isfile(save_file_name): os.remove(save_file_name)
         plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
         
-        #plt.show()
+        # plt.show()
         plt.close()
         
         return ax
