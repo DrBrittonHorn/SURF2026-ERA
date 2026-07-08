@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from metric_analysis.tools import create_attribute_dict, create_color_bar, create_game_colorbars, get_generator_title, get_metric_title, parse_binning
 
-def create_ERA_graph_by_game(selected_metrics_tuple: tuple, exclude_malformed=True, ax=None):
+def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=True, ax=None):
     standalone = False
     if ax is None:
         standalone = True
@@ -94,21 +94,21 @@ def create_ERA_graph_by_game(selected_metrics_tuple: tuple, exclude_malformed=Tr
             cbar = plt.colorbar(hexbins[9-i],
                 ax=ax, shrink=1, aspect=50, pad=0.01, orientation="vertical")
             cbar.set_ticks(ticks=[])
-            #cbar.set_label(index_to_game[9-i].capitalize(), fontsize=10, labelpad=2, rotation=90)
+            cbar.set_label(generators[i], fontsize=10, labelpad=2, rotation=90) # Check that each generator is correctly ordered
             cbar.ax.tick_params(length=0)
         
             
         ax.set_xlabel(get_metric_title(selected_metrics_tuple[0]))
         ax.set_ylabel(get_metric_title(selected_metrics_tuple[1]))
-        #ax.set_title(get_generator_title(json_path) + "" + game_name + " ERA Chart")
+        ax.set_title("ERA Chart by Individual Generator")
         # Titling format is "Y axis to X axis"
-        #folder_name = "figures/" + generator_name + "/ERA_by_game/"
-        #Path(folder_name).mkdir(parents=True, exist_ok=True)
-        #save_file_name = folder_name + game_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
-        #if os.path.isfile(save_file_name): os.remove(save_file_name)
-        #plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
+        folder_name = "figures/" + "ERA_by_generator/"
+        Path(folder_name).mkdir(parents=True, exist_ok=True)
+        save_file_name = folder_name + selected_metrics_tuple[1] + "To" + selected_metrics_tuple[0] + ".png"
+        if os.path.isfile(save_file_name): os.remove(save_file_name)
+        plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
         
-        plt.show()
+        #plt.show()
         plt.close()
         
         return ax
@@ -130,4 +130,5 @@ if __name__ == "__main__":
     # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
     selected_metrics = ("Density", "ShannonEntropy")
-    create_ERA_graph_by_game(selected_metrics, exclude_malformed=True)
+    selected_metrics = ("Density", "Symmetry")
+    create_ERA_by_Generator(selected_metrics, exclude_malformed=True)

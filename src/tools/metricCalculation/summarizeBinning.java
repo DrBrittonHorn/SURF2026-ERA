@@ -76,6 +76,7 @@ public class summarizeBinning {
             String notEmptyRatio = String.format("%.2f", (double) notEmptyTotal / totalLevels);
 
 
+            
             System.out.println(validTotal + " levels are valid overall (" + validRatio + ")");
             System.out.println(consistentRowsTotal + " have consistent rows (" + consistentRowsRatio + ")");
             System.out.println(containsPlayerTotal + " contain a player (" + containsPlayerRatio + ")");

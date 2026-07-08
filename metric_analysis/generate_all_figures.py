@@ -4,6 +4,7 @@ import sys
 # Ensure the repository root is on the import path when running this script directly.
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from metric_analysis.figure_types.ERA_by_generator import create_ERA_by_Generator
 from metric_analysis.figure_types.density_estimation_chart import create_density_estimation
 from metric_analysis.figure_types.generator_ERA import create_ERA_graph
 from metric_analysis.figure_types.generator_ERA_by_game import create_ERA_graph_by_game
@@ -22,7 +23,7 @@ metric_paths = [
     #"generatedExamples/fineTunedLLMGenerator/levelMetrics.json",
     "generatedExamples/geminiLevelGenerator/levelMetrics.json",
     "generatedExamples/geneticLevelGenerator/levelMetrics.json",
-    "generatedExamples/localLanguageModel/levelMetrics.json",
+    #"generatedExamples/localLanguageModel/levelMetrics.json",
     "generatedExamples/randomLevelGenerator/levelMetrics.json",
     ]
 
@@ -50,15 +51,17 @@ for json_path in metric_paths:
     # Create histograms
     print(available_metrics)
     for metric in available_metrics:
-        create_histogram(metric, json_path)
+        # create_histogram(metric, json_path)
+        pass
     # Create all 2d graph figures (ERA and Density)
     for metric1 in available_metrics:
         for metric2 in available_metrics:
         
             # Skip same-metric graphs
             if metric1 != metric2:
-                #create_density_estimation((metric1, metric2), json_path)
-                #create_ERA_graph((metric1, metric2), json_path)
+                create_density_estimation((metric1, metric2), json_path)
+                create_ERA_graph((metric1, metric2), json_path)
                 create_ERA_graph_by_game((metric1, metric2), json_path)
+                #create_ERA_by_Generator((metric1, metric2))
     
     
