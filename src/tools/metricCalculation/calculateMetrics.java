@@ -291,12 +291,12 @@ public class calculateMetrics {
             System.out.println("CALCULATING METRICS BY FOLDER FOR " + s);
             createMetricsByFolderRecursive(s);
         }
-        
     }
 }
 
 
 // Playtrace work, playtraces parallelization
 // Genetic level generation, genetic level Parallelization
+// Cutting local models
 // Metric bugfixing, metrics in working shape
 // Graphs for generator by game
