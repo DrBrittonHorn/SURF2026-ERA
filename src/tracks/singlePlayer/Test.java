@@ -124,11 +124,12 @@ public class Test {
 		// }
 
 		// 7. This plays a random level of the generated levels.
-		int NewgameIdx = 108;
+		int NewgameIdx = 0;
 		String Newgame = games[NewgameIdx][0];
 		Random random = new Random();
 		int randomNumber = random.nextInt(1000);
-		String GeneratorPick = "constructiveLevelGenerator";
+		//randomNumber = 34;
+		String GeneratorPick = "sturgeonLevelGenerator2x2";
 		String GamePick = Newgame.split("/")[2].replace(".txt", "");
 		String lvl = null;
 		System.out.println(Newgame);

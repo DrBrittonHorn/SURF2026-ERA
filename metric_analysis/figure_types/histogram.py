@@ -30,7 +30,7 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     generator_name = json_path.split("/")[1]
     if json_path.split("/")[2] != "levelMetrics.json": game_name = json_path.split("/")[2].capitalize() 
     else: game_name = ""
-    ax.set_title(selected_metric + "" + game_name + " Histogram")
+    ax.set_title(get_generator_title(json_path) + " " + selected_metric + " Histogram")
     ax.set_xlabel(get_metric_title(selected_metric))
     
     
@@ -38,13 +38,14 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     save_file_name = "figures/" + generator_name + "/Histograms/" + game_name + selected_metric + ".png"
     if os.path.isfile(save_file_name): os.remove(save_file_name)
     plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
-    # plt.show()
+    plt.show()
     plt.close()
 
 
 # USAGE: Select a metrics.json file path, then determinr the graph's selected_metric variable
 
-metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
+metric_path = "generatedExamples/geneticLevelGenerator/levelMetrics.json"
+# metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
@@ -52,5 +53,5 @@ metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
 # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
 # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-selected_metric = "FloodReachability"
-# create_histogram(selected_metric, metric_path, exclude_malformed=True)
+selected_metric = "Symmetry"
+create_histogram(selected_metric, metric_path, exclude_malformed=True)
