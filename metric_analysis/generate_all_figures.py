@@ -18,13 +18,18 @@ from metric_analysis.tools import create_attribute_dict
 # Usage: Update the metric paths list to choose which folders to generate all figures for
 
 metric_paths = [
-    "generatedExamples/constructiveLevelGenerator/levelMetrics.json",
+    #"generatedExamples/constructiveLevelGenerator/levelMetrics.json",
     #"generatedExamples/claudeLevelGenerator/levelMetrics.json",
-    #"generatedExamples/fineTunedLLMGenerator/levelMetrics.json",
-    "generatedExamples/geminiLevelGenerator/levelMetrics.json",
+    #"generatedExamples/enhancedClaudeGenerator/levelMetrics.json",
+    ##"generatedExamples/fineTunedLLMGenerator/levelMetrics.json",
+    #"generatedExamples/geminiLevelGenerator/levelMetrics.json",
     "generatedExamples/geneticLevelGenerator/levelMetrics.json",
-    #"generatedExamples/localLanguageModel/levelMetrics.json",
+    ##"generatedExamples/localLanguageModel/levelMetrics.json",
     "generatedExamples/randomLevelGenerator/levelMetrics.json",
+    "generatedExamples/sturgeonLevelGenerator1x1/levelMetrics.json",
+    "generatedExamples/sturgeonLevelGenerator2x2/levelMetrics.json",
+    "generatedExamples/sturgeonLevelGenerator3x3/levelMetrics.json",
+    "generatedExamples/sturgeonLevelGenerator4x4/levelMetrics.json"
     ]
 
 
@@ -35,6 +40,7 @@ for json_path in metric_paths:
     os.makedirs("figures/" + generator_name + "/Density/", exist_ok=True)
     os.makedirs("figures/" + generator_name + "/Histograms/", exist_ok=True)
     os.makedirs("figures/" + generator_name + "/Tables/", exist_ok=True)
+    os.makedirs("figures/" + generator_name + "/ERA_By_Game/", exist_ok=True)
 
     # Create tables
     create_table(json_path)
@@ -51,7 +57,7 @@ for json_path in metric_paths:
     # Create histograms
     print(available_metrics)
     for metric in available_metrics:
-        # create_histogram(metric, json_path)
+        create_histogram(metric, json_path)
         pass
     # Create all 2d graph figures (ERA and Density)
     for metric1 in available_metrics:
@@ -59,9 +65,21 @@ for json_path in metric_paths:
         
             # Skip same-metric graphs
             if metric1 != metric2:
-                create_density_estimation((metric1, metric2), json_path)
-                create_ERA_graph((metric1, metric2), json_path)
-                create_ERA_graph_by_game((metric1, metric2), json_path)
-                #create_ERA_by_Generator((metric1, metric2))
+                try:
+                    create_density_estimation((metric1, metric2), json_path)
+                except:
+                    print(f"Density Estimation failed for {generator_name} with metrics {metric1} and {metric2}")
+                try:
+                    create_ERA_graph((metric1, metric2), json_path)
+                except:
+                    print(f"ERA Graph failed for {generator_name} with metrics {metric1} and {metric2}")
+                try:
+                    create_ERA_graph_by_game((metric1, metric2), json_path)
+                except:
+                    print(f"ERA Graph by Game failed for {generator_name} with metrics {metric1} and {metric2}")
+                try:
+                    create_ERA_by_Generator((metric1, metric2))
+                except:
+                    print(f"ERA Graph by Generator failed for {generator_name} with metrics {metric1} and {metric2}")
     
     
