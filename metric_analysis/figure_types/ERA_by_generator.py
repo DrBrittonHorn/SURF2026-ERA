@@ -66,7 +66,7 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
 
     
     # Creates colorbars for each of our 10 games
-    colorbars = create_game_colorbars()
+    colorbars = create_game_colorbars(.65)
     
     # USE THIS to debug yellow only graphs
     # print(x_lists_bygenerator)
@@ -109,7 +109,7 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
         if os.path.isfile(save_file_name): os.remove(save_file_name)
         plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
         
-        # plt.show()
+        plt.show()
         plt.close()
         
         return ax
