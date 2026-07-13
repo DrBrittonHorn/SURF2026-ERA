@@ -57,6 +57,15 @@ public class LevelFixer {
         
     }
 
+    /**
+     * pads the first and last rows to match the length of the rest of them in mario levels
+     * @param generator the desired generator of which the mario levels need to be fixed
+     * @throws IOException 
+     */
+    public static void FixMario(String generator) throws IOException {
+        
+    }
+
     public static void main(String[] args) throws IOException {
         FixFrogs("randomLevelGenerator");
         FixFrogs("constructiveLevelGenerator");
