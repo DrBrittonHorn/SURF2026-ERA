@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import tools.metricCalculation.metricTools;
 
 public class BalanceVertical {
-    public static double calculateMetric(String levelPath){
-        ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelPath);
+    public static double calculateMetric(String levelPath) throws IOException{
+        String levelText = Files.readString(Path.of(levelPath));
+        return vBalanceCallable(levelText);
+    }
+
+    public static double vBalanceCallable(String levelText){
+        ArrayList<ArrayList<Character>> levelArray = metricTools.toArray(levelText);
         return balanceFromArray(levelArray);
     }
 
@@ -35,8 +40,8 @@ public class BalanceVertical {
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
         String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl000.txt"));
-        System.out.println(calculateMetric(testLevel2));
-
+        String testLevel3 = "generatedExamples/enhancedClaudeGenerator/realsokoban/realsokoban_lvl036.txt";
+        System.out.println(calculateMetric(testLevel3));
     }
 
     

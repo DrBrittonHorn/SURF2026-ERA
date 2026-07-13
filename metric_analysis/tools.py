@@ -69,7 +69,32 @@ def create_color_bar(rgb_tuple : tuple):
     cmap = LinearSegmentedColormap.from_list("_", colors, 300)
     return cmap
 
-def create_game_colorbars(num_games=10):
+
+
+def create_game_colorbars(pastel_min=.5, num_games=10):
+    cmap_rgbs = [
+        (255.0, 0.0, 0.0),
+        (255.0, 153.0, 0.0),
+        (204.0, 255.0, 0.0),
+        (51.0, 255.0, 0.0),
+        (0.0, 255.0, 102.0),
+        (0.0, 255.0, 255.0),
+        (0.0, 102.0, 255.0),
+        (51.0, 0.0, 255.0),
+        (204.0, 0.0, 255.0),
+        (255.0, 0.0, 153.0),
+    ]
+
+    colormaps = []
+    pastel_amount = pastel_min
+    for rgb in cmap_rgbs[:num_games]:
+        value = tuple(x / 255 for x in rgb)
+        pastel_value = tuple((1.0 - pastel_amount) * 1.0 + pastel_amount * channel for channel in value)
+        colormaps.append(LinearSegmentedColormap.from_list("_", [pastel_value, value], 300))
+
+    return colormaps
+    
+def create_game_colorbars_inverted(num_games=10):
     cmap_rgbs = [
         (255.0, 0.0, 0.0),
         (255.0, 153.0, 0.0),
@@ -93,7 +118,6 @@ def create_game_colorbars(num_games=10):
         # print(value)
         colormaps.append(LinearSegmentedColormap.from_list("_", [value, (1, 1, 1)], 300))
     return colormaps
-    
 
 # print(create_attribute_dict("generatedExamples/constructiveLevelGenerator/metrics.json"))
 # print(create_attribute_dict("generatedExamples/geminiLevelGenerator/frogs/metrics.json"))
