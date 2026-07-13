@@ -40,12 +40,12 @@ public class BalanceHorizontal {
         levelTransposed = levelTransposed.substring(1);
         //System.out.println(levelTransposed);
         // -1 ensures that left heavy levels have a negative balance score and right heavy levels have a positive one.
-        return -1 * BalanceVertical.calculateMetric(levelTransposed);
+        return -1 * BalanceVertical.vBalanceCallable(levelTransposed);
     }
 
     public static void main(String[] args) throws IOException{
         String testLevel1 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/aliens/aliens_lvl001.txt"));
-        String testLevel2 = Files.readString(Path.of("generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl000.txt"));
+        String testLevel2 = "generatedExamples/geminiLevelGenerator/realsokoban/realsokoban_lvl000.txt";
         System.out.println(calculateMetric(testLevel2));
     }
 }
