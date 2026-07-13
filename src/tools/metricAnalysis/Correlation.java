@@ -11,6 +11,11 @@ import tools.com.google.gson.JsonElement;
 import tools.com.google.gson.JsonObject;
 import utils.com.google.gson.JsonSyntaxException;
 
+
+// Average correlation between all metrics among all generators: 0.16874854754974133
+
+
+
 public class Correlation {
     public static void main(String[] args) throws JsonSyntaxException, IOException{
 

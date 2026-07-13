@@ -13,7 +13,6 @@ import tools.com.google.gson.JsonObject;
 public class summarizeBinning {
     public static void main(String args[]) throws IOException{
         //Summarizes level validity for each generator
-
         String[] generators = {
             "claudeLevelGenerator",
             "constructiveLevelGenerator",
@@ -26,6 +25,9 @@ public class summarizeBinning {
             "sturgeonLevelGenerator3x3",
             "sturgeonLevelGenerator4x4"
         };
+
+        // Choose whether malformed level paths are printed
+        boolean printMalformed = true;
 
         // Prints binning information for each generator
         System.out.println("Generator Summary");
@@ -53,6 +55,7 @@ public class summarizeBinning {
                 if (validBinning(generatorJson.getAsJsonObject(level).get("Binning*").getAsJsonObject())){
                     validTotal++;
                 }
+                else if (printMalformed == true){System.out.println(level);}
                 if (generatorJson.getAsJsonObject(level).getAsJsonObject("Binning*").get("ConsistentRows").getAsBoolean()){
                     consistentRowsTotal++;
                 }
