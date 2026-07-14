@@ -28,8 +28,13 @@ Our results also reveal several metric pairs with more complex relationships, su
 
 ## References:
 [1] Perez-Liebana, Diego, et al. "General video game ai: A multitrack framework for evaluating agents, games, and content generation algorithms." IEEE Transactions on Games 11.3 (2019): 195-214.
+
 [2] Smith, Gillian, and Jim Whitehead. "Analyzing the expressive range of a level generator." Proceedings of the 2010 workshop on procedural content generation in games. 2010.
+
 [3] Summerville, Adam, et al. "Understanding mario: an evaluation of design metrics for platformers." Proceedings of the 12th international conference on the foundations of digital games. 2017.
+
 [4] Horn, Britton, et al. "A comparative evaluation of procedural level generators in the mario ai framework." Foundations of Digital Games 2014, Ft. Lauderdale, Florida, USA (2014). Society for the Advancement of the Science of Digital Games, 2014.
+
 [5] Trevor Truesdell, Erik Rankin, and Britton Horn. "From tiles to jumps: Optimizing wave function collapse window size for playable platformer generation". 2026 IEEE Conference on Games (CoG). IEEE, 2026.
+
 [6] Hafnar, Davor, and Jure Demšar. "Zero-shot reasoning: Personalized content generation without the cold start problem." IEEE Transactions on Games 17.2 (2024): 257-266.
