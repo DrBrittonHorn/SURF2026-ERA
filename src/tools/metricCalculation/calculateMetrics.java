@@ -144,7 +144,7 @@ public class calculateMetrics {
         try {
             ArrayList<JsonObject> fullGeneratorJsonList = new ArrayList<JsonObject>();
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
-            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")); // Remove parallelization if causing problems
+            Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")).parallel(); // Remove parallelization if causing problems
             streamByGame.forEach(game -> {
                 try {
                     JsonObject fullGameJson = new JsonObject();
@@ -262,7 +262,7 @@ public class calculateMetrics {
         //System.out.println(createLevelMetricJson(testLevel));
         ArrayList<String> selectedFolders = new ArrayList<String>();
         
-
+        
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
         

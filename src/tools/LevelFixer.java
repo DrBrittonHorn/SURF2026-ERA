@@ -67,8 +67,8 @@ public class LevelFixer {
     }
 
     public static void main(String[] args) throws IOException {
-        FixFrogs("randomLevelGenerator");
-        FixFrogs("constructiveLevelGenerator");
-        FixFrogs("geneticLevelGenerator");
+        FixFrogs("sturgeonLevelGenerator1x1");
+        FixFrogs("sturgeonLevelGenerator2x2");
+        FixFrogs("sturgeonLevelGenerator3x3");
     }
 }

@@ -27,7 +27,7 @@ public class summarizeBinning {
         };
 
         // Choose whether malformed level paths are printed
-        boolean printMalformed = false;
+        boolean printMalformed = true;
 
         // Prints binning information for each generator
         System.out.println("Generator Summary");
