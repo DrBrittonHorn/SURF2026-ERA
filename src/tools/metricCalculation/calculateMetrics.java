@@ -63,7 +63,7 @@ public class calculateMetrics {
         //First, add all the metrics that are calculated on a per level basis
 
         // Individual Metrics added to the json object below 
-        
+        /*
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("AvatarX", AvatarX.calculateMetric(levelPathString));
         levelMetrics.addProperty("AvatarY", avatarY.calculateMetric(levelPathString));
@@ -101,7 +101,7 @@ public class calculateMetrics {
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk
         levelMetrics.add("MechanicUsage*", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
-
+        */
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
             binningProperty.addProperty("ConsistentRows", BinGeneratedLevels.consistentRows(levelText));
@@ -266,7 +266,7 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
         
-        //selectedFolders.add("generatedExamples/geminiLevelGenerator");
+        selectedFolders.add("generatedExamples/geminiLevelGenerator");
         selectedFolders.add("generatedExamples/constructiveLevelGenerator");
         selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");

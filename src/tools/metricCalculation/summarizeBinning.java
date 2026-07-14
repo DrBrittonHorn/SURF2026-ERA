@@ -14,7 +14,7 @@ public class summarizeBinning {
     public static void main(String args[]) throws IOException{
         //Summarizes level validity for each generator
         String[] generators = {
-            "claudeLevelGenerator",
+            //"claudeLevelGenerator",
             "constructiveLevelGenerator",
             "enhancedClaudeGenerator",
             "geminiLevelGenerator",
@@ -27,7 +27,7 @@ public class summarizeBinning {
         };
 
         // Choose whether malformed level paths are printed
-        boolean printMalformed = true;
+        boolean printMalformed = false;
 
         // Prints binning information for each generator
         System.out.println("Generator Summary");
