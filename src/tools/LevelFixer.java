@@ -15,7 +15,7 @@ public class LevelFixer {
      * @param generator the desired generator of which the frogs levels need to be fixed
      * @throws IOException 
      */
-    public static void FixFrogs(String generator) throws IOException {
+    public static void FixFrogsAvatarNaming(String generator) throws IOException {
         String LevelMapping = Files.readString(Path.of("examples/gridphysics/frogs_glvl.txt")).split("wwwwwwwwwwwwwwwww")[0];
         String path = null;
         String LevelDescription = null;
@@ -106,11 +106,48 @@ public class LevelFixer {
         });
     }
 
-    public static void main(String[] args) throws IOException {
-        FixWhitespace("constructiveLevelGenerator/asteroids");
-        FixWhitespace("constructiveLevelGenerator/mario");
+    public static void fixFrogsMissingAvatar(String folder) throws IOException {
+        String levelsPath = "generatedExamples/" + folder;
+        Stream<Path> levels = Files.walk(Path.of(levelsPath)).filter(f -> f.toString().endsWith(".txt"));
+        levels.forEach(fileName -> {
+            System.out.println(fileName.toString());
 
-        FixWhitespace("geneticLevelGenerator/asteroids");
+            try {
+                String levelTotal = Files.readString(fileName);
+                String levelTiles;
+                if (levelTotal.contains("LevelDescription")){
+                    levelTiles = levelTotal.split("LevelDescription")[1].strip();
+                }
+                else{
+                    levelTiles = levelTotal.strip();
+                }
+                //System.out.println(levelTiles);
+                if (!levelTiles.contains("A")){
+                    ArrayList<ArrayList<Character>> levelChars = metricTools.toArray(levelTiles);
+                    
+                    
+
+                    // Recompose
+                    StringBuilder levelTilesPadded = new StringBuilder();
+                    if (levelTotal.contains("LevelDescription")){
+                        levelTilesPadded.append(levelTotal.split("LevelDescription")[0] + "LevelDescription");
+                    }
+                    for (ArrayList<Character> arr : levelChars){
+                        levelTilesPadded.append('\n');
+                        for (Character c : arr){levelTilesPadded.append(c);}
+                    }
+                    Files.writeString(fileName, levelTilesPadded.toString());
+                }
+                
+                
+
+            } catch (IOException e) {e.printStackTrace();}
+
+        });
+    }
+
+    public static void main(String[] args) throws IOException {
+        
         FixWhitespace("geneticLevelGenerator/mario");
 
     }
