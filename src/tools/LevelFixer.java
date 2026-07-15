@@ -107,6 +107,11 @@ public class LevelFixer {
     }
 
     public static void main(String[] args) throws IOException {
+        FixWhitespace("constructiveLevelGenerator/asteroids");
+        FixWhitespace("constructiveLevelGenerator/mario");
+
         FixWhitespace("geneticLevelGenerator/asteroids");
+        FixWhitespace("geneticLevelGenerator/mario");
+
     }
 }
