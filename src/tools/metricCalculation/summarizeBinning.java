@@ -16,14 +16,14 @@ public class summarizeBinning {
         String[] generators = {
             //"claudeLevelGenerator",
             "constructiveLevelGenerator",
-            "enhancedClaudeGenerator",
-            "geminiLevelGenerator",
+            //"enhancedClaudeGenerator",
+            //"geminiLevelGenerator",
             "geneticLevelGenerator",
-            "randomLevelGenerator",
-            "sturgeonLevelGenerator1x1",
-            "sturgeonLevelGenerator2x2",
-            "sturgeonLevelGenerator3x3",
-            "sturgeonLevelGenerator4x4"
+            //"randomLevelGenerator",
+            //"sturgeonLevelGenerator1x1",
+            //"sturgeonLevelGenerator2x2",
+            //"sturgeonLevelGenerator3x3",
+            //"sturgeonLevelGenerator4x4"
         };
 
         // Choose whether malformed level paths are printed
