@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.stream.Stream;
+
+import tools.metricCalculation.metricTools;
 
 public class LevelFixer {
     
@@ -53,22 +56,57 @@ public class LevelFixer {
         System.out.println("list of fixed levels: " + levels);
     }
 
-    public static void FixAsteroids(String generator) {
-        
-    }
-
     /**
-     * pads the first and last rows to match the length of the rest of them in mario levels
-     * @param generator the desired generator of which the mario levels need to be fixed
+     * pads the first and last rows to match lengths
+     * @param folder the desired generator and game to fix
      * @throws IOException 
      */
-    public static void FixMario(String generator) throws IOException {
-        
+    public static void FixWhitespace(String folder) throws IOException {
+        String levelsPath = "generatedExamples/" + folder;
+        Stream<Path> levels = Files.walk(Path.of(levelsPath)).filter(f -> f.toString().endsWith(".txt"));
+        levels.forEach(fileName -> {
+            System.out.println(fileName.toString());
+
+            try {
+                String levelTotal = Files.readString(fileName);
+                String levelTiles;
+                if (levelTotal.contains("LevelDescription")){
+                    levelTiles = levelTotal.split("LevelDescription")[1].strip();
+                }
+                else{
+                    levelTiles = levelTotal.strip();
+                }
+                //System.out.println(levelTiles);
+
+                ArrayList<ArrayList<Character>> levelChars = metricTools.toArray(levelTiles);
+                //Find max
+                int maxLength = 0;
+                for (ArrayList<Character> arr : levelChars){
+                    if (arr.size() > maxLength){maxLength = arr.size();}
+                }
+                //Add padding
+                for (ArrayList<Character> arr : levelChars){
+                    int addNum = maxLength - arr.size();
+                    for (int i = 0; i < addNum; i++){arr.add(' ');}
+                }
+                // Recompose
+                StringBuilder levelTilesPadded = new StringBuilder();
+                if (levelTotal.contains("LevelDescription")){
+                    levelTilesPadded.append(levelTotal.split("LevelDescription")[0] + "LevelDescription");
+                }
+                for (ArrayList<Character> arr : levelChars){
+                    levelTilesPadded.append('\n');
+                    for (Character c : arr){levelTilesPadded.append(c);}
+                }
+                Files.writeString(fileName, levelTilesPadded.toString());
+                
+
+            } catch (IOException e) {e.printStackTrace();}
+
+        });
     }
 
     public static void main(String[] args) throws IOException {
-        FixFrogs("sturgeonLevelGenerator1x1");
-        FixFrogs("sturgeonLevelGenerator2x2");
-        FixFrogs("sturgeonLevelGenerator3x3");
+        FixWhitespace("geneticLevelGenerator/asteroids");
     }
 }
