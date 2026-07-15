@@ -20,9 +20,9 @@ public class summarizeBinning {
             //"geminiLevelGenerator",
             "geneticLevelGenerator",
             "randomLevelGenerator",
-            //"sturgeonLevelGenerator1x1",
-            //"sturgeonLevelGenerator2x2",
-            //"sturgeonLevelGenerator3x3",
+            "sturgeonLevelGenerator1x1",
+            "sturgeonLevelGenerator2x2",
+            "sturgeonLevelGenerator3x3",
             "sturgeonLevelGenerator4x4"
         };
 

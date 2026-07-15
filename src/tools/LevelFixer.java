@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
 import tools.metricCalculation.metricTools;
@@ -76,8 +78,6 @@ public class LevelFixer {
                 else{
                     levelTiles = levelTotal.strip();
                 }
-                //System.out.println(levelTiles);
-
                 ArrayList<ArrayList<Character>> levelChars = metricTools.toArray(levelTiles);
                 //Find max
                 int maxLength = 0;
@@ -121,11 +121,18 @@ public class LevelFixer {
                 else{
                     levelTiles = levelTotal.strip();
                 }
-                //System.out.println(levelTiles);
+                // If there is no player
                 if (!levelTiles.contains("A")){
                     ArrayList<ArrayList<Character>> levelChars = metricTools.toArray(levelTiles);
                     
-                    
+                    // Place character in random position on 2nd row
+                    if (levelChars.size() >= 2){
+                        int avatarRowIndex = levelChars.size()-2;
+                        ArrayList<Character> avatarRow = levelChars.get(avatarRowIndex);
+                        int avatarColumn = ThreadLocalRandom.current().nextInt(0, avatarRow.size());
+                        avatarRow.set(avatarColumn, 'A');
+                    }
+
 
                     // Recompose
                     StringBuilder levelTilesPadded = new StringBuilder();
@@ -148,7 +155,9 @@ public class LevelFixer {
 
     public static void main(String[] args) throws IOException {
         
-        FixWhitespace("geneticLevelGenerator/mario");
+        fixFrogsMissingAvatar("sturgeonLevelGenerator3x3/frogs");
+        fixFrogsMissingAvatar("sturgeonLevelGenerator2x2/frogs");
+        fixFrogsMissingAvatar("sturgeonLevelGenerator1x1/frogs");
 
     }
 }
