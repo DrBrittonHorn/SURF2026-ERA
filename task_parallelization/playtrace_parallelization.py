@@ -21,19 +21,16 @@ if __name__ == '__main__':
     
     # Get paths of levels that need playtraces
     selected_generators = [ 
-                            "enhancedClaudeGenerator",
-                            "constructiveLevelGenerator",
-                            "claudeLevelGenerator",
-                            "fineTunedLLMGenerator",
+                            #"enhancedClaudeGenerator",
+                            #"constructiveLevelGenerator",
                             "geminiLevelGenerator",
                             "geneticLevelGenerator",
-                            "geneticParallel",
-                            "localLanguageModelGenerator",
-                            "randomLevelGenerator",
-                            "sturgeonLevelGenerator1x1",
-                            "sturgeonLevelGenerator2x2",
-                            "sturgeonLevelGenerator3x3",
-                            "sturgeonLevelGenerator4x4",
+                            #"geneticParallel",
+                            #"randomLevelGenerator",
+                            #"sturgeonLevelGenerator1x1",
+                            #"sturgeonLevelGenerator2x2",
+                            #"sturgeonLevelGenerator3x3",
+                            #"sturgeonLevelGenerator4x4",
                            ]
 
 
