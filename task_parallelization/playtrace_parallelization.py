@@ -4,7 +4,7 @@ import os
 from multiprocessing import Pool
 
 # Determines where playtraces are stored
-playtrace_collection_name = "generatedExamplesPlaytracesLab-1k-80ms"
+playtrace_collection_name = "generatedExamplesPlaytracesLab-1k-80ms-v2"
 
 # Runs createPlaytraces for one level (level path String is used as input)
 def create_playtrace(level_path : str):
@@ -26,7 +26,7 @@ if __name__ == '__main__':
                             "claudeLevelGenerator",
                             "fineTunedLLMGenerator",
                             "geminiLevelGenerator",
-                            #"geneticLevelGenerator",
+                            "geneticLevelGenerator",
                             "geneticParallel",
                             "localLanguageModelGenerator",
                             "randomLevelGenerator",
