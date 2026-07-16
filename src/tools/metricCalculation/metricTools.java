@@ -445,7 +445,7 @@ public class metricTools {
         levelTilesOnly = String.join("\n", levelArray);
         //System.out.println(levelTilesOnly);
 
-        String tempLevelPath = "src/tools/metricCalculation/tempFiles/" + "temp-" + levelPath.split("/|\\\\")[3];
+        String tempLevelPath = "src/tools/metricCalculation/tempFiles/" + "temp-" + levelPath.split("/|\\\\")[1] + "-" + levelPath.split("/|\\\\")[3];
         Files.writeString(Path.of(tempLevelPath), levelTilesOnly);
         try {
             Thread.sleep(5000);
