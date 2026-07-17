@@ -63,7 +63,7 @@ public class calculateMetrics {
         //First, add all the metrics that are calculated on a per level basis
 
         // Individual Metrics added to the json object below 
-        /*
+        /**/
         levelMetrics.addProperty("AgentSolutionLength", AgentSolutionLength.calculateMetric(levelPathString));
         levelMetrics.addProperty("AvatarX", AvatarX.calculateMetric(levelPathString));
         levelMetrics.addProperty("AvatarY", avatarY.calculateMetric(levelPathString));
@@ -101,7 +101,7 @@ public class calculateMetrics {
         // Put metrics with special formats here and explain why
         // Metrics that can not be plotted will be marked with an asterisk
         levelMetrics.add("MechanicUsage*", MechanicUsage.calculateMetric(levelPathString)); // Produces a json object (histogram); Requires a level's path
-        */
+        /**/
         // Finally, we add binning information. these should all be booleans that represent whether a level passes or fails a certain requirement
         JsonObject binningProperty = new JsonObject();
             binningProperty.addProperty("ConsistentRows", BinGeneratedLevels.consistentRows(levelText));
@@ -146,18 +146,19 @@ public class calculateMetrics {
             // Here we calculate metrics by game so that we are able to save a metric file for each game in each generator along with the metric file for all games for a generator
             Stream<Path> streamByGame = Files.list(Path.of(levelFolderPath)).filter(f -> !f.toString().endsWith(".json")).parallel(); // Remove parallelization if causing problems
             streamByGame.forEach(game -> {
+                
                 try {
                     JsonObject fullGameJson = new JsonObject();
                     
                     Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
                     System.out.println("Creating metrics for... " + levelFolderPath + "/" + game.toString());
                     streamByLevel.forEach(level -> {
+                        //System.out.println("Starring " + level.toString());
                         // If level file
                         if (level.toString().endsWith(".txt")){
                             try {
                                 fullGameJson.add(level.toString(), createLevelMetricJson(level));
-                                System.out.print("\r" + level.toString() + " completed!                           \r"); // (Load-bearing space characters)
-                                
+                                System.out.println("\r" + level.toString() + " completed!                           \r"); // (Load-bearing space characters)
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -175,7 +176,8 @@ public class calculateMetrics {
                     e.printStackTrace();
                     
                 }
-            });
+            }
+        );
             /*String fullJsonString = "";
             for (JsonObject j : fullGeneratorJsonList){
                 String jString = j.toString();
@@ -266,7 +268,7 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
         
-        selectedFolders.add("generatedExamples/geminiLevelGenerator");
+        //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         selectedFolders.add("generatedExamples/constructiveLevelGenerator");
         selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
