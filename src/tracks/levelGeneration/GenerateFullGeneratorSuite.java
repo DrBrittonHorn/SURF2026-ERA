@@ -23,13 +23,13 @@ public class GenerateFullGeneratorSuite {
         String claudeLevelGenerator = "tracks.levelGeneration.claudeLevelGenerator.LevelGenerator";
 
         // Generator Choice
-        String selectedGenerator = constructiveLevelGenerator;
+        String selectedGenerator = claudeLevelGenerator;
 
         // Determines padding size for file numbers
         DecimalFormat df = new DecimalFormat("000");
 
         String generatorTitle = selectedGenerator.split("\\.")[2];
-        int levelsToGenerate = 1000;
+        int levelsToGenerate = 500;
         //Only increase pauseSeconds for geminiGenerator
         int pauseSeconds = 0;
         int levelTotal = 0;
@@ -41,8 +41,8 @@ public class GenerateFullGeneratorSuite {
             Files.createDirectory(Path.of("generatedExamples" + "/" + generatorTitle));
         }
 
-        String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt", "examples/contphysics/mario.txt", "examples/contphysics/artillery.txt", "examples/gridphysics/zelda.txt", "examples/gridphysics/dungeon.txt", "examples/gridphysics/realsokoban.txt", "examples/gridphysics/towerdefense.txt", "examples/contphysics/asteroids.txt", "examples/gridphysics/roguelike.txt", "examples/gridphysics/frogs.txt"};
-        //String[] selectedGamePaths = new String[] {"examples/gridphysics/realsokoban.txt"};
+        // String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt", "examples/contphysics/mario.txt", "examples/contphysics/artillery.txt", "examples/gridphysics/zelda.txt", "examples/gridphysics/dungeon.txt", "examples/gridphysics/realsokoban.txt", "examples/gridphysics/towerdefense.txt", "examples/contphysics/asteroids.txt", "examples/gridphysics/roguelike.txt", "examples/gridphysics/frogs.txt"};
+        String[] selectedGamePaths = new String[] {"examples/gridphysics/aliens.txt"};
 
         if (selectedGenerator.equals(claudeLevelGenerator)) {
             // Batch mode: mirrors the single-level loop order — round-robin across all games,
