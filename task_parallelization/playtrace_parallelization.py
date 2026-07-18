@@ -23,6 +23,7 @@ if __name__ == '__main__':
     selected_generators = [ 
                             "enhancedClaudeGenerator",
                             "constructiveLevelGenerator",
+                            "claudeLevelGenerator",
                             "geminiLevelGenerator",
                             "geneticLevelGenerator",
                             "randomLevelGenerator",
