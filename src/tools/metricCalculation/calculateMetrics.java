@@ -153,7 +153,7 @@ public class calculateMetrics {
                     Stream<Path> streamByLevel = Files.walk(Path.of(game.toString() + "/"));
                     System.out.println("Creating metrics for... " + levelFolderPath + "/" + game.toString());
                     streamByLevel.forEach(level -> {
-                        //System.out.println("Starring " + level.toString());
+                        System.out.println("Starting " + level.toString());
                         // If level file
                         if (level.toString().endsWith(".txt")){
                             try {
@@ -268,11 +268,10 @@ public class calculateMetrics {
         //selectedFolders.add("generatedExamples/geminiLevelGenerator");
         // Uncomment to generate metrics for all levels
         
-        //selectedFolders.add("generatedExamples/geminiLevelGenerator");
+        selectedFolders.add("generatedExamples/geminiLevelGenerator");
         selectedFolders.add("generatedExamples/constructiveLevelGenerator");
         selectedFolders.add("generatedExamples/geneticLevelGenerator");
         selectedFolders.add("generatedExamples/enhancedClaudeGenerator");
-        ////selectedFolders.add("generatedExamples/localLanguageModelGenerator");
         selectedFolders.add("generatedExamples/randomLevelGenerator");
         selectedFolders.add("generatedExamples/claudeLevelGenerator");
         selectedFolders.add("generatedExamples/sturgeonLevelGenerator1x1");
