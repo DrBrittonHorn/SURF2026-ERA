@@ -16,10 +16,9 @@ def create_ERA_graph(selected_metrics_tuple: tuple, json_path: str, exclude_malf
     listY = []
     for level_path, metrics in dict.items():
         # Create lists of the variables used in this graph
-        if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parse_binning(level_path, dict))): 
-                listX.append(metrics[selected_metrics_tuple[0]])
-                listY.append(metrics[selected_metrics_tuple[1]])
+        if (not exclude_malformed or (parse_binning(level_path, dict))): 
+            listX.append(metrics[selected_metrics_tuple[0]])
+            listY.append(metrics[selected_metrics_tuple[1]])
             
     
     print(f"Creating an ERA chart with {len(listX)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")

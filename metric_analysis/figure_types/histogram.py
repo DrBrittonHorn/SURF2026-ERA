@@ -12,9 +12,8 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
 
     for level_path, metrics in dict.items():
         # Create lists of the variables used in this graph
-        if (metrics[selected_metric] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parse_binning(level_path, dict))): 
-                listX.append(metrics[selected_metric])
+        if (not exclude_malformed or (parse_binning(level_path, dict))): 
+            listX.append(metrics[selected_metric])
         # print(listX)
 
     print(f"Creating a Histogram chart with {len(listX)} levels as data points")
@@ -38,20 +37,20 @@ def create_histogram(selected_metric, json_path: str, exclude_malformed=True):
     save_file_name = "figures/" + generator_name + "/Histograms/" + game_name + selected_metric + ".png"
     if os.path.isfile(save_file_name): os.remove(save_file_name)
     plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
-    plt.show()
+    #plt.show()
     plt.close()
 
 
 # USAGE: Select a metrics.json file path, then determinr the graph's selected_metric variable
+if __name__ == "__main__":
+    metric_path = "generatedExamples/geneticLevelGenerator/levelMetrics.json"
+    # metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
+    # metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
+    # metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
+    # metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
 
-metric_path = "generatedExamples/geneticLevelGenerator/levelMetrics.json"
-# metric_path = "generatedExamples/geminiLevelGenerator/metrics.json"
-# metric_path = "generatedExamples/LocalLanguageModelGenerator/metrics.json"
-# metric_path = "generatedExamples/constructiveLevelGenerator/metrics.json"
-# metric_path = "generatedExamples/randomLevelGenerator/metrics.json"
+    # metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
+    # metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
 
-# metric_path = "generatedExamples/constructiveLevelGenerator/dungeon/metrics.json"
-# metric_path = "generatedExamples/geminiLevelGenerator/frogs/metrics.json"
-
-selected_metric = "Symmetry"
-create_histogram(selected_metric, metric_path, exclude_malformed=True)
+    selected_metric = "Symmetry"
+    create_histogram(selected_metric, metric_path, exclude_malformed=True)

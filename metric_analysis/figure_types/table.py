@@ -16,7 +16,7 @@ def create_table(json_path: str, exclude_malformed=True):
 
     # Prepares row and column data
     for level_path, metrics in dict_data.items():
-        game_name = level_path.split("\\")[2]
+        game_name = level_path.split("\\\\|/")[2]
         if game_name not in rows:
             rows.append(game_name)
         for metric, value in metrics.items():

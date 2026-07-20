@@ -42,14 +42,13 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
 
         for level_path, metrics in dict.items():
             # print(level_path)
-            level_game_name = level_path.split("\\")[2]
+            level_game_name = level_path.split("/")[2]
             # Create lists of the variables used in this graph
-            if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
-                if (not exclude_malformed or (parse_binning(level_path, dict))): 
-                    x_lists_bygenerator[i].append(metrics[selected_metrics_tuple[0]])
-                    y_lists_by_generator[i].append(metrics[selected_metrics_tuple[1]])
-                    inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
-                    inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
+            if (not exclude_malformed or (parse_binning(level_path, dict))): 
+                x_lists_bygenerator[i].append(metrics[selected_metrics_tuple[0]])
+                y_lists_by_generator[i].append(metrics[selected_metrics_tuple[1]])
+                inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
+                inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
     
     print(f"Creating an ERA by generator chart with {len(inclusive_x_list)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")
     if (len(inclusive_x_list) == 0): print("No data points found!"); return
@@ -66,7 +65,7 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
 
     
     # Creates colorbars for each of our 10 games
-    colorbars = create_game_colorbars(.65)
+    colorbars = create_game_colorbars(.4)
     
     # USE THIS to debug yellow only graphs
     # print(x_lists_bygenerator)
@@ -109,9 +108,8 @@ def create_ERA_by_Generator(selected_metrics_tuple: tuple, exclude_malformed=Tru
         if os.path.isfile(save_file_name): os.remove(save_file_name)
         plt.savefig((save_file_name), dpi=300, bbox_inches="tight")
         
-        plt.show()
+        #plt.show()
         plt.close()
-        
         return ax
 
 

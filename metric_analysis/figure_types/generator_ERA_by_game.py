@@ -46,14 +46,13 @@ def create_ERA_graph_by_game(selected_metrics_tuple: tuple, json_path: str, excl
 
     for level_path, metrics in dict.items():
         # print(level_path)
-        level_game_name = level_path.split("\\")[2]
+        level_game_name = level_path.split("/")[2]
         # Create lists of the variables used in this graph
-        if (metrics[selected_metrics_tuple[0]] > 0 and metrics[selected_metrics_tuple[1]] > 0): # Revisit this, a negative number may not mean error for all metrics...
-            if (not exclude_malformed or (parse_binning(level_path, dict))): 
-                x_lists_by_game[game_to_index[level_game_name]].append(metrics[selected_metrics_tuple[0]])
-                y_lists_by_game[game_to_index[level_game_name]].append(metrics[selected_metrics_tuple[1]])
-                inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
-                inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
+        if (not exclude_malformed or (parse_binning(level_path, dict))): 
+            x_lists_by_game[game_to_index[level_game_name]].append(metrics[selected_metrics_tuple[0]])
+            y_lists_by_game[game_to_index[level_game_name]].append(metrics[selected_metrics_tuple[1]])
+            inclusive_x_list.append(metrics[selected_metrics_tuple[0]])
+            inclusive_y_list.append(metrics[selected_metrics_tuple[1]])
     
     print(f"Creating an ERA by game chart with {len(inclusive_x_list)} levels: ({selected_metrics_tuple[1]} to {selected_metrics_tuple[0]})")
     if (len(inclusive_x_list) == 0): print("No data points found!"); return
