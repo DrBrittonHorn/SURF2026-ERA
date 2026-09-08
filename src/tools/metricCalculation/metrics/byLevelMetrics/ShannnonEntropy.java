@@ -13,9 +13,10 @@ public class ShannnonEntropy {
     // Calculates Shannon Entropy (in Bits)
     public static double calculateMetric(String levelPath) throws IOException{
         String levelText = Files.readString(Path.of(levelPath));
-        levelText = metricTools.applySpatialMapping(levelText, levelPath.split("\\\\|/")[2]); // Applies spatial preprocessing to remedy temporary issues with levels not using '.' as the empty space
+        
         //Based on the assumption that all generators use this character to represent blank space
-        char emptyChar = '.';
+        char emptyChar1 = '.';
+        char emptyChar2 = ' ';
         String map = levelText;
         String characterMapping;
         double totalArea = 0.0;
@@ -32,7 +33,7 @@ public class ShannnonEntropy {
         for (int i = 0; i < map.length(); i++){
             // If character is a part of the map
             char c = map.charAt(i);
-            if (c == emptyChar || Character.isLetterOrDigit(c)){
+            if (c == emptyChar1 || c == emptyChar2 || Character.isLetterOrDigit(c)){
                 totalArea++;
                 totals.put(c, totals.getOrDefault(c, 0)+1);
             }    
