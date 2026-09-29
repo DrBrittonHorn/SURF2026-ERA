@@ -18,11 +18,11 @@ from metric_analysis.tools import create_attribute_dict
 # Usage: Update the metric paths list to choose which folders to generate all figures for
 
 metric_paths = [
-    #"generatedExamples/constructiveLevelGenerator/levelMetrics.json",
-    #"generatedExamples/claudeLevelGenerator/levelMetrics.json",
-    #"generatedExamples/enhancedClaudeGenerator/levelMetrics.json",
+    "generatedExamples/constructiveLevelGenerator/levelMetrics.json",
+    "generatedExamples/claudeLevelGenerator/levelMetrics.json",
+    "generatedExamples/enhancedClaudeGenerator/levelMetrics.json",
     ##"generatedExamples/fineTunedLLMGenerator/levelMetrics.json",
-    #"generatedExamples/geminiLevelGenerator/levelMetrics.json",
+    "generatedExamples/geminiLevelGenerator/levelMetrics.json",
     "generatedExamples/geneticLevelGenerator/levelMetrics.json",
     ##"generatedExamples/localLanguageModel/levelMetrics.json",
     "generatedExamples/randomLevelGenerator/levelMetrics.json",
