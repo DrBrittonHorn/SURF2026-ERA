@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
+from sklearn.cluster import KMeans
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
@@ -21,10 +22,10 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
 
     # Step 3: Standardizing the Data
     df = pd.DataFrame(dataframe)
-    print(df)
+    # print(df)
 
     X = df.drop(cols_to_drop, axis=1)
-    print(X)
+    # print(X)
     y = df[col_to_predict]
 
     scaler = StandardScaler()
@@ -44,14 +45,13 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
 
     # Step 5: Evaluating with Confusion Matrix
 
-    cm = confusion_matrix(y_test, y_pred)
+    """cm = confusion_matrix(y_test, y_pred)
 
     plt.figure(figsize=(5,4))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Female', 'Male'], yticklabels=['Female', 'Male'])
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
-    plt.title('Confusion Matrix')
-    plt.show()
+    plt.title('Confusion Matrix')"""
 
 
     # Step 6: Visualizing PCA Result
@@ -60,28 +60,72 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
     color_map = ListedColormap([cmap(1.0) for cmap in create_game_colorbars(num_games=len(class_labels))])
     color_norm = BoundaryNorm(np.arange(-0.5, len(class_labels) + 0.5), color_map.N)
 
-    plt.figure(figsize=(12, 5))
+    
 
+    # Shows levels along the axis of 2 measurements
+    """
+    #plt.figure(figsize=(12, 5))
     plt.subplot(1, 2, 1)
-    plt.scatter(X_scaled[:, 0], X_scaled[:, 1], c=y_numeric, cmap=color_map, norm=color_norm, edgecolor='k', s=30, alpha=0.05)
+    plt.scatter(X_scaled[:, 0], X_scaled[:, 1], c=y_numeric, cmap=color_map, norm=color_norm, edgecolor='k', s=30, alpha=0.03)
     plt.xlabel('Original Feature 1')
     plt.ylabel('Original Feature 2')
     plt.title('Before PCA: Using First 2 Standardized Features')
     colorbar = plt.colorbar(ticks=np.arange(len(class_labels)))
     colorbar.set_label('Target classes')
     colorbar.set_ticklabels(class_labels)
+    """
+    
 
-    plt.subplot(1, 2, 2)
+    # plt.subplot(1, 2, 2)
     plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y_numeric, cmap=color_map, norm=color_norm, edgecolor='none', s=10, alpha=0.05)
     plt.xlabel('Principal Component 1')
     plt.ylabel('Principal Component 2')
-    plt.title('After PCA: Projected onto 2 Principal Components')
+    plt.title(f'PCA by {col_to_predict}: Level Metrics Projected into 2 Dimensions')
     colorbar = plt.colorbar(ticks=np.arange(len(class_labels)))
     colorbar.set_label('Target classes')
     colorbar.set_ticklabels(class_labels)
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"figures/PCA_by_{col_to_predict.lower()}")
+    # plt.show()
+
+    return (X_pca[:, 0], X_pca[:, 1], y_numeric)
+
+
+def k_means_clustering(x, y, n_clusters=10):
+        # See https://www.w3schools.com/Python/python_ml_k-means.asp for more details
+
+        
+        data = list(zip(PC1, PC2))
+        # print(data)
+
+        inertias = []
+
+        for i in range(1,11):
+            kmeans = KMeans(n_clusters=i)
+            kmeans.fit(data)
+            inertias.append(kmeans.inertia_)
+
+        plt.plot(range(1,11), inertias, marker='o')
+        plt.title('Elbow method results for K-Means of PCA Analysis')
+        plt.xlabel('Number of clusters')
+        plt.ylabel('Inertia')
+        plt.savefig("figures/PCA_elbow_method")
+        # plt.show()
+
+        kmeans = KMeans(n_clusters)
+        kmeans.fit(data)
+
+        color_map = ListedColormap([cmap(1.0) for cmap in create_game_colorbars(num_games=n_clusters)])
+        color_norm = BoundaryNorm(np.arange(-0.5, n_clusters + 0.5), color_map.N)
+
+        plt.scatter(PC1, PC2, c=kmeans.labels_, cmap=color_map, norm=color_norm, edgecolor='none', s=10, alpha=0.05)
+        plt.title(f'K-Means for {n_clusters}: Principal Components in 2 Dimensions')
+        plt.xlabel('Principal Component 1')
+        plt.ylabel('Principal Component 2')
+        plt.savefig("figures/K_means_results")
+        # plt.show()
+
 
 if __name__ == "__main__":
 
@@ -129,7 +173,7 @@ if __name__ == "__main__":
             
             level_vector.append(generator_id)  # Ground truth for generator
             level_vector.append(level_game_id)  # Ground truth for game
-            print(f"Level vector for {level}: {level_vector}")
+            # print(f"Level vector for {level}: {level_vector}")
             all_level_vectors.append(level_vector)
     print(f"Total level vectors created: {len(all_level_vectors)}")
     # print(f"Level vectors created: {all_level_vectors}")
@@ -139,5 +183,7 @@ if __name__ == "__main__":
     #print(levels_df)
     #print(df)
 
-    # PCA_analysis(levels_df, cols_to_drop=["Generator", "Game"], col_to_predict = "Generator")
-    PCA_analysis(levels_df, cols_to_drop=["Generator", "Game"], col_to_predict = "Game")
+    # PCA_analysis(levels_df, cols_to_drop=["Generator", "Game"], col_to_predict = "Game")
+    PC1, PC2, label = (PCA_analysis(levels_df, cols_to_drop=["Generator", "Game"], col_to_predict = "Generator"))
+    
+    k_means_clustering(PC1, PC2)
