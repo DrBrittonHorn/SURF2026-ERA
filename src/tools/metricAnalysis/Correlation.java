@@ -3,6 +3,8 @@ package tools.metricAnalysis;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,16 +44,19 @@ public class Correlation {
         Gson g = new Gson();
         JsonObject sampleJson = g.fromJson(jsonSampleRaw, JsonObject.class);
         Map.Entry<String, JsonElement> firstEntry = sampleJson.entrySet().iterator().next();
-        Set<String> metrics = sampleJson.get(firstEntry.getKey()).getAsJsonObject().keySet();
+        Set<String> metricsSet = sampleJson.get(firstEntry.getKey()).getAsJsonObject().keySet();
+        metricsSet.removeIf(m -> m.contains("*"));
+        Object[] metricsArray = metricsSet.toArray();
+        HashMap<String, Double> metricCorrelationMap = new HashMap<>();
         
-        // Balance vertical is buggy, will be temporarily removed from the sample.
-        metrics.removeIf(m -> m.contains("*"));
 
         double totalMetricCorrelation = 0;
-        for (String metric1 : metrics){
-            for (String metric2 : metrics){
+        for (int i = 0; i < metricsArray.length; i++){
+            String metric1 = (String) metricsArray[i];
+            for (int j = i + 1; j < metricsArray.length; j++){
+                String metric2 = (String) metricsArray[j];
                 double totalGeneratorCorrelation = 0;
-                
+                System.out.println("Calculating correlation between " + metric1 + " and " + metric2);
                 for (String generatorName : generatorList){
                     String jsonRaw = Files.readString(Path.of("finalizedMetrics/" + generatorName + "/levelMetrics.json"));
                     JsonObject generatorJson = g.fromJson(jsonRaw, JsonObject.class);
@@ -60,18 +65,24 @@ public class Correlation {
                     //System.out.println(generatorName + ": " + generatorR2);
                     
                 }
-                double averageGeneratorCorrelation = totalGeneratorCorrelation / 10.0;
+                double averageGeneratorCorrelation = totalGeneratorCorrelation / 10.0; // We have 10 generators
                 System.out.println("Average correlation for " + metric1 + " and " + metric2 + ": " + averageGeneratorCorrelation);
-                if (!Double.isNaN(averageGeneratorCorrelation)){totalMetricCorrelation += averageGeneratorCorrelation;}
+                if (!Double.isNaN(averageGeneratorCorrelation)){
+                    totalMetricCorrelation += averageGeneratorCorrelation;
+                    metricCorrelationMap.put(metric1 + " vs " + metric2, averageGeneratorCorrelation);
+                }
             }
             System.out.println(totalMetricCorrelation);
         }
 
-        System.out.println("Average correlation between all metrics among all generators: " + totalMetricCorrelation / (metrics.size() * metrics.size()));
-        
-        
-        
-
+        System.out.println("Average correlation between all metrics among all generators: " + totalMetricCorrelation / Math.pow(metricsArray.length, 2));
+        List<Map.Entry<String, Double>> sortedMetricCorrelationList = metricCorrelationMap.entrySet().stream()
+            .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+            .toList();
+        // Print the top 30 metric correlations
+        for (Map.Entry<String, Double> entry : sortedMetricCorrelationList.subList(0, 50)) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
         
     }
 

@@ -18,7 +18,7 @@ else:
     from tools import create_attribute_dict, create_game_colorbars # type: ignore
 
     # See https://www.geeksforgeeks.org/data-analysis/principal-component-analysis-pca/ for more details
-def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
+def PCA_analysis(dataframe, cols_to_drop, col_to_predict, n_components=2):
 
     # Step 3: Standardizing the Data
     df = pd.DataFrame(dataframe)
@@ -33,7 +33,7 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
 
     # Step 4: Applying PCA algorithm
 
-    pca = PCA(n_components=2)
+    pca = PCA(n_components=n_components)
     X_pca = pca.fit_transform(X_scaled)
 
     pc_names = [f'PC{i+1}' for i in range(pca.n_components_)]
@@ -47,10 +47,15 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
         axis="columns",
     )
     metric_variance_pct = variance_share.sum(axis=1).sort_values(ascending=False)
-    print("\nMetric contribution to total variance explained by the retained PCs:")
+    print(f"\nMetric contribution to total variance explained by the retained PCs: (Only {pca.explained_variance_ratio_.sum()*100:.2f}% of the variance explained by {n_components}/{X.shape[1]} components)")
+    
     for metric, contribution in metric_variance_pct.items():
         print(f"{metric}: {contribution:.2f}%")
 
+    for metric, contribution in metric_variance_pct.items():
+            print(f"{metric}")
+    for metric, contribution in metric_variance_pct.items():
+            print(f"{contribution:.2f}%")
     
 
     # Signed metric contributions for each input row, separately for each PC.
@@ -66,7 +71,7 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
 
     X_train, X_test, y_train, y_test = train_test_split(X_pca, y, test_size=0.3, random_state=42)
 
-    model = LogisticRegression()
+    model = LogisticRegression(max_iter=500)
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
@@ -224,6 +229,7 @@ if __name__ == "__main__":
         levels_df,
         cols_to_drop=["Generator", "Game"],
         col_to_predict="Generator",
+        n_components=2
     )    
 
     k_means_clustering(PC1, PC2)
