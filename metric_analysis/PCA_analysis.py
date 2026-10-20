@@ -36,12 +36,41 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
     pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X_scaled)
 
+    pc_names = [f'PC{i+1}' for i in range(pca.n_components_)]
+    loadings = pd.DataFrame(pca.components_.T, columns=pc_names, index=X.columns)
+
+    variance_share = loadings.pow(2).mul(
+        pd.Series(
+            pca.explained_variance_ratio_ * 100,
+            index=pc_names,
+        ),
+        axis="columns",
+    )
+    metric_variance_pct = variance_share.sum(axis=1).sort_values(ascending=False)
+    print("\nMetric contribution to total variance explained by the retained PCs:")
+    for metric, contribution in metric_variance_pct.items():
+        print(f"{metric}: {contribution:.2f}%")
+
+    
+
+    # Signed metric contributions for each input row, separately for each PC.
+    centered = X_scaled - pca.mean_
+    level_contributions = {
+        pc_name: pd.DataFrame(
+            centered * pca.components_[i],
+            index=df.index,
+            columns=X.columns,
+        )
+        for i, pc_name in enumerate(pc_names)
+    }
+
     X_train, X_test, y_train, y_test = train_test_split(X_pca, y, test_size=0.3, random_state=42)
 
     model = LogisticRegression()
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
+
 
     # Step 5: Evaluating with Confusion Matrix
 
@@ -89,7 +118,14 @@ def PCA_analysis(dataframe, cols_to_drop, col_to_predict):
     plt.savefig(f"figures/PCA_by_{col_to_predict.lower()}")
     # plt.show()
 
-    return (X_pca[:, 0], X_pca[:, 1], y_numeric)
+    return (
+        X_pca[:, 0],
+        X_pca[:, 1],
+        y_numeric,
+        loadings,
+        variance_share,
+        level_contributions,
+    )
 
 
 def k_means_clustering(x, y, n_clusters=10):
@@ -184,6 +220,10 @@ if __name__ == "__main__":
     #print(df)
 
     # PCA_analysis(levels_df, cols_to_drop=["Generator", "Game"], col_to_predict = "Game")
-    PC1, PC2, label = (PCA_analysis(levels_df, cols_to_drop=["Generator", "Game"], col_to_predict = "Generator"))
-    
+    PC1, PC2, label, loadings, variance_share, level_contributions = PCA_analysis(
+        levels_df,
+        cols_to_drop=["Generator", "Game"],
+        col_to_predict="Generator",
+    )    
+
     k_means_clustering(PC1, PC2)
